@@ -1,91 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>FFmpeg的简单使用</title>
-    <url>/archives/d9d00a92.html</url>
-    <content><![CDATA[<p>简单聊一聊FFmpeg的使用；</p>
-<p>其有非常强大的功能：包括但不限于 视频采集功能、视频格式转换、视频抓图、给视频加水印等。<span id="more"></span></p>
-<p><em>以下来源于百度百科：FFmpeg是一套可以用来记录、转换数字音频、视频，并能将其转化为流的开源计算机程序。采用LGPL或GPL许可证。它提供了录制、转换以及流化音视频的完整解决方案。它包含了非常先进的音频/视频编解码库libavcodec，为了保证高可移植性和编解码质量，libavcodec里很多code都是从头开发的。</em></p>
-<hr>
-<h3 id="简单介绍一下使用方法："><a href="#简单介绍一下使用方法：" class="headerlink" title="简单介绍一下使用方法："></a>简单介绍一下使用方法：</h3><h3 id="应用场景1：格式转换"><a href="#应用场景1：格式转换" class="headerlink" title="应用场景1：格式转换"></a>应用场景1：格式转换</h3><p>我想把用iPhone拍的.MOV文件转成.avi文件。最简单了，可以执行下面的命令：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ffmpeg -i D:\Media\IMG_0873.MOV D:\Media\output.avi  </span><br></pre></td></tr></table></figure>
-
-<p>【意思是，把D:\Media目录下的源文件IMG_0873.MOV（视频：h.264，音频：aac）转换成output.avi（编码格式自动选择为：视频mpeg4，音频mp3），目标文件仍然保存到D:\Media目录下。】</p>
-<p>问题来了：我想自己指定编码格式，怎么办呢？可通过目标文件的扩展名（.flv、.mpg、.mp4、.wmv等）来控制，比如：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ffmpeg -i D:\Media\IMG_0873.MOV D:\Media\output2.flv</span><br></pre></td></tr></table></figure>
-
-<h3 id="应用场景2：调整大小"><a href="#应用场景2：调整大小" class="headerlink" title="应用场景2：调整大小"></a>应用场景2：调整大小</h3><p>若源文件的图像帧尺寸是1920x 1080，我不需要这么大——能有720 x 480就够了。于是，就要用上-s参数了。为了保证图像缩放后的质量，最好加上码流参数-b:v。如下：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ffmpeg -i D:\Media\IMG_0873.MOV -s 720x480 -b:v 1500k D:\Media\output2.avi</span><br></pre></td></tr></table></figure>
-
-<h3 id="应用场景3：翻转视频"><a href="#应用场景3：翻转视频" class="headerlink" title="应用场景3：翻转视频"></a>应用场景3：翻转视频</h3><p>手机拍的视频中，有些是颠倒的，我想让它顺时针旋转90度。这时候，可以使用-vf参数加入一个过滤器，如下：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ffmpeg -i D:\Media\IMG_0873.MOV -vf &quot;rotate=90*PI/180&quot; D:\Media\output3.avi</span><br></pre></td></tr></table></figure>
-
-<p>注：如果想逆时针旋转90度，90前面加个负号就可以了。</p>
-<h3 id="应用场景4：截取一段"><a href="#应用场景4：截取一段" class="headerlink" title="应用场景4：截取一段"></a>应用场景4：截取一段</h3><p>需要从源视频里截取一小段，怎么办呢？比如从第2秒的地方开始，往后截取10秒钟。命令行可以这样：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ffmpeg -ss 2 -t 10 -i D:\Media\IMG_0873.MOV D:\Media\output4.avi</span><br></pre></td></tr></table></figure>
-
-<p>注：这种情况下，-ss和-t参数必须放在-i前面，表示是限定后面跟着的输入文件的。</p>
-<h3 id="应用场景5：视频合成"><a href="#应用场景5：视频合成" class="headerlink" title="应用场景5：视频合成"></a>应用场景5：视频合成</h3><p>用手机拍的视频有时候背景噪音比较大。怎么把噪音去掉，换成一段美妙的音乐呢？使用FFmpeg也能轻易做到。</p>
-<p><em><strong>第一步：</strong></em>把源文件里的音频去掉，生成一个临时文件tmp.mov</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ffmpeg -i D:\Media\IMG_0873.MOV -vcodec copy -an D:\Media\tmp.mov</span><br></pre></td></tr></table></figure>
-
-<p>注：-vcodec copy的意思是对源视频不解码，直接拷贝到目标文件；-an的意思是将源文件里的音频丢弃。</p>
-<p><em><strong>第二步：</strong></em>把这个无声的视频文件（tmp.mov）与一个音乐文件（music.mp3）合成，最终生成output.mov</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ffmpeg -i D:\Media\tmp.mov -ss 30 -t 52 -i D:\Media\music.mp3 -vcodec copy D:\Media\output5.avi</span><br><span class="line"></span><br><span class="line">ffmpeg.exe -i G:\test\removebgm.mp4 -ss 00:00:00.0 -t 00:03:31 -i G:\test\456.mp3 -acodec copy G:\test\hfdk.mp4</span><br></pre></td></tr></table></figure>
-
-<p>为了保证良好的合成效果，音乐时长必须匹配视频时长。这里我们事先知道视频时长为52秒，于是截取music.mp3文件的第30秒往后的52秒与视频合成。另外，为了保证音频时长截取的准确性，我们这里没有使用-acodec copy，而是让音频重新转码。</p>
-<p>还有一种情况：我们希望在一段视频上叠加一张图片（将视频画面全部显示该图片）。可以简单实现如下：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ffmpeg -i D:\Media\IMG_0873.MOV -i D:\Media\logo.png -filter_complex   &#x27;overlay&#x27; D:\Media\output6.avi</span><br></pre></td></tr></table></figure>
-
-<h3 id="应用场景6：视频播放"><a href="#应用场景6：视频播放" class="headerlink" title="应用场景6：视频播放"></a>应用场景6：视频播放</h3><p>格式转换或合成之后，我们需要试着播放一下。播放器的选择很多。这里顺手用ffplay工具也行：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ffplay -i D:\Media\output6.avi</span><br></pre></td></tr></table></figure>
-
-<h3 id="应用场景7：获取视频信息"><a href="#应用场景7：获取视频信息" class="headerlink" title="应用场景7：获取视频信息"></a>应用场景7：获取视频信息</h3><p>有时候，我只是想看看这个视频文件的格式信息。可以用ffprobe工具：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ffprobe -i D:\Media\IMG_0873.MOV</span><br></pre></td></tr></table></figure>
-
-<h3 id="应用场景8：截取视频前3秒-并转化为gif"><a href="#应用场景8：截取视频前3秒-并转化为gif" class="headerlink" title="应用场景8：截取视频前3秒 并转化为gif"></a>应用场景8：截取视频前3秒 并转化为gif</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ffmpeg -ss 00:00:01 -t 3 -i 123.mp4 -vf crop=iw:ih*2/3 -s 320x240 -r 7 456.gif</span><br></pre></td></tr></table></figure>
-
-<p>ps: -ss 00：00：01表示从视频第一秒开始截取  ;  - t 表示截图3秒钟的视频  ;   -vf crop=iw:ih*2/3 表示截取视频的部分区域，其中宽为视频宽度，高为原视频的2/3  ;     -r 7 表示每秒帧率为7帧  ; </p>
-<h3 id="应用场景9：把AVI里的音频保存成mp3文件"><a href="#应用场景9：把AVI里的音频保存成mp3文件" class="headerlink" title="应用场景9：把AVI里的音频保存成mp3文件"></a>应用场景9：把AVI里的音频保存成mp3文件</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ffmpeg -i source_video.avi -vn -ar 44100 -acodec libmp3lame -ac 2 -ab 192K -f mp3 sound.mp3</span><br></pre></td></tr></table></figure>
-
-<h3 id="应用场景10：分离视频音频流"><a href="#应用场景10：分离视频音频流" class="headerlink" title="应用场景10：分离视频音频流"></a>应用场景10：<strong>分离视频音频流</strong></h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ffmpeg.exe -i G:\test\123.mp4 -f mp3 -vn G:\test\fgsiug.mp3</span><br><span class="line"></span><br><span class="line">ffmpeg.exe -i G:\test\123.mp4 -vn -codec copy G:\test\123.m4a</span><br><span class="line">//分离音频流      //  m4a 与 MP3 还不一样</span><br></pre></td></tr></table></figure>
-
-<p><em>ps：以上来源于互联网以及FFmpeg官方文档</em></p>
-<hr>
-<h3 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h3><p>附上FFmpeg官网链接：<a href="https://github.com/FFmpeg/FFmpeg">FFmpeg/FFmpeg: Mirror of https://git.ffmpeg.org/ffmpeg.git (github.com)</a></p>
-]]></content>
-      <tags>
-        <tag>FFmpeg</tag>
-        <tag>教程</tag>
-        <tag>干货</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>MarkDown基础</title>
-    <url>/archives/b797e99c.html</url>
-    <content><![CDATA[<p>由于该博客的文章全部都是用markdown写的，所以就写一下MarkDown语法相关吧！<span id="more"></span></p>
-<hr>
-<p>Markdown 是一种轻量级标记语言，它允许人们使用易读易写的纯文本格式编写文档。</p>
-<p>Markdown 语言在 2004 由约翰·格鲁伯（英语：John Gruber）创建。</p>
-<p>Markdown 编写的文档可以导出 HTML 、Word、图像、PDF、Epub 等多种格式的文档。</p>
-<p>Markdown 编写的文档后缀为 <strong>.md</strong>, <strong>.markdown</strong>。</p>
-<hr>
-<p>Markdown 能被使用来撰写电子书，如：Gitbook。</p>
-<p>当前许多网站都广泛使用 Markdown 来撰写帮助文档或是用于论坛上发表消息。例如：GitHub、简书、reddit、Diaspora、Stack Exchange、OpenStreetMap 、SourceForge等。</p>
-<hr>
-<p>教程网站：<a href="https://www.runoob.com/markdown/md-tutorial.html">Markdown 教程 | 菜鸟教程</a></p>
-<p>个人觉得好用的在线编辑网站：<a href="https://dillinger.io/">Online Markdown Editor - Dillinger, the Last Markdown Editor ever.</a></p>
-<p>个人觉得好用的PC端MarkDown软件：<a href="https://www.typora.io/">Typora — a markdown editor, markdown reader.</a></p>
-<hr>
-<p>结束！！</p>
-]]></content>
-      <tags>
-        <tag>教程</tag>
-        <tag>干货</tag>
-        <tag>markdown</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Web前端记录（一）</title>
     <url>/archives/f6984ebe.html</url>
     <content><![CDATA[<h3 id="web前端-—-基础常用标签"><a href="#web前端-—-基础常用标签" class="headerlink" title="web前端 — 基础常用标签"></a>web前端 — 基础常用标签</h3><p><strong>这是之前的学习记录，整理一下，放到这儿吧！</strong></p>
@@ -174,6 +89,91 @@
       <tags>
         <tag>前端</tag>
         <tag>学习</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>FFmpeg的简单使用</title>
+    <url>/archives/d9d00a92.html</url>
+    <content><![CDATA[<p>简单聊一聊FFmpeg的使用；</p>
+<p>其有非常强大的功能：包括但不限于 视频采集功能、视频格式转换、视频抓图、给视频加水印等。<span id="more"></span></p>
+<p><em>以下来源于百度百科：FFmpeg是一套可以用来记录、转换数字音频、视频，并能将其转化为流的开源计算机程序。采用LGPL或GPL许可证。它提供了录制、转换以及流化音视频的完整解决方案。它包含了非常先进的音频/视频编解码库libavcodec，为了保证高可移植性和编解码质量，libavcodec里很多code都是从头开发的。</em></p>
+<hr>
+<h3 id="简单介绍一下使用方法："><a href="#简单介绍一下使用方法：" class="headerlink" title="简单介绍一下使用方法："></a>简单介绍一下使用方法：</h3><h3 id="应用场景1：格式转换"><a href="#应用场景1：格式转换" class="headerlink" title="应用场景1：格式转换"></a>应用场景1：格式转换</h3><p>我想把用iPhone拍的.MOV文件转成.avi文件。最简单了，可以执行下面的命令：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ffmpeg -i D:\Media\IMG_0873.MOV D:\Media\output.avi  </span><br></pre></td></tr></table></figure>
+
+<p>【意思是，把D:\Media目录下的源文件IMG_0873.MOV（视频：h.264，音频：aac）转换成output.avi（编码格式自动选择为：视频mpeg4，音频mp3），目标文件仍然保存到D:\Media目录下。】</p>
+<p>问题来了：我想自己指定编码格式，怎么办呢？可通过目标文件的扩展名（.flv、.mpg、.mp4、.wmv等）来控制，比如：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ffmpeg -i D:\Media\IMG_0873.MOV D:\Media\output2.flv</span><br></pre></td></tr></table></figure>
+
+<h3 id="应用场景2：调整大小"><a href="#应用场景2：调整大小" class="headerlink" title="应用场景2：调整大小"></a>应用场景2：调整大小</h3><p>若源文件的图像帧尺寸是1920x 1080，我不需要这么大——能有720 x 480就够了。于是，就要用上-s参数了。为了保证图像缩放后的质量，最好加上码流参数-b:v。如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ffmpeg -i D:\Media\IMG_0873.MOV -s 720x480 -b:v 1500k D:\Media\output2.avi</span><br></pre></td></tr></table></figure>
+
+<h3 id="应用场景3：翻转视频"><a href="#应用场景3：翻转视频" class="headerlink" title="应用场景3：翻转视频"></a>应用场景3：翻转视频</h3><p>手机拍的视频中，有些是颠倒的，我想让它顺时针旋转90度。这时候，可以使用-vf参数加入一个过滤器，如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ffmpeg -i D:\Media\IMG_0873.MOV -vf &quot;rotate=90*PI/180&quot; D:\Media\output3.avi</span><br></pre></td></tr></table></figure>
+
+<p>注：如果想逆时针旋转90度，90前面加个负号就可以了。</p>
+<h3 id="应用场景4：截取一段"><a href="#应用场景4：截取一段" class="headerlink" title="应用场景4：截取一段"></a>应用场景4：截取一段</h3><p>需要从源视频里截取一小段，怎么办呢？比如从第2秒的地方开始，往后截取10秒钟。命令行可以这样：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ffmpeg -ss 2 -t 10 -i D:\Media\IMG_0873.MOV D:\Media\output4.avi</span><br></pre></td></tr></table></figure>
+
+<p>注：这种情况下，-ss和-t参数必须放在-i前面，表示是限定后面跟着的输入文件的。</p>
+<h3 id="应用场景5：视频合成"><a href="#应用场景5：视频合成" class="headerlink" title="应用场景5：视频合成"></a>应用场景5：视频合成</h3><p>用手机拍的视频有时候背景噪音比较大。怎么把噪音去掉，换成一段美妙的音乐呢？使用FFmpeg也能轻易做到。</p>
+<p><em><strong>第一步：</strong></em>把源文件里的音频去掉，生成一个临时文件tmp.mov</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ffmpeg -i D:\Media\IMG_0873.MOV -vcodec copy -an D:\Media\tmp.mov</span><br></pre></td></tr></table></figure>
+
+<p>注：-vcodec copy的意思是对源视频不解码，直接拷贝到目标文件；-an的意思是将源文件里的音频丢弃。</p>
+<p><em><strong>第二步：</strong></em>把这个无声的视频文件（tmp.mov）与一个音乐文件（music.mp3）合成，最终生成output.mov</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ffmpeg -i D:\Media\tmp.mov -ss 30 -t 52 -i D:\Media\music.mp3 -vcodec copy D:\Media\output5.avi</span><br><span class="line"></span><br><span class="line">ffmpeg.exe -i G:\test\removebgm.mp4 -ss 00:00:00.0 -t 00:03:31 -i G:\test\456.mp3 -acodec copy G:\test\hfdk.mp4</span><br></pre></td></tr></table></figure>
+
+<p>为了保证良好的合成效果，音乐时长必须匹配视频时长。这里我们事先知道视频时长为52秒，于是截取music.mp3文件的第30秒往后的52秒与视频合成。另外，为了保证音频时长截取的准确性，我们这里没有使用-acodec copy，而是让音频重新转码。</p>
+<p>还有一种情况：我们希望在一段视频上叠加一张图片（将视频画面全部显示该图片）。可以简单实现如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ffmpeg -i D:\Media\IMG_0873.MOV -i D:\Media\logo.png -filter_complex   &#x27;overlay&#x27; D:\Media\output6.avi</span><br></pre></td></tr></table></figure>
+
+<h3 id="应用场景6：视频播放"><a href="#应用场景6：视频播放" class="headerlink" title="应用场景6：视频播放"></a>应用场景6：视频播放</h3><p>格式转换或合成之后，我们需要试着播放一下。播放器的选择很多。这里顺手用ffplay工具也行：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ffplay -i D:\Media\output6.avi</span><br></pre></td></tr></table></figure>
+
+<h3 id="应用场景7：获取视频信息"><a href="#应用场景7：获取视频信息" class="headerlink" title="应用场景7：获取视频信息"></a>应用场景7：获取视频信息</h3><p>有时候，我只是想看看这个视频文件的格式信息。可以用ffprobe工具：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ffprobe -i D:\Media\IMG_0873.MOV</span><br></pre></td></tr></table></figure>
+
+<h3 id="应用场景8：截取视频前3秒-并转化为gif"><a href="#应用场景8：截取视频前3秒-并转化为gif" class="headerlink" title="应用场景8：截取视频前3秒 并转化为gif"></a>应用场景8：截取视频前3秒 并转化为gif</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ffmpeg -ss 00:00:01 -t 3 -i 123.mp4 -vf crop=iw:ih*2/3 -s 320x240 -r 7 456.gif</span><br></pre></td></tr></table></figure>
+
+<p>ps: -ss 00：00：01表示从视频第一秒开始截取  ;  - t 表示截图3秒钟的视频  ;   -vf crop=iw:ih*2/3 表示截取视频的部分区域，其中宽为视频宽度，高为原视频的2/3  ;     -r 7 表示每秒帧率为7帧  ; </p>
+<h3 id="应用场景9：把AVI里的音频保存成mp3文件"><a href="#应用场景9：把AVI里的音频保存成mp3文件" class="headerlink" title="应用场景9：把AVI里的音频保存成mp3文件"></a>应用场景9：把AVI里的音频保存成mp3文件</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ffmpeg -i source_video.avi -vn -ar 44100 -acodec libmp3lame -ac 2 -ab 192K -f mp3 sound.mp3</span><br></pre></td></tr></table></figure>
+
+<h3 id="应用场景10：分离视频音频流"><a href="#应用场景10：分离视频音频流" class="headerlink" title="应用场景10：分离视频音频流"></a>应用场景10：<strong>分离视频音频流</strong></h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ffmpeg.exe -i G:\test\123.mp4 -f mp3 -vn G:\test\fgsiug.mp3</span><br><span class="line"></span><br><span class="line">ffmpeg.exe -i G:\test\123.mp4 -vn -codec copy G:\test\123.m4a</span><br><span class="line">//分离音频流      //  m4a 与 MP3 还不一样</span><br></pre></td></tr></table></figure>
+
+<p><em>ps：以上来源于互联网以及FFmpeg官方文档</em></p>
+<hr>
+<h3 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h3><p>附上FFmpeg官网链接：<a href="https://github.com/FFmpeg/FFmpeg">FFmpeg/FFmpeg: Mirror of https://git.ffmpeg.org/ffmpeg.git (github.com)</a></p>
+]]></content>
+      <tags>
+        <tag>FFmpeg</tag>
+        <tag>教程</tag>
+        <tag>干货</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>MarkDown基础</title>
+    <url>/archives/b797e99c.html</url>
+    <content><![CDATA[<p>由于该博客的文章全部都是用markdown写的，所以就写一下MarkDown语法相关吧！<span id="more"></span></p>
+<hr>
+<p>Markdown 是一种轻量级标记语言，它允许人们使用易读易写的纯文本格式编写文档。</p>
+<p>Markdown 语言在 2004 由约翰·格鲁伯（英语：John Gruber）创建。</p>
+<p>Markdown 编写的文档可以导出 HTML 、Word、图像、PDF、Epub 等多种格式的文档。</p>
+<p>Markdown 编写的文档后缀为 <strong>.md</strong>, <strong>.markdown</strong>。</p>
+<hr>
+<p>Markdown 能被使用来撰写电子书，如：Gitbook。</p>
+<p>当前许多网站都广泛使用 Markdown 来撰写帮助文档或是用于论坛上发表消息。例如：GitHub、简书、reddit、Diaspora、Stack Exchange、OpenStreetMap 、SourceForge等。</p>
+<hr>
+<p>教程网站：<a href="https://www.runoob.com/markdown/md-tutorial.html">Markdown 教程 | 菜鸟教程</a></p>
+<p>个人觉得好用的在线编辑网站：<a href="https://dillinger.io/">Online Markdown Editor - Dillinger, the Last Markdown Editor ever.</a></p>
+<p>个人觉得好用的PC端MarkDown软件：<a href="https://www.typora.io/">Typora — a markdown editor, markdown reader.</a></p>
+<hr>
+<p>结束！！</p>
+]]></content>
+      <tags>
+        <tag>教程</tag>
+        <tag>干货</tag>
+        <tag>markdown</tag>
       </tags>
   </entry>
   <entry>
@@ -280,76 +280,6 @@
 <p>注：%单位：以父容器（不能以祖先元素）大小进行换算。</p>
 </li>
 </ul>
-]]></content>
-      <tags>
-        <tag>前端</tag>
-        <tag>学习</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Web前端记录（五）</title>
-    <url>/archives/5323dd16.html</url>
-    <content><![CDATA[<h3 id="web前端-—-定位与浮动"><a href="#web前端-—-定位与浮动" class="headerlink" title="web前端 — 定位与浮动"></a>web前端 — 定位与浮动</h3><p><strong>今天继续第五篇</strong></p>
-<p><strong>注：以下以及之后文章中用到的软件均为<code> Visual Studio Code</code></strong></p>
-<span id="more"></span>
-
-<hr>
-<h3 id="定位"><a href="#定位" class="headerlink" title="定位"></a>定位</h3><ul>
-<li>相对定位 — relative</li>
-</ul>
-<p>把元素的位置设置成相对，并不会改变该元素在布局中所占的位置，也不会对其它元素的位置产生影响。</p>
-<ul>
-<li>绝对定位 — absolute</li>
-</ul>
-<p>绝对定位比较特殊的一点是：元素的定位参照于最近的 <em>positioned</em> 祖先元素。 如果它的父元素没有添加定位规则（默认是 <code>position: relative;</code>），浏览器会继续寻找直到默认的 <code>body</code> 标签。</p>
-<ul>
-<li>fixed定位</li>
-</ul>
-<p><code>fixed</code> 定位，它是一种特殊的绝对（<code>absolute</code>）定位，将元素相对于浏览器窗口定位。 类似于绝对位置，它与 <code>CSS</code> 偏移属性一起使用，并且也会将元素从当前的文档流里面移除。 其它元素会忽略它的存在，这样也许需要调整其他位置的布局。但 <code>fixed</code> 和 <code>absolute</code> 的最明显的区别在于：前者定位的元素不会随着屏幕滚动而移动。</p>
-<h3 id="浮动"><a href="#浮动" class="headerlink" title="浮动"></a>浮动</h3><p>浮动元素不在文档流中，它向 <code>left</code> 或 <code>right</code> 浮动，直到它的外边缘碰到包含框或另一个浮动框的边框为止。 通常需要用 <code>width</code> 属性来指定浮动元素占据的水平空间。</p>
-<h3 id="z-index"><a href="#z-index" class="headerlink" title="z-index"></a>z-index</h3><p>当一些元素在位置上重叠时（例如，使用 <code>position: absolute | relative | fixed | sticky</code> 时），在 HTML 里后出现的元素会默认显示在更早出现的元素的上面。 你可以使用 <code>z-index</code> 属性指定元素的堆叠次序。 <code>z-index</code> 的取值是整数，数值大的元素会叠放到数值小的元素上面。</p>
-]]></content>
-      <tags>
-        <tag>前端</tag>
-        <tag>学习</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Web前端记录（八）-- 动画与伪元素</title>
-    <url>/archives/2950d584.html</url>
-    <content><![CDATA[<h3 id="web前端-—-动画与伪元素"><a href="#web前端-—-动画与伪元素" class="headerlink" title="web前端 —  动画与伪元素"></a>web前端 —  动画与伪元素</h3><p><strong>今天继续第八篇</strong></p>
-<p><strong>注：以下以及之后文章中用到的软件均为<code> Visual Studio Code</code></strong></p>
-<span id="more"></span>
-
-<hr>
-<h3 id="1-伪元素-–-after-和-before"><a href="#1-伪元素-–-after-和-before" class="headerlink" title="1. 伪元素 –:after 和 :before"></a>1. 伪元素 –<code>:after 和 :before</code></h3><p><code>M:伪类｛｝</code></p>
-<p><code>:link</code>  访问前的样式</p>
-<p><code>:visited</code> 访问后的样式</p>
-<p><code>:hover</code>   鼠标移入的样式</p>
-<p><code>:active</code>   鼠标按下时的样式</p>
-<p>注：如果四个伪类都生效，要注意顺序：L V H A</p>
-<hr>
-<p><code>::before</code> 和 <code>::after</code> 必须配合 <code>content</code> 来使用。 这个属性通常用来给元素添加内容诸如图片或者文字。 尽管有时 <code>::before</code> 和 <code>::after</code> 是用来实现形状而非文字，但 <code>content</code> 属性仍然是必需的，此时它的值可以是空字符串。</p>
-<p>如，用伪元素画颗心：</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line">&lt;style&gt;</span><br><span class="line">  <span class="selector-class">.heart</span> &#123;</span><br><span class="line">    <span class="attribute">position</span>: absolute;</span><br><span class="line">    <span class="attribute">margin</span>: auto;</span><br><span class="line">    <span class="attribute">top</span>: <span class="number">0</span>;</span><br><span class="line">    <span class="attribute">right</span>: <span class="number">0</span>;</span><br><span class="line">    <span class="attribute">bottom</span>: <span class="number">0</span>;</span><br><span class="line">    <span class="attribute">left</span>: <span class="number">0</span>;</span><br><span class="line">    <span class="attribute">background-color</span>: pink;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">50px</span>;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">50px</span>;</span><br><span class="line">    <span class="attribute">transform</span>: <span class="built_in">rotate</span>(-<span class="number">45deg</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="selector-class">.heart</span><span class="selector-pseudo">::after</span> &#123;</span><br><span class="line">    <span class="attribute">background-color</span>: pink;</span><br><span class="line">    <span class="attribute">content</span>: <span class="string">&quot;&quot;</span>;</span><br><span class="line">    <span class="attribute">border-radius</span>: <span class="number">50%</span>;</span><br><span class="line">    <span class="attribute">position</span>: absolute;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">50px</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">50px</span>;</span><br><span class="line">    <span class="attribute">top</span>: <span class="number">0px</span>;</span><br><span class="line">    <span class="attribute">left</span>: <span class="number">25px</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="selector-class">.heart</span><span class="selector-pseudo">::before</span> &#123;</span><br><span class="line">    <span class="attribute">content</span>:<span class="string">&quot;&quot;</span>;</span><br><span class="line">    <span class="attribute">background-color</span>: pink;</span><br><span class="line">    <span class="attribute">border-radius</span>: <span class="number">50%</span>;</span><br><span class="line">    <span class="attribute">position</span>: absolute;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">50px</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">50px</span>;</span><br><span class="line">    <span class="attribute">top</span>: -<span class="number">25px</span>;</span><br><span class="line">    <span class="attribute">left</span>: <span class="number">0px</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;<span class="selector-tag">div</span> class=&quot;heart&quot;&gt;&lt;/<span class="selector-tag">div</span>&gt;</span><br></pre></td></tr></table></figure>
-
-<h3 id="2-动画"><a href="#2-动画" class="headerlink" title="2. 动画"></a>2. 动画</h3><p><code>animation-name</code> 用来设置动画的名称，也就是我们稍后要在 <code>@keyframes</code> 里用到的名称。</p>
-<p><code>animation-duration</code> 设置动画所花费的时间。</p>
-<p> <code>animation-fill-mode</code> 指定了在动画结束时元素的样式。</p>
-<p><strong>属性：none(默认值):在运动结束之后回到初始位置，在延迟情况下，让0%在延迟后生效</strong></p>
-<p><strong>backwards: 在延迟的情况下，让0%在延迟前生效</strong></p>
-<p><strong>forwards: 在运动结束后停到结束位置</strong></p>
-<p><strong>both: backwards和forwards同时生效</strong></p>
-<p><code>@keyframes</code> 可以通过设置特定时间点的行为来创建动画。 因此，我们只需要给持续时间内的特定帧（从 0% 到 100%）加上 CSS 规则。如：</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line">按钮鼠标移入变色并保持</span><br><span class="line">&lt;style&gt;</span><br><span class="line">  <span class="selector-tag">button</span> &#123;</span><br><span class="line">    <span class="attribute">border-radius</span>: <span class="number">5px</span>;</span><br><span class="line">    <span class="attribute">color</span>: white;</span><br><span class="line">    <span class="attribute">background-color</span>: <span class="number">#0F5897</span>;</span><br><span class="line">    <span class="attribute">padding</span>: <span class="number">5px</span> <span class="number">10px</span> <span class="number">8px</span> <span class="number">10px</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="selector-tag">button</span><span class="selector-pseudo">:hover</span> &#123;</span><br><span class="line">    <span class="attribute">animation-name</span>: background-color;</span><br><span class="line">    <span class="attribute">animation-duration</span>: <span class="number">500ms</span>;</span><br><span class="line">    <span class="attribute">animation-fill-mode</span>:forwards;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">@keyframes</span> background-color &#123;</span><br><span class="line">    <span class="number">100%</span> &#123;</span><br><span class="line">      <span class="attribute">background-color</span>: <span class="number">#4791d0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;<span class="selector-tag">button</span>&gt;Register&lt;/<span class="selector-tag">button</span>&gt;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line">方块变色并斜向移动</span><br><span class="line">&lt;style&gt;</span><br><span class="line">  <span class="selector-tag">div</span> &#123;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">40px</span>;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">70%</span>;</span><br><span class="line">    <span class="attribute">background</span>: black;</span><br><span class="line">    <span class="attribute">margin</span>: <span class="number">50px</span> auto;</span><br><span class="line">    <span class="attribute">border-radius</span>: <span class="number">5px</span>;</span><br><span class="line">    <span class="attribute">position</span>: relative;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="selector-id">#rect</span> &#123;</span><br><span class="line">    <span class="attribute">animation-name</span>: rainbow;</span><br><span class="line">    <span class="attribute">animation-duration</span>: <span class="number">4s</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">@keyframes</span> rainbow &#123;</span><br><span class="line">    <span class="number">0%</span> &#123;</span><br><span class="line">      <span class="attribute">background-color</span>: blue;</span><br><span class="line">      <span class="attribute">top</span>: <span class="number">0px</span>;</span><br><span class="line">      <span class="attribute">left</span>:<span class="number">0px</span>;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="number">50%</span> &#123;</span><br><span class="line">      <span class="attribute">background-color</span>: green;</span><br><span class="line">      <span class="attribute">top</span>: <span class="number">50px</span>;</span><br><span class="line">      <span class="attribute">left</span>:<span class="number">25px</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="number">100%</span> &#123;</span><br><span class="line">      <span class="attribute">background-color</span>: yellow;</span><br><span class="line">      <span class="attribute">top</span>: <span class="number">0px</span>;</span><br><span class="line">      <span class="attribute">left</span>:-<span class="number">25px</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line"></span><br><span class="line">&lt;<span class="selector-tag">div</span> id=&quot;rect&quot;&gt;&lt;/<span class="selector-tag">div</span>&gt;</span><br></pre></td></tr></table></figure>
-
-<p><code>animation-iteration-count</code>，这个属性允许你控制动画循环的次数。</p>
-<p>当其值为<code>infinite</code>是，无限循环，为具体数字时，表示循环次数。</p>
-<p><code>animation-timing-function</code> 用来定义动画的速度曲线。 </p>
-<p>速度曲线决定了动画从一套 CSS 样式变为另一套所用的时间。 如果要描述的动画是一辆车在指定时间内（<code>animation-duration</code>）从 A 运动到 B，那么 <code>animation-timing-function</code> 表述的就是车在运动中的加速和减速等过程。</p>
-<p>有一些预定义的关键字可用于常见的选项。 比如，默认值是 <code>ease</code>，动画以低速开始，然后加快，在结束前变慢。 其它常用的值包括 <code>ease-out</code>：动画以高速开始，以低速结束；<code>ease-in</code>，动画以低速开始，以高速结束；<code>linear</code>：动画从头到尾的速度是相同的。</p>
 ]]></content>
       <tags>
         <tag>前端</tag>
@@ -509,6 +439,96 @@
       </tags>
   </entry>
   <entry>
+    <title>Web前端记录（五）</title>
+    <url>/archives/5323dd16.html</url>
+    <content><![CDATA[<h3 id="web前端-—-定位与浮动"><a href="#web前端-—-定位与浮动" class="headerlink" title="web前端 — 定位与浮动"></a>web前端 — 定位与浮动</h3><p><strong>今天继续第五篇</strong></p>
+<p><strong>注：以下以及之后文章中用到的软件均为<code> Visual Studio Code</code></strong></p>
+<span id="more"></span>
+
+<hr>
+<h3 id="定位"><a href="#定位" class="headerlink" title="定位"></a>定位</h3><ul>
+<li>相对定位 — relative</li>
+</ul>
+<p>把元素的位置设置成相对，并不会改变该元素在布局中所占的位置，也不会对其它元素的位置产生影响。</p>
+<ul>
+<li>绝对定位 — absolute</li>
+</ul>
+<p>绝对定位比较特殊的一点是：元素的定位参照于最近的 <em>positioned</em> 祖先元素。 如果它的父元素没有添加定位规则（默认是 <code>position: relative;</code>），浏览器会继续寻找直到默认的 <code>body</code> 标签。</p>
+<ul>
+<li>fixed定位</li>
+</ul>
+<p><code>fixed</code> 定位，它是一种特殊的绝对（<code>absolute</code>）定位，将元素相对于浏览器窗口定位。 类似于绝对位置，它与 <code>CSS</code> 偏移属性一起使用，并且也会将元素从当前的文档流里面移除。 其它元素会忽略它的存在，这样也许需要调整其他位置的布局。但 <code>fixed</code> 和 <code>absolute</code> 的最明显的区别在于：前者定位的元素不会随着屏幕滚动而移动。</p>
+<h3 id="浮动"><a href="#浮动" class="headerlink" title="浮动"></a>浮动</h3><p>浮动元素不在文档流中，它向 <code>left</code> 或 <code>right</code> 浮动，直到它的外边缘碰到包含框或另一个浮动框的边框为止。 通常需要用 <code>width</code> 属性来指定浮动元素占据的水平空间。</p>
+<h3 id="z-index"><a href="#z-index" class="headerlink" title="z-index"></a>z-index</h3><p>当一些元素在位置上重叠时（例如，使用 <code>position: absolute | relative | fixed | sticky</code> 时），在 HTML 里后出现的元素会默认显示在更早出现的元素的上面。 你可以使用 <code>z-index</code> 属性指定元素的堆叠次序。 <code>z-index</code> 的取值是整数，数值大的元素会叠放到数值小的元素上面。</p>
+]]></content>
+      <tags>
+        <tag>前端</tag>
+        <tag>学习</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Web前端记录（八）-- 动画与伪元素</title>
+    <url>/archives/2950d584.html</url>
+    <content><![CDATA[<h3 id="web前端-—-动画与伪元素"><a href="#web前端-—-动画与伪元素" class="headerlink" title="web前端 —  动画与伪元素"></a>web前端 —  动画与伪元素</h3><p><strong>今天继续第八篇</strong></p>
+<p><strong>注：以下以及之后文章中用到的软件均为<code> Visual Studio Code</code></strong></p>
+<span id="more"></span>
+
+<hr>
+<h3 id="1-伪元素-–-after-和-before"><a href="#1-伪元素-–-after-和-before" class="headerlink" title="1. 伪元素 –:after 和 :before"></a>1. 伪元素 –<code>:after 和 :before</code></h3><p><code>M:伪类｛｝</code></p>
+<p><code>:link</code>  访问前的样式</p>
+<p><code>:visited</code> 访问后的样式</p>
+<p><code>:hover</code>   鼠标移入的样式</p>
+<p><code>:active</code>   鼠标按下时的样式</p>
+<p>注：如果四个伪类都生效，要注意顺序：L V H A</p>
+<hr>
+<p><code>::before</code> 和 <code>::after</code> 必须配合 <code>content</code> 来使用。 这个属性通常用来给元素添加内容诸如图片或者文字。 尽管有时 <code>::before</code> 和 <code>::after</code> 是用来实现形状而非文字，但 <code>content</code> 属性仍然是必需的，此时它的值可以是空字符串。</p>
+<p>如，用伪元素画颗心：</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line">&lt;style&gt;</span><br><span class="line">  <span class="selector-class">.heart</span> &#123;</span><br><span class="line">    <span class="attribute">position</span>: absolute;</span><br><span class="line">    <span class="attribute">margin</span>: auto;</span><br><span class="line">    <span class="attribute">top</span>: <span class="number">0</span>;</span><br><span class="line">    <span class="attribute">right</span>: <span class="number">0</span>;</span><br><span class="line">    <span class="attribute">bottom</span>: <span class="number">0</span>;</span><br><span class="line">    <span class="attribute">left</span>: <span class="number">0</span>;</span><br><span class="line">    <span class="attribute">background-color</span>: pink;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">50px</span>;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">50px</span>;</span><br><span class="line">    <span class="attribute">transform</span>: <span class="built_in">rotate</span>(-<span class="number">45deg</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="selector-class">.heart</span><span class="selector-pseudo">::after</span> &#123;</span><br><span class="line">    <span class="attribute">background-color</span>: pink;</span><br><span class="line">    <span class="attribute">content</span>: <span class="string">&quot;&quot;</span>;</span><br><span class="line">    <span class="attribute">border-radius</span>: <span class="number">50%</span>;</span><br><span class="line">    <span class="attribute">position</span>: absolute;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">50px</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">50px</span>;</span><br><span class="line">    <span class="attribute">top</span>: <span class="number">0px</span>;</span><br><span class="line">    <span class="attribute">left</span>: <span class="number">25px</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="selector-class">.heart</span><span class="selector-pseudo">::before</span> &#123;</span><br><span class="line">    <span class="attribute">content</span>:<span class="string">&quot;&quot;</span>;</span><br><span class="line">    <span class="attribute">background-color</span>: pink;</span><br><span class="line">    <span class="attribute">border-radius</span>: <span class="number">50%</span>;</span><br><span class="line">    <span class="attribute">position</span>: absolute;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">50px</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">50px</span>;</span><br><span class="line">    <span class="attribute">top</span>: -<span class="number">25px</span>;</span><br><span class="line">    <span class="attribute">left</span>: <span class="number">0px</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;<span class="selector-tag">div</span> class=&quot;heart&quot;&gt;&lt;/<span class="selector-tag">div</span>&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-动画"><a href="#2-动画" class="headerlink" title="2. 动画"></a>2. 动画</h3><p><code>animation-name</code> 用来设置动画的名称，也就是我们稍后要在 <code>@keyframes</code> 里用到的名称。</p>
+<p><code>animation-duration</code> 设置动画所花费的时间。</p>
+<p> <code>animation-fill-mode</code> 指定了在动画结束时元素的样式。</p>
+<p><strong>属性：none(默认值):在运动结束之后回到初始位置，在延迟情况下，让0%在延迟后生效</strong></p>
+<p><strong>backwards: 在延迟的情况下，让0%在延迟前生效</strong></p>
+<p><strong>forwards: 在运动结束后停到结束位置</strong></p>
+<p><strong>both: backwards和forwards同时生效</strong></p>
+<p><code>@keyframes</code> 可以通过设置特定时间点的行为来创建动画。 因此，我们只需要给持续时间内的特定帧（从 0% 到 100%）加上 CSS 规则。如：</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line">按钮鼠标移入变色并保持</span><br><span class="line">&lt;style&gt;</span><br><span class="line">  <span class="selector-tag">button</span> &#123;</span><br><span class="line">    <span class="attribute">border-radius</span>: <span class="number">5px</span>;</span><br><span class="line">    <span class="attribute">color</span>: white;</span><br><span class="line">    <span class="attribute">background-color</span>: <span class="number">#0F5897</span>;</span><br><span class="line">    <span class="attribute">padding</span>: <span class="number">5px</span> <span class="number">10px</span> <span class="number">8px</span> <span class="number">10px</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="selector-tag">button</span><span class="selector-pseudo">:hover</span> &#123;</span><br><span class="line">    <span class="attribute">animation-name</span>: background-color;</span><br><span class="line">    <span class="attribute">animation-duration</span>: <span class="number">500ms</span>;</span><br><span class="line">    <span class="attribute">animation-fill-mode</span>:forwards;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">@keyframes</span> background-color &#123;</span><br><span class="line">    <span class="number">100%</span> &#123;</span><br><span class="line">      <span class="attribute">background-color</span>: <span class="number">#4791d0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line">&lt;<span class="selector-tag">button</span>&gt;Register&lt;/<span class="selector-tag">button</span>&gt;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line">方块变色并斜向移动</span><br><span class="line">&lt;style&gt;</span><br><span class="line">  <span class="selector-tag">div</span> &#123;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">40px</span>;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">70%</span>;</span><br><span class="line">    <span class="attribute">background</span>: black;</span><br><span class="line">    <span class="attribute">margin</span>: <span class="number">50px</span> auto;</span><br><span class="line">    <span class="attribute">border-radius</span>: <span class="number">5px</span>;</span><br><span class="line">    <span class="attribute">position</span>: relative;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="selector-id">#rect</span> &#123;</span><br><span class="line">    <span class="attribute">animation-name</span>: rainbow;</span><br><span class="line">    <span class="attribute">animation-duration</span>: <span class="number">4s</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">@keyframes</span> rainbow &#123;</span><br><span class="line">    <span class="number">0%</span> &#123;</span><br><span class="line">      <span class="attribute">background-color</span>: blue;</span><br><span class="line">      <span class="attribute">top</span>: <span class="number">0px</span>;</span><br><span class="line">      <span class="attribute">left</span>:<span class="number">0px</span>;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="number">50%</span> &#123;</span><br><span class="line">      <span class="attribute">background-color</span>: green;</span><br><span class="line">      <span class="attribute">top</span>: <span class="number">50px</span>;</span><br><span class="line">      <span class="attribute">left</span>:<span class="number">25px</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="number">100%</span> &#123;</span><br><span class="line">      <span class="attribute">background-color</span>: yellow;</span><br><span class="line">      <span class="attribute">top</span>: <span class="number">0px</span>;</span><br><span class="line">      <span class="attribute">left</span>:-<span class="number">25px</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&lt;/style&gt;</span><br><span class="line"></span><br><span class="line">&lt;<span class="selector-tag">div</span> id=&quot;rect&quot;&gt;&lt;/<span class="selector-tag">div</span>&gt;</span><br></pre></td></tr></table></figure>
+
+<p><code>animation-iteration-count</code>，这个属性允许你控制动画循环的次数。</p>
+<p>当其值为<code>infinite</code>是，无限循环，为具体数字时，表示循环次数。</p>
+<p><code>animation-timing-function</code> 用来定义动画的速度曲线。 </p>
+<p>速度曲线决定了动画从一套 CSS 样式变为另一套所用的时间。 如果要描述的动画是一辆车在指定时间内（<code>animation-duration</code>）从 A 运动到 B，那么 <code>animation-timing-function</code> 表述的就是车在运动中的加速和减速等过程。</p>
+<p>有一些预定义的关键字可用于常见的选项。 比如，默认值是 <code>ease</code>，动画以低速开始，然后加快，在结束前变慢。 其它常用的值包括 <code>ease-out</code>：动画以高速开始，以低速结束；<code>ease-in</code>，动画以低速开始，以高速结束；<code>linear</code>：动画从头到尾的速度是相同的。</p>
+]]></content>
+      <tags>
+        <tag>前端</tag>
+        <tag>学习</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hello World!</title>
+    <url>/archives/1c291ca3.html</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<span id="more"></span>
+
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+]]></content>
+  </entry>
+  <entry>
     <title>Web前端记录（四）</title>
     <url>/archives/3cbd1851.html</url>
     <content><![CDATA[<h3 id="web前端-—-优先级、css变量"><a href="#web前端-—-优先级、css变量" class="headerlink" title="web前端 — 优先级、css变量"></a>web前端 — 优先级、css变量</h3><p><strong>今天继续第四篇</strong></p>
@@ -545,24 +565,36 @@
       </tags>
   </entry>
   <entry>
-    <title>Hello World!</title>
-    <url>/archives/1c291ca3.html</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<span id="more"></span>
-
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+    <title>内网穿透</title>
+    <url>/archives/bd50b816.html</url>
+    <content><![CDATA[<p>内网穿透，即 NAT 穿透，进行 NAT 穿透是为了使具有某一个特定源 IP 地址和源端口号的数据包不被 NAT 设备屏蔽而正确路由到内网主机。<span id="more"></span></p>
+<p>最开始了解内网穿透是为了将自己写的HTML项目能够让别人看见，但当时又不了解服务器等东西，就上网搜方法；偶然看到说内网穿透可以，所以就找了好多教程；最终就选了以下这种方法！</p>
+<hr>
+<h3 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h3><p>安装好jdk并配置环境变量、下载Tomcat并配置环境变量、注册一个Ngrok账号、一台电脑</p>
+<h3 id="配置jdk与Tomcat"><a href="#配置jdk与Tomcat" class="headerlink" title="配置jdk与Tomcat"></a>配置jdk与Tomcat</h3><p>这个就不详写了，上网一搜一大堆！（注意Tomcat要与jdk的版本号对应，具体看官网对应关系：<a href="http://tomcat.apache.org/whichversion.html">Apache Tomcat® - Which Version Do I Want?</a>）</p>
+<h3 id="注册并登录Ngrok以及开通隧道"><a href="#注册并登录Ngrok以及开通隧道" class="headerlink" title="注册并登录Ngrok以及开通隧道"></a>注册并登录Ngrok以及开通隧道</h3><p>Ngrok官网：<a href="https://www.ngrok.cc/">Sunny-Ngrok内网穿透服务</a></p>
+<p>因为Ngrok是有免费线路的，所以完全可以白嫖。😁 一般不会失效，如果失效，再次开通就行。</p>
+<p>登录进入后选择“隧道管理” —&gt; “开通隧道” —&gt; 向下滑，找到最后一个价格为0元的，购买就行；</p>
+<p><strong>协议</strong>选<code>http/https</code>均可，<strong>隧道名称</strong>随便起，<strong>前置域名</strong>随便起（尽量短，好记；用英文、数字都行），<strong>本地端口</strong>默认就行，下面两个不用填，点击<strong>确定添加</strong>就可以了。</p>
+<p>开通成功后可以在<strong>隧道管理</strong>查看自己的隧道了。然后下载客户端，<a href="https://www.ngrok.cc/download.html">Sunny-Ngrok内网转发客户端</a>，选择自己电脑的版本即可！</p>
+<h3 id="内网穿透"><a href="#内网穿透" class="headerlink" title="内网穿透"></a>内网穿透</h3><p>下载后解压双击运行<code>Sunny-Ngrok启动工具.bat</code>，它会提示你要id,这时回到网页<strong>隧道管理</strong>找到你的<strong>隧道id</strong>粘贴进去，然后回车就行。</p>
+<p>这时如果你通过你的网址进行访问会提示你隧道不可用；这是因为你没有运行Tomcat，你cmd运行Tomcat后，再刷新就能看到Tomcat的页面了，如图：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/seatoro/Image/img/Tomcat.jpg"></p>
+<p>出现这个页面就恭喜你了，你已经成功了！</p>
+<hr>
+<h3 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h3><p>这时你的内网穿透已经成功了，但是如果你有自己的HTML项目，该怎样让别人通过你的网址访问呢？</p>
+<p>其实也很简单，将项目放到Tomcat目录下的<code>webapps</code>目录就行；访问的话就是<code>你的网址+项目的目录名+项目的名.html</code>，如我的一个就是<code>http://to.free.idcfengye.com/migong/index.html</code></p>
+<p>这样就能让别人通过你的网址来访问你的项目了！</p>
+<hr>
+<h3 id="最后的最后"><a href="#最后的最后" class="headerlink" title="最后的最后"></a>最后的最后</h3><p>注意，内网穿透的过程中你运行的 <code>Tomcat</code> 与 <code>Sunny-Ngrok启动工具</code> 不能关闭，否则连接会断开！</p>
+<p>完！</p>
 ]]></content>
+      <tags>
+        <tag>教程</tag>
+        <tag>干货</tag>
+        <tag>内网穿透</tag>
+        <tag>Ngrok</tag>
+      </tags>
   </entry>
   <entry>
     <title>中秋节快乐</title>
@@ -579,6 +611,28 @@
 ]]></content>
       <tags>
         <tag>中秋节快乐</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>国庆快乐</title>
+    <url>/archives/d31b6034.html</url>
+    <content><![CDATA[<center><h3>祖国 72 华诞</h3></center>
+
+<span id="more"></span>
+
+
+<center><h3>愿国：山河锦绣，国泰民安</h3></center>
+
+<center><h3>愿家：阖家欢乐，幸福团圆</h3></center>
+
+<center><h3>愿你：天天开心，事事顺利</h3></center>
+
+</br>
+
+<img src="https://cdn.jsdelivr.net/gh/seatoro/Image/img/gq.png" style="zoom:50%;" />
+]]></content>
+      <tags>
+        <tag>国庆快乐</tag>
       </tags>
   </entry>
   <entry>
@@ -614,35 +668,22 @@
       </tags>
   </entry>
   <entry>
-    <title>内网穿透</title>
-    <url>/archives/bd50b816.html</url>
-    <content><![CDATA[<p>内网穿透，即 NAT 穿透，进行 NAT 穿透是为了使具有某一个特定源 IP 地址和源端口号的数据包不被 NAT 设备屏蔽而正确路由到内网主机。<span id="more"></span></p>
-<p>最开始了解内网穿透是为了将自己写的HTML项目能够让别人看见，但当时又不了解服务器等东西，就上网搜方法；偶然看到说内网穿透可以，所以就找了好多教程；最终就选了以下这种方法！</p>
-<hr>
-<h3 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h3><p>安装好jdk并配置环境变量、下载Tomcat并配置环境变量、注册一个Ngrok账号、一台电脑</p>
-<h3 id="配置jdk与Tomcat"><a href="#配置jdk与Tomcat" class="headerlink" title="配置jdk与Tomcat"></a>配置jdk与Tomcat</h3><p>这个就不详写了，上网一搜一大堆！（注意Tomcat要与jdk的版本号对应，具体看官网对应关系：<a href="http://tomcat.apache.org/whichversion.html">Apache Tomcat® - Which Version Do I Want?</a>）</p>
-<h3 id="注册并登录Ngrok以及开通隧道"><a href="#注册并登录Ngrok以及开通隧道" class="headerlink" title="注册并登录Ngrok以及开通隧道"></a>注册并登录Ngrok以及开通隧道</h3><p>Ngrok官网：<a href="https://www.ngrok.cc/">Sunny-Ngrok内网穿透服务</a></p>
-<p>因为Ngrok是有免费线路的，所以完全可以白嫖。😁 一般不会失效，如果失效，再次开通就行。</p>
-<p>登录进入后选择“隧道管理” —&gt; “开通隧道” —&gt; 向下滑，找到最后一个价格为0元的，购买就行；</p>
-<p><strong>协议</strong>选<code>http/https</code>均可，<strong>隧道名称</strong>随便起，<strong>前置域名</strong>随便起（尽量短，好记；用英文、数字都行），<strong>本地端口</strong>默认就行，下面两个不用填，点击<strong>确定添加</strong>就可以了。</p>
-<p>开通成功后可以在<strong>隧道管理</strong>查看自己的隧道了。然后下载客户端，<a href="https://www.ngrok.cc/download.html">Sunny-Ngrok内网转发客户端</a>，选择自己电脑的版本即可！</p>
-<h3 id="内网穿透"><a href="#内网穿透" class="headerlink" title="内网穿透"></a>内网穿透</h3><p>下载后解压双击运行<code>Sunny-Ngrok启动工具.bat</code>，它会提示你要id,这时回到网页<strong>隧道管理</strong>找到你的<strong>隧道id</strong>粘贴进去，然后回车就行。</p>
-<p>这时如果你通过你的网址进行访问会提示你隧道不可用；这是因为你没有运行Tomcat，你cmd运行Tomcat后，再刷新就能看到Tomcat的页面了，如图：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/seatoro/Image/img/Tomcat.jpg"></p>
-<p>出现这个页面就恭喜你了，你已经成功了！</p>
-<hr>
-<h3 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h3><p>这时你的内网穿透已经成功了，但是如果你有自己的HTML项目，该怎样让别人通过你的网址访问呢？</p>
-<p>其实也很简单，将项目放到Tomcat目录下的<code>webapps</code>目录就行；访问的话就是<code>你的网址+项目的目录名+项目的名.html</code>，如我的一个就是<code>http://to.free.idcfengye.com/migong/index.html</code></p>
-<p>这样就能让别人通过你的网址来访问你的项目了！</p>
-<hr>
-<h3 id="最后的最后"><a href="#最后的最后" class="headerlink" title="最后的最后"></a>最后的最后</h3><p>注意，内网穿透的过程中你运行的 <code>Tomcat</code> 与 <code>Sunny-Ngrok启动工具</code> 不能关闭，否则连接会断开！</p>
-<p>完！</p>
-]]></content>
+    <title>暂时停更</title>
+    <url>/archives/e4b6eac1.html</url>
+    <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">
+  <script id="hbeData" type="hbeData" data-hmacdigest="83510400b1a64ba4e4fa009356e30e578ae5130283a5b8e8955441194a56cc6b">fa49ba0db6b3a8a014bad429b100e075fe461fe20ff799c5607976602c09b6fcbc2271e5303760348559a059c487a3c8f960669150da2abd694e96869511a6f303e2f4cd2b350647fe1f33b25407bd6ddb67992a920283ab9980ec5d5ff1252fe631f6c222738f71f983cb12879ee61b919e3f4b2b7115823392958a4c48207b96884191a59a58cbd85dcdf0d6efd06cfc3859847ce3c4334b100ace6577b63614cbce498e21fb00e16c2d14a11e16335519c9959e75930356101a7179cafeabfb9970f2bab0b160ec40de9404bb66d8fc40a73f57f8bd2a35d681d0af3c2f4d5651c40b180c51e73bd6a91e13ebdc3d427daf533a981be1b782c8876f3554fc66ed8f4c450fdac97b119b00ccb03e710b8098988271ad0f1f64cf3c8c692527e2a68512319d568c391ca86021d33ae38b98df993da49903a6bd94ffef516de118dbe172c296c2383d45364658357d4f09bdb680ef09aee7debea818b1ad27bd518ad9395a341d29029f2c8981b62358deac92b62794cd72eec6700858cd94105395ad012350ff42f37579c4df27de5d23890933e624e8fd5cd5c3278e2c6b6e97fa387cd97ba3845643a4770fcc56d3618b04289cf4103e227f99d4e1a08c7363f7be00bd36ece1ffee2c198aeee0b5635d406f87c3da1a101dfa8c190e82563fdae766bbafaf71a6e523589d7a82bf708cb312b9b671db18c396ef3f81172717508f2cd3a5e5aaf56b84077497a73e4fa6c73a74038c52a3b527974eda70ddbdcb107d1f42f5defa89bc437c0449720d47c8ca84dbf7ddda0fe16ba9344cb6cf042db870bf5da5a8f37ef12a7e62b5e9d1a3cf7e94f73b4431e08a8a9dd9f5280324d852356b102c019cdfe61188dbb04ba31a3f5520ce29c8c6af7a52fe8ca71d810bc4866535d1402f48ce39c4761e226aed121f1cd84abb97423f98b2881cabe1d950bf805881074519a9ed3c58e49a08b5ff4adb617f102f0c53a66295cf631a9bc3c4b8c799a4b3b3f6d15b86048d1a1c19dd2c3090b445a184d19bb5c9477400c1768496129104809191fffc565323a4fc09ee67d8407a59f95cc43ef4ec0b280f7338c7b400d4bf8c79cf8b51d5d38cb2ec78f48f1d0efefe5dd73a5e7aa695476e9b3cf536db12d1635ffd6cb39ff0a39827c4ad147c65ebae362e3ec03d04dd11a407e803f4b4f18a36d366a366e73ff5ca2f440b886acb143ef3989a2444efc248ab8c1417aaea99adfe8d4a337fd9be5309331fdcad50c3676f3aff294bb56692b3544ef1267553c3165f803a24f48bf5c0b47cc95cd3338d4ad2bc9078d961cdcee7e8971dab239c75cf6cf5ecd4cd1afb0d50d747cdbfd20829e24f34443781674498f7945f2d7eb67734df1c13b7dc0f1f57fb9f92906072669027a12ff1d86918392e0d720705bac084015088e27dd7b01c5bd79ca70806665265420eeaab674a609e56841e61c36778b514e684a15fec4e131e56f3e16d037c5672dc212c30fed5b9daed65ee4be39e75ea3db3f4814cb5829831aea6fd60a462434d727fc6251dce3659640059073d2aafd8bf6f3136cbbb5cbcc4420f45d7fc347f6bb59bd50f453cd386320255e975f926b2083e74c79bcbdb2636f97dd8dd8fb57d14a32cd6dcc3278bc346f6806ac6dab06cabcdc752d125231a2c4a3648531e55f15ac3488247e44cc5f0b7336f132a81d99fb0f7c383d01db2b466abc0c19e9e9b06a89a0ac31ebdd3983e0a85c0d78988241b8a270c8ed2f72f6bb1df57d675051a5bc6d959f2da3d09989e52af25a3c5c5292ab127352eb78f3167e6320a544f72b74fb5c5fe9c93da773d7145889062c6268acf7966cd3c032f17c6cb4a66203f91cdb4b821f89e85cc83102fb0d6fe6135c946e860717caa7d49b44f36378868d49fcdc90f9de8c90b992de6958c48b99a14fddb5b26dbf41c5385f14427c9e84db7015737e3650b66eba0db2c5a9f2f31e74fdb27d35cfea660f5608be0debb69cd098fa6233d08578394ebb9df979c6a9e26cecbfb9f091dbcb8c7f076f40186c2d98c0a69561c5e1e9189fbcb7a9eda14c040b50db39a1e3ff6acd05c5fd0b0225ce0a0d4ebf71232391827dc8a41f01eff25e86ea441</script>
+  <div class="hbe hbe-content">
+    <div class="hbe hbe-input hbe-input-default">
+      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">
+      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">
+        <span class="hbe hbe-input-label-content hbe-input-label-content-default">Hey, password is required here.</span>
+      </label>
+    </div>
+  </div>
+</div>
+<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
       <tags>
-        <tag>教程</tag>
-        <tag>干货</tag>
-        <tag>内网穿透</tag>
-        <tag>Ngrok</tag>
+        <tag>停更公告</tag>
       </tags>
   </entry>
   <entry>
@@ -706,28 +747,6 @@
         <tag>踩坑</tag>
         <tag>博客</tag>
         <tag>hexo</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>国庆快乐</title>
-    <url>/archives/d31b6034.html</url>
-    <content><![CDATA[<center><h3>祖国 72 华诞</h3></center>
-
-<span id="more"></span>
-
-
-<center><h3>愿国：山河锦绣，国泰民安</h3></center>
-
-<center><h3>愿家：阖家欢乐，幸福团圆</h3></center>
-
-<center><h3>愿你：天天开心，事事顺利</h3></center>
-
-</br>
-
-<img src="https://cdn.jsdelivr.net/gh/seatoro/Image/img/gq.png" style="zoom:50%;" />
-]]></content>
-      <tags>
-        <tag>国庆快乐</tag>
       </tags>
   </entry>
   <entry>
@@ -805,25 +824,6 @@
       </tags>
   </entry>
   <entry>
-    <title>暂时停更</title>
-    <url>/archives/e4b6eac1.html</url>
-    <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">
-  <script id="hbeData" type="hbeData" data-hmacdigest="83510400b1a64ba4e4fa009356e30e578ae5130283a5b8e8955441194a56cc6b">fa49ba0db6b3a8a014bad429b100e075fe461fe20ff799c5607976602c09b6fcbc2271e5303760348559a059c487a3c8f960669150da2abd694e96869511a6f303e2f4cd2b350647fe1f33b25407bd6ddb67992a920283ab9980ec5d5ff1252fe631f6c222738f71f983cb12879ee61b919e3f4b2b7115823392958a4c48207b96884191a59a58cbd85dcdf0d6efd06cfc3859847ce3c4334b100ace6577b63614cbce498e21fb00e16c2d14a11e16335519c9959e75930356101a7179cafeabfb9970f2bab0b160ec40de9404bb66d8fc40a73f57f8bd2a35d681d0af3c2f4d5651c40b180c51e73bd6a91e13ebdc3d427daf533a981be1b782c8876f3554fc66ed8f4c450fdac97b119b00ccb03e710b8098988271ad0f1f64cf3c8c692527e2a68512319d568c391ca86021d33ae38b98df993da49903a6bd94ffef516de118dbe172c296c2383d45364658357d4f09bdb680ef09aee7debea818b1ad27bd518ad9395a341d29029f2c8981b62358deac92b62794cd72eec6700858cd94105395ad012350ff42f37579c4df27de5d23890933e624e8fd5cd5c3278e2c6b6e97fa387cd97ba3845643a4770fcc56d3618b04289cf4103e227f99d4e1a08c7363f7be00bd36ece1ffee2c198aeee0b5635d406f87c3da1a101dfa8c190e82563fdae766bbafaf71a6e523589d7a82bf708cb312b9b671db18c396ef3f81172717508f2cd3a5e5aaf56b84077497a73e4fa6c73a74038c52a3b527974eda70ddbdcb107d1f42f5defa89bc437c0449720d47c8ca84dbf7ddda0fe16ba9344cb6cf042db870bf5da5a8f37ef12a7e62b5e9d1a3cf7e94f73b4431e08a8a9dd9f5280324d852356b102c019cdfe61188dbb04ba31a3f5520ce29c8c6af7a52fe8ca71d810bc4866535d1402f48ce39c4761e226aed121f1cd84abb97423f98b2881cabe1d950bf805881074519a9ed3c58e49a08b5ff4adb617f102f0c53a66295cf631a9bc3c4b8c799a4b3b3f6d15b86048d1a1c19dd2c3090b445a184d19bb5c9477400c1768496129104809191fffc565323a4fc09ee67d8407a59f95cc43ef4ec0b280f7338c7b400d4bf8c79cf8b51d5d38cb2ec78f48f1d0efefe5dd73a5e7aa695476e9b3cf536db12d1635ffd6cb39ff0a39827c4ad147c65ebae362e3ec03d04dd11a407e803f4b4f18a36d366a366e73ff5ca2f440b886acb143ef3989a2444efc248ab8c1417aaea99adfe8d4a337fd9be5309331fdcad50c3676f3aff294bb56692b3544ef1267553c3165f803a24f48bf5c0b47cc95cd3338d4ad2bc9078d961cdcee7e8971dab239c75cf6cf5ecd4cd1afb0d50d747cdbfd20829e24f34443781674498f7945f2d7eb67734df1c13b7dc0f1f57fb9f92906072669027a12ff1d86918392e0d720705bac084015088e27dd7b01c5bd79ca70806665265420eeaab674a609e56841e61c36778b514e684a15fec4e131e56f3e16d037c5672dc212c30fed5b9daed65ee4be39e75ea3db3f4814cb5829831aea6fd60a462434d727fc6251dce3659640059073d2aafd8bf6f3136cbbb5cbcc4420f45d7fc347f6bb59bd50f453cd386320255e975f926b2083e74c79bcbdb2636f97dd8dd8fb57d14a32cd6dcc3278bc346f6806ac6dab06cabcdc752d125231a2c4a3648531e55f15ac3488247e44cc5f0b7336f132a81d99fb0f7c383d01db2b466abc0c19e9e9b06a89a0ac31ebdd3983e0a85c0d78988241b8a270c8ed2f72f6bb1df57d675051a5bc6d959f2da3d09989e52af25a3c5c5292ab127352eb78f3167e6320a544f72b74fb5c5fe9c93da773d7145889062c6268acf7966cd3c032f17c6cb4a66203f91cdb4b821f89e85cc83102fb0d6fe6135c946e860717caa7d49b44f36378868d49fcdc90f9de8c90b992de6958c48b99a14fddb5b26dbf41c5385f14427c9e84db7015737e3650b66eba0db2c5a9f2f31e74fdb27d35cfea660f5608be0debb69cd098fa6233d08578394ebb9df979c6a9e26cecbfb9f091dbcb8c7f076f40186c2d98c0a69561c5e1e9189fbcb7a9eda14c040b50db39a1e3ff6acd05c5fd0b0225ce0a0d4ebf71232391827dc8a41f01eff25e86ea441</script>
-  <div class="hbe hbe-content">
-    <div class="hbe hbe-input hbe-input-default">
-      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">
-      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">
-        <span class="hbe hbe-input-label-content hbe-input-label-content-default">Hey, password is required here.</span>
-      </label>
-    </div>
-  </div>
-</div>
-<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
-      <tags>
-        <tag>停更公告</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>突然连接不了GitHub?</title>
     <url>/archives/d840bd6.html</url>
     <content><![CDATA[<p>前段时间开学了，比较忙就没空写博客了；不过就在我忙里偷闲抽空写的时候发现连接不了GitHub了，嗯？什么情况？<span id="more"></span></p>
@@ -846,34 +846,6 @@
         <tag>踩坑</tag>
         <tag>博客</tag>
         <tag>hexo</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>解析freenom域名</title>
-    <url>/archives/79444b31.html</url>
-    <content><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>​        前几天刚用 github + hexo 搭建了一个博客，用来记录自己的学习成果！但域名是 github 的二级域名，看着不太好看；就寻思怎样白嫖一个域名；<span id="more"></span>搜来搜去，看到了一个帖子说可以去 freenom 白嫖，就想着试试；结果自己根本搞不了，无奈继续搜教程呗！看了好多教程，都没成功；想来想去就上 Youtube 了，按时间排序，第一个就是；真是保姆级的教程，一次成功，哈哈！视频链接我放这儿了，有需自取：<a href="https://www.youtube.com/watch?v=dTVKfuW9BiU">白嫖freenom域名</a></p>
-<p>​        白嫖成功了，自然要用起来，不然费那么大劲干什么！其实我之前是有买过域名和服务器的，但感觉有一丢丢贵，就没续费了；但那是在阿里云买的，域名解析和现在的情况完全不同；没办法，就又双叒上网搜教程，还是找了好多，搜索的姿势也换了好多，终于还是让我找到了，难呐！（该说不说，搞这个也许代码功夫没长进，搜索资源的心得倒是攒了一大堆！）于是又是一波操作，现在弄成功了，域名是 totoro933.tk ，不出意外应该之后的很长一段时间都有效，若是打不开了，或者打开后不是我的博客，就说明被回收了（免费的还是有弊端的，有条件还是自己买个吧）。好了，接下来我会将我踩的坑分享一下，有需要的可要好好看了！</p>
-<h3 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h3><p>​        有一个域名，也可以和我一样去 freenom.com 白嫖（教程在上边）</p>
-<p>​        注册好并实名认证 Dnspod ，官网地址：<a href="https://console.dnspod.cn/">Dnspod官网</a></p>
-<h3 id="DNS解析"><a href="#DNS解析" class="headerlink" title="DNS解析"></a>DNS解析</h3><p>​        其实在 freenom 买过域名后，它本就提供了 DNS 解析服务，但因为 freenom 的 DNS 解析在国内可能不是很流畅，所以我才会选用 Dnspod （这是腾讯家的网站）；在解析之前，我们要把这个域名的控制权从 freenom 交到 Dnspod 的手上：打开 Dnspod 主页，在侧栏中选择“我的域名”，点击添加域名，把你的域名填进去，如 我的就是：totoro933.tk ，点击确定；接着往下，他会给你两个 dns server 地址，将其填到 freenom 中，具体流程为：</p>
-<blockquote>
-<p>登陆freenom，从首页点击 services -&gt; my domain -&gt; manage domain -&gt; Management Tools -&gt; Nameservers -&gt; Use custom nameservers (enter below) -&gt; 在前两个空中填入 Dnspod 给你的两个的 dns server 地址，最后点击最下边的提交按钮就好了。</p>
-<p>如果你找不到 My domain ， 请确认你是不是登录了。</p>
-</blockquote>
-<p>​        完成上述步骤后，打开你的 Dnspod 主页，找到你刚才添加的域名，点击它，你会跳到添加解析度页面，点击添加记录，<em>主机记录</em> 一栏填<code>www</code>，<em>记录类型</em> 填<code>A</code>，<em>线路类型</em> 为默认，<em>记录值</em> 填 ping xxxx.github.io后所得到的IP地址，其中xxxx为你的 github 仓库名，后边的默认就行，点击确定；然后再点击快速添加解析，选择“域名映射(CNAME)”，填入xxxx.github.io，确定即可！到这里，DNS解析已经完成了。<strong>（注意：有时候 DNS 的设置不是即时生效的，不同地方需要不同的时间，有时候几分钟就好了，有时候要一晚上一天，设置好后可以美美的睡一觉，第二天应该就没问题了！）</strong></p>
-<h3 id="设置github"><a href="#设置github" class="headerlink" title="设置github"></a>设置github</h3><p>​        进入 github 你托管博客的那个项目，按顺序依次点<code>setting -&gt; GitHub Pages -&gt; Custom domain</code>， 输入你的域名，如 我的为：totoro933.tk，点 save 。</p>
-<h3 id="增加-CNAME-文件"><a href="#增加-CNAME-文件" class="headerlink" title="增加 CNAME 文件"></a>增加 CNAME 文件</h3><p>​        在你存放博客的根目录的 <code>source</code> 文件夹下新建一个文件  <code>CNAME </code>，注意，它没有后缀，就叫 CNAME ，文件内容填你的域名！</p>
-<h3 id="修改-config-文件"><a href="#修改-config-文件" class="headerlink" title="修改 _config 文件"></a>修改 _config 文件</h3><p>​        去你 blog 的根目录下，修改 _config.yml 文件：打开后搜 skip ，你会看到 <code>skip_render:</code>，然后在后边添加<code>CNAME</code>，注意，在CNAME前有个空格！！！</p>
-<p>​        然后保存，之后就能通过你的域名来访问你的博客了；如果没生效的话，可以先进行一波</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo clean &amp;&amp; hexo g &amp;&amp; hexo d</span><br></pre></td></tr></table></figure>
-
-<p>​        然后就能愉快的访问了！</p>
-]]></content>
-      <tags>
-        <tag>教程</tag>
-        <tag>踩坑</tag>
-        <tag>freenom</tag>
-        <tag>域名</tag>
       </tags>
   </entry>
   <entry>
@@ -940,6 +912,34 @@
         <tag>教程</tag>
         <tag>干货</tag>
         <tag>搜索技巧</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>解析freenom域名</title>
+    <url>/archives/79444b31.html</url>
+    <content><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>​        前几天刚用 github + hexo 搭建了一个博客，用来记录自己的学习成果！但域名是 github 的二级域名，看着不太好看；就寻思怎样白嫖一个域名；<span id="more"></span>搜来搜去，看到了一个帖子说可以去 freenom 白嫖，就想着试试；结果自己根本搞不了，无奈继续搜教程呗！看了好多教程，都没成功；想来想去就上 Youtube 了，按时间排序，第一个就是；真是保姆级的教程，一次成功，哈哈！视频链接我放这儿了，有需自取：<a href="https://www.youtube.com/watch?v=dTVKfuW9BiU">白嫖freenom域名</a></p>
+<p>​        白嫖成功了，自然要用起来，不然费那么大劲干什么！其实我之前是有买过域名和服务器的，但感觉有一丢丢贵，就没续费了；但那是在阿里云买的，域名解析和现在的情况完全不同；没办法，就又双叒上网搜教程，还是找了好多，搜索的姿势也换了好多，终于还是让我找到了，难呐！（该说不说，搞这个也许代码功夫没长进，搜索资源的心得倒是攒了一大堆！）于是又是一波操作，现在弄成功了，域名是 totoro933.tk ，不出意外应该之后的很长一段时间都有效，若是打不开了，或者打开后不是我的博客，就说明被回收了（免费的还是有弊端的，有条件还是自己买个吧）。好了，接下来我会将我踩的坑分享一下，有需要的可要好好看了！</p>
+<h3 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h3><p>​        有一个域名，也可以和我一样去 freenom.com 白嫖（教程在上边）</p>
+<p>​        注册好并实名认证 Dnspod ，官网地址：<a href="https://console.dnspod.cn/">Dnspod官网</a></p>
+<h3 id="DNS解析"><a href="#DNS解析" class="headerlink" title="DNS解析"></a>DNS解析</h3><p>​        其实在 freenom 买过域名后，它本就提供了 DNS 解析服务，但因为 freenom 的 DNS 解析在国内可能不是很流畅，所以我才会选用 Dnspod （这是腾讯家的网站）；在解析之前，我们要把这个域名的控制权从 freenom 交到 Dnspod 的手上：打开 Dnspod 主页，在侧栏中选择“我的域名”，点击添加域名，把你的域名填进去，如 我的就是：totoro933.tk ，点击确定；接着往下，他会给你两个 dns server 地址，将其填到 freenom 中，具体流程为：</p>
+<blockquote>
+<p>登陆freenom，从首页点击 services -&gt; my domain -&gt; manage domain -&gt; Management Tools -&gt; Nameservers -&gt; Use custom nameservers (enter below) -&gt; 在前两个空中填入 Dnspod 给你的两个的 dns server 地址，最后点击最下边的提交按钮就好了。</p>
+<p>如果你找不到 My domain ， 请确认你是不是登录了。</p>
+</blockquote>
+<p>​        完成上述步骤后，打开你的 Dnspod 主页，找到你刚才添加的域名，点击它，你会跳到添加解析度页面，点击添加记录，<em>主机记录</em> 一栏填<code>www</code>，<em>记录类型</em> 填<code>A</code>，<em>线路类型</em> 为默认，<em>记录值</em> 填 ping xxxx.github.io后所得到的IP地址，其中xxxx为你的 github 仓库名，后边的默认就行，点击确定；然后再点击快速添加解析，选择“域名映射(CNAME)”，填入xxxx.github.io，确定即可！到这里，DNS解析已经完成了。<strong>（注意：有时候 DNS 的设置不是即时生效的，不同地方需要不同的时间，有时候几分钟就好了，有时候要一晚上一天，设置好后可以美美的睡一觉，第二天应该就没问题了！）</strong></p>
+<h3 id="设置github"><a href="#设置github" class="headerlink" title="设置github"></a>设置github</h3><p>​        进入 github 你托管博客的那个项目，按顺序依次点<code>setting -&gt; GitHub Pages -&gt; Custom domain</code>， 输入你的域名，如 我的为：totoro933.tk，点 save 。</p>
+<h3 id="增加-CNAME-文件"><a href="#增加-CNAME-文件" class="headerlink" title="增加 CNAME 文件"></a>增加 CNAME 文件</h3><p>​        在你存放博客的根目录的 <code>source</code> 文件夹下新建一个文件  <code>CNAME </code>，注意，它没有后缀，就叫 CNAME ，文件内容填你的域名！</p>
+<h3 id="修改-config-文件"><a href="#修改-config-文件" class="headerlink" title="修改 _config 文件"></a>修改 _config 文件</h3><p>​        去你 blog 的根目录下，修改 _config.yml 文件：打开后搜 skip ，你会看到 <code>skip_render:</code>，然后在后边添加<code>CNAME</code>，注意，在CNAME前有个空格！！！</p>
+<p>​        然后保存，之后就能通过你的域名来访问你的博客了；如果没生效的话，可以先进行一波</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo clean &amp;&amp; hexo g &amp;&amp; hexo d</span><br></pre></td></tr></table></figure>
+
+<p>​        然后就能愉快的访问了！</p>
+]]></content>
+      <tags>
+        <tag>教程</tag>
+        <tag>踩坑</tag>
+        <tag>freenom</tag>
+        <tag>域名</tag>
       </tags>
   </entry>
   <entry>
