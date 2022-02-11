@@ -64,6 +64,34 @@
       </tags>
   </entry>
   <entry>
+    <title>MarkDown基础</title>
+    <url>/archives/b797e99c.html</url>
+    <content><![CDATA[<p>由于该博客的文章全部都是用markdown写的，所以就写一下MarkDown语法相关吧！<span id="more"></span></p>
+<hr>
+<p>Markdown 是一种轻量级标记语言，它允许人们使用易读易写的纯文本格式编写文档。</p>
+<p>Markdown 语言在 2004 由约翰·格鲁伯（英语：John Gruber）创建。</p>
+<p>Markdown 编写的文档可以导出 HTML 、Word、图像、PDF、Epub 等多种格式的文档。</p>
+<p>Markdown 编写的文档后缀为 <strong>.md</strong>, <strong>.markdown</strong>。</p>
+<hr>
+<p>Markdown 能被使用来撰写电子书，如：Gitbook。</p>
+<p>当前许多网站都广泛使用 Markdown 来撰写帮助文档或是用于论坛上发表消息。例如：GitHub、简书、reddit、Diaspora、Stack Exchange、OpenStreetMap 、SourceForge等。</p>
+<hr>
+<p>教程网站：<a href="https://www.runoob.com/markdown/md-tutorial.html">Markdown 教程 | 菜鸟教程</a></p>
+<p>个人觉得好用的在线编辑网站：<a href="https://dillinger.io/">Online Markdown Editor - Dillinger, the Last Markdown Editor ever.</a></p>
+<p>个人觉得好用的PC端MarkDown软件：<a href="https://www.typora.io/">Typora — a markdown editor, markdown reader.</a></p>
+<hr>
+<p>结束！！</p>
+]]></content>
+      <categories>
+        <category>干货</category>
+      </categories>
+      <tags>
+        <tag>教程</tag>
+        <tag>干货</tag>
+        <tag>markdown</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Github+PicGo图床搭建</title>
     <url>/archives/febc4fee.html</url>
     <content><![CDATA[<h3 id="准备工作："><a href="#准备工作：" class="headerlink" title="准备工作："></a>准备工作：</h3><p>首先需要准备：</p>
@@ -118,31 +146,31 @@
       </tags>
   </entry>
   <entry>
-    <title>MarkDown基础</title>
-    <url>/archives/b797e99c.html</url>
-    <content><![CDATA[<p>由于该博客的文章全部都是用markdown写的，所以就写一下MarkDown语法相关吧！<span id="more"></span></p>
+    <title>Web前端记录（七）-- 贝塞尔曲线的原理</title>
+    <url>/archives/6b06ff63.html</url>
+    <content><![CDATA[<h3 id="web前端-—-贝塞尔曲线的原理"><a href="#web前端-—-贝塞尔曲线的原理" class="headerlink" title="web前端 — 贝塞尔曲线的原理"></a>web前端 — 贝塞尔曲线的原理</h3><p><strong>今天继续第七篇</strong></p>
+<p><strong>注：以下以及之后文章中用到的软件均为<code> Visual Studio Code</code></strong></p>
+<span id="more"></span>
+
 <hr>
-<p>Markdown 是一种轻量级标记语言，它允许人们使用易读易写的纯文本格式编写文档。</p>
-<p>Markdown 语言在 2004 由约翰·格鲁伯（英语：John Gruber）创建。</p>
-<p>Markdown 编写的文档可以导出 HTML 、Word、图像、PDF、Epub 等多种格式的文档。</p>
-<p>Markdown 编写的文档后缀为 <strong>.md</strong>, <strong>.markdown</strong>。</p>
+<p>在 CSS 动画里，我们可以用 <code>cubic-bezier</code> 来定义贝塞尔曲线。 曲线的形状代表了动画的速度。 曲线在 1 * 1 的坐标系统内， 其中 X 轴代表动画的时间间隔（类似于时间比例尺），Y 轴代表动画的改变。</p>
+<p><code>cubic-bezier</code> 函数包含了 1 * 1 网格里的4个点：<code>p0</code>、<code>p1</code>、<code>p2</code>、<code>p3</code>。 其中 <code>p0</code> 和 <code>p3</code> 是固定值，代表曲线的起始点和结束点，坐标值依次为 (0, 0) 和 (1, 1)。 你只需设置另外两点的 x 值和 y 值，设置的这两点确定了曲线的形状从而确定了动画的速度曲线。 在 CSS 里面通过 <code>(x1, y1, x2, y2)</code> 来确定 <code>p1</code> 和 <code>p2</code>。 如：</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="attribute">animation-timing-function</span>: <span class="built_in">cubic-bezier</span>(<span class="number">0.25</span>, <span class="number">0.25</span>, <span class="number">0.75</span>, <span class="number">0.75</span>);</span><br></pre></td></tr></table></figure>
+
+<p>上面例子中两个点的 x 和 y 值相等（x1 = 0.25 = y1 和 x2 = 0.75 = y2）。结合数学的知识，我们可以看出结果是从原点到点 (1, 1) 的一条直线。 元素在动画中的速度呈线性，效果和使用 <code>linear</code> 关键词的效果一致。 换言之，元素匀速运动。</p>
+<p>将一条直线放在范围只有 1 的坐标轴中，并从中间拿 <code>p1</code> 和 <code>p2</code> 两个点来拉扯（X 轴的取值区间是 [0, 1]，Y 轴任意），最后形成的曲线就是动画的贝塞尔速度曲线。 下面是贝塞尔曲线模仿 ease-out 预定义值的例子：</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="attribute">animation-timing-function</span>: <span class="built_in">cubic-bezier</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0.58</span>, <span class="number">1</span>);</span><br></pre></td></tr></table></figure>
+
+<p>所有的 <code>cubic-bezier</code> 函数都是从坐标为 (0, 0) 的 <code>p0</code> 开始，在坐标为 (1, 1) 的 <code>p3</code> 结束。 在上面这个例子里，曲线在 y 轴（从 0 开始，运动到 <code>p1</code> 的 0，然后运动到 <code>p2</code> 的 1）上移动得比在 x 轴（从 0 开始，运动到 <code>p1</code> 的 0，到 <code>p2</code> 的 0.58）上移动得快。 结果是，在这一段动画内元素运动得快。 到曲线的结尾，x 和 y 之间的关系反过来了，y 值保持为 1，没有变化，x 值从 0.58 变为 1，元素运动得慢。</p>
 <hr>
-<p>Markdown 能被使用来撰写电子书，如：Gitbook。</p>
-<p>当前许多网站都广泛使用 Markdown 来撰写帮助文档或是用于论坛上发表消息。例如：GitHub、简书、reddit、Diaspora、Stack Exchange、OpenStreetMap 、SourceForge等。</p>
-<hr>
-<p>教程网站：<a href="https://www.runoob.com/markdown/md-tutorial.html">Markdown 教程 | 菜鸟教程</a></p>
-<p>个人觉得好用的在线编辑网站：<a href="https://dillinger.io/">Online Markdown Editor - Dillinger, the Last Markdown Editor ever.</a></p>
-<p>个人觉得好用的PC端MarkDown软件：<a href="https://www.typora.io/">Typora — a markdown editor, markdown reader.</a></p>
-<hr>
-<p>结束！！</p>
+<p><strong>自定义曲线：<a href="http://cubic-bezier.com/">http://cubic-bezier.com</a></strong></p>
 ]]></content>
       <categories>
-        <category>干货</category>
+        <category>前端</category>
       </categories>
       <tags>
-        <tag>教程</tag>
-        <tag>干货</tag>
-        <tag>markdown</tag>
+        <tag>前端</tag>
+        <tag>学习</tag>
       </tags>
   </entry>
   <entry>
@@ -294,43 +322,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Web前端记录（二）</title>
-    <url>/archives/c68ea266.html</url>
-    <content><![CDATA[<h3 id="web前端-—-字体、边框、背景"><a href="#web前端-—-字体、边框、背景" class="headerlink" title="web前端 —  字体、边框、背景"></a>web前端 —  字体、边框、背景</h3><p><strong>今天继续第二篇</strong></p>
-<p><strong>注：以下以及之后文章中用到的软件均为<code> Visual Studio Code</code></strong></p>
-<span id="more"></span>
-
-<hr>
-<h4 id="字体-–-字体相关"><a href="#字体-–-字体相关" class="headerlink" title="字体 – 字体相关"></a>字体 – 字体相关</h4><ul>
-<li><p>字体大小一般为偶数</p>
-</li>
-<li><p>字体粗细用：<code>font-weight</code>；数值区间为：100 ~ 900，其中100 ~ 500为正常，600~900为加粗；</p>
-</li>
-<li><p>模式：<code>normal（正常）</code>，<code>bold（加粗）</code>；</p>
-</li>
-<li><p>中英文字体：英文字体只支持英文，中文字体有些支持英文。</p>
-</li>
-<li><p>设置多字体的方式：字体之间用逗号隔开，先识别前边的；若计算机中没有该字体，则向后识别。</p>
-</li>
-<li><p>引号问题：若字体中含有空格，则需要加空格。</p>
-</li>
-</ul>
-<h4 id="边框-–-使用CSS实现圆角"><a href="#边框-–-使用CSS实现圆角" class="headerlink" title="边框 – 使用CSS实现圆角"></a>边框 – 使用CSS实现圆角</h4><figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-id">#box</span>&#123; <span class="attribute">width</span>:<span class="number">200px</span>; <span class="attribute">height</span>:<span class="number">200px</span>; <span class="attribute">background</span>:red; <span class="attribute">border-radius</span>: <span class="number">100px</span>; &#125;</span><br><span class="line"><span class="attribute">border-radius</span>为一个值时，对四个角都生效；</span><br><span class="line"></span><br><span class="line"><span class="selector-id">#box</span>&#123; <span class="attribute">width</span>:<span class="number">300px</span>; <span class="attribute">height</span>:<span class="number">300px</span>; <span class="attribute">background</span>:red; <span class="attribute">border-radius</span>: <span class="number">50%</span>; &#125;</span><br><span class="line"><span class="attribute">border-radius</span>为<span class="number">50%</span>时为圆；</span><br><span class="line"></span><br><span class="line"><span class="selector-id">#box</span>&#123; <span class="attribute">width</span>:<span class="number">300px</span>; <span class="attribute">height</span>:<span class="number">300px</span>; <span class="attribute">background</span>:red; <span class="attribute">border-radius</span>: <span class="number">10px</span> <span class="number">20px</span>; &#125;</span><br><span class="line"><span class="attribute">border-radius</span>为两个值时，对两个对角生效；</span><br><span class="line"></span><br><span class="line"><span class="selector-id">#box</span>&#123; <span class="attribute">width</span>:<span class="number">300px</span>; <span class="attribute">height</span>:<span class="number">300px</span>; <span class="attribute">background</span>:red; <span class="attribute">border-radius</span>: <span class="number">10px</span> <span class="number">20px</span> <span class="number">30px</span> <span class="number">40px</span>; &#125;</span><br><span class="line"><span class="attribute">border-radius</span>为四个值时，分别对四个角生效；顺序为：左上、右上、右下、左下；</span><br><span class="line"></span><br><span class="line"><span class="selector-id">#box</span>&#123; <span class="attribute">width</span>:<span class="number">300px</span>; <span class="attribute">height</span>:<span class="number">300px</span>; <span class="attribute">background</span>:red; <span class="attribute">border-radius</span>: <span class="number">20px</span> / <span class="number">40px</span>; &#125;</span><br><span class="line"><span class="attribute">border-radius</span>为比值时，根据比值不同，形状不同；此例为椭圆；</span><br><span class="line"></span><br><span class="line"><span class="selector-id">#box</span>&#123; <span class="attribute">width</span>:<span class="number">300px</span>; <span class="attribute">height</span>:<span class="number">150px</span>; <span class="attribute">background</span>:red; <span class="attribute">border-radius</span>: <span class="number">150px</span> <span class="number">150px</span> <span class="number">0</span> <span class="number">0</span>; &#125;</span><br><span class="line"><span class="attribute">border-radius</span>的左上、右上与<span class="attribute">height</span>值相同时，为半圆；</span><br></pre></td></tr></table></figure>
-
-<h4 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h4><ul>
-<li>背景的位置：<code>background-position: 100px 20px;</code> <code> background-position: centre center;</code> <code> background-position: 50% 50%;</code>，即 background-position 后边可加像素、单词、百分比；</li>
-<li>背景的移动：<code>backdround-attachment</code>，其后可加<code>scroll（默认，按当前元素进行偏移）</code> <code>fixed（固定，按浏览器进行偏移；）</code>   可用此实现视觉差网页！</li>
-</ul>
-]]></content>
-      <categories>
-        <category>前端</category>
-      </categories>
-      <tags>
-        <tag>前端</tag>
-        <tag>学习</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Web前端记录（五）</title>
     <url>/archives/5323dd16.html</url>
     <content><![CDATA[<h3 id="web前端-—-定位与浮动"><a href="#web前端-—-定位与浮动" class="headerlink" title="web前端 — 定位与浮动"></a>web前端 — 定位与浮动</h3><p><strong>今天继续第五篇</strong></p>
@@ -352,34 +343,6 @@
 <p><code>fixed</code> 定位，它是一种特殊的绝对（<code>absolute</code>）定位，将元素相对于浏览器窗口定位。 类似于绝对位置，它与 <code>CSS</code> 偏移属性一起使用，并且也会将元素从当前的文档流里面移除。 其它元素会忽略它的存在，这样也许需要调整其他位置的布局。但 <code>fixed</code> 和 <code>absolute</code> 的最明显的区别在于：前者定位的元素不会随着屏幕滚动而移动。</p>
 <h3 id="浮动"><a href="#浮动" class="headerlink" title="浮动"></a>浮动</h3><p>浮动元素不在文档流中，它向 <code>left</code> 或 <code>right</code> 浮动，直到它的外边缘碰到包含框或另一个浮动框的边框为止。 通常需要用 <code>width</code> 属性来指定浮动元素占据的水平空间。</p>
 <h3 id="z-index"><a href="#z-index" class="headerlink" title="z-index"></a>z-index</h3><p>当一些元素在位置上重叠时（例如，使用 <code>position: absolute | relative | fixed | sticky</code> 时），在 HTML 里后出现的元素会默认显示在更早出现的元素的上面。 你可以使用 <code>z-index</code> 属性指定元素的堆叠次序。 <code>z-index</code> 的取值是整数，数值大的元素会叠放到数值小的元素上面。</p>
-]]></content>
-      <categories>
-        <category>前端</category>
-      </categories>
-      <tags>
-        <tag>前端</tag>
-        <tag>学习</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Web前端记录（七）-- 贝塞尔曲线的原理</title>
-    <url>/archives/6b06ff63.html</url>
-    <content><![CDATA[<h3 id="web前端-—-贝塞尔曲线的原理"><a href="#web前端-—-贝塞尔曲线的原理" class="headerlink" title="web前端 — 贝塞尔曲线的原理"></a>web前端 — 贝塞尔曲线的原理</h3><p><strong>今天继续第七篇</strong></p>
-<p><strong>注：以下以及之后文章中用到的软件均为<code> Visual Studio Code</code></strong></p>
-<span id="more"></span>
-
-<hr>
-<p>在 CSS 动画里，我们可以用 <code>cubic-bezier</code> 来定义贝塞尔曲线。 曲线的形状代表了动画的速度。 曲线在 1 * 1 的坐标系统内， 其中 X 轴代表动画的时间间隔（类似于时间比例尺），Y 轴代表动画的改变。</p>
-<p><code>cubic-bezier</code> 函数包含了 1 * 1 网格里的4个点：<code>p0</code>、<code>p1</code>、<code>p2</code>、<code>p3</code>。 其中 <code>p0</code> 和 <code>p3</code> 是固定值，代表曲线的起始点和结束点，坐标值依次为 (0, 0) 和 (1, 1)。 你只需设置另外两点的 x 值和 y 值，设置的这两点确定了曲线的形状从而确定了动画的速度曲线。 在 CSS 里面通过 <code>(x1, y1, x2, y2)</code> 来确定 <code>p1</code> 和 <code>p2</code>。 如：</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="attribute">animation-timing-function</span>: <span class="built_in">cubic-bezier</span>(<span class="number">0.25</span>, <span class="number">0.25</span>, <span class="number">0.75</span>, <span class="number">0.75</span>);</span><br></pre></td></tr></table></figure>
-
-<p>上面例子中两个点的 x 和 y 值相等（x1 = 0.25 = y1 和 x2 = 0.75 = y2）。结合数学的知识，我们可以看出结果是从原点到点 (1, 1) 的一条直线。 元素在动画中的速度呈线性，效果和使用 <code>linear</code> 关键词的效果一致。 换言之，元素匀速运动。</p>
-<p>将一条直线放在范围只有 1 的坐标轴中，并从中间拿 <code>p1</code> 和 <code>p2</code> 两个点来拉扯（X 轴的取值区间是 [0, 1]，Y 轴任意），最后形成的曲线就是动画的贝塞尔速度曲线。 下面是贝塞尔曲线模仿 ease-out 预定义值的例子：</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="attribute">animation-timing-function</span>: <span class="built_in">cubic-bezier</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0.58</span>, <span class="number">1</span>);</span><br></pre></td></tr></table></figure>
-
-<p>所有的 <code>cubic-bezier</code> 函数都是从坐标为 (0, 0) 的 <code>p0</code> 开始，在坐标为 (1, 1) 的 <code>p3</code> 结束。 在上面这个例子里，曲线在 y 轴（从 0 开始，运动到 <code>p1</code> 的 0，然后运动到 <code>p2</code> 的 1）上移动得比在 x 轴（从 0 开始，运动到 <code>p1</code> 的 0，到 <code>p2</code> 的 0.58）上移动得快。 结果是，在这一段动画内元素运动得快。 到曲线的结尾，x 和 y 之间的关系反过来了，y 值保持为 1，没有变化，x 值从 0.58 变为 1，元素运动得慢。</p>
-<hr>
-<p><strong>自定义曲线：<a href="http://cubic-bezier.com/">http://cubic-bezier.com</a></strong></p>
 ]]></content>
       <categories>
         <category>前端</category>
@@ -474,24 +437,41 @@
       </tags>
   </entry>
   <entry>
-    <title>Hello World!</title>
-    <url>/archives/1c291ca3.html</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+    <title>Web前端记录（二）</title>
+    <url>/archives/c68ea266.html</url>
+    <content><![CDATA[<h3 id="web前端-—-字体、边框、背景"><a href="#web前端-—-字体、边框、背景" class="headerlink" title="web前端 —  字体、边框、背景"></a>web前端 —  字体、边框、背景</h3><p><strong>今天继续第二篇</strong></p>
+<p><strong>注：以下以及之后文章中用到的软件均为<code> Visual Studio Code</code></strong></p>
 <span id="more"></span>
 
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+<hr>
+<h4 id="字体-–-字体相关"><a href="#字体-–-字体相关" class="headerlink" title="字体 – 字体相关"></a>字体 – 字体相关</h4><ul>
+<li><p>字体大小一般为偶数</p>
+</li>
+<li><p>字体粗细用：<code>font-weight</code>；数值区间为：100 ~ 900，其中100 ~ 500为正常，600~900为加粗；</p>
+</li>
+<li><p>模式：<code>normal（正常）</code>，<code>bold（加粗）</code>；</p>
+</li>
+<li><p>中英文字体：英文字体只支持英文，中文字体有些支持英文。</p>
+</li>
+<li><p>设置多字体的方式：字体之间用逗号隔开，先识别前边的；若计算机中没有该字体，则向后识别。</p>
+</li>
+<li><p>引号问题：若字体中含有空格，则需要加空格。</p>
+</li>
+</ul>
+<h4 id="边框-–-使用CSS实现圆角"><a href="#边框-–-使用CSS实现圆角" class="headerlink" title="边框 – 使用CSS实现圆角"></a>边框 – 使用CSS实现圆角</h4><figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-id">#box</span>&#123; <span class="attribute">width</span>:<span class="number">200px</span>; <span class="attribute">height</span>:<span class="number">200px</span>; <span class="attribute">background</span>:red; <span class="attribute">border-radius</span>: <span class="number">100px</span>; &#125;</span><br><span class="line"><span class="attribute">border-radius</span>为一个值时，对四个角都生效；</span><br><span class="line"></span><br><span class="line"><span class="selector-id">#box</span>&#123; <span class="attribute">width</span>:<span class="number">300px</span>; <span class="attribute">height</span>:<span class="number">300px</span>; <span class="attribute">background</span>:red; <span class="attribute">border-radius</span>: <span class="number">50%</span>; &#125;</span><br><span class="line"><span class="attribute">border-radius</span>为<span class="number">50%</span>时为圆；</span><br><span class="line"></span><br><span class="line"><span class="selector-id">#box</span>&#123; <span class="attribute">width</span>:<span class="number">300px</span>; <span class="attribute">height</span>:<span class="number">300px</span>; <span class="attribute">background</span>:red; <span class="attribute">border-radius</span>: <span class="number">10px</span> <span class="number">20px</span>; &#125;</span><br><span class="line"><span class="attribute">border-radius</span>为两个值时，对两个对角生效；</span><br><span class="line"></span><br><span class="line"><span class="selector-id">#box</span>&#123; <span class="attribute">width</span>:<span class="number">300px</span>; <span class="attribute">height</span>:<span class="number">300px</span>; <span class="attribute">background</span>:red; <span class="attribute">border-radius</span>: <span class="number">10px</span> <span class="number">20px</span> <span class="number">30px</span> <span class="number">40px</span>; &#125;</span><br><span class="line"><span class="attribute">border-radius</span>为四个值时，分别对四个角生效；顺序为：左上、右上、右下、左下；</span><br><span class="line"></span><br><span class="line"><span class="selector-id">#box</span>&#123; <span class="attribute">width</span>:<span class="number">300px</span>; <span class="attribute">height</span>:<span class="number">300px</span>; <span class="attribute">background</span>:red; <span class="attribute">border-radius</span>: <span class="number">20px</span> / <span class="number">40px</span>; &#125;</span><br><span class="line"><span class="attribute">border-radius</span>为比值时，根据比值不同，形状不同；此例为椭圆；</span><br><span class="line"></span><br><span class="line"><span class="selector-id">#box</span>&#123; <span class="attribute">width</span>:<span class="number">300px</span>; <span class="attribute">height</span>:<span class="number">150px</span>; <span class="attribute">background</span>:red; <span class="attribute">border-radius</span>: <span class="number">150px</span> <span class="number">150px</span> <span class="number">0</span> <span class="number">0</span>; &#125;</span><br><span class="line"><span class="attribute">border-radius</span>的左上、右上与<span class="attribute">height</span>值相同时，为半圆；</span><br></pre></td></tr></table></figure>
 
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+<h4 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h4><ul>
+<li>背景的位置：<code>background-position: 100px 20px;</code> <code> background-position: centre center;</code> <code> background-position: 50% 50%;</code>，即 background-position 后边可加像素、单词、百分比；</li>
+<li>背景的移动：<code>backdround-attachment</code>，其后可加<code>scroll（默认，按当前元素进行偏移）</code> <code>fixed（固定，按浏览器进行偏移；）</code>   可用此实现视觉差网页！</li>
+</ul>
 ]]></content>
+      <categories>
+        <category>前端</category>
+      </categories>
+      <tags>
+        <tag>前端</tag>
+        <tag>学习</tag>
+      </tags>
   </entry>
   <entry>
     <title>Web前端记录（六）-- CSS网格</title>
@@ -649,6 +629,26 @@
       </tags>
   </entry>
   <entry>
+    <title>Hello World!</title>
+    <url>/archives/1c291ca3.html</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<span id="more"></span>
+
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+]]></content>
+  </entry>
+  <entry>
     <title>中秋节快乐</title>
     <url>/archives/9d77eb79.html</url>
     <content><![CDATA[<center><h3>又到一年中秋时，发个文章纪念一下</h3></center>
@@ -702,6 +702,41 @@
         <tag>教程</tag>
         <tag>干货</tag>
         <tag>复制某文库内容</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>内网穿透</title>
+    <url>/archives/bd50b816.html</url>
+    <content><![CDATA[<p>内网穿透，即 NAT 穿透，进行 NAT 穿透是为了使具有某一个特定源 IP 地址和源端口号的数据包不被 NAT 设备屏蔽而正确路由到内网主机。<span id="more"></span></p>
+<p>最开始了解内网穿透是为了将自己写的HTML项目能够让别人看见，但当时又不了解服务器等东西，就上网搜方法；偶然看到说内网穿透可以，所以就找了好多教程；最终就选了以下这种方法！</p>
+<hr>
+<h3 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h3><p>安装好jdk并配置环境变量、下载Tomcat并配置环境变量、注册一个Ngrok账号、一台电脑</p>
+<h3 id="配置jdk与Tomcat"><a href="#配置jdk与Tomcat" class="headerlink" title="配置jdk与Tomcat"></a>配置jdk与Tomcat</h3><p>这个就不详写了，上网一搜一大堆！（注意Tomcat要与jdk的版本号对应，具体看官网对应关系：<a href="http://tomcat.apache.org/whichversion.html">Apache Tomcat® - Which Version Do I Want?</a>）</p>
+<h3 id="注册并登录Ngrok以及开通隧道"><a href="#注册并登录Ngrok以及开通隧道" class="headerlink" title="注册并登录Ngrok以及开通隧道"></a>注册并登录Ngrok以及开通隧道</h3><p>Ngrok官网：<a href="https://www.ngrok.cc/">Sunny-Ngrok内网穿透服务</a></p>
+<p>因为Ngrok是有免费线路的，所以完全可以白嫖。😁 一般不会失效，如果失效，再次开通就行。</p>
+<p>登录进入后选择“隧道管理” —&gt; “开通隧道” —&gt; 向下滑，找到最后一个价格为0元的，购买就行；</p>
+<p><strong>协议</strong>选<code>http/https</code>均可，<strong>隧道名称</strong>随便起，<strong>前置域名</strong>随便起（尽量短，好记；用英文、数字都行），<strong>本地端口</strong>默认就行，下面两个不用填，点击<strong>确定添加</strong>就可以了。</p>
+<p>开通成功后可以在<strong>隧道管理</strong>查看自己的隧道了。然后下载客户端，<a href="https://www.ngrok.cc/download.html">Sunny-Ngrok内网转发客户端</a>，选择自己电脑的版本即可！</p>
+<h3 id="内网穿透"><a href="#内网穿透" class="headerlink" title="内网穿透"></a>内网穿透</h3><p>下载后解压双击运行<code>Sunny-Ngrok启动工具.bat</code>，它会提示你要id,这时回到网页<strong>隧道管理</strong>找到你的<strong>隧道id</strong>粘贴进去，然后回车就行。</p>
+<p>这时如果你通过你的网址进行访问会提示你隧道不可用；这是因为你没有运行Tomcat，你cmd运行Tomcat后，再刷新就能看到Tomcat的页面了，如图：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/seatoro/Image/img/Tomcat.jpg"></p>
+<p>出现这个页面就恭喜你了，你已经成功了！</p>
+<hr>
+<h3 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h3><p>这时你的内网穿透已经成功了，但是如果你有自己的HTML项目，该怎样让别人通过你的网址访问呢？</p>
+<p>其实也很简单，将项目放到Tomcat目录下的<code>webapps</code>目录就行；访问的话就是<code>你的网址+项目的目录名+项目的名.html</code>，如我的一个就是<code>http://to.free.idcfengye.com/migong/index.html</code></p>
+<p>这样就能让别人通过你的网址来访问你的项目了！</p>
+<hr>
+<h3 id="最后的最后"><a href="#最后的最后" class="headerlink" title="最后的最后"></a>最后的最后</h3><p>注意，内网穿透的过程中你运行的 <code>Tomcat</code> 与 <code>Sunny-Ngrok启动工具</code> 不能关闭，否则连接会断开！</p>
+<p>完！</p>
+]]></content>
+      <categories>
+        <category>内网穿透</category>
+      </categories>
+      <tags>
+        <tag>教程</tag>
+        <tag>干货</tag>
+        <tag>内网穿透</tag>
+        <tag>Ngrok</tag>
       </tags>
   </entry>
   <entry>
@@ -798,32 +833,16 @@
       </tags>
   </entry>
   <entry>
-    <title>突然连接不了GitHub?</title>
-    <url>/archives/d840bd6.html</url>
-    <content><![CDATA[<p>前段时间开学了，比较忙就没空写博客了；不过就在我忙里偷闲抽空写的时候发现连接不了GitHub了，嗯？什么情况？<span id="more"></span></p>
-<p>这是什么情况？不应该啊？我啥都没动咋就不行了？一连串的疑问在我脑中萦绕！</p>
-<p>以下为报错的代码：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">fatal: Could not read from remote repository.</span><br><span class="line"></span><br><span class="line">Please make sure you have the correct access rights</span><br><span class="line">and the repository exists.</span><br><span class="line">FATAL &#123;</span><br><span class="line">  err: Error: Spawn failed</span><br><span class="line">      at ChildProcess.&lt;anonymous&gt; (D:\MyBlog\node_modules\hexo-util\lib\spawn.js:51:21)</span><br><span class="line">      at ChildProcess.emit (events.js:400:28)</span><br><span class="line">      at ChildProcess.cp.emit (D:\MyBlog\node_modules\cross-spawn\lib\enoent.js:34:29)</span><br><span class="line">      at Process.ChildProcess._handle.onexit (internal/child_process.js:277:12) &#123;</span><br><span class="line">    code: 128</span><br><span class="line">  &#125;</span><br><span class="line">&#125; Something&#x27;s wrong. Maybe you can find the solution here: %s https://hexo.io/docs/troubleshooting.html</span><br></pre></td></tr></table></figure>
+    <title>暂时停更</title>
+    <url>/archives/e4b6eac1.html</url>
+    <content><![CDATA[<h3 id="暂时停更"><a href="#暂时停更" class="headerlink" title="暂时停更"></a>暂时停更</h3><span id="more"></span>
 
-<p>没办法，第一次遇到，上网搜解决办法吧！大部分的帖子都说ssh失效了，重新生成一下；好，我照做！但完全没效果是什么意思，是我不配了吗？难搞哦！最后想了想先放这儿吧，有空再好好收拾收拾你！</p>
-<p>过了几天，我又屁颠屁颠地回来了；继续搞，我还就不信了！继续上网搜解决办法呗，但结果都大差不差，都让我重新生成ssh；可我都重新生成几遍了，还是不行，这怎搞？老规矩，先晾着，说不定哪天我试试他自己就好了！（<del>我在想peach</del>）</p>
-<p>不过，这次我可没放着就不管了；我甚至走路都在想到底是哪里出问题了；后来仔细分析了一下，好像和家里的改变就只有地区的改变了！再深想一下，网络也随之改变了！嗯，一定是这个原因，死马当做活马医，试试吧！<strong>断开校园网，拔掉网线</strong>，换个手机热点看看！（<em>一定要拔掉网线，不要问我为什么会知道</em>）</p>
-<p>没想到啊，没想到！结果真的出在这里，用手机热点后一下就连通了！！（话说，这是为什么呢？校园网端口没开放？那换个端口行不？我还没试过，有谁试了可以给我说一下哈！）</p>
-<p>到这儿，文章就结束了；结果只是换个网络就行，整的那么复杂。还好我没想不开将博客删了重建！也算是一点经验吧！希望遇到这个问题的朋友看到这儿后可以完美解决！</p>
-<hr>
-<p>突然又想到福尔摩斯的一句名言：</p>
-<blockquote>
-<h4 id="排除一切不可能的，剩下的即使再不可能，那也是真相！-—-夏洛克·福尔摩斯"><a href="#排除一切不可能的，剩下的即使再不可能，那也是真相！-—-夏洛克·福尔摩斯" class="headerlink" title="排除一切不可能的，剩下的即使再不可能，那也是真相！  — 夏洛克·福尔摩斯"></a>排除一切不可能的，剩下的即使再不可能，那也是真相！<br><br>  — 夏洛克·福尔摩斯</h4></blockquote>
-]]></content>
+<h4 id="由于个人某些原因，暂时停止更新！"><a href="#由于个人某些原因，暂时停止更新！" class="headerlink" title="由于个人某些原因，暂时停止更新！"></a>由于个人某些原因，暂时停止更新！</h4>]]></content>
       <categories>
-        <category>Hexo</category>
-        <category>Github</category>
+        <category>停更公告</category>
       </categories>
       <tags>
-        <tag>教程</tag>
-        <tag>踩坑</tag>
-        <tag>博客</tag>
-        <tag>hexo</tag>
+        <tag>停更公告</tag>
       </tags>
   </entry>
   <entry>
@@ -846,54 +865,6 @@
       </categories>
       <tags>
         <tag>新年快乐</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>内网穿透</title>
-    <url>/archives/bd50b816.html</url>
-    <content><![CDATA[<p>内网穿透，即 NAT 穿透，进行 NAT 穿透是为了使具有某一个特定源 IP 地址和源端口号的数据包不被 NAT 设备屏蔽而正确路由到内网主机。<span id="more"></span></p>
-<p>最开始了解内网穿透是为了将自己写的HTML项目能够让别人看见，但当时又不了解服务器等东西，就上网搜方法；偶然看到说内网穿透可以，所以就找了好多教程；最终就选了以下这种方法！</p>
-<hr>
-<h3 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h3><p>安装好jdk并配置环境变量、下载Tomcat并配置环境变量、注册一个Ngrok账号、一台电脑</p>
-<h3 id="配置jdk与Tomcat"><a href="#配置jdk与Tomcat" class="headerlink" title="配置jdk与Tomcat"></a>配置jdk与Tomcat</h3><p>这个就不详写了，上网一搜一大堆！（注意Tomcat要与jdk的版本号对应，具体看官网对应关系：<a href="http://tomcat.apache.org/whichversion.html">Apache Tomcat® - Which Version Do I Want?</a>）</p>
-<h3 id="注册并登录Ngrok以及开通隧道"><a href="#注册并登录Ngrok以及开通隧道" class="headerlink" title="注册并登录Ngrok以及开通隧道"></a>注册并登录Ngrok以及开通隧道</h3><p>Ngrok官网：<a href="https://www.ngrok.cc/">Sunny-Ngrok内网穿透服务</a></p>
-<p>因为Ngrok是有免费线路的，所以完全可以白嫖。😁 一般不会失效，如果失效，再次开通就行。</p>
-<p>登录进入后选择“隧道管理” —&gt; “开通隧道” —&gt; 向下滑，找到最后一个价格为0元的，购买就行；</p>
-<p><strong>协议</strong>选<code>http/https</code>均可，<strong>隧道名称</strong>随便起，<strong>前置域名</strong>随便起（尽量短，好记；用英文、数字都行），<strong>本地端口</strong>默认就行，下面两个不用填，点击<strong>确定添加</strong>就可以了。</p>
-<p>开通成功后可以在<strong>隧道管理</strong>查看自己的隧道了。然后下载客户端，<a href="https://www.ngrok.cc/download.html">Sunny-Ngrok内网转发客户端</a>，选择自己电脑的版本即可！</p>
-<h3 id="内网穿透"><a href="#内网穿透" class="headerlink" title="内网穿透"></a>内网穿透</h3><p>下载后解压双击运行<code>Sunny-Ngrok启动工具.bat</code>，它会提示你要id,这时回到网页<strong>隧道管理</strong>找到你的<strong>隧道id</strong>粘贴进去，然后回车就行。</p>
-<p>这时如果你通过你的网址进行访问会提示你隧道不可用；这是因为你没有运行Tomcat，你cmd运行Tomcat后，再刷新就能看到Tomcat的页面了，如图：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/seatoro/Image/img/Tomcat.jpg"></p>
-<p>出现这个页面就恭喜你了，你已经成功了！</p>
-<hr>
-<h3 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h3><p>这时你的内网穿透已经成功了，但是如果你有自己的HTML项目，该怎样让别人通过你的网址访问呢？</p>
-<p>其实也很简单，将项目放到Tomcat目录下的<code>webapps</code>目录就行；访问的话就是<code>你的网址+项目的目录名+项目的名.html</code>，如我的一个就是<code>http://to.free.idcfengye.com/migong/index.html</code></p>
-<p>这样就能让别人通过你的网址来访问你的项目了！</p>
-<hr>
-<h3 id="最后的最后"><a href="#最后的最后" class="headerlink" title="最后的最后"></a>最后的最后</h3><p>注意，内网穿透的过程中你运行的 <code>Tomcat</code> 与 <code>Sunny-Ngrok启动工具</code> 不能关闭，否则连接会断开！</p>
-<p>完！</p>
-]]></content>
-      <categories>
-        <category>内网穿透</category>
-      </categories>
-      <tags>
-        <tag>教程</tag>
-        <tag>干货</tag>
-        <tag>内网穿透</tag>
-        <tag>Ngrok</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>暂时停更</title>
-    <url>/archives/e4b6eac1.html</url>
-    <content><![CDATA[<h3 id="暂时停更"><a href="#暂时停更" class="headerlink" title="暂时停更"></a>暂时停更</h3><span id="more"></span>
-
-<h4 id="由于个人某些原因，暂时停止更新！"><a href="#由于个人某些原因，暂时停止更新！" class="headerlink" title="由于个人某些原因，暂时停止更新！"></a>由于个人某些原因，暂时停止更新！</h4>]]></content>
-      <categories>
-        <category>停更公告</category>
-      </categories>
-      <tags>
-        <tag>停更公告</tag>
       </tags>
   </entry>
   <entry>
@@ -952,36 +923,6 @@
       <tags>
         <tag>教程</tag>
         <tag>代码</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>谷歌账号的注册</title>
-    <url>/archives/c7047092.html</url>
-    <content><![CDATA[<p>今天写一个关于国内注册谷歌账号的方法，防止自己忘记，也可给不会的朋友一点思路！</p>
-<p>这些方法也是截止写这篇文章为止，我自己测试可用的！</p>
-<span id="more"></span>
-
-<p>注册的前提是，你有 “科学上网” 的方法；否则就算注册了也没用不是吗？另外，你还得安装谷歌框架，这个软件你可以点 <a href="https://yinzhen.lanzoui.com/iM4Bkutxnfa">这里</a> 下载。</p>
-<p>这里我不提供该上网方法与软件，有兴趣自己搜！</p>
-<p><strong>ps：文中环境为 “科学上网” 环境下！</strong></p>
-<hr>
-<h3 id="1-利用QQ邮箱"><a href="#1-利用QQ邮箱" class="headerlink" title="1. 利用QQ邮箱"></a>1. 利用QQ邮箱</h3><p>手机上下载QQ邮箱，在 “添加账户” 处选择 Gmail 邮箱，点击后会出现登录页面；你可以点击左下角的 “创建账号” 来进行注册，接着一步一步往下走就行。</p>
-<h3 id="2-利用Gmail邮箱"><a href="#2-利用Gmail邮箱" class="headerlink" title="2. 利用Gmail邮箱"></a>2. 利用Gmail邮箱</h3><p>Gmail邮箱在各大软件商店都能下载，安装完成并打开后选择创建账户，一步一步往下即可，国内手机号是可以接到验证码的！</p>
-<p>今天我刚用此方法注册了一个新的账号，可行！ </p>
-<h3 id="3-利用OurPlay加速器"><a href="#3-利用OurPlay加速器" class="headerlink" title="3. 利用OurPlay加速器"></a>3. 利用OurPlay加速器</h3><p>该软件在各大应用商店也能下载，下载安装后，点击登录账户（此时没有创建账户这个选项，别急，往下看）；随便输入一个已经存在的账号【例如：aaaa666#gmail.com （将 # 改为 @ 即可）】，进入下一步输入密码；不是你的账号，你肯定不知道密码，所以点手机上的返回菜单（不要大返回桌面，返回上一步就行），这是你会发现在登录账户页面的左下角出现了 “创建账户” 的按钮；接着一步一步向下就行了。注册完成就能登录Gmail了，这时就可以将OurPlay加速器卸载了！（没错，卸磨杀驴😉）</p>
-<h3 id="4-利用-Google-Chrome-浏览器"><a href="#4-利用-Google-Chrome-浏览器" class="headerlink" title="4. 利用 Google Chrome 浏览器"></a>4. 利用 Google Chrome 浏览器</h3><p>这个方法是我听别人说的，今天我测试了一下，没成功；但想到可能是我自己的原因，所以就写出来给大家看看，万一你们可以呢，对吧！</p>
-<p>将PC端 Google Chrome 浏览器语言设置为英文，重启浏览器；然后打开页面进行注册，按部就班地往下即可。</p>
-<hr>
-<h3 id="后话"><a href="#后话" class="headerlink" title="后话"></a>后话</h3><p>注册完成后，不要频繁更换代理IP，有可能会被封，就这样。</p>
-]]></content>
-      <categories>
-        <category>干货</category>
-        <category>谷歌</category>
-      </categories>
-      <tags>
-        <tag>教程</tag>
-        <tag>干货</tag>
-        <tag>注册谷歌账号</tag>
       </tags>
   </entry>
   <entry>
@@ -1055,6 +996,36 @@
       </tags>
   </entry>
   <entry>
+    <title>谷歌账号的注册</title>
+    <url>/archives/c7047092.html</url>
+    <content><![CDATA[<p>今天写一个关于国内注册谷歌账号的方法，防止自己忘记，也可给不会的朋友一点思路！</p>
+<p>这些方法也是截止写这篇文章为止，我自己测试可用的！</p>
+<span id="more"></span>
+
+<p>注册的前提是，你有 “科学上网” 的方法；否则就算注册了也没用不是吗？另外，你还得安装谷歌框架，这个软件你可以点 <a href="https://yinzhen.lanzoui.com/iM4Bkutxnfa">这里</a> 下载。</p>
+<p>这里我不提供该上网方法与软件，有兴趣自己搜！</p>
+<p><strong>ps：文中环境为 “科学上网” 环境下！</strong></p>
+<hr>
+<h3 id="1-利用QQ邮箱"><a href="#1-利用QQ邮箱" class="headerlink" title="1. 利用QQ邮箱"></a>1. 利用QQ邮箱</h3><p>手机上下载QQ邮箱，在 “添加账户” 处选择 Gmail 邮箱，点击后会出现登录页面；你可以点击左下角的 “创建账号” 来进行注册，接着一步一步往下走就行。</p>
+<h3 id="2-利用Gmail邮箱"><a href="#2-利用Gmail邮箱" class="headerlink" title="2. 利用Gmail邮箱"></a>2. 利用Gmail邮箱</h3><p>Gmail邮箱在各大软件商店都能下载，安装完成并打开后选择创建账户，一步一步往下即可，国内手机号是可以接到验证码的！</p>
+<p>今天我刚用此方法注册了一个新的账号，可行！ </p>
+<h3 id="3-利用OurPlay加速器"><a href="#3-利用OurPlay加速器" class="headerlink" title="3. 利用OurPlay加速器"></a>3. 利用OurPlay加速器</h3><p>该软件在各大应用商店也能下载，下载安装后，点击登录账户（此时没有创建账户这个选项，别急，往下看）；随便输入一个已经存在的账号【例如：aaaa666#gmail.com （将 # 改为 @ 即可）】，进入下一步输入密码；不是你的账号，你肯定不知道密码，所以点手机上的返回菜单（不要大返回桌面，返回上一步就行），这是你会发现在登录账户页面的左下角出现了 “创建账户” 的按钮；接着一步一步向下就行了。注册完成就能登录Gmail了，这时就可以将OurPlay加速器卸载了！（没错，卸磨杀驴😉）</p>
+<h3 id="4-利用-Google-Chrome-浏览器"><a href="#4-利用-Google-Chrome-浏览器" class="headerlink" title="4. 利用 Google Chrome 浏览器"></a>4. 利用 Google Chrome 浏览器</h3><p>这个方法是我听别人说的，今天我测试了一下，没成功；但想到可能是我自己的原因，所以就写出来给大家看看，万一你们可以呢，对吧！</p>
+<p>将PC端 Google Chrome 浏览器语言设置为英文，重启浏览器；然后打开页面进行注册，按部就班地往下即可。</p>
+<hr>
+<h3 id="后话"><a href="#后话" class="headerlink" title="后话"></a>后话</h3><p>注册完成后，不要频繁更换代理IP，有可能会被封，就这样。</p>
+]]></content>
+      <categories>
+        <category>干货</category>
+        <category>谷歌</category>
+      </categories>
+      <tags>
+        <tag>教程</tag>
+        <tag>干货</tag>
+        <tag>注册谷歌账号</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>解析freenom域名</title>
     <url>/archives/79444b31.html</url>
     <content><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>​        前几天刚用 github + hexo 搭建了一个博客，用来记录自己的学习成果！但域名是 github 的二级域名，看着不太好看；就寻思怎样白嫖一个域名；<span id="more"></span>搜来搜去，看到了一个帖子说可以去 freenom 白嫖，就想着试试；结果自己根本搞不了，无奈继续搜教程呗！看了好多教程，都没成功；想来想去就上 Youtube 了，按时间排序，第一个就是；真是保姆级的教程，一次成功，哈哈！视频链接我放这儿了，有需自取：<a href="https://www.youtube.com/watch?v=dTVKfuW9BiU">白嫖freenom域名</a></p>
@@ -1084,6 +1055,35 @@
         <tag>踩坑</tag>
         <tag>freenom</tag>
         <tag>域名</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>突然连接不了GitHub?</title>
+    <url>/archives/d840bd6.html</url>
+    <content><![CDATA[<p>前段时间开学了，比较忙就没空写博客了；不过就在我忙里偷闲抽空写的时候发现连接不了GitHub了，嗯？什么情况？<span id="more"></span></p>
+<p>这是什么情况？不应该啊？我啥都没动咋就不行了？一连串的疑问在我脑中萦绕！</p>
+<p>以下为报错的代码：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">fatal: Could not read from remote repository.</span><br><span class="line"></span><br><span class="line">Please make sure you have the correct access rights</span><br><span class="line">and the repository exists.</span><br><span class="line">FATAL &#123;</span><br><span class="line">  err: Error: Spawn failed</span><br><span class="line">      at ChildProcess.&lt;anonymous&gt; (D:\MyBlog\node_modules\hexo-util\lib\spawn.js:51:21)</span><br><span class="line">      at ChildProcess.emit (events.js:400:28)</span><br><span class="line">      at ChildProcess.cp.emit (D:\MyBlog\node_modules\cross-spawn\lib\enoent.js:34:29)</span><br><span class="line">      at Process.ChildProcess._handle.onexit (internal/child_process.js:277:12) &#123;</span><br><span class="line">    code: 128</span><br><span class="line">  &#125;</span><br><span class="line">&#125; Something&#x27;s wrong. Maybe you can find the solution here: %s https://hexo.io/docs/troubleshooting.html</span><br></pre></td></tr></table></figure>
+
+<p>没办法，第一次遇到，上网搜解决办法吧！大部分的帖子都说ssh失效了，重新生成一下；好，我照做！但完全没效果是什么意思，是我不配了吗？难搞哦！最后想了想先放这儿吧，有空再好好收拾收拾你！</p>
+<p>过了几天，我又屁颠屁颠地回来了；继续搞，我还就不信了！继续上网搜解决办法呗，但结果都大差不差，都让我重新生成ssh；可我都重新生成几遍了，还是不行，这怎搞？老规矩，先晾着，说不定哪天我试试他自己就好了！（<del>我在想peach</del>）</p>
+<p>不过，这次我可没放着就不管了；我甚至走路都在想到底是哪里出问题了；后来仔细分析了一下，好像和家里的改变就只有地区的改变了！再深想一下，网络也随之改变了！嗯，一定是这个原因，死马当做活马医，试试吧！<strong>断开校园网，拔掉网线</strong>，换个手机热点看看！（<em>一定要拔掉网线，不要问我为什么会知道</em>）</p>
+<p>没想到啊，没想到！结果真的出在这里，用手机热点后一下就连通了！！（话说，这是为什么呢？校园网端口没开放？那换个端口行不？我还没试过，有谁试了可以给我说一下哈！）</p>
+<p>到这儿，文章就结束了；结果只是换个网络就行，整的那么复杂。还好我没想不开将博客删了重建！也算是一点经验吧！希望遇到这个问题的朋友看到这儿后可以完美解决！</p>
+<hr>
+<p>突然又想到福尔摩斯的一句名言：</p>
+<blockquote>
+<h4 id="排除一切不可能的，剩下的即使再不可能，那也是真相！-—-夏洛克·福尔摩斯"><a href="#排除一切不可能的，剩下的即使再不可能，那也是真相！-—-夏洛克·福尔摩斯" class="headerlink" title="排除一切不可能的，剩下的即使再不可能，那也是真相！  — 夏洛克·福尔摩斯"></a>排除一切不可能的，剩下的即使再不可能，那也是真相！<br><br>  — 夏洛克·福尔摩斯</h4></blockquote>
+]]></content>
+      <categories>
+        <category>Hexo</category>
+        <category>Github</category>
+      </categories>
+      <tags>
+        <tag>教程</tag>
+        <tag>踩坑</tag>
+        <tag>博客</tag>
+        <tag>hexo</tag>
       </tags>
   </entry>
 </search>
