@@ -240,34 +240,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Web前端记录（七）-- 贝塞尔曲线的原理</title>
-    <url>/archives/6b06ff63.html</url>
-    <content><![CDATA[<h3 id="web前端-—-贝塞尔曲线的原理"><a href="#web前端-—-贝塞尔曲线的原理" class="headerlink" title="web前端 — 贝塞尔曲线的原理"></a>web前端 — 贝塞尔曲线的原理</h3><p><strong>今天继续第七篇</strong></p>
-<p><strong>注：以下以及之后文章中用到的软件均为<code> Visual Studio Code</code></strong></p>
-<span id="more"></span>
-
-<hr>
-<p>在 CSS 动画里，我们可以用 <code>cubic-bezier</code> 来定义贝塞尔曲线。 曲线的形状代表了动画的速度。 曲线在 1 * 1 的坐标系统内， 其中 X 轴代表动画的时间间隔（类似于时间比例尺），Y 轴代表动画的改变。</p>
-<p><code>cubic-bezier</code> 函数包含了 1 * 1 网格里的4个点：<code>p0</code>、<code>p1</code>、<code>p2</code>、<code>p3</code>。 其中 <code>p0</code> 和 <code>p3</code> 是固定值，代表曲线的起始点和结束点，坐标值依次为 (0, 0) 和 (1, 1)。 你只需设置另外两点的 x 值和 y 值，设置的这两点确定了曲线的形状从而确定了动画的速度曲线。 在 CSS 里面通过 <code>(x1, y1, x2, y2)</code> 来确定 <code>p1</code> 和 <code>p2</code>。 如：</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="attribute">animation-timing-function</span>: <span class="built_in">cubic-bezier</span>(<span class="number">0.25</span>, <span class="number">0.25</span>, <span class="number">0.75</span>, <span class="number">0.75</span>);</span><br></pre></td></tr></table></figure>
-
-<p>上面例子中两个点的 x 和 y 值相等（x1 = 0.25 = y1 和 x2 = 0.75 = y2）。结合数学的知识，我们可以看出结果是从原点到点 (1, 1) 的一条直线。 元素在动画中的速度呈线性，效果和使用 <code>linear</code> 关键词的效果一致。 换言之，元素匀速运动。</p>
-<p>将一条直线放在范围只有 1 的坐标轴中，并从中间拿 <code>p1</code> 和 <code>p2</code> 两个点来拉扯（X 轴的取值区间是 [0, 1]，Y 轴任意），最后形成的曲线就是动画的贝塞尔速度曲线。 下面是贝塞尔曲线模仿 ease-out 预定义值的例子：</p>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="attribute">animation-timing-function</span>: <span class="built_in">cubic-bezier</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0.58</span>, <span class="number">1</span>);</span><br></pre></td></tr></table></figure>
-
-<p>所有的 <code>cubic-bezier</code> 函数都是从坐标为 (0, 0) 的 <code>p0</code> 开始，在坐标为 (1, 1) 的 <code>p3</code> 结束。 在上面这个例子里，曲线在 y 轴（从 0 开始，运动到 <code>p1</code> 的 0，然后运动到 <code>p2</code> 的 1）上移动得比在 x 轴（从 0 开始，运动到 <code>p1</code> 的 0，到 <code>p2</code> 的 0.58）上移动得快。 结果是，在这一段动画内元素运动得快。 到曲线的结尾，x 和 y 之间的关系反过来了，y 值保持为 1，没有变化，x 值从 0.58 变为 1，元素运动得慢。</p>
-<hr>
-<p><strong>自定义曲线：<a href="http://cubic-bezier.com/">http://cubic-bezier.com</a></strong></p>
-]]></content>
-      <categories>
-        <category>前端</category>
-      </categories>
-      <tags>
-        <tag>前端</tag>
-        <tag>学习</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Web前端记录（三）</title>
     <url>/archives/8b900134.html</url>
     <content><![CDATA[<h3 id="web前端-—-段落样式、默认样式去除与最小最大宽高"><a href="#web前端-—-段落样式、默认样式去除与最小最大宽高" class="headerlink" title="web前端 — 段落样式、默认样式去除与最小最大宽高"></a>web前端 — 段落样式、默认样式去除与最小最大宽高</h3><p><strong>今天继续第三篇</strong></p>
@@ -390,6 +362,34 @@
       </tags>
   </entry>
   <entry>
+    <title>Web前端记录（七）-- 贝塞尔曲线的原理</title>
+    <url>/archives/6b06ff63.html</url>
+    <content><![CDATA[<h3 id="web前端-—-贝塞尔曲线的原理"><a href="#web前端-—-贝塞尔曲线的原理" class="headerlink" title="web前端 — 贝塞尔曲线的原理"></a>web前端 — 贝塞尔曲线的原理</h3><p><strong>今天继续第七篇</strong></p>
+<p><strong>注：以下以及之后文章中用到的软件均为<code> Visual Studio Code</code></strong></p>
+<span id="more"></span>
+
+<hr>
+<p>在 CSS 动画里，我们可以用 <code>cubic-bezier</code> 来定义贝塞尔曲线。 曲线的形状代表了动画的速度。 曲线在 1 * 1 的坐标系统内， 其中 X 轴代表动画的时间间隔（类似于时间比例尺），Y 轴代表动画的改变。</p>
+<p><code>cubic-bezier</code> 函数包含了 1 * 1 网格里的4个点：<code>p0</code>、<code>p1</code>、<code>p2</code>、<code>p3</code>。 其中 <code>p0</code> 和 <code>p3</code> 是固定值，代表曲线的起始点和结束点，坐标值依次为 (0, 0) 和 (1, 1)。 你只需设置另外两点的 x 值和 y 值，设置的这两点确定了曲线的形状从而确定了动画的速度曲线。 在 CSS 里面通过 <code>(x1, y1, x2, y2)</code> 来确定 <code>p1</code> 和 <code>p2</code>。 如：</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="attribute">animation-timing-function</span>: <span class="built_in">cubic-bezier</span>(<span class="number">0.25</span>, <span class="number">0.25</span>, <span class="number">0.75</span>, <span class="number">0.75</span>);</span><br></pre></td></tr></table></figure>
+
+<p>上面例子中两个点的 x 和 y 值相等（x1 = 0.25 = y1 和 x2 = 0.75 = y2）。结合数学的知识，我们可以看出结果是从原点到点 (1, 1) 的一条直线。 元素在动画中的速度呈线性，效果和使用 <code>linear</code> 关键词的效果一致。 换言之，元素匀速运动。</p>
+<p>将一条直线放在范围只有 1 的坐标轴中，并从中间拿 <code>p1</code> 和 <code>p2</code> 两个点来拉扯（X 轴的取值区间是 [0, 1]，Y 轴任意），最后形成的曲线就是动画的贝塞尔速度曲线。 下面是贝塞尔曲线模仿 ease-out 预定义值的例子：</p>
+<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="attribute">animation-timing-function</span>: <span class="built_in">cubic-bezier</span>(<span class="number">0</span>, <span class="number">0</span>, <span class="number">0.58</span>, <span class="number">1</span>);</span><br></pre></td></tr></table></figure>
+
+<p>所有的 <code>cubic-bezier</code> 函数都是从坐标为 (0, 0) 的 <code>p0</code> 开始，在坐标为 (1, 1) 的 <code>p3</code> 结束。 在上面这个例子里，曲线在 y 轴（从 0 开始，运动到 <code>p1</code> 的 0，然后运动到 <code>p2</code> 的 1）上移动得比在 x 轴（从 0 开始，运动到 <code>p1</code> 的 0，到 <code>p2</code> 的 0.58）上移动得快。 结果是，在这一段动画内元素运动得快。 到曲线的结尾，x 和 y 之间的关系反过来了，y 值保持为 1，没有变化，x 值从 0.58 变为 1，元素运动得慢。</p>
+<hr>
+<p><strong>自定义曲线：<a href="http://cubic-bezier.com/">http://cubic-bezier.com</a></strong></p>
+]]></content>
+      <categories>
+        <category>前端</category>
+      </categories>
+      <tags>
+        <tag>前端</tag>
+        <tag>学习</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Web前端记录（八）-- 动画与伪元素</title>
     <url>/archives/2950d584.html</url>
     <content><![CDATA[<h3 id="web前端-—-动画与伪元素"><a href="#web前端-—-动画与伪元素" class="headerlink" title="web前端 —  动画与伪元素"></a>web前端 —  动画与伪元素</h3><p><strong>今天继续第八篇</strong></p>
@@ -433,6 +433,65 @@
         <tag>前端</tag>
         <tag>学习</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>Web前端记录（四）</title>
+    <url>/archives/3cbd1851.html</url>
+    <content><![CDATA[<h3 id="web前端-—-优先级、css变量"><a href="#web前端-—-优先级、css变量" class="headerlink" title="web前端 — 优先级、css变量"></a>web前端 — 优先级、css变量</h3><p><strong>今天继续第四篇</strong></p>
+<p><strong>注：以下以及之后文章中用到的软件均为<code> Visual Studio Code</code></strong></p>
+<span id="more"></span>
+
+<hr>
+<h3 id="优先级"><a href="#优先级" class="headerlink" title="优先级"></a>优先级</h3><ul>
+<li><p>id 的优先级高于 class，无论 id 在 class 前或者后</p>
+</li>
+<li><p>在头部 style 中下边 class 优先级高于上边，即上边的样式会被下边的覆盖</p>
+</li>
+<li><p>正文的标签中 class 可设置多个，之间用空格隔开（该 class 先后顺序不分优先级）</p>
+</li>
+<li><p>内联样式（元素内style）的优先级高于所有上边 css 中的声明，即会覆盖上边 css 中的样式。</p>
+</li>
+<li><p>在 css 样式后加<code>!important</code>，则优先级最高</p>
+</li>
+</ul>
+<hr>
+<h3 id="自定义css变量"><a href="#自定义css变量" class="headerlink" title="自定义css变量"></a>自定义css变量</h3><p>定义变量：<code>-- + 变量名 + ： + 属性</code> 如：<code>--penguin-skin：pink;</code></p>
+<p>引用变量：如 <code>background: var(--penguin-skin)；</code>（所有引用变量的元素都会改变。）</p>
+<p>使用变量来作为 CSS 属性值的时候，可以设置一个备用值来防止由于某些原因导致变量不生效的情况。</p>
+<p>如：<code>background: var(--penguin-skin, black);</code>（如果变量不生效或者没有设置，则使用后面的 black 样式；这对调试代码很有帮助）</p>
+<p><strong>注意：</strong> 备用值不是用于增强浏览器的兼容性，它也不适用于 IE 浏览器。 相反，它是用来让浏览器在找不到你的变量时可以显示一种颜色。</p>
+<hr>
+<h3 id="变量的继承性"><a href="#变量的继承性" class="headerlink" title="变量的继承性"></a>变量的继承性</h3><p>当创建一个变量时，变量会在创建变量的选择器里可用。 同时，在这个选择器的后代选择器里也是可用的。 这是因为 CSS 变量是可继承的，和普通的属性一样。</p>
+<p>CSS 变量经常会定义在  :root  元素内，这样就可被所有选择器继承。 <code>:root</code> 是一个伪类选择器，它是一个能够匹配文档根元素的选择器，通常指的是 <code>html</code> 元素。 我们在 <code>:root</code> 里创建变量在全局都可用，即在任何选择器里都生效。</p>
+<p>当你在 <code>:root</code> 里创建变量时，这些变量的作用域是整个页面。如果在元素里创建相同的变量，会重写（覆盖）作用于该元素的变量的值。</p>
+]]></content>
+      <categories>
+        <category>前端</category>
+      </categories>
+      <tags>
+        <tag>前端</tag>
+        <tag>学习</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hello World!</title>
+    <url>/archives/1c291ca3.html</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<span id="more"></span>
+
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+]]></content>
   </entry>
   <entry>
     <title>Web前端记录（六）-- CSS网格</title>
@@ -590,90 +649,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Hello World!</title>
-    <url>/archives/1c291ca3.html</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<span id="more"></span>
-
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-]]></content>
-  </entry>
-  <entry>
-    <title>Web前端记录（四）</title>
-    <url>/archives/3cbd1851.html</url>
-    <content><![CDATA[<h3 id="web前端-—-优先级、css变量"><a href="#web前端-—-优先级、css变量" class="headerlink" title="web前端 — 优先级、css变量"></a>web前端 — 优先级、css变量</h3><p><strong>今天继续第四篇</strong></p>
-<p><strong>注：以下以及之后文章中用到的软件均为<code> Visual Studio Code</code></strong></p>
-<span id="more"></span>
-
-<hr>
-<h3 id="优先级"><a href="#优先级" class="headerlink" title="优先级"></a>优先级</h3><ul>
-<li><p>id 的优先级高于 class，无论 id 在 class 前或者后</p>
-</li>
-<li><p>在头部 style 中下边 class 优先级高于上边，即上边的样式会被下边的覆盖</p>
-</li>
-<li><p>正文的标签中 class 可设置多个，之间用空格隔开（该 class 先后顺序不分优先级）</p>
-</li>
-<li><p>内联样式（元素内style）的优先级高于所有上边 css 中的声明，即会覆盖上边 css 中的样式。</p>
-</li>
-<li><p>在 css 样式后加<code>!important</code>，则优先级最高</p>
-</li>
-</ul>
-<hr>
-<h3 id="自定义css变量"><a href="#自定义css变量" class="headerlink" title="自定义css变量"></a>自定义css变量</h3><p>定义变量：<code>-- + 变量名 + ： + 属性</code> 如：<code>--penguin-skin：pink;</code></p>
-<p>引用变量：如 <code>background: var(--penguin-skin)；</code>（所有引用变量的元素都会改变。）</p>
-<p>使用变量来作为 CSS 属性值的时候，可以设置一个备用值来防止由于某些原因导致变量不生效的情况。</p>
-<p>如：<code>background: var(--penguin-skin, black);</code>（如果变量不生效或者没有设置，则使用后面的 black 样式；这对调试代码很有帮助）</p>
-<p><strong>注意：</strong> 备用值不是用于增强浏览器的兼容性，它也不适用于 IE 浏览器。 相反，它是用来让浏览器在找不到你的变量时可以显示一种颜色。</p>
-<hr>
-<h3 id="变量的继承性"><a href="#变量的继承性" class="headerlink" title="变量的继承性"></a>变量的继承性</h3><p>当创建一个变量时，变量会在创建变量的选择器里可用。 同时，在这个选择器的后代选择器里也是可用的。 这是因为 CSS 变量是可继承的，和普通的属性一样。</p>
-<p>CSS 变量经常会定义在  :root  元素内，这样就可被所有选择器继承。 <code>:root</code> 是一个伪类选择器，它是一个能够匹配文档根元素的选择器，通常指的是 <code>html</code> 元素。 我们在 <code>:root</code> 里创建变量在全局都可用，即在任何选择器里都生效。</p>
-<p>当你在 <code>:root</code> 里创建变量时，这些变量的作用域是整个页面。如果在元素里创建相同的变量，会重写（覆盖）作用于该元素的变量的值。</p>
-]]></content>
-      <categories>
-        <category>前端</category>
-      </categories>
-      <tags>
-        <tag>前端</tag>
-        <tag>学习</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>国庆快乐</title>
-    <url>/archives/d31b6034.html</url>
-    <content><![CDATA[<center><h3>祖国 72 华诞</h3></center>
-
-<span id="more"></span>
-
-
-<center><h3>愿国：山河锦绣，国泰民安</h3></center>
-
-<center><h3>愿家：阖家欢乐，幸福团圆</h3></center>
-
-<center><h3>愿你：天天开心，事事顺利</h3></center>
-
-</br>
-
-<img src="https://cdn.jsdelivr.net/gh/seatoro/Image/img/gq.png" style="zoom:50%;" />
-]]></content>
-      <categories>
-        <category>节日祝福</category>
-      </categories>
-      <tags>
-        <tag>国庆快乐</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>中秋节快乐</title>
     <url>/archives/9d77eb79.html</url>
     <content><![CDATA[<center><h3>又到一年中秋时，发个文章纪念一下</h3></center>
@@ -692,6 +667,41 @@
       <tags>
         <tag>中秋节快乐</tag>
         <tag>节日</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>免VIP复制百度文库内容</title>
+    <url>/archives/631e63b6.html</url>
+    <content><![CDATA[<p>今天发一下 4 种我自己知道的免VIP复制网页内容的方法</p>
+<p>以下方法都是截止我发文时，自己测试管用的！</p>
+<span id="more"></span>
+
+<hr>
+<ul>
+<li><h3 id="利用开发者工具"><a href="#利用开发者工具" class="headerlink" title="利用开发者工具"></a>利用开发者工具</h3></li>
+</ul>
+<p>在遇到不可复制的网页内容时，可鼠标右键，选择 “检查”，打开 “开发者模式” ，在 “元素” 中向下滑动可以找到你要复制的内容；不过，都是一句一句的，不连贯，对于篇幅比较长的内容不太适用。</p>
+<ul>
+<li><h3 id="关闭该网页的-JS"><a href="#关闭该网页的-JS" class="headerlink" title="关闭该网页的 JS"></a>关闭该网页的 JS</h3></li>
+</ul>
+<p>具体如下：</p>
+<p>打开浏览器设置，搜索 JavaScript 然后你会看见该设置的内容，你可以将要复制的网页链接添加到 “不允许使用 JavaScript” 一栏中；若你比较懒，也可以直接将 JavaScript 整个关闭，然后回到你要复制内容的网页刷新，就能任意复制了；不过某些网站关闭 JavaScript 后可能不能正常运行；<strong>因此，复制完内容后一定要记得将 JavaScript 的开关打开！！</strong></p>
+<ul>
+<li><h3 id="利用插件"><a href="#利用插件" class="headerlink" title="利用插件"></a>利用插件</h3></li>
+</ul>
+<p>插件就比较简单了，可有时候作者不维护了就可能会失效；也可能出现一些别的什么问题；不过总的来说还可以。插件的话可以看这篇文章 <a href="https://mp.weixin.qq.com/s/7YwBXLyWnwUFdloToimFVA">插件的获取与使用</a></p>
+<ul>
+<li><h3 id="利用OCR识别"><a href="#利用OCR识别" class="headerlink" title="利用OCR识别"></a>利用OCR识别</h3></li>
+</ul>
+<p>这种软件很多，PC端的QQ好像也有这个功能？（太久没用过QQ了，不知道，听别人说的）；我这里说一下我常用的一个软件 PanderOCR ，这是在 GitHub 上开源的，想用可直接去 GitHub 上搜 PanderOCR ，也可以点 <a href="https://github.com/miaomiaosoft/PandaOCR">这里直达</a>，如果前面那个链接打不开，那么点 <a href="https://gitee.com/DDDDDGOOO/PandaOCR">这个备用链接</a> 吧！</p>
+]]></content>
+      <categories>
+        <category>干货</category>
+      </categories>
+      <tags>
+        <tag>教程</tag>
+        <tag>干货</tag>
+        <tag>复制某文库内容</tag>
       </tags>
   </entry>
   <entry>
@@ -763,6 +773,82 @@
       </tags>
   </entry>
   <entry>
+    <title>国庆快乐</title>
+    <url>/archives/d31b6034.html</url>
+    <content><![CDATA[<center><h3>祖国 72 华诞</h3></center>
+
+<span id="more"></span>
+
+
+<center><h3>愿国：山河锦绣，国泰民安</h3></center>
+
+<center><h3>愿家：阖家欢乐，幸福团圆</h3></center>
+
+<center><h3>愿你：天天开心，事事顺利</h3></center>
+
+</br>
+
+<img src="https://cdn.jsdelivr.net/gh/seatoro/Image/img/gq.png" style="zoom:50%;" />
+]]></content>
+      <categories>
+        <category>节日祝福</category>
+      </categories>
+      <tags>
+        <tag>国庆快乐</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>突然连接不了GitHub?</title>
+    <url>/archives/d840bd6.html</url>
+    <content><![CDATA[<p>前段时间开学了，比较忙就没空写博客了；不过就在我忙里偷闲抽空写的时候发现连接不了GitHub了，嗯？什么情况？<span id="more"></span></p>
+<p>这是什么情况？不应该啊？我啥都没动咋就不行了？一连串的疑问在我脑中萦绕！</p>
+<p>以下为报错的代码：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">fatal: Could not read from remote repository.</span><br><span class="line"></span><br><span class="line">Please make sure you have the correct access rights</span><br><span class="line">and the repository exists.</span><br><span class="line">FATAL &#123;</span><br><span class="line">  err: Error: Spawn failed</span><br><span class="line">      at ChildProcess.&lt;anonymous&gt; (D:\MyBlog\node_modules\hexo-util\lib\spawn.js:51:21)</span><br><span class="line">      at ChildProcess.emit (events.js:400:28)</span><br><span class="line">      at ChildProcess.cp.emit (D:\MyBlog\node_modules\cross-spawn\lib\enoent.js:34:29)</span><br><span class="line">      at Process.ChildProcess._handle.onexit (internal/child_process.js:277:12) &#123;</span><br><span class="line">    code: 128</span><br><span class="line">  &#125;</span><br><span class="line">&#125; Something&#x27;s wrong. Maybe you can find the solution here: %s https://hexo.io/docs/troubleshooting.html</span><br></pre></td></tr></table></figure>
+
+<p>没办法，第一次遇到，上网搜解决办法吧！大部分的帖子都说ssh失效了，重新生成一下；好，我照做！但完全没效果是什么意思，是我不配了吗？难搞哦！最后想了想先放这儿吧，有空再好好收拾收拾你！</p>
+<p>过了几天，我又屁颠屁颠地回来了；继续搞，我还就不信了！继续上网搜解决办法呗，但结果都大差不差，都让我重新生成ssh；可我都重新生成几遍了，还是不行，这怎搞？老规矩，先晾着，说不定哪天我试试他自己就好了！（<del>我在想peach</del>）</p>
+<p>不过，这次我可没放着就不管了；我甚至走路都在想到底是哪里出问题了；后来仔细分析了一下，好像和家里的改变就只有地区的改变了！再深想一下，网络也随之改变了！嗯，一定是这个原因，死马当做活马医，试试吧！<strong>断开校园网，拔掉网线</strong>，换个手机热点看看！（<em>一定要拔掉网线，不要问我为什么会知道</em>）</p>
+<p>没想到啊，没想到！结果真的出在这里，用手机热点后一下就连通了！！（话说，这是为什么呢？校园网端口没开放？那换个端口行不？我还没试过，有谁试了可以给我说一下哈！）</p>
+<p>到这儿，文章就结束了；结果只是换个网络就行，整的那么复杂。还好我没想不开将博客删了重建！也算是一点经验吧！希望遇到这个问题的朋友看到这儿后可以完美解决！</p>
+<hr>
+<p>突然又想到福尔摩斯的一句名言：</p>
+<blockquote>
+<h4 id="排除一切不可能的，剩下的即使再不可能，那也是真相！-—-夏洛克·福尔摩斯"><a href="#排除一切不可能的，剩下的即使再不可能，那也是真相！-—-夏洛克·福尔摩斯" class="headerlink" title="排除一切不可能的，剩下的即使再不可能，那也是真相！  — 夏洛克·福尔摩斯"></a>排除一切不可能的，剩下的即使再不可能，那也是真相！<br><br>  — 夏洛克·福尔摩斯</h4></blockquote>
+]]></content>
+      <categories>
+        <category>Hexo</category>
+        <category>Github</category>
+      </categories>
+      <tags>
+        <tag>教程</tag>
+        <tag>踩坑</tag>
+        <tag>博客</tag>
+        <tag>hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>新年快乐！</title>
+    <url>/archives/5785bd01.html</url>
+    <content><![CDATA[<center><h3>2022年列车已发车！我们一起向未来</h3></center>
+
+<span id="more"></span>
+
+<center><h3>新年快乐！年初的目标实现了吗？哈哈！</h3></center>
+
+</br>
+
+<img src="https://cdn.jsdelivr.net/gh/seatoro/Image/img/202a01011739b8.jpg" style="zoom: 33%;" />
+
+<center><h3>新年伊始 喜乐安宁 好运连连</h3></center>
+]]></content>
+      <categories>
+        <category>节日祝福</category>
+      </categories>
+      <tags>
+        <tag>新年快乐</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>内网穿透</title>
     <url>/archives/bd50b816.html</url>
     <content><![CDATA[<p>内网穿透，即 NAT 穿透，进行 NAT 穿透是为了使具有某一个特定源 IP 地址和源端口号的数据包不被 NAT 设备屏蔽而正确路由到内网主机。<span id="more"></span></p>
@@ -798,60 +884,104 @@
       </tags>
   </entry>
   <entry>
-    <title>免VIP复制百度文库内容</title>
-    <url>/archives/631e63b6.html</url>
-    <content><![CDATA[<p>今天发一下 4 种我自己知道的免VIP复制网页内容的方法</p>
-<p>以下方法都是截止我发文时，自己测试管用的！</p>
+    <title>暂时停更</title>
+    <url>/archives/e4b6eac1.html</url>
+    <content><![CDATA[<h3 id="暂时停更"><a href="#暂时停更" class="headerlink" title="暂时停更"></a>暂时停更</h3><span id="more"></span>
+
+<h4 id="由于个人某些原因，暂时停止更新！"><a href="#由于个人某些原因，暂时停止更新！" class="headerlink" title="由于个人某些原因，暂时停止更新！"></a>由于个人某些原因，暂时停止更新！</h4>]]></content>
+      <categories>
+        <category>停更公告</category>
+      </categories>
+      <tags>
+        <tag>停更公告</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>神奇的代码</title>
+    <url>/archives/81d62aff.html</url>
+    <content><![CDATA[<blockquote>
+<p>这篇博客主要介绍几种好玩的代码！“更改网页文字”、“修复电脑桌面白图标”、“微信消息轰炸PC端”等！有兴趣可以点开看看！</p>
+</blockquote>
 <span id="more"></span>
 
+<ol>
+<li><h3 id="更改网页文字"><a href="#更改网页文字" class="headerlink" title="更改网页文字"></a>更改网页文字</h3></li>
+</ol>
+<p>这个是很好玩的代码，你可以更改任意网页的任何文字；但要注意的是你更改后的网页并不会保留，关闭后再次打开还是原样！不过这样在某些时候已经足够了；无法保存你就截个图嘛~    这也是变相保存了。</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">document.body.contentEditable=&#x27;true&#x27;;</span><br></pre></td></tr></table></figure>
+
+<p>​    <strong>使用：</strong>打开网页，按F12或者鼠标右键“检查”，打开控制台，将上面的代码复制到最下边的空白处敲击回车键，当显示“true”后，你就可以为所欲为了，最后别忘记截图哦~    哈哈！</p>
+<ol start="2">
+<li><h3 id="查看WiFi密码"><a href="#查看WiFi密码" class="headerlink" title="查看WiFi密码"></a>查看WiFi密码</h3></li>
+</ol>
+<p>这个代码可以查看你的笔记本电脑已经连接过的wifi密码，主要用于连接上但密码忘记的情况！</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">for /f &quot;skip=9 tokens=1,2 delims=:&quot; %i in (&#x27;netsh wlan show profiles&#x27;) do @echo %j | findstr -i -v echo | netsh wlan show profiles %j key=clear</span><br></pre></td></tr></table></figure>
+
+<p>​    <strong>使用：</strong>按住键盘上的Win和R键，在弹出的窗口中输入CMD, 按下回车，将上面的代码粘贴进去再次敲回车键就OK了，它会显示你这台电脑连接过的所有WiFi及其对应的密码，自己很容易就可以找到了。</p>
+<ol start="3">
+<li><h3 id="修复电脑桌面白图标"><a href="#修复电脑桌面白图标" class="headerlink" title="修复电脑桌面白图标"></a>修复电脑桌面白图标</h3></li>
+</ol>
+<p>电脑桌面的某些图标突然变白，什么也不显示， 非常难看 ，重启也解决不了问题。这个时候就用到下面的代码了！</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@duecho off</span><br><span class="line">taskkill /f /im explorer.exe</span><br><span class="line">CD /d %userprofile%\AppData\Local</span><br><span class="line">DEL IconCache.db /a</span><br><span class="line">start explorer.exe</span><br><span class="line">cho 执行完成</span><br></pre></td></tr></table></figure>
+
+<p>​    <strong>使用：</strong>复制上面的代码，在桌面新建一个文本文档，将其粘贴进去，再将后缀改为 bat ，双击运行。然后刷新一下桌面就可以看到那个白图标已经恢复到原来的样子了！</p>
+<ol start="4">
+<li><h3 id="微信消息轰炸PC端"><a href="#微信消息轰炸PC端" class="headerlink" title="微信消息轰炸PC端"></a>微信消息轰炸PC端</h3></li>
+</ol>
+<p>这个应用场景就自己看着办吧！</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">On Error Resume Next</span><br><span class="line">Dim wsh,ye</span><br><span class="line">set wsh=createobject(&quot;wscript.shell&quot;)</span><br><span class="line">for i=1 to 10</span><br><span class="line">wscript.sleep 700</span><br><span class="line">wsh.AppActivate(&quot;与某某聊天中&quot;)</span><br><span class="line">wsh.sendKeys &quot;^v&quot;</span><br><span class="line">wsh.sendKeys i</span><br><span class="line">wsh.sendKeys &quot;%s&quot;</span><br><span class="line">next</span><br><span class="line">wscript.quit</span><br></pre></td></tr></table></figure>
+
+<p>​    <strong>使用：</strong>在桌面新建一个文本文档，名称随便起，将上面的代码粘贴进去，最后将后缀改为 vbs，把要发给朋友的话复制，然后再双击此vbs文件，最后鼠标点击一下发送框即可。</p>
+<blockquote>
+<p>说明：代码中的 “10” 代表发送的消息数，“与某某聊天中”则是你要发送的对象的，只需将“某某”改为你给好友的备注即可，建议消息的数目不要改太多！！！</p>
+</blockquote>
+<ol start="5">
+<li><h3 id="图片隐写法"><a href="#图片隐写法" class="headerlink" title="图片隐写法"></a>图片隐写法</h3></li>
+</ol>
+<p>将你的文件隐藏在图片里，谁也找不到！</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">copy /b test.jpg + document.rar yincang.jpg</span><br></pre></td></tr></table></figure>
+
+<p>​    __使用：__将你要隐藏的文件和图片放在同一个文件夹中；按住键盘上的Win和R键，在弹出的窗口中输入CMD, 按下回车，并cd到你存放图片和文件的文件夹，输入以上代码（其中<code>test.jpg</code>为图片名称，<code>doucument.rar</code>为压缩包名称，<code>yicang.jpg</code>为输出的含有文件的图片名称）；这样就完成将文件隐藏到图片中了！</p>
+<blockquote>
+<p>说明：如果要找回文件，将输出的图片后缀改为<code>.rar</code>再解压即可！</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>小玩意儿</category>
+      </categories>
+      <tags>
+        <tag>教程</tag>
+        <tag>代码</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>谷歌账号的注册</title>
+    <url>/archives/c7047092.html</url>
+    <content><![CDATA[<p>今天写一个关于国内注册谷歌账号的方法，防止自己忘记，也可给不会的朋友一点思路！</p>
+<p>这些方法也是截止写这篇文章为止，我自己测试可用的！</p>
+<span id="more"></span>
+
+<p>注册的前提是，你有 “科学上网” 的方法；否则就算注册了也没用不是吗？另外，你还得安装谷歌框架，这个软件你可以点 <a href="https://yinzhen.lanzoui.com/iM4Bkutxnfa">这里</a> 下载。</p>
+<p>这里我不提供该上网方法与软件，有兴趣自己搜！</p>
+<p><strong>ps：文中环境为 “科学上网” 环境下！</strong></p>
 <hr>
-<ul>
-<li><h3 id="利用开发者工具"><a href="#利用开发者工具" class="headerlink" title="利用开发者工具"></a>利用开发者工具</h3></li>
-</ul>
-<p>在遇到不可复制的网页内容时，可鼠标右键，选择 “检查”，打开 “开发者模式” ，在 “元素” 中向下滑动可以找到你要复制的内容；不过，都是一句一句的，不连贯，对于篇幅比较长的内容不太适用。</p>
-<ul>
-<li><h3 id="关闭该网页的-JS"><a href="#关闭该网页的-JS" class="headerlink" title="关闭该网页的 JS"></a>关闭该网页的 JS</h3></li>
-</ul>
-<p>具体如下：</p>
-<p>打开浏览器设置，搜索 JavaScript 然后你会看见该设置的内容，你可以将要复制的网页链接添加到 “不允许使用 JavaScript” 一栏中；若你比较懒，也可以直接将 JavaScript 整个关闭，然后回到你要复制内容的网页刷新，就能任意复制了；不过某些网站关闭 JavaScript 后可能不能正常运行；<strong>因此，复制完内容后一定要记得将 JavaScript 的开关打开！！</strong></p>
-<ul>
-<li><h3 id="利用插件"><a href="#利用插件" class="headerlink" title="利用插件"></a>利用插件</h3></li>
-</ul>
-<p>插件就比较简单了，可有时候作者不维护了就可能会失效；也可能出现一些别的什么问题；不过总的来说还可以。插件的话可以看这篇文章 <a href="https://mp.weixin.qq.com/s/7YwBXLyWnwUFdloToimFVA">插件的获取与使用</a></p>
-<ul>
-<li><h3 id="利用OCR识别"><a href="#利用OCR识别" class="headerlink" title="利用OCR识别"></a>利用OCR识别</h3></li>
-</ul>
-<p>这种软件很多，PC端的QQ好像也有这个功能？（太久没用过QQ了，不知道，听别人说的）；我这里说一下我常用的一个软件 PanderOCR ，这是在 GitHub 上开源的，想用可直接去 GitHub 上搜 PanderOCR ，也可以点 <a href="https://github.com/miaomiaosoft/PandaOCR">这里直达</a>，如果前面那个链接打不开，那么点 <a href="https://gitee.com/DDDDDGOOO/PandaOCR">这个备用链接</a> 吧！</p>
+<h3 id="1-利用QQ邮箱"><a href="#1-利用QQ邮箱" class="headerlink" title="1. 利用QQ邮箱"></a>1. 利用QQ邮箱</h3><p>手机上下载QQ邮箱，在 “添加账户” 处选择 Gmail 邮箱，点击后会出现登录页面；你可以点击左下角的 “创建账号” 来进行注册，接着一步一步往下走就行。</p>
+<h3 id="2-利用Gmail邮箱"><a href="#2-利用Gmail邮箱" class="headerlink" title="2. 利用Gmail邮箱"></a>2. 利用Gmail邮箱</h3><p>Gmail邮箱在各大软件商店都能下载，安装完成并打开后选择创建账户，一步一步往下即可，国内手机号是可以接到验证码的！</p>
+<p>今天我刚用此方法注册了一个新的账号，可行！ </p>
+<h3 id="3-利用OurPlay加速器"><a href="#3-利用OurPlay加速器" class="headerlink" title="3. 利用OurPlay加速器"></a>3. 利用OurPlay加速器</h3><p>该软件在各大应用商店也能下载，下载安装后，点击登录账户（此时没有创建账户这个选项，别急，往下看）；随便输入一个已经存在的账号【例如：aaaa666#gmail.com （将 # 改为 @ 即可）】，进入下一步输入密码；不是你的账号，你肯定不知道密码，所以点手机上的返回菜单（不要大返回桌面，返回上一步就行），这是你会发现在登录账户页面的左下角出现了 “创建账户” 的按钮；接着一步一步向下就行了。注册完成就能登录Gmail了，这时就可以将OurPlay加速器卸载了！（没错，卸磨杀驴😉）</p>
+<h3 id="4-利用-Google-Chrome-浏览器"><a href="#4-利用-Google-Chrome-浏览器" class="headerlink" title="4. 利用 Google Chrome 浏览器"></a>4. 利用 Google Chrome 浏览器</h3><p>这个方法是我听别人说的，今天我测试了一下，没成功；但想到可能是我自己的原因，所以就写出来给大家看看，万一你们可以呢，对吧！</p>
+<p>将PC端 Google Chrome 浏览器语言设置为英文，重启浏览器；然后打开页面进行注册，按部就班地往下即可。</p>
+<hr>
+<h3 id="后话"><a href="#后话" class="headerlink" title="后话"></a>后话</h3><p>注册完成后，不要频繁更换代理IP，有可能会被封，就这样。</p>
 ]]></content>
       <categories>
         <category>干货</category>
+        <category>谷歌</category>
       </categories>
       <tags>
         <tag>教程</tag>
         <tag>干货</tag>
-        <tag>复制某文库内容</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>新年快乐！</title>
-    <url>/archives/5785bd01.html</url>
-    <content><![CDATA[<center><h3>2022年列车已发车！我们一起向未来</h3></center>
-
-<span id="more"></span>
-
-<center><h3>新年快乐！年初的目标实现了吗？哈哈！</h3></center>
-
-</br>
-
-<img src="https://cdn.jsdelivr.net/gh/seatoro/Image/img/202a01011739b8.jpg" style="zoom: 33%;" />
-
-<center><h3>新年伊始 喜乐安宁 好运连连</h3></center>
-]]></content>
-      <categories>
-        <category>节日祝福</category>
-      </categories>
-      <tags>
-        <tag>新年快乐</tag>
+        <tag>注册谷歌账号</tag>
       </tags>
   </entry>
   <entry>
@@ -954,136 +1084,6 @@
         <tag>踩坑</tag>
         <tag>freenom</tag>
         <tag>域名</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>神奇的代码</title>
-    <url>/archives/81d62aff.html</url>
-    <content><![CDATA[<blockquote>
-<p>这篇博客主要介绍几种好玩的代码！“更改网页文字”、“修复电脑桌面白图标”、“微信消息轰炸PC端”等！有兴趣可以点开看看！</p>
-</blockquote>
-<span id="more"></span>
-
-<ol>
-<li><h3 id="更改网页文字"><a href="#更改网页文字" class="headerlink" title="更改网页文字"></a>更改网页文字</h3></li>
-</ol>
-<p>这个是很好玩的代码，你可以更改任意网页的任何文字；但要注意的是你更改后的网页并不会保留，关闭后再次打开还是原样！不过这样在某些时候已经足够了；无法保存你就截个图嘛~    这也是变相保存了。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">document.body.contentEditable=&#x27;true&#x27;;</span><br></pre></td></tr></table></figure>
-
-<p>​    <strong>使用：</strong>打开网页，按F12或者鼠标右键“检查”，打开控制台，将上面的代码复制到最下边的空白处敲击回车键，当显示“true”后，你就可以为所欲为了，最后别忘记截图哦~    哈哈！</p>
-<ol start="2">
-<li><h3 id="查看WiFi密码"><a href="#查看WiFi密码" class="headerlink" title="查看WiFi密码"></a>查看WiFi密码</h3></li>
-</ol>
-<p>这个代码可以查看你的笔记本电脑已经连接过的wifi密码，主要用于连接上但密码忘记的情况！</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">for /f &quot;skip=9 tokens=1,2 delims=:&quot; %i in (&#x27;netsh wlan show profiles&#x27;) do @echo %j | findstr -i -v echo | netsh wlan show profiles %j key=clear</span><br></pre></td></tr></table></figure>
-
-<p>​    <strong>使用：</strong>按住键盘上的Win和R键，在弹出的窗口中输入CMD, 按下回车，将上面的代码粘贴进去再次敲回车键就OK了，它会显示你这台电脑连接过的所有WiFi及其对应的密码，自己很容易就可以找到了。</p>
-<ol start="3">
-<li><h3 id="修复电脑桌面白图标"><a href="#修复电脑桌面白图标" class="headerlink" title="修复电脑桌面白图标"></a>修复电脑桌面白图标</h3></li>
-</ol>
-<p>电脑桌面的某些图标突然变白，什么也不显示， 非常难看 ，重启也解决不了问题。这个时候就用到下面的代码了！</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@duecho off</span><br><span class="line">taskkill /f /im explorer.exe</span><br><span class="line">CD /d %userprofile%\AppData\Local</span><br><span class="line">DEL IconCache.db /a</span><br><span class="line">start explorer.exe</span><br><span class="line">cho 执行完成</span><br></pre></td></tr></table></figure>
-
-<p>​    <strong>使用：</strong>复制上面的代码，在桌面新建一个文本文档，将其粘贴进去，再将后缀改为 bat ，双击运行。然后刷新一下桌面就可以看到那个白图标已经恢复到原来的样子了！</p>
-<ol start="4">
-<li><h3 id="微信消息轰炸PC端"><a href="#微信消息轰炸PC端" class="headerlink" title="微信消息轰炸PC端"></a>微信消息轰炸PC端</h3></li>
-</ol>
-<p>这个应用场景就自己看着办吧！</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">On Error Resume Next</span><br><span class="line">Dim wsh,ye</span><br><span class="line">set wsh=createobject(&quot;wscript.shell&quot;)</span><br><span class="line">for i=1 to 10</span><br><span class="line">wscript.sleep 700</span><br><span class="line">wsh.AppActivate(&quot;与某某聊天中&quot;)</span><br><span class="line">wsh.sendKeys &quot;^v&quot;</span><br><span class="line">wsh.sendKeys i</span><br><span class="line">wsh.sendKeys &quot;%s&quot;</span><br><span class="line">next</span><br><span class="line">wscript.quit</span><br></pre></td></tr></table></figure>
-
-<p>​    <strong>使用：</strong>在桌面新建一个文本文档，名称随便起，将上面的代码粘贴进去，最后将后缀改为 vbs，把要发给朋友的话复制，然后再双击此vbs文件，最后鼠标点击一下发送框即可。</p>
-<blockquote>
-<p>说明：代码中的 “10” 代表发送的消息数，“与某某聊天中”则是你要发送的对象的，只需将“某某”改为你给好友的备注即可，建议消息的数目不要改太多！！！</p>
-</blockquote>
-<ol start="5">
-<li><h3 id="图片隐写法"><a href="#图片隐写法" class="headerlink" title="图片隐写法"></a>图片隐写法</h3></li>
-</ol>
-<p>将你的文件隐藏在图片里，谁也找不到！</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">copy /b test.jpg + document.rar yincang.jpg</span><br></pre></td></tr></table></figure>
-
-<p>​    __使用：__将你要隐藏的文件和图片放在同一个文件夹中；按住键盘上的Win和R键，在弹出的窗口中输入CMD, 按下回车，并cd到你存放图片和文件的文件夹，输入以上代码（其中<code>test.jpg</code>为图片名称，<code>doucument.rar</code>为压缩包名称，<code>yicang.jpg</code>为输出的含有文件的图片名称）；这样就完成将文件隐藏到图片中了！</p>
-<blockquote>
-<p>说明：如果要找回文件，将输出的图片后缀改为<code>.rar</code>再解压即可！</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>小玩意儿</category>
-      </categories>
-      <tags>
-        <tag>教程</tag>
-        <tag>代码</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>暂时停更</title>
-    <url>/archives/e4b6eac1.html</url>
-    <content><![CDATA[<h3 id="暂时停更"><a href="#暂时停更" class="headerlink" title="暂时停更"></a>暂时停更</h3><span id="more"></span>
-
-<h4 id="由于个人某些原因，暂时停止更新！"><a href="#由于个人某些原因，暂时停止更新！" class="headerlink" title="由于个人某些原因，暂时停止更新！"></a>由于个人某些原因，暂时停止更新！</h4>]]></content>
-      <categories>
-        <category>停更公告</category>
-      </categories>
-      <tags>
-        <tag>停更公告</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>谷歌账号的注册</title>
-    <url>/archives/c7047092.html</url>
-    <content><![CDATA[<p>今天写一个关于国内注册谷歌账号的方法，防止自己忘记，也可给不会的朋友一点思路！</p>
-<p>这些方法也是截止写这篇文章为止，我自己测试可用的！</p>
-<span id="more"></span>
-
-<p>注册的前提是，你有 “科学上网” 的方法；否则就算注册了也没用不是吗？另外，你还得安装谷歌框架，这个软件你可以点 <a href="https://yinzhen.lanzoui.com/iM4Bkutxnfa">这里</a> 下载。</p>
-<p>这里我不提供该上网方法与软件，有兴趣自己搜！</p>
-<p><strong>ps：文中环境为 “科学上网” 环境下！</strong></p>
-<hr>
-<h3 id="1-利用QQ邮箱"><a href="#1-利用QQ邮箱" class="headerlink" title="1. 利用QQ邮箱"></a>1. 利用QQ邮箱</h3><p>手机上下载QQ邮箱，在 “添加账户” 处选择 Gmail 邮箱，点击后会出现登录页面；你可以点击左下角的 “创建账号” 来进行注册，接着一步一步往下走就行。</p>
-<h3 id="2-利用Gmail邮箱"><a href="#2-利用Gmail邮箱" class="headerlink" title="2. 利用Gmail邮箱"></a>2. 利用Gmail邮箱</h3><p>Gmail邮箱在各大软件商店都能下载，安装完成并打开后选择创建账户，一步一步往下即可，国内手机号是可以接到验证码的！</p>
-<p>今天我刚用此方法注册了一个新的账号，可行！ </p>
-<h3 id="3-利用OurPlay加速器"><a href="#3-利用OurPlay加速器" class="headerlink" title="3. 利用OurPlay加速器"></a>3. 利用OurPlay加速器</h3><p>该软件在各大应用商店也能下载，下载安装后，点击登录账户（此时没有创建账户这个选项，别急，往下看）；随便输入一个已经存在的账号【例如：aaaa666#gmail.com （将 # 改为 @ 即可）】，进入下一步输入密码；不是你的账号，你肯定不知道密码，所以点手机上的返回菜单（不要大返回桌面，返回上一步就行），这是你会发现在登录账户页面的左下角出现了 “创建账户” 的按钮；接着一步一步向下就行了。注册完成就能登录Gmail了，这时就可以将OurPlay加速器卸载了！（没错，卸磨杀驴😉）</p>
-<h3 id="4-利用-Google-Chrome-浏览器"><a href="#4-利用-Google-Chrome-浏览器" class="headerlink" title="4. 利用 Google Chrome 浏览器"></a>4. 利用 Google Chrome 浏览器</h3><p>这个方法是我听别人说的，今天我测试了一下，没成功；但想到可能是我自己的原因，所以就写出来给大家看看，万一你们可以呢，对吧！</p>
-<p>将PC端 Google Chrome 浏览器语言设置为英文，重启浏览器；然后打开页面进行注册，按部就班地往下即可。</p>
-<hr>
-<h3 id="后话"><a href="#后话" class="headerlink" title="后话"></a>后话</h3><p>注册完成后，不要频繁更换代理IP，有可能会被封，就这样。</p>
-]]></content>
-      <categories>
-        <category>干货</category>
-        <category>谷歌</category>
-      </categories>
-      <tags>
-        <tag>教程</tag>
-        <tag>干货</tag>
-        <tag>注册谷歌账号</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>突然连接不了GitHub?</title>
-    <url>/archives/d840bd6.html</url>
-    <content><![CDATA[<p>前段时间开学了，比较忙就没空写博客了；不过就在我忙里偷闲抽空写的时候发现连接不了GitHub了，嗯？什么情况？<span id="more"></span></p>
-<p>这是什么情况？不应该啊？我啥都没动咋就不行了？一连串的疑问在我脑中萦绕！</p>
-<p>以下为报错的代码：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">fatal: Could not read from remote repository.</span><br><span class="line"></span><br><span class="line">Please make sure you have the correct access rights</span><br><span class="line">and the repository exists.</span><br><span class="line">FATAL &#123;</span><br><span class="line">  err: Error: Spawn failed</span><br><span class="line">      at ChildProcess.&lt;anonymous&gt; (D:\MyBlog\node_modules\hexo-util\lib\spawn.js:51:21)</span><br><span class="line">      at ChildProcess.emit (events.js:400:28)</span><br><span class="line">      at ChildProcess.cp.emit (D:\MyBlog\node_modules\cross-spawn\lib\enoent.js:34:29)</span><br><span class="line">      at Process.ChildProcess._handle.onexit (internal/child_process.js:277:12) &#123;</span><br><span class="line">    code: 128</span><br><span class="line">  &#125;</span><br><span class="line">&#125; Something&#x27;s wrong. Maybe you can find the solution here: %s https://hexo.io/docs/troubleshooting.html</span><br></pre></td></tr></table></figure>
-
-<p>没办法，第一次遇到，上网搜解决办法吧！大部分的帖子都说ssh失效了，重新生成一下；好，我照做！但完全没效果是什么意思，是我不配了吗？难搞哦！最后想了想先放这儿吧，有空再好好收拾收拾你！</p>
-<p>过了几天，我又屁颠屁颠地回来了；继续搞，我还就不信了！继续上网搜解决办法呗，但结果都大差不差，都让我重新生成ssh；可我都重新生成几遍了，还是不行，这怎搞？老规矩，先晾着，说不定哪天我试试他自己就好了！（<del>我在想peach</del>）</p>
-<p>不过，这次我可没放着就不管了；我甚至走路都在想到底是哪里出问题了；后来仔细分析了一下，好像和家里的改变就只有地区的改变了！再深想一下，网络也随之改变了！嗯，一定是这个原因，死马当做活马医，试试吧！<strong>断开校园网，拔掉网线</strong>，换个手机热点看看！（<em>一定要拔掉网线，不要问我为什么会知道</em>）</p>
-<p>没想到啊，没想到！结果真的出在这里，用手机热点后一下就连通了！！（话说，这是为什么呢？校园网端口没开放？那换个端口行不？我还没试过，有谁试了可以给我说一下哈！）</p>
-<p>到这儿，文章就结束了；结果只是换个网络就行，整的那么复杂。还好我没想不开将博客删了重建！也算是一点经验吧！希望遇到这个问题的朋友看到这儿后可以完美解决！</p>
-<hr>
-<p>突然又想到福尔摩斯的一句名言：</p>
-<blockquote>
-<h4 id="排除一切不可能的，剩下的即使再不可能，那也是真相！-—-夏洛克·福尔摩斯"><a href="#排除一切不可能的，剩下的即使再不可能，那也是真相！-—-夏洛克·福尔摩斯" class="headerlink" title="排除一切不可能的，剩下的即使再不可能，那也是真相！  — 夏洛克·福尔摩斯"></a>排除一切不可能的，剩下的即使再不可能，那也是真相！<br><br>  — 夏洛克·福尔摩斯</h4></blockquote>
-]]></content>
-      <categories>
-        <category>Hexo</category>
-        <category>Github</category>
-      </categories>
-      <tags>
-        <tag>教程</tag>
-        <tag>踩坑</tag>
-        <tag>博客</tag>
-        <tag>hexo</tag>
       </tags>
   </entry>
 </search>
