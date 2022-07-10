@@ -64,6 +64,24 @@
       </tags>
   </entry>
   <entry>
+    <title>Hello World</title>
+    <url>/archives/4a17b156.html</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+]]></content>
+  </entry>
+  <entry>
     <title>Github+PicGo图床搭建</title>
     <url>/archives/febc4fee.html</url>
     <content><![CDATA[<h3 id="准备工作："><a href="#准备工作：" class="headerlink" title="准备工作："></a>准备工作：</h3><p>首先需要准备：</p>
@@ -215,22 +233,25 @@
       </tags>
   </entry>
   <entry>
-    <title>Hello World</title>
-    <url>/archives/4a17b156.html</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+    <title>中秋节快乐</title>
+    <url>/archives/9d77eb79.html</url>
+    <content><![CDATA[<center><h3>又到一年中秋时，发个文章纪念一下</h3></center>
 
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<span id="more"></span>
 
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<center><h3>我在这里祝看到这篇文章的陌生人,也祝我和我的家人朋友中秋节快乐！</h3></center>
 
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+</br>
 
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+<img src="https://cdn.jsdelivr.net/gh/seatoro/Image/img/zqj.png" style="zoom:50%;" />
 ]]></content>
+      <categories>
+        <category>节日祝福</category>
+      </categories>
+      <tags>
+        <tag>中秋节快乐</tag>
+        <tag>节日</tag>
+      </tags>
   </entry>
   <entry>
     <title>今天你“炫父”了吗</title>
@@ -260,29 +281,8 @@
         <category>节日祝福</category>
       </categories>
       <tags>
+        <tag>节日</tag>
         <tag>父亲节快乐</tag>
-        <tag>节日</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>中秋节快乐</title>
-    <url>/archives/9d77eb79.html</url>
-    <content><![CDATA[<center><h3>又到一年中秋时，发个文章纪念一下</h3></center>
-
-<span id="more"></span>
-
-<center><h3>我在这里祝看到这篇文章的陌生人,也祝我和我的家人朋友中秋节快乐！</h3></center>
-
-</br>
-
-<img src="https://cdn.jsdelivr.net/gh/seatoro/Image/img/zqj.png" style="zoom:50%;" />
-]]></content>
-      <categories>
-        <category>节日祝福</category>
-      </categories>
-      <tags>
-        <tag>节日</tag>
-        <tag>中秋节快乐</tag>
       </tags>
   </entry>
   <entry>
@@ -320,6 +320,41 @@
         <tag>干货</tag>
         <tag>内网穿透</tag>
         <tag>Ngrok</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>免VIP复制百度文库内容</title>
+    <url>/archives/631e63b6.html</url>
+    <content><![CDATA[<p>今天发一下 4 种我自己知道的免VIP复制网页内容的方法</p>
+<p>以下方法都是截止我发文时，自己测试管用的！</p>
+<span id="more"></span>
+
+<hr>
+<ul>
+<li><h3 id="利用开发者工具"><a href="#利用开发者工具" class="headerlink" title="利用开发者工具"></a>利用开发者工具</h3></li>
+</ul>
+<p>在遇到不可复制的网页内容时，可鼠标右键，选择 “检查”，打开 “开发者模式” ，在 “元素” 中向下滑动可以找到你要复制的内容；不过，都是一句一句的，不连贯，对于篇幅比较长的内容不太适用。</p>
+<ul>
+<li><h3 id="关闭该网页的-JS"><a href="#关闭该网页的-JS" class="headerlink" title="关闭该网页的 JS"></a>关闭该网页的 JS</h3></li>
+</ul>
+<p>具体如下：</p>
+<p>打开浏览器设置，搜索 JavaScript 然后你会看见该设置的内容，你可以将要复制的网页链接添加到 “不允许使用 JavaScript” 一栏中；若你比较懒，也可以直接将 JavaScript 整个关闭，然后回到你要复制内容的网页刷新，就能任意复制了；不过某些网站关闭 JavaScript 后可能不能正常运行；<strong>因此，复制完内容后一定要记得将 JavaScript 的开关打开！！</strong></p>
+<ul>
+<li><h3 id="利用插件"><a href="#利用插件" class="headerlink" title="利用插件"></a>利用插件</h3></li>
+</ul>
+<p>插件就比较简单了，可有时候作者不维护了就可能会失效；也可能出现一些别的什么问题；不过总的来说还可以。插件的话可以看这篇文章 <a href="https://mp.weixin.qq.com/s/7YwBXLyWnwUFdloToimFVA">插件的获取与使用</a></p>
+<ul>
+<li><h3 id="利用OCR识别"><a href="#利用OCR识别" class="headerlink" title="利用OCR识别"></a>利用OCR识别</h3></li>
+</ul>
+<p>这种软件很多，PC端的QQ好像也有这个功能？（太久没用过QQ了，不知道，听别人说的）；我这里说一下我常用的一个软件 PanderOCR ，这是在 GitHub 上开源的，想用可直接去 GitHub 上搜 PanderOCR ，也可以点 <a href="https://github.com/miaomiaosoft/PandaOCR">这里直达</a>，如果前面那个链接打不开，那么点 <a href="https://gitee.com/DDDDDGOOO/PandaOCR">这个备用链接</a> 吧！</p>
+]]></content>
+      <categories>
+        <category>干货</category>
+      </categories>
+      <tags>
+        <tag>教程</tag>
+        <tag>干货</tag>
+        <tag>复制某文库内容</tag>
       </tags>
   </entry>
   <entry>
@@ -373,41 +408,6 @@
       </categories>
       <tags>
         <tag>命令提示符</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>免VIP复制百度文库内容</title>
-    <url>/archives/631e63b6.html</url>
-    <content><![CDATA[<p>今天发一下 4 种我自己知道的免VIP复制网页内容的方法</p>
-<p>以下方法都是截止我发文时，自己测试管用的！</p>
-<span id="more"></span>
-
-<hr>
-<ul>
-<li><h3 id="利用开发者工具"><a href="#利用开发者工具" class="headerlink" title="利用开发者工具"></a>利用开发者工具</h3></li>
-</ul>
-<p>在遇到不可复制的网页内容时，可鼠标右键，选择 “检查”，打开 “开发者模式” ，在 “元素” 中向下滑动可以找到你要复制的内容；不过，都是一句一句的，不连贯，对于篇幅比较长的内容不太适用。</p>
-<ul>
-<li><h3 id="关闭该网页的-JS"><a href="#关闭该网页的-JS" class="headerlink" title="关闭该网页的 JS"></a>关闭该网页的 JS</h3></li>
-</ul>
-<p>具体如下：</p>
-<p>打开浏览器设置，搜索 JavaScript 然后你会看见该设置的内容，你可以将要复制的网页链接添加到 “不允许使用 JavaScript” 一栏中；若你比较懒，也可以直接将 JavaScript 整个关闭，然后回到你要复制内容的网页刷新，就能任意复制了；不过某些网站关闭 JavaScript 后可能不能正常运行；<strong>因此，复制完内容后一定要记得将 JavaScript 的开关打开！！</strong></p>
-<ul>
-<li><h3 id="利用插件"><a href="#利用插件" class="headerlink" title="利用插件"></a>利用插件</h3></li>
-</ul>
-<p>插件就比较简单了，可有时候作者不维护了就可能会失效；也可能出现一些别的什么问题；不过总的来说还可以。插件的话可以看这篇文章 <a href="https://mp.weixin.qq.com/s/7YwBXLyWnwUFdloToimFVA">插件的获取与使用</a></p>
-<ul>
-<li><h3 id="利用OCR识别"><a href="#利用OCR识别" class="headerlink" title="利用OCR识别"></a>利用OCR识别</h3></li>
-</ul>
-<p>这种软件很多，PC端的QQ好像也有这个功能？（太久没用过QQ了，不知道，听别人说的）；我这里说一下我常用的一个软件 PanderOCR ，这是在 GitHub 上开源的，想用可直接去 GitHub 上搜 PanderOCR ，也可以点 <a href="https://github.com/miaomiaosoft/PandaOCR">这里直达</a>，如果前面那个链接打不开，那么点 <a href="https://gitee.com/DDDDDGOOO/PandaOCR">这个备用链接</a> 吧！</p>
-]]></content>
-      <categories>
-        <category>干货</category>
-      </categories>
-      <tags>
-        <tag>教程</tag>
-        <tag>干货</tag>
-        <tag>复制某文库内容</tag>
       </tags>
   </entry>
   <entry>
@@ -527,29 +527,6 @@
       </tags>
   </entry>
   <entry>
-    <title>新年快乐！</title>
-    <url>/archives/5785bd01.html</url>
-    <content><![CDATA[<center><h3>2022年列车已发车！我们一起向未来</h3></center>
-
-<span id="more"></span>
-
-<center><h3>新年快乐！年初的目标实现了吗？哈哈！</h3></center>
-
-</br>
-
-<img src="https://cdn.jsdelivr.net/gh/seatoro/Image/img/202a01011739b8.jpg" style="zoom: 33%;" />
-
-<center><h3>新年伊始 喜乐安宁 好运连连</h3></center>
-]]></content>
-      <categories>
-        <category>节日祝福</category>
-      </categories>
-      <tags>
-        <tag>节日</tag>
-        <tag>新年快乐</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>新的开始，祝我好运吧！</title>
     <url>/archives/758b7706.html</url>
     <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">
@@ -585,6 +562,29 @@
       </tags>
   </entry>
   <entry>
+    <title>新年快乐！</title>
+    <url>/archives/5785bd01.html</url>
+    <content><![CDATA[<center><h3>2022年列车已发车！我们一起向未来</h3></center>
+
+<span id="more"></span>
+
+<center><h3>新年快乐！年初的目标实现了吗？哈哈！</h3></center>
+
+</br>
+
+<img src="https://cdn.jsdelivr.net/gh/seatoro/Image/img/202a01011739b8.jpg" style="zoom: 33%;" />
+
+<center><h3>新年伊始 喜乐安宁 好运连连</h3></center>
+]]></content>
+      <categories>
+        <category>节日祝福</category>
+      </categories>
+      <tags>
+        <tag>节日</tag>
+        <tag>新年快乐</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>毕业季，毕业快乐！</title>
     <url>/archives/2ed09d89.html</url>
     <content><![CDATA[<p>祝我和大家：</p>
@@ -602,6 +602,36 @@
       </categories>
       <tags>
         <tag>毕业了</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>淘宝npm镜像将停止解析</title>
+    <url>/archives/12fca523.html</url>
+    <content><![CDATA[<h3 id="老淘宝-npm-镜像域名即将停止解析"><a href="#老淘宝-npm-镜像域名即将停止解析" class="headerlink" title="老淘宝 npm 镜像域名即将停止解析"></a>老淘宝 npm 镜像域名即将停止解析</h3><ul>
+<li><p>淘宝 <code>npm</code> 镜像站品牌升级，新品牌为 <code>npmmirror</code> （<code>npm</code> 中国镜像站）。</p>
+</li>
+<li><p>广为人知的淘宝 <code>npm</code> 镜像老域名（*.npm.taobao.org）将在 <strong>2022.06.30号</strong> 正式下线和停止 <code>DNS</code> 解析。</p>
+</li>
+<li><p>涉及到的域名迁移如下：</p>
+<blockquote>
+<p><a href="http://npm.taobao.org/">http://npm.taobao.org</a> =&gt; <a href="http://npmmirror.com/">http://npmmirror.com</a><br><a href="http://registry.npm.taobao.org/">http://registry.npm.taobao.org</a> =&gt; <a href="http://registry.npmmirror.com/">http://registry.npmmirror.com</a></p>
+</blockquote>
+</li>
+<li><p>可能产生的大影响：</p>
+<ol>
+<li>所有写死的都得换。</li>
+<li>企业用户需要联系 网管/IT/SRE 更新防火墙白名单。</li>
+<li>存量应用的 <code>lock</code> 文件，开发者需要自行执行 <code>sed</code> 等指令去替换或重新生成。</li>
+<li>本地 <code>npmrc</code> 里面的 <code>registry</code> 地址（如果有，则）需要开发者自行更新。</li>
+</ol>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>资讯</category>
+      </categories>
+      <tags>
+        <tag>资讯</tag>
       </tags>
   </entry>
   <entry>
@@ -650,68 +680,6 @@
         <tag>踩坑</tag>
         <tag>博客</tag>
         <tag>hexo</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>淘宝npm镜像将停止解析</title>
-    <url>/archives/12fca523.html</url>
-    <content><![CDATA[<h3 id="老淘宝-npm-镜像域名即将停止解析"><a href="#老淘宝-npm-镜像域名即将停止解析" class="headerlink" title="老淘宝 npm 镜像域名即将停止解析"></a>老淘宝 npm 镜像域名即将停止解析</h3><ul>
-<li><p>淘宝 <code>npm</code> 镜像站品牌升级，新品牌为 <code>npmmirror</code> （<code>npm</code> 中国镜像站）。</p>
-</li>
-<li><p>广为人知的淘宝 <code>npm</code> 镜像老域名（*.npm.taobao.org）将在 <strong>2022.06.30号</strong> 正式下线和停止 <code>DNS</code> 解析。</p>
-</li>
-<li><p>涉及到的域名迁移如下：</p>
-<blockquote>
-<p><a href="http://npm.taobao.org/">http://npm.taobao.org</a> =&gt; <a href="http://npmmirror.com/">http://npmmirror.com</a><br><a href="http://registry.npm.taobao.org/">http://registry.npm.taobao.org</a> =&gt; <a href="http://registry.npmmirror.com/">http://registry.npmmirror.com</a></p>
-</blockquote>
-</li>
-<li><p>可能产生的大影响：</p>
-<ol>
-<li>所有写死的都得换。</li>
-<li>企业用户需要联系 网管/IT/SRE 更新防火墙白名单。</li>
-<li>存量应用的 <code>lock</code> 文件，开发者需要自行执行 <code>sed</code> 等指令去替换或重新生成。</li>
-<li>本地 <code>npmrc</code> 里面的 <code>registry</code> 地址（如果有，则）需要开发者自行更新。</li>
-</ol>
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>资讯</category>
-      </categories>
-      <tags>
-        <tag>资讯</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>解析freenom域名</title>
-    <url>/archives/79444b31.html</url>
-    <content><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>​        前几天刚用 github + hexo 搭建了一个博客，用来记录自己的学习成果！但域名是 github 的二级域名，看着不太好看；就寻思怎样白嫖一个域名；<span id="more"></span>搜来搜去，看到了一个帖子说可以去 freenom 白嫖，就想着试试；结果自己根本搞不了，无奈继续搜教程呗！看了好多教程，都没成功；想来想去就上 Youtube 了，按时间排序，第一个就是；真是保姆级的教程，一次成功，哈哈！视频链接我放这儿了，有需自取：<a href="https://www.youtube.com/watch?v=dTVKfuW9BiU">白嫖freenom域名</a></p>
-<p>​        白嫖成功了，自然要用起来，不然费那么大劲干什么！其实我之前是有买过域名和服务器的，但感觉有一丢丢贵，就没续费了；但那是在阿里云买的，域名解析和现在的情况完全不同；没办法，就又双叒上网搜教程，还是找了好多，搜索的姿势也换了好多，终于还是让我找到了，难呐！（该说不说，搞这个也许代码功夫没长进，搜索资源的心得倒是攒了一大堆！）于是又是一波操作，现在弄成功了，域名是 totoro933.tk ，不出意外应该之后的很长一段时间都有效，若是打不开了，或者打开后不是我的博客，就说明被回收了（免费的还是有弊端的，有条件还是自己买个吧）。好了，接下来我会将我踩的坑分享一下，有需要的可要好好看了！</p>
-<h3 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h3><p>​        有一个域名，也可以和我一样去 freenom.com 白嫖（教程在上边）</p>
-<p>​        注册好并实名认证 Dnspod ，官网地址：<a href="https://console.dnspod.cn/">Dnspod官网</a></p>
-<h3 id="DNS解析"><a href="#DNS解析" class="headerlink" title="DNS解析"></a>DNS解析</h3><p>​        其实在 freenom 买过域名后，它本就提供了 DNS 解析服务，但因为 freenom 的 DNS 解析在国内可能不是很流畅，所以我才会选用 Dnspod （这是腾讯家的网站）；在解析之前，我们要把这个域名的控制权从 freenom 交到 Dnspod 的手上：打开 Dnspod 主页，在侧栏中选择“我的域名”，点击添加域名，把你的域名填进去，如 我的就是：totoro933.tk ，点击确定；接着往下，他会给你两个 dns server 地址，将其填到 freenom 中，具体流程为：</p>
-<blockquote>
-<p>登陆freenom，从首页点击 services -&gt; my domain -&gt; manage domain -&gt; Management Tools -&gt; Nameservers -&gt; Use custom nameservers (enter below) -&gt; 在前两个空中填入 Dnspod 给你的两个的 dns server 地址，最后点击最下边的提交按钮就好了。</p>
-<p>如果你找不到 My domain ， 请确认你是不是登录了。</p>
-</blockquote>
-<p>​        完成上述步骤后，打开你的 Dnspod 主页，找到你刚才添加的域名，点击它，你会跳到添加解析度页面，点击添加记录，<em>主机记录</em> 一栏填<code>www</code>，<em>记录类型</em> 填<code>A</code>，<em>线路类型</em> 为默认，<em>记录值</em> 填 ping xxxx.github.io后所得到的IP地址，其中xxxx为你的 github 仓库名，后边的默认就行，点击确定；然后再点击快速添加解析，选择“域名映射(CNAME)”，填入xxxx.github.io，确定即可！到这里，DNS解析已经完成了。<strong>（注意：有时候 DNS 的设置不是即时生效的，不同地方需要不同的时间，有时候几分钟就好了，有时候要一晚上一天，设置好后可以美美的睡一觉，第二天应该就没问题了！）</strong></p>
-<h3 id="设置github"><a href="#设置github" class="headerlink" title="设置github"></a>设置github</h3><p>​        进入 github 你托管博客的那个项目，按顺序依次点<code>setting -&gt; GitHub Pages -&gt; Custom domain</code>， 输入你的域名，如 我的为：totoro933.tk，点 save 。</p>
-<h3 id="增加-CNAME-文件"><a href="#增加-CNAME-文件" class="headerlink" title="增加 CNAME 文件"></a>增加 CNAME 文件</h3><p>​        在你存放博客的根目录的 <code>source</code> 文件夹下新建一个文件  <code>CNAME </code>，注意，它没有后缀，就叫 CNAME ，文件内容填你的域名！</p>
-<h3 id="修改-config-文件"><a href="#修改-config-文件" class="headerlink" title="修改 _config 文件"></a>修改 _config 文件</h3><p>​        去你 blog 的根目录下，修改 _config.yml 文件：打开后搜 skip ，你会看到 <code>skip_render:</code>，然后在后边添加<code>CNAME</code>，注意，在CNAME前有个空格！！！</p>
-<p>​        然后保存，之后就能通过你的域名来访问你的博客了；如果没生效的话，可以先进行一波</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo clean &amp;&amp; hexo g &amp;&amp; hexo d</span><br></pre></td></tr></table></figure>
-
-<p>​        然后就能愉快的访问了！</p>
-]]></content>
-      <categories>
-        <category>干货</category>
-        <category>Freenom</category>
-      </categories>
-      <tags>
-        <tag>教程</tag>
-        <tag>踩坑</tag>
-        <tag>freenom</tag>
-        <tag>域名</tag>
       </tags>
   </entry>
   <entry>
@@ -782,6 +750,38 @@
         <tag>教程</tag>
         <tag>干货</tag>
         <tag>搜索技巧</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>解析freenom域名</title>
+    <url>/archives/79444b31.html</url>
+    <content><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>​        前几天刚用 github + hexo 搭建了一个博客，用来记录自己的学习成果！但域名是 github 的二级域名，看着不太好看；就寻思怎样白嫖一个域名；<span id="more"></span>搜来搜去，看到了一个帖子说可以去 freenom 白嫖，就想着试试；结果自己根本搞不了，无奈继续搜教程呗！看了好多教程，都没成功；想来想去就上 Youtube 了，按时间排序，第一个就是；真是保姆级的教程，一次成功，哈哈！视频链接我放这儿了，有需自取：<a href="https://www.youtube.com/watch?v=dTVKfuW9BiU">白嫖freenom域名</a></p>
+<p>​        白嫖成功了，自然要用起来，不然费那么大劲干什么！其实我之前是有买过域名和服务器的，但感觉有一丢丢贵，就没续费了；但那是在阿里云买的，域名解析和现在的情况完全不同；没办法，就又双叒上网搜教程，还是找了好多，搜索的姿势也换了好多，终于还是让我找到了，难呐！（该说不说，搞这个也许代码功夫没长进，搜索资源的心得倒是攒了一大堆！）于是又是一波操作，现在弄成功了，域名是 totoro933.tk ，不出意外应该之后的很长一段时间都有效，若是打不开了，或者打开后不是我的博客，就说明被回收了（免费的还是有弊端的，有条件还是自己买个吧）。好了，接下来我会将我踩的坑分享一下，有需要的可要好好看了！</p>
+<h3 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h3><p>​        有一个域名，也可以和我一样去 freenom.com 白嫖（教程在上边）</p>
+<p>​        注册好并实名认证 Dnspod ，官网地址：<a href="https://console.dnspod.cn/">Dnspod官网</a></p>
+<h3 id="DNS解析"><a href="#DNS解析" class="headerlink" title="DNS解析"></a>DNS解析</h3><p>​        其实在 freenom 买过域名后，它本就提供了 DNS 解析服务，但因为 freenom 的 DNS 解析在国内可能不是很流畅，所以我才会选用 Dnspod （这是腾讯家的网站）；在解析之前，我们要把这个域名的控制权从 freenom 交到 Dnspod 的手上：打开 Dnspod 主页，在侧栏中选择“我的域名”，点击添加域名，把你的域名填进去，如 我的就是：totoro933.tk ，点击确定；接着往下，他会给你两个 dns server 地址，将其填到 freenom 中，具体流程为：</p>
+<blockquote>
+<p>登陆freenom，从首页点击 services -&gt; my domain -&gt; manage domain -&gt; Management Tools -&gt; Nameservers -&gt; Use custom nameservers (enter below) -&gt; 在前两个空中填入 Dnspod 给你的两个的 dns server 地址，最后点击最下边的提交按钮就好了。</p>
+<p>如果你找不到 My domain ， 请确认你是不是登录了。</p>
+</blockquote>
+<p>​        完成上述步骤后，打开你的 Dnspod 主页，找到你刚才添加的域名，点击它，你会跳到添加解析度页面，点击添加记录，<em>主机记录</em> 一栏填<code>www</code>，<em>记录类型</em> 填<code>A</code>，<em>线路类型</em> 为默认，<em>记录值</em> 填 ping xxxx.github.io后所得到的IP地址，其中xxxx为你的 github 仓库名，后边的默认就行，点击确定；然后再点击快速添加解析，选择“域名映射(CNAME)”，填入xxxx.github.io，确定即可！到这里，DNS解析已经完成了。<strong>（注意：有时候 DNS 的设置不是即时生效的，不同地方需要不同的时间，有时候几分钟就好了，有时候要一晚上一天，设置好后可以美美的睡一觉，第二天应该就没问题了！）</strong></p>
+<h3 id="设置github"><a href="#设置github" class="headerlink" title="设置github"></a>设置github</h3><p>​        进入 github 你托管博客的那个项目，按顺序依次点<code>setting -&gt; GitHub Pages -&gt; Custom domain</code>， 输入你的域名，如 我的为：totoro933.tk，点 save 。</p>
+<h3 id="增加-CNAME-文件"><a href="#增加-CNAME-文件" class="headerlink" title="增加 CNAME 文件"></a>增加 CNAME 文件</h3><p>​        在你存放博客的根目录的 <code>source</code> 文件夹下新建一个文件  <code>CNAME </code>，注意，它没有后缀，就叫 CNAME ，文件内容填你的域名！</p>
+<h3 id="修改-config-文件"><a href="#修改-config-文件" class="headerlink" title="修改 _config 文件"></a>修改 _config 文件</h3><p>​        去你 blog 的根目录下，修改 _config.yml 文件：打开后搜 skip ，你会看到 <code>skip_render:</code>，然后在后边添加<code>CNAME</code>，注意，在CNAME前有个空格！！！</p>
+<p>​        然后保存，之后就能通过你的域名来访问你的博客了；如果没生效的话，可以先进行一波</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo clean &amp;&amp; hexo g &amp;&amp; hexo d</span><br></pre></td></tr></table></figure>
+
+<p>​        然后就能愉快的访问了！</p>
+]]></content>
+      <categories>
+        <category>干货</category>
+        <category>Freenom</category>
+      </categories>
+      <tags>
+        <tag>教程</tag>
+        <tag>踩坑</tag>
+        <tag>freenom</tag>
+        <tag>域名</tag>
       </tags>
   </entry>
   <entry>
