@@ -118,74 +118,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Hello World</title>
-    <url>/archives/4a17b156.html</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-]]></content>
-  </entry>
-  <entry>
-    <title>MarkDown语法基础</title>
-    <url>/archives/b797e99c.html</url>
-    <content><![CDATA[<p>由于该博客的文章全部都是用markdown写的，所以就写一下MarkDown语法相关吧！<span id="more"></span></p>
-<hr>
-<p>Markdown 是一种轻量级标记语言，它允许人们使用易读易写的纯文本格式编写文档。</p>
-<p>Markdown 语言在 2004 由约翰·格鲁伯（英语：John Gruber）创建。</p>
-<p>Markdown 编写的文档可以导出 HTML 、Word、图像、PDF、Epub 等多种格式的文档。</p>
-<p>Markdown 编写的文档后缀为 <strong>.md</strong>, <strong>.markdown</strong>。</p>
-<hr>
-<p>Markdown 能被使用来撰写电子书，如：Gitbook。</p>
-<p>当前许多网站都广泛使用 Markdown 来撰写帮助文档或是用于论坛上发表消息。例如：GitHub、简书、reddit、Diaspora、Stack Exchange、OpenStreetMap 、SourceForge等。</p>
-<hr>
-<p>教程网站：<a href="https://www.runoob.com/markdown/md-tutorial.html">Markdown 教程 | 菜鸟教程</a></p>
-<p>个人觉得好用的在线编辑网站：<a href="https://dillinger.io/">Online Markdown Editor - Dillinger, the Last Markdown Editor ever.</a></p>
-<p>LaTex公式手册网站：<a href="https://www.zybuluo.com/codeep/note/163962#mjx-eqn-eqsample">LaTex 公式指导手册</a> </p>
-<p>个人觉得好用的PC端MarkDown软件：<a href="https://www.typora.io/">Typora — a markdown editor, markdown reader.</a>  – （现在收费了，不过是买断制，如果喜欢可以购买正版！）</p>
-<hr>
-<p>结束！！</p>
-]]></content>
-      <categories>
-        <category>干货</category>
-      </categories>
-      <tags>
-        <tag>教程</tag>
-        <tag>干货</tag>
-        <tag>markdown</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>中秋节快乐</title>
-    <url>/archives/9d77eb79.html</url>
-    <content><![CDATA[<center><h3>又到一年中秋时，发个文章纪念一下</h3></center>
-
-<span id="more"></span>
-
-<center><h3>我在这里祝看到这篇文章的陌生人,也祝我和我的家人朋友中秋节快乐！</h3></center>
-
-</br>
-
-<img src="https://cdn.jsdelivr.net/gh/seatoro/Image/img/zqj.png" style="zoom:50%;" />
-]]></content>
-      <categories>
-        <category>节日祝福</category>
-      </categories>
-      <tags>
-        <tag>中秋节快乐</tag>
-        <tag>节日</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Hexo博客搭建</title>
     <url>/archives/f3fb008f.html</url>
     <content><![CDATA[<blockquote>
@@ -254,6 +186,53 @@
       </tags>
   </entry>
   <entry>
+    <title>MarkDown语法基础</title>
+    <url>/archives/b797e99c.html</url>
+    <content><![CDATA[<p>由于该博客的文章全部都是用markdown写的，所以就写一下MarkDown语法相关吧！<span id="more"></span></p>
+<hr>
+<p>Markdown 是一种轻量级标记语言，它允许人们使用易读易写的纯文本格式编写文档。</p>
+<p>Markdown 语言在 2004 由约翰·格鲁伯（英语：John Gruber）创建。</p>
+<p>Markdown 编写的文档可以导出 HTML 、Word、图像、PDF、Epub 等多种格式的文档。</p>
+<p>Markdown 编写的文档后缀为 <strong>.md</strong>, <strong>.markdown</strong>。</p>
+<hr>
+<p>Markdown 能被使用来撰写电子书，如：Gitbook。</p>
+<p>当前许多网站都广泛使用 Markdown 来撰写帮助文档或是用于论坛上发表消息。例如：GitHub、简书、reddit、Diaspora、Stack Exchange、OpenStreetMap 、SourceForge等。</p>
+<hr>
+<p>教程网站：<a href="https://www.runoob.com/markdown/md-tutorial.html">Markdown 教程 | 菜鸟教程</a></p>
+<p>个人觉得好用的在线编辑网站：<a href="https://dillinger.io/">Online Markdown Editor - Dillinger, the Last Markdown Editor ever.</a></p>
+<p>LaTex公式手册网站：<a href="https://www.zybuluo.com/codeep/note/163962#mjx-eqn-eqsample">LaTex 公式指导手册</a> </p>
+<p>个人觉得好用的PC端MarkDown软件：<a href="https://www.typora.io/">Typora — a markdown editor, markdown reader.</a>  – （现在收费了，不过是买断制，如果喜欢可以购买正版！）</p>
+<hr>
+<p>结束！！</p>
+]]></content>
+      <categories>
+        <category>干货</category>
+      </categories>
+      <tags>
+        <tag>教程</tag>
+        <tag>干货</tag>
+        <tag>markdown</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hello World</title>
+    <url>/archives/4a17b156.html</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+]]></content>
+  </entry>
+  <entry>
     <title>今天你“炫父”了吗</title>
     <url>/archives/13c1bfd.html</url>
     <content><![CDATA[<h3><center>父亲节了啊</h3>
@@ -281,8 +260,29 @@
         <category>节日祝福</category>
       </categories>
       <tags>
-        <tag>节日</tag>
         <tag>父亲节快乐</tag>
+        <tag>节日</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>中秋节快乐</title>
+    <url>/archives/9d77eb79.html</url>
+    <content><![CDATA[<center><h3>又到一年中秋时，发个文章纪念一下</h3></center>
+
+<span id="more"></span>
+
+<center><h3>我在这里祝看到这篇文章的陌生人,也祝我和我的家人朋友中秋节快乐！</h3></center>
+
+</br>
+
+<img src="https://cdn.jsdelivr.net/gh/seatoro/Image/img/zqj.png" style="zoom:50%;" />
+]]></content>
+      <categories>
+        <category>节日祝福</category>
+      </categories>
+      <tags>
+        <tag>节日</tag>
+        <tag>中秋节快乐</tag>
       </tags>
   </entry>
   <entry>
@@ -320,6 +320,59 @@
         <tag>干货</tag>
         <tag>内网穿透</tag>
         <tag>Ngrok</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>命令提示符的一些小作用</title>
+    <url>/archives/1ff8041c.html</url>
+    <content><![CDATA[<h2 id="cmd-命令行常用基础语法"><a href="#cmd-命令行常用基础语法" class="headerlink" title="cmd 命令行常用基础语法"></a>cmd 命令行常用基础语法</h2><h3 id="1-查看并导出目录文件夹名称"><a href="#1-查看并导出目录文件夹名称" class="headerlink" title="1. 查看并导出目录文件夹名称"></a>1. 查看并导出目录文件夹名称</h3><figure class="highlight cmd"><table><tr><td class="code"><pre><span class="line"><span class="built_in">tree</span>&gt;list.txt		//查看文件夹并导出为list.txt文件</span><br><span class="line"><span class="built_in">tree</span> /f &gt;list.txt		//查看文件夹及里面的文件并导出为list.txt文件</span><br><span class="line"></span><br><span class="line"><span class="built_in">dir</span>		//查看目录列表，与<span class="built_in">tree</span>命令不太一样！</span><br></pre></td></tr></table></figure>
+
+<p>解释：</p>
+<ul>
+<li>只查看不导出，只用 <code>tree</code> 就行</li>
+<li><code>list.txt</code> 可以自己更改（<code>list</code> 为文件名，<code>txt</code> 为后缀；文件名可以自定义，后缀可以为：<code>txt、md、xls</code> 等）</li>
+<li>加上 <code>/f</code> 为显示文件夹下的文件，不加的话就只显示文件夹</li>
+</ul>
+<h3 id="2-批量更改文件名及后缀"><a href="#2-批量更改文件名及后缀" class="headerlink" title="2. 批量更改文件名及后缀"></a>2. 批量更改文件名及后缀</h3><figure class="highlight cmd"><table><tr><td class="code"><pre><span class="line"><span class="built_in">ren</span> *.txt *.<span class="built_in">md</span>		//改后缀名</span><br><span class="line"><span class="built_in">ren</span> 旧文件名.txt 新文件名.txt		//改文件名</span><br></pre></td></tr></table></figure>
+
+<p>解释：</p>
+<ul>
+<li><code>ren</code> 为更改后缀的命令</li>
+<li><code>*.txt</code> 为更改前的后缀</li>
+<li><code>*.md </code> 为你要更改的后缀</li>
+</ul>
+<p>如果你要更改所有文件，不只是<code>txt</code> 文件；那么可以用 <code>ren *. *.md</code> 命令！</p>
+<p>ps: 上面的 <code>*</code> 为通配符，通配符还有一个 <code>? </code>; 具体作用为：<code>? </code>代表匹配一个字符， <code>*</code> 代表匹配多个字符；</p>
+<p>其应用也很广，可以用来搜索你不记得具体名称的文件夹：</p>
+<blockquote>
+<ol>
+<li><p>比如你记得你磁盘有一个文件，它的文件名的第一个字符不记得了，只记得第二个是a，第三个不记得了，第四个是1，后面的又不记得了，而且是一个 <code>css</code> 文件，怎么搜索呢？</p>
+<p>答：<code>?a?1*.css </code> 这样就能找到了。</p>
+</li>
+<li><p>还有一个文件，文件名的前三个字符不记得了，后面是hello，是一个 <code>css</code> 文件，怎么找呢？</p>
+<p>答：<code>???hello.css</code></p>
+</li>
+<li><p>如果一个文件是以 <code>module</code> 结尾的该怎么搜索？</p>
+<p>答：<code>dir *module </code></p>
+</li>
+<li><p>如果一个文件是以 <code>module</code> 开头的怎么搜索？</p>
+<p>答：<code>dir module*</code></p>
+</li>
+</ol>
+</blockquote>
+<h3 id="3-新建文件及文件夹"><a href="#3-新建文件及文件夹" class="headerlink" title="3. 新建文件及文件夹"></a>3. 新建文件及文件夹</h3><figure class="highlight cmd"><table><tr><td class="code"><pre><span class="line"><span class="built_in">md</span> 新建文件夹名称		//直接就可以新建一个文件夹了</span><br><span class="line"><span class="built_in">cd</span>.&gt;文件名称.txt		  //直接就可以新建一个文本文件了</span><br></pre></td></tr></table></figure>
+
+<p>解释：</p>
+<ul>
+<li><code>cd.</code> 是当前目录的意思</li>
+</ul>
+]]></content>
+      <categories>
+        <category>干货</category>
+        <category>小玩意儿</category>
+      </categories>
+      <tags>
+        <tag>命令提示符</tag>
       </tags>
   </entry>
   <entry>
@@ -384,113 +437,6 @@
       </tags>
   </entry>
   <entry>
-    <title>命令提示符的一些小作用</title>
-    <url>/archives/1ff8041c.html</url>
-    <content><![CDATA[<h2 id="cmd-命令行常用基础语法"><a href="#cmd-命令行常用基础语法" class="headerlink" title="cmd 命令行常用基础语法"></a>cmd 命令行常用基础语法</h2><h3 id="1-查看并导出目录文件夹名称"><a href="#1-查看并导出目录文件夹名称" class="headerlink" title="1. 查看并导出目录文件夹名称"></a>1. 查看并导出目录文件夹名称</h3><figure class="highlight cmd"><table><tr><td class="code"><pre><span class="line"><span class="built_in">tree</span>&gt;list.txt		//查看文件夹并导出为list.txt文件</span><br><span class="line"><span class="built_in">tree</span> /f &gt;list.txt		//查看文件夹及里面的文件并导出为list.txt文件</span><br><span class="line"></span><br><span class="line"><span class="built_in">dir</span>		//查看目录列表，与<span class="built_in">tree</span>命令不太一样！</span><br></pre></td></tr></table></figure>
-
-<p>解释：</p>
-<ul>
-<li>只查看不导出，只用 <code>tree</code> 就行</li>
-<li><code>list.txt</code> 可以自己更改（<code>list</code> 为文件名，<code>txt</code> 为后缀；文件名可以自定义，后缀可以为：<code>txt、md、xls</code> 等）</li>
-<li>加上 <code>/f</code> 为显示文件夹下的文件，不加的话就只显示文件夹</li>
-</ul>
-<h3 id="2-批量更改文件名及后缀"><a href="#2-批量更改文件名及后缀" class="headerlink" title="2. 批量更改文件名及后缀"></a>2. 批量更改文件名及后缀</h3><figure class="highlight cmd"><table><tr><td class="code"><pre><span class="line"><span class="built_in">ren</span> *.txt *.<span class="built_in">md</span>		//改后缀名</span><br><span class="line"><span class="built_in">ren</span> 旧文件名.txt 新文件名.txt		//改文件名</span><br></pre></td></tr></table></figure>
-
-<p>解释：</p>
-<ul>
-<li><code>ren</code> 为更改后缀的命令</li>
-<li><code>*.txt</code> 为更改前的后缀</li>
-<li><code>*.md </code> 为你要更改的后缀</li>
-</ul>
-<p>如果你要更改所有文件，不只是<code>txt</code> 文件；那么可以用 <code>ren *. *.md</code> 命令！</p>
-<p>ps: 上面的 <code>*</code> 为通配符，通配符还有一个 <code>? </code>; 具体作用为：<code>? </code>代表匹配一个字符， <code>*</code> 代表匹配多个字符；</p>
-<p>其应用也很广，可以用来搜索你不记得具体名称的文件夹：</p>
-<blockquote>
-<ol>
-<li><p>比如你记得你磁盘有一个文件，它的文件名的第一个字符不记得了，只记得第二个是a，第三个不记得了，第四个是1，后面的又不记得了，而且是一个 <code>css</code> 文件，怎么搜索呢？</p>
-<p>答：<code>?a?1*.css </code> 这样就能找到了。</p>
-</li>
-<li><p>还有一个文件，文件名的前三个字符不记得了，后面是hello，是一个 <code>css</code> 文件，怎么找呢？</p>
-<p>答：<code>???hello.css</code></p>
-</li>
-<li><p>如果一个文件是以 <code>module</code> 结尾的该怎么搜索？</p>
-<p>答：<code>dir *module </code></p>
-</li>
-<li><p>如果一个文件是以 <code>module</code> 开头的怎么搜索？</p>
-<p>答：<code>dir module*</code></p>
-</li>
-</ol>
-</blockquote>
-<h3 id="3-新建文件及文件夹"><a href="#3-新建文件及文件夹" class="headerlink" title="3. 新建文件及文件夹"></a>3. 新建文件及文件夹</h3><figure class="highlight cmd"><table><tr><td class="code"><pre><span class="line"><span class="built_in">md</span> 新建文件夹名称		//直接就可以新建一个文件夹了</span><br><span class="line"><span class="built_in">cd</span>.&gt;文件名称.txt		  //直接就可以新建一个文本文件了</span><br></pre></td></tr></table></figure>
-
-<p>解释：</p>
-<ul>
-<li><code>cd.</code> 是当前目录的意思</li>
-</ul>
-]]></content>
-      <categories>
-        <category>干货</category>
-        <category>小玩意儿</category>
-      </categories>
-      <tags>
-        <tag>命令提示符</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>太极框架的基本使用方法</title>
-    <url>/archives/9caa2ea.html</url>
-    <content><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>在几年前当我拥有自己的第一部手机的时候，我就在想一定要将其打造成顺手好用，却又独一无二的设备！如今，几年过去了，实现了的已经实现了，没实现的，还是没能实现！😂<br>不过，经过这一段时间的折腾，我也有了一点点微不足道的经验！现在就记录与此（只是我自己的一点经验之谈，比较浅显！）<br>最开始本来想刷机的，但考虑到风险问题，还是放弃了（翻译翻译就是：俺没钱💰！）；不过，另辟蹊径还是可以的！就比如：使用框架；框架的优点显而易见，风险低、易操作、能反悔（不想搞了可以直接卸载就行）；缺点也有，就是局限性比较大；不过这也不是什么大问题，对于我们已经足够了！</p>
-<p>接下来就是操作了，就以我使用的框架与模块为例吧：（我用的是太极，据官网介绍，其完美支持包括 Android 5－12 在内的几乎所有机型：华为、三星、小米，Oppo 和 Vivo 等！ ）</p>
-<h3 id="软件准备"><a href="#软件准备" class="headerlink" title="软件准备"></a>软件准备</h3><ul>
-<li>太极（<a href="https://yinzhen.lanzouf.com/ihItj018nc8d">下载</a>）</li>
-<li>酷安 9.1.1版（<a href="https://mp.weixin.qq.com/s/hOdTa8fB_pFwguqzm4uFVQ">查看</a>） </li>
-<li>QQ 8.8.33版（自己去豌豆荚或者其他地方下载，安装包太大了，传不了蓝奏云）</li>
-<li>网易云音乐 6.0.0版（<a href="https://yinzhen.lanzouf.com/i7BnGwe7i6h">下载</a>）</li>
-<li>哔哩哔哩 6.55.0版（<a href="https://yinzhen.lanzouf.com/iVBKC018nkdg">下载</a>）</li>
-<li>CoolapkEx模块（<a href="https://yinzhen.lanzouf.com/iaTOxp649pe">下载</a>） — 配合酷安使用，用于更新app</li>
-<li>哔哩漫游（<a href="https://yinzhen.lanzouf.com/iK7AC018nb5e">下载</a>） — 可优化B站app</li>
-<li>UnblockMusic Pro（<a href="https://yinzhen.lanzouf.com/iJZ9y018noda">下载</a>） — 可解锁灰色音乐</li>
-<li>云村清洁工（<a href="https://yinzhen.lanzouf.com/iIxfY018nnxe">下载</a>） — 可自动签到、移除广告等</li>
-<li>QNotified（<a href="https://yinzhen.lanzouf.com/i9Azf018nbwb">下载</a>） — 用于对QQ的一系列修改如：闪照不销毁、消息防撤回、界面精简等<br><em>注意：软件与模块版本必须对应，否则模块可能不会生效</em></li>
-</ul>
-<h3 id="使用操作"><a href="#使用操作" class="headerlink" title="使用操作"></a>使用操作</h3><p>简单说就是：<br><strong>PS：（我比较懒，而且不怎么会做图，将就着看一下吧🙃）</strong><br>①下载并安装好太极与各个模块<br>②在太极里创建app（这一步需要卸载并重新安装app，会清除所有用户数据哦！<strong>请注意备份数据！</strong>）<br><img src="https://cdn.jsdelivr.net/gh/seatoro/Image/Image/img/taichi1.jpg" style="zoom:33%;" /><br>③在太极里启用模块（把✓勾上就行了）<br><img src="https://cdn.jsdelivr.net/gh/seatoro/Image/Image/img/taichi2.jpg" style="zoom:33%;" /><br>④强制停止app （在太极主页点一下软件图标就会出现下图界面了）<br><img src="https://cdn.jsdelivr.net/gh/seatoro/Image/Image/img/taichi3.jpg" style="zoom:33%;" /><br>⑤在太极里启动app（只需要这一次，以后就可以通过桌面图标启动了；不过桌面启动有时会闪退，这时也可以在太极里启动）<br>⑥完毕</p>
-<hr>
-<h3 id="后话"><a href="#后话" class="headerlink" title="后话"></a>后话</h3><p>软件与模块能用的话，能不更新就不要更新了；除非软件更新了新的功能，而你又你非常非常想要体验新的功能！否则还是建议以稳定为主！<br>另外，在框架里的软件，会有一些个小问题，比如：有时候打开时直接闪退，有时候卡在开屏页面一段时间（几秒到几十秒不等）<br><strong>再次提醒：入坑需谨慎！</strong></p>
-<p><strong>如果我提供的软件如法使用，可自行上网寻找相应版本！</strong></p>
-<center>------END------</center>
-]]></content>
-      <categories>
-        <category>太极框架</category>
-        <category>模块</category>
-      </categories>
-      <tags>
-        <tag>太极框架</tag>
-        <tag>模块</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>新的开始，祝我好运吧！</title>
-    <url>/archives/758b7706.html</url>
-    <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">
-  <script id="hbeData" type="hbeData" data-hmacdigest="65e6770f8f7bfcd5bcc59c274ad0e3e2c70d962b0a624c83973aed42d0e0cb95">fa49ba0db6b3a8a014bad429b100e075fe461fe20ff799c5607976602c09b6fc4a6714c64d101f3004cc75688e48810b1511d305919ed94d93eee52d0b94dad5e6b68c9fd3cac53fe59f6ff04057e922a068b0e9d7bf0fd4d4f3882846e811a7a982466ce7157f5e33d75ec38dcbf5d98bed1d5bf1b63aaaf58033ad672fab27e7c2948f890910a97229d50eaf3901957c111788c879ef27fcf761f757a4af707b6b9284bff841526d4d5f5e108526ff86897a0246ceda309abbefb516ee0a57d3c437d1e94c8685dd6b119e4996b0636ed25216d710e86a3fca519f9a87d6b7ad62314fa1aae966da6a03fb14274f9edbe986fa0cd125d9175b72577ed99537872c73f64ec715d9a4fb20bd3e6a21a1ad4e991e4c8a90b8fb87bdfc6e8d06c5ae522df3b4fe82843c20fec43b9710c86c194d21b5595654eaee5c3587a60b29afef8d7a7cbeeb1340c2e1d3109ddd901cc228773214ca6c715c5d46399baae7251d2d496b0f576a3a8be1dcd31a10ce4a061bb1d69b0d03eb8c2b94cb0162836245df8d4465004e9dd2ab67f3746498053b6b18563ab86762f56e619cfd55849e8accb76db7a7dc6547b3a828ccaddd52d1960d5790782a2a0d840ebeb8cfa5ca67626a6b4fe918a3502a59bf986f1e7021aa3b22c858afb5fd23ea792810e69aac1601754537b2b6b77cc60134b8df9c2e348657b46c061271eaa7b45b53fdfafb7f50350fffbdd0953a37027328fc947d8a8046b6a6d2b9c46bd00de1313b69185d1bc6740ff65d81b2f6516cb3accbd54948dd296297b727a57f9d27872aef604a62058f03288bd9314cfd074ec502edb1987010a26e6c60c3c331908673deab106beb4a6291e765f88461954376c683a6f9fdbef7947a1c6121668f4e294745b4fe69388d95ef384fc36d291d338d03d04ed678822be5f1425bd71c94d75dba4b35b11197799a5bc9da257fa471e2f089c96e4191dd456cfc2ed5b9843a2ae2bde1fb80d7be68ab1b244c9d16eb6142cad0f094183bae10a403b757bef84275a67c17bc1db4888e8e28495d17ac2fea28d4e0414a595cb76ef636f353da4bd10d8b974d5b20375b0b0fe0fd9cd3fca4892570f8e637cf44fd8007fddb89e96dad16dbc5fd5bdadc092ca3a84598</script>
-  <div class="hbe hbe-content">
-    <div class="hbe hbe-input hbe-input-default">
-      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">
-      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">
-        <span class="hbe hbe-input-label-content hbe-input-label-content-default">您好，这里需要密码才能查看哦！</span>
-      </label>
-    </div>
-  </div>
-</div>
-<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
-      <categories>
-        <category>随笔</category>
-      </categories>
-      <tags>
-        <tag>随笔</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>好玩的代码</title>
     <url>/archives/81d62aff.html</url>
     <content><![CDATA[<blockquote>
@@ -549,6 +495,38 @@
       </tags>
   </entry>
   <entry>
+    <title>太极框架的基本使用方法</title>
+    <url>/archives/9caa2ea.html</url>
+    <content><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>在几年前当我拥有自己的第一部手机的时候，我就在想一定要将其打造成顺手好用，却又独一无二的设备！如今，几年过去了，实现了的已经实现了，没实现的，还是没能实现！😂<br>不过，经过这一段时间的折腾，我也有了一点点微不足道的经验！现在就记录与此（只是我自己的一点经验之谈，比较浅显！）<br>最开始本来想刷机的，但考虑到风险问题，还是放弃了（翻译翻译就是：俺没钱💰！）；不过，另辟蹊径还是可以的！就比如：使用框架；框架的优点显而易见，风险低、易操作、能反悔（不想搞了可以直接卸载就行）；缺点也有，就是局限性比较大；不过这也不是什么大问题，对于我们已经足够了！</p>
+<p>接下来就是操作了，就以我使用的框架与模块为例吧：（我用的是太极，据官网介绍，其完美支持包括 Android 5－12 在内的几乎所有机型：华为、三星、小米，Oppo 和 Vivo 等！ ）</p>
+<h3 id="软件准备"><a href="#软件准备" class="headerlink" title="软件准备"></a>软件准备</h3><ul>
+<li>太极（<a href="https://yinzhen.lanzouf.com/ihItj018nc8d">下载</a>）</li>
+<li>酷安 9.1.1版（<a href="https://mp.weixin.qq.com/s/hOdTa8fB_pFwguqzm4uFVQ">查看</a>） </li>
+<li>QQ 8.8.33版（自己去豌豆荚或者其他地方下载，安装包太大了，传不了蓝奏云）</li>
+<li>网易云音乐 6.0.0版（<a href="https://yinzhen.lanzouf.com/i7BnGwe7i6h">下载</a>）</li>
+<li>哔哩哔哩 6.55.0版（<a href="https://yinzhen.lanzouf.com/iVBKC018nkdg">下载</a>）</li>
+<li>CoolapkEx模块（<a href="https://yinzhen.lanzouf.com/iaTOxp649pe">下载</a>） — 配合酷安使用，用于更新app</li>
+<li>哔哩漫游（<a href="https://yinzhen.lanzouf.com/iK7AC018nb5e">下载</a>） — 可优化B站app</li>
+<li>UnblockMusic Pro（<a href="https://yinzhen.lanzouf.com/iJZ9y018noda">下载</a>） — 可解锁灰色音乐</li>
+<li>云村清洁工（<a href="https://yinzhen.lanzouf.com/iIxfY018nnxe">下载</a>） — 可自动签到、移除广告等</li>
+<li>QNotified（<a href="https://yinzhen.lanzouf.com/i9Azf018nbwb">下载</a>） — 用于对QQ的一系列修改如：闪照不销毁、消息防撤回、界面精简等<br><em>注意：软件与模块版本必须对应，否则模块可能不会生效</em></li>
+</ul>
+<h3 id="使用操作"><a href="#使用操作" class="headerlink" title="使用操作"></a>使用操作</h3><p>简单说就是：<br><strong>PS：（我比较懒，而且不怎么会做图，将就着看一下吧🙃）</strong><br>①下载并安装好太极与各个模块<br>②在太极里创建app（这一步需要卸载并重新安装app，会清除所有用户数据哦！<strong>请注意备份数据！</strong>）<br><img src="https://cdn.jsdelivr.net/gh/seatoro/Image/Image/img/taichi1.jpg" style="zoom:33%;" /><br>③在太极里启用模块（把✓勾上就行了）<br><img src="https://cdn.jsdelivr.net/gh/seatoro/Image/Image/img/taichi2.jpg" style="zoom:33%;" /><br>④强制停止app （在太极主页点一下软件图标就会出现下图界面了）<br><img src="https://cdn.jsdelivr.net/gh/seatoro/Image/Image/img/taichi3.jpg" style="zoom:33%;" /><br>⑤在太极里启动app（只需要这一次，以后就可以通过桌面图标启动了；不过桌面启动有时会闪退，这时也可以在太极里启动）<br>⑥完毕</p>
+<hr>
+<h3 id="后话"><a href="#后话" class="headerlink" title="后话"></a>后话</h3><p>软件与模块能用的话，能不更新就不要更新了；除非软件更新了新的功能，而你又你非常非常想要体验新的功能！否则还是建议以稳定为主！<br>另外，在框架里的软件，会有一些个小问题，比如：有时候打开时直接闪退，有时候卡在开屏页面一段时间（几秒到几十秒不等）<br><strong>再次提醒：入坑需谨慎！</strong></p>
+<p><strong>如果我提供的软件如法使用，可自行上网寻找相应版本！</strong></p>
+<center>------END------</center>
+]]></content>
+      <categories>
+        <category>太极框架</category>
+        <category>模块</category>
+      </categories>
+      <tags>
+        <tag>太极框架</tag>
+        <tag>模块</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>新年快乐！</title>
     <url>/archives/5785bd01.html</url>
     <content><![CDATA[<center><h3>2022年列车已发车！我们一起向未来</h3></center>
@@ -572,6 +550,28 @@
       </tags>
   </entry>
   <entry>
+    <title>新的开始，祝我好运吧！</title>
+    <url>/archives/758b7706.html</url>
+    <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">
+  <script id="hbeData" type="hbeData" data-hmacdigest="65e6770f8f7bfcd5bcc59c274ad0e3e2c70d962b0a624c83973aed42d0e0cb95">fa49ba0db6b3a8a014bad429b100e075fe461fe20ff799c5607976602c09b6fc4a6714c64d101f3004cc75688e48810b1511d305919ed94d93eee52d0b94dad5e6b68c9fd3cac53fe59f6ff04057e922a068b0e9d7bf0fd4d4f3882846e811a7a982466ce7157f5e33d75ec38dcbf5d98bed1d5bf1b63aaaf58033ad672fab27e7c2948f890910a97229d50eaf3901957c111788c879ef27fcf761f757a4af707b6b9284bff841526d4d5f5e108526ff86897a0246ceda309abbefb516ee0a57d3c437d1e94c8685dd6b119e4996b0636ed25216d710e86a3fca519f9a87d6b7ad62314fa1aae966da6a03fb14274f9edbe986fa0cd125d9175b72577ed99537872c73f64ec715d9a4fb20bd3e6a21a1ad4e991e4c8a90b8fb87bdfc6e8d06c5ae522df3b4fe82843c20fec43b9710c86c194d21b5595654eaee5c3587a60b29afef8d7a7cbeeb1340c2e1d3109ddd901cc228773214ca6c715c5d46399baae7251d2d496b0f576a3a8be1dcd31a10ce4a061bb1d69b0d03eb8c2b94cb0162836245df8d4465004e9dd2ab67f3746498053b6b18563ab86762f56e619cfd55849e8accb76db7a7dc6547b3a828ccaddd52d1960d5790782a2a0d840ebeb8cfa5ca67626a6b4fe918a3502a59bf986f1e7021aa3b22c858afb5fd23ea792810e69aac1601754537b2b6b77cc60134b8df9c2e348657b46c061271eaa7b45b53fdfafb7f50350fffbdd0953a37027328fc947d8a8046b6a6d2b9c46bd00de1313b69185d1bc6740ff65d81b2f6516cb3accbd54948dd296297b727a57f9d27872aef604a62058f03288bd9314cfd074ec502edb1987010a26e6c60c3c331908673deab106beb4a6291e765f88461954376c683a6f9fdbef7947a1c6121668f4e294745b4fe69388d95ef384fc36d291d338d03d04ed678822be5f1425bd71c94d75dba4b35b11197799a5bc9da257fa471e2f089c96e4191dd456cfc2ed5b9843a2ae2bde1fb80d7be68ab1b244c9d16eb6142cad0f094183bae10a403b757bef84275a67c17bc1db4888e8e28495d17ac2fea28d4e0414a595cb76ef636f353da4bd10d8b974d5b20375b0b0fe0fd9cd3fca4892570f8e637cf44fd8007fddb89e96dad16dbc5fd5bdadc092ca3a84598</script>
+  <div class="hbe hbe-content">
+    <div class="hbe hbe-input hbe-input-default">
+      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">
+      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">
+        <span class="hbe hbe-input-label-content hbe-input-label-content-default">您好，这里需要密码才能查看哦！</span>
+      </label>
+    </div>
+  </div>
+</div>
+<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
+      <categories>
+        <category>随笔</category>
+      </categories>
+      <tags>
+        <tag>随笔</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>暂时停更</title>
     <url>/archives/e4b6eac1.html</url>
     <content><![CDATA[<h3 id="暂时停更"><a href="#暂时停更" class="headerlink" title="暂时停更"></a>暂时停更</h3><span id="more"></span>
@@ -582,6 +582,26 @@
       </categories>
       <tags>
         <tag>停更公告</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>毕业季，毕业快乐！</title>
+    <url>/archives/2ed09d89.html</url>
+    <content><![CDATA[<p>祝我和大家：</p>
+<center>
+    毕业快乐，前程似锦
+</center>
+
+<hr>
+<blockquote>
+<p>二零二二年，五月十七日，学校的包裹到家了，现在我有必要说一下我的感受，我没有骑车子，是 徒手一步步将它从快递点拿到家里，四年来第一次感到这么沉重，在家里拆开包裹，很多东西都是刚上大学时我老爸和我一起带去学校的，真是五味杂陈。从图书馆出来，我知道很可能一去不复返，步伐也越来越累，一瞬间想装点思念和回忆，就一个人去拍了小河边的雕塑、外教楼、12号教学楼，当然还有那个高大的图书馆，随后2022年5月15日17时58分 (不想错过公交),我从东门和门卫打过招呼后坐上6路公交，带着背包与行李，四年的青春说快不快，但这一刻真的十分不舍，先收拾行李吧，该洗洗该藏藏，总之，大学结束了。      — LYH（我的室友）</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>毕业了</category>
+      </categories>
+      <tags>
+        <tag>毕业了</tag>
       </tags>
   </entry>
   <entry>
@@ -601,6 +621,35 @@
       <tags>
         <tag>节日</tag>
         <tag>母亲节快乐</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>突然连接不了GitHub?</title>
+    <url>/archives/d840bd6.html</url>
+    <content><![CDATA[<p>前段时间开学了，比较忙就没空写博客了；不过就在我忙里偷闲抽空写的时候发现连接不了GitHub了，嗯？什么情况？<span id="more"></span></p>
+<p>这是什么情况？不应该啊？我啥都没动咋就不行了？一连串的疑问在我脑中萦绕！</p>
+<p>以下为报错的代码：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">fatal: Could not read from remote repository.</span><br><span class="line"></span><br><span class="line">Please make sure you have the correct access rights</span><br><span class="line">and the repository exists.</span><br><span class="line">FATAL &#123;</span><br><span class="line">  err: Error: Spawn failed</span><br><span class="line">      at ChildProcess.&lt;anonymous&gt; (D:\MyBlog\node_modules\hexo-util\lib\spawn.js:51:21)</span><br><span class="line">      at ChildProcess.emit (events.js:400:28)</span><br><span class="line">      at ChildProcess.cp.emit (D:\MyBlog\node_modules\cross-spawn\lib\enoent.js:34:29)</span><br><span class="line">      at Process.ChildProcess._handle.onexit (internal/child_process.js:277:12) &#123;</span><br><span class="line">    code: 128</span><br><span class="line">  &#125;</span><br><span class="line">&#125; Something&#x27;s wrong. Maybe you can find the solution here: %s https://hexo.io/docs/troubleshooting.html</span><br></pre></td></tr></table></figure>
+
+<p>没办法，第一次遇到，上网搜解决办法吧！大部分的帖子都说ssh失效了，重新生成一下；好，我照做！但完全没效果是什么意思，是我不配了吗？难搞哦！最后想了想先放这儿吧，有空再好好收拾收拾你！</p>
+<p>过了几天，我又屁颠屁颠地回来了；继续搞，我还就不信了！继续上网搜解决办法呗，但结果都大差不差，都让我重新生成ssh；可我都重新生成几遍了，还是不行，这怎搞？老规矩，先晾着，说不定哪天我试试他自己就好了！（<del>我在想peach</del>）</p>
+<p>不过，这次我可没放着就不管了；我甚至走路都在想到底是哪里出问题了；后来仔细分析了一下，好像和家里的改变就只有地区的改变了！再深想一下，网络也随之改变了！嗯，一定是这个原因，死马当做活马医，试试吧！<strong>断开校园网，拔掉网线</strong>，换个手机热点看看！（<em>一定要拔掉网线，不要问我为什么会知道</em>）</p>
+<p>没想到啊，没想到！结果真的出在这里，用手机热点后一下就连通了！！（话说，这是为什么呢？校园网端口没开放？那换个端口行不？我还没试过，有谁试了可以给我说一下哈！）</p>
+<p>到这儿，文章就结束了；结果只是换个网络就行，整的那么复杂。还好我没想不开将博客删了重建！也算是一点经验吧！希望遇到这个问题的朋友看到这儿后可以完美解决！</p>
+<hr>
+<p>突然又想到福尔摩斯的一句名言：</p>
+<blockquote>
+<h4 id="排除一切不可能的，剩下的即使再不可能，那也是真相！-—-夏洛克·福尔摩斯"><a href="#排除一切不可能的，剩下的即使再不可能，那也是真相！-—-夏洛克·福尔摩斯" class="headerlink" title="排除一切不可能的，剩下的即使再不可能，那也是真相！  — 夏洛克·福尔摩斯"></a>排除一切不可能的，剩下的即使再不可能，那也是真相！<br><br>  — 夏洛克·福尔摩斯</h4></blockquote>
+]]></content>
+      <categories>
+        <category>Hexo</category>
+        <category>Github</category>
+      </categories>
+      <tags>
+        <tag>教程</tag>
+        <tag>踩坑</tag>
+        <tag>博客</tag>
+        <tag>hexo</tag>
       </tags>
   </entry>
   <entry>
@@ -736,35 +785,6 @@
       </tags>
   </entry>
   <entry>
-    <title>突然连接不了GitHub?</title>
-    <url>/archives/d840bd6.html</url>
-    <content><![CDATA[<p>前段时间开学了，比较忙就没空写博客了；不过就在我忙里偷闲抽空写的时候发现连接不了GitHub了，嗯？什么情况？<span id="more"></span></p>
-<p>这是什么情况？不应该啊？我啥都没动咋就不行了？一连串的疑问在我脑中萦绕！</p>
-<p>以下为报错的代码：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">fatal: Could not read from remote repository.</span><br><span class="line"></span><br><span class="line">Please make sure you have the correct access rights</span><br><span class="line">and the repository exists.</span><br><span class="line">FATAL &#123;</span><br><span class="line">  err: Error: Spawn failed</span><br><span class="line">      at ChildProcess.&lt;anonymous&gt; (D:\MyBlog\node_modules\hexo-util\lib\spawn.js:51:21)</span><br><span class="line">      at ChildProcess.emit (events.js:400:28)</span><br><span class="line">      at ChildProcess.cp.emit (D:\MyBlog\node_modules\cross-spawn\lib\enoent.js:34:29)</span><br><span class="line">      at Process.ChildProcess._handle.onexit (internal/child_process.js:277:12) &#123;</span><br><span class="line">    code: 128</span><br><span class="line">  &#125;</span><br><span class="line">&#125; Something&#x27;s wrong. Maybe you can find the solution here: %s https://hexo.io/docs/troubleshooting.html</span><br></pre></td></tr></table></figure>
-
-<p>没办法，第一次遇到，上网搜解决办法吧！大部分的帖子都说ssh失效了，重新生成一下；好，我照做！但完全没效果是什么意思，是我不配了吗？难搞哦！最后想了想先放这儿吧，有空再好好收拾收拾你！</p>
-<p>过了几天，我又屁颠屁颠地回来了；继续搞，我还就不信了！继续上网搜解决办法呗，但结果都大差不差，都让我重新生成ssh；可我都重新生成几遍了，还是不行，这怎搞？老规矩，先晾着，说不定哪天我试试他自己就好了！（<del>我在想peach</del>）</p>
-<p>不过，这次我可没放着就不管了；我甚至走路都在想到底是哪里出问题了；后来仔细分析了一下，好像和家里的改变就只有地区的改变了！再深想一下，网络也随之改变了！嗯，一定是这个原因，死马当做活马医，试试吧！<strong>断开校园网，拔掉网线</strong>，换个手机热点看看！（<em>一定要拔掉网线，不要问我为什么会知道</em>）</p>
-<p>没想到啊，没想到！结果真的出在这里，用手机热点后一下就连通了！！（话说，这是为什么呢？校园网端口没开放？那换个端口行不？我还没试过，有谁试了可以给我说一下哈！）</p>
-<p>到这儿，文章就结束了；结果只是换个网络就行，整的那么复杂。还好我没想不开将博客删了重建！也算是一点经验吧！希望遇到这个问题的朋友看到这儿后可以完美解决！</p>
-<hr>
-<p>突然又想到福尔摩斯的一句名言：</p>
-<blockquote>
-<h4 id="排除一切不可能的，剩下的即使再不可能，那也是真相！-—-夏洛克·福尔摩斯"><a href="#排除一切不可能的，剩下的即使再不可能，那也是真相！-—-夏洛克·福尔摩斯" class="headerlink" title="排除一切不可能的，剩下的即使再不可能，那也是真相！  — 夏洛克·福尔摩斯"></a>排除一切不可能的，剩下的即使再不可能，那也是真相！<br><br>  — 夏洛克·福尔摩斯</h4></blockquote>
-]]></content>
-      <categories>
-        <category>Hexo</category>
-        <category>Github</category>
-      </categories>
-      <tags>
-        <tag>教程</tag>
-        <tag>踩坑</tag>
-        <tag>博客</tag>
-        <tag>hexo</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>谷歌账号的注册</title>
     <url>/archives/c7047092.html</url>
     <content><![CDATA[<p>今天写一个关于国内注册谷歌账号的方法，防止自己忘记，也可给不会的朋友一点思路！</p>
@@ -792,26 +812,6 @@
         <tag>教程</tag>
         <tag>干货</tag>
         <tag>注册谷歌账号</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>毕业季，毕业快乐！</title>
-    <url>/archives/2ed09d89.html</url>
-    <content><![CDATA[<p>祝我和大家：</p>
-<center>
-    毕业快乐，前程似锦
-</center>
-
-<hr>
-<blockquote>
-<p>二零二二年，五月十七日，学校的包裹到家了，现在我有必要说一下我的感受，我没有骑车子，是 徒手一步步将它从快递点拿到家里，四年来第一次感到这么沉重，在家里拆开包裹，很多东西都是刚上大学时我老爸和我一起带去学校的，真是五味杂陈。从图书馆出来，我知道很可能一去不复返，步伐也越来越累，一瞬间想装点思念和回忆，就一个人去拍了小河边的雕塑、外教楼、12号教学楼，当然还有那个高大的图书馆，随后2022年5月15日17时58分 (不想错过公交),我从东门和门卫打过招呼后坐上6路公交，带着背包与行李，四年的青春说快不快，但这一刻真的十分不舍，先收拾行李吧，该洗洗该藏藏，总之，大学结束了。      — LYH（我的室友）</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>毕业了</category>
-      </categories>
-      <tags>
-        <tag>毕业了</tag>
       </tags>
   </entry>
 </search>
