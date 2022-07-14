@@ -186,6 +186,45 @@
       </tags>
   </entry>
   <entry>
+    <title>中秋节快乐</title>
+    <url>/archives/9d77eb79.html</url>
+    <content><![CDATA[<center><h3>又到一年中秋时，发个文章纪念一下</h3></center>
+
+<span id="more"></span>
+
+<center><h3>我在这里祝看到这篇文章的陌生人,也祝我和我的家人朋友中秋节快乐！</h3></center>
+
+</br>
+
+<img src="https://s2.loli.net/2022/07/10/iZ8lBAYWgM4tmVq.jpg" style="zoom:50%;" />
+]]></content>
+      <categories>
+        <category>节日祝福</category>
+      </categories>
+      <tags>
+        <tag>中秋节快乐</tag>
+        <tag>节日</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hello World</title>
+    <url>/archives/4a17b156.html</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+]]></content>
+  </entry>
+  <entry>
     <title>MarkDown语法基础</title>
     <url>/archives/b797e99c.html</url>
     <content><![CDATA[<p>由于该博客的文章全部都是用markdown写的，所以就写一下MarkDown语法相关吧！<span id="more"></span></p>
@@ -212,45 +251,6 @@
         <tag>教程</tag>
         <tag>干货</tag>
         <tag>markdown</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Hello World</title>
-    <url>/archives/4a17b156.html</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-]]></content>
-  </entry>
-  <entry>
-    <title>中秋节快乐</title>
-    <url>/archives/9d77eb79.html</url>
-    <content><![CDATA[<center><h3>又到一年中秋时，发个文章纪念一下</h3></center>
-
-<span id="more"></span>
-
-<center><h3>我在这里祝看到这篇文章的陌生人,也祝我和我的家人朋友中秋节快乐！</h3></center>
-
-</br>
-
-<img src="https://s2.loli.net/2022/07/10/iZ8lBAYWgM4tmVq.jpg" style="zoom:50%;" />
-]]></content>
-      <categories>
-        <category>节日祝福</category>
-      </categories>
-      <tags>
-        <tag>中秋节快乐</tag>
-        <tag>节日</tag>
       </tags>
   </entry>
   <entry>
@@ -318,43 +318,6 @@
         <tag>教程</tag>
         <tag>干货</tag>
         <tag>复制某文库内容</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>内网穿透</title>
-    <url>/archives/bd50b816.html</url>
-    <content><![CDATA[<p>内网穿透，即 NAT 穿透，进行 NAT 穿透是为了使具有某一个特定源 IP 地址和源端口号的数据包不被 NAT 设备屏蔽而正确路由到内网主机。<span id="more"></span></p>
-<p>最开始了解内网穿透是为了将自己写的HTML项目能够让别人看见，但当时又不了解服务器等东西，就上网搜方法；偶然看到说内网穿透可以，所以就找了好多教程；最终就选了以下这种方法！</p>
-<hr>
-<h3 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h3><p>安装好jdk并配置环境变量、下载Tomcat并配置环境变量、注册一个Ngrok账号、一台电脑</p>
-<h3 id="配置jdk与Tomcat"><a href="#配置jdk与Tomcat" class="headerlink" title="配置jdk与Tomcat"></a>配置jdk与Tomcat</h3><p>这个就不详写了，上网一搜一大堆！（注意Tomcat要与jdk的版本号对应，具体看官网对应关系：<a href="http://tomcat.apache.org/whichversion.html">Apache Tomcat® - Which Version Do I Want?</a>）</p>
-<h3 id="注册并登录Ngrok以及开通隧道"><a href="#注册并登录Ngrok以及开通隧道" class="headerlink" title="注册并登录Ngrok以及开通隧道"></a>注册并登录Ngrok以及开通隧道</h3><p>Ngrok官网：<a href="https://www.ngrok.cc/">Sunny-Ngrok内网穿透服务</a></p>
-<p>因为Ngrok是有免费线路的，所以完全可以白嫖。😁 一般不会失效，如果失效，再次开通就行。</p>
-<p>登录进入后选择“隧道管理” —&gt; “开通隧道” —&gt; 向下滑，找到最后一个价格为0元的，购买就行；</p>
-<p><strong>协议</strong>选<code>http/https</code>均可，<strong>隧道名称</strong>随便起，<strong>前置域名</strong>随便起（尽量短，好记；用英文、数字都行），<strong>本地端口</strong>默认就行，下面两个不用填，点击<strong>确定添加</strong>就可以了。</p>
-<p>开通成功后可以在<strong>隧道管理</strong>查看自己的隧道了。然后下载客户端，<a href="https://www.ngrok.cc/download.html">Sunny-Ngrok内网转发客户端</a>，选择自己电脑的版本即可！</p>
-<h3 id="内网穿透"><a href="#内网穿透" class="headerlink" title="内网穿透"></a>内网穿透</h3><p>下载后解压双击运行<code>Sunny-Ngrok启动工具.bat</code>，它会提示你要id,这时回到网页<strong>隧道管理</strong>找到你的<strong>隧道id</strong>粘贴进去，然后回车就行。</p>
-<p>这时如果你通过你的网址进行访问会提示你隧道不可用；这是因为你没有运行Tomcat，你cmd运行Tomcat后，再刷新就能看到Tomcat的页面了，如图：</p>
-<p><img src="https://s2.loli.net/2022/07/10/TOGBXVCNj68AmiZ.jpg"></p>
-<p>出现这个页面就恭喜你了，你已经成功了！</p>
-<hr>
-<h3 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h3><p>这时你的内网穿透已经成功了，但是如果你有自己的HTML项目，该怎样让别人通过你的网址访问呢？</p>
-<p>其实也很简单，将项目放到Tomcat目录下的<code>webapps</code>目录就行；访问的话就是<code>你的网址+项目的目录名+项目的名.html</code>，如我的一个就是<code>http://to.free.idcfengye.com/migong/index.html</code></p>
-<p>这样就能让别人通过你的网址来访问你的项目了！</p>
-<hr>
-<h3 id="最后的最后"><a href="#最后的最后" class="headerlink" title="最后的最后"></a>最后的最后</h3><p>注意，内网穿透的过程中你运行的 <code>Tomcat</code> 与 <code>Sunny-Ngrok启动工具</code> 不能关闭，否则连接会断开！</p>
-<p>完！</p>
-<hr>
-<p>更新：现在Ngrok免费的不太稳定，推荐使用 <a href="https://open.dingtalk.com/document/resourcedownload/http-intranet-penetration">钉钉内网穿透</a></p>
-]]></content>
-      <categories>
-        <category>内网穿透</category>
-      </categories>
-      <tags>
-        <tag>教程</tag>
-        <tag>干货</tag>
-        <tag>内网穿透</tag>
-        <tag>Ngrok</tag>
       </tags>
   </entry>
   <entry>
@@ -437,6 +400,98 @@
       </tags>
   </entry>
   <entry>
+    <title>内网穿透</title>
+    <url>/archives/bd50b816.html</url>
+    <content><![CDATA[<p>内网穿透，即 NAT 穿透，进行 NAT 穿透是为了使具有某一个特定源 IP 地址和源端口号的数据包不被 NAT 设备屏蔽而正确路由到内网主机。<span id="more"></span></p>
+<p>最开始了解内网穿透是为了将自己写的HTML项目能够让别人看见，但当时又不了解服务器等东西，就上网搜方法；偶然看到说内网穿透可以，所以就找了好多教程；最终就选了以下这种方法！</p>
+<hr>
+<h3 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h3><p>安装好jdk并配置环境变量、下载Tomcat并配置环境变量、注册一个Ngrok账号、一台电脑</p>
+<h3 id="配置jdk与Tomcat"><a href="#配置jdk与Tomcat" class="headerlink" title="配置jdk与Tomcat"></a>配置jdk与Tomcat</h3><p>这个就不详写了，上网一搜一大堆！（注意Tomcat要与jdk的版本号对应，具体看官网对应关系：<a href="http://tomcat.apache.org/whichversion.html">Apache Tomcat® - Which Version Do I Want?</a>）</p>
+<h3 id="注册并登录Ngrok以及开通隧道"><a href="#注册并登录Ngrok以及开通隧道" class="headerlink" title="注册并登录Ngrok以及开通隧道"></a>注册并登录Ngrok以及开通隧道</h3><p>Ngrok官网：<a href="https://www.ngrok.cc/">Sunny-Ngrok内网穿透服务</a></p>
+<p>因为Ngrok是有免费线路的，所以完全可以白嫖。😁 一般不会失效，如果失效，再次开通就行。</p>
+<p>登录进入后选择“隧道管理” —&gt; “开通隧道” —&gt; 向下滑，找到最后一个价格为0元的，购买就行；</p>
+<p><strong>协议</strong>选<code>http/https</code>均可，<strong>隧道名称</strong>随便起，<strong>前置域名</strong>随便起（尽量短，好记；用英文、数字都行），<strong>本地端口</strong>默认就行，下面两个不用填，点击<strong>确定添加</strong>就可以了。</p>
+<p>开通成功后可以在<strong>隧道管理</strong>查看自己的隧道了。然后下载客户端，<a href="https://www.ngrok.cc/download.html">Sunny-Ngrok内网转发客户端</a>，选择自己电脑的版本即可！</p>
+<h3 id="内网穿透"><a href="#内网穿透" class="headerlink" title="内网穿透"></a>内网穿透</h3><p>下载后解压双击运行<code>Sunny-Ngrok启动工具.bat</code>，它会提示你要id,这时回到网页<strong>隧道管理</strong>找到你的<strong>隧道id</strong>粘贴进去，然后回车就行。</p>
+<p>这时如果你通过你的网址进行访问会提示你隧道不可用；这是因为你没有运行Tomcat，你cmd运行Tomcat后，再刷新就能看到Tomcat的页面了，如图：</p>
+<p><img src="https://s2.loli.net/2022/07/10/TOGBXVCNj68AmiZ.jpg"></p>
+<p>出现这个页面就恭喜你了，你已经成功了！</p>
+<hr>
+<h3 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h3><p>这时你的内网穿透已经成功了，但是如果你有自己的HTML项目，该怎样让别人通过你的网址访问呢？</p>
+<p>其实也很简单，将项目放到Tomcat目录下的<code>webapps</code>目录就行；访问的话就是<code>你的网址+项目的目录名+项目的名.html</code>，如我的一个就是<code>http://to.free.idcfengye.com/migong/index.html</code></p>
+<p>这样就能让别人通过你的网址来访问你的项目了！</p>
+<hr>
+<h3 id="最后的最后"><a href="#最后的最后" class="headerlink" title="最后的最后"></a>最后的最后</h3><p>注意，内网穿透的过程中你运行的 <code>Tomcat</code> 与 <code>Sunny-Ngrok启动工具</code> 不能关闭，否则连接会断开！</p>
+<p>完！</p>
+<hr>
+<p>更新：现在Ngrok免费的不太稳定，推荐使用 <a href="https://open.dingtalk.com/document/resourcedownload/http-intranet-penetration">钉钉内网穿透</a></p>
+]]></content>
+      <categories>
+        <category>内网穿透</category>
+      </categories>
+      <tags>
+        <tag>教程</tag>
+        <tag>干货</tag>
+        <tag>内网穿透</tag>
+        <tag>Ngrok</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>太极框架的基本使用方法</title>
+    <url>/archives/9caa2ea.html</url>
+    <content><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>在几年前当我拥有自己的第一部手机的时候，我就在想一定要将其打造成顺手好用，却又独一无二的设备！如今，几年过去了，实现了的已经实现了，没实现的，还是没能实现！😂<br>不过，经过这一段时间的折腾，我也有了一点点微不足道的经验！现在就记录与此（只是我自己的一点经验之谈，比较浅显！）<br>最开始本来想刷机的，但考虑到风险问题，还是放弃了（翻译翻译就是：俺没钱💰！）；不过，另辟蹊径还是可以的！就比如：使用框架；框架的优点显而易见，风险低、易操作、能反悔（不想搞了可以直接卸载就行）；缺点也有，就是局限性比较大；不过这也不是什么大问题，对于我们已经足够了！</p>
+<p>接下来就是操作了，就以我使用的框架与模块为例吧：（我用的是太极，据官网介绍，其完美支持包括 Android 5－12 在内的几乎所有机型：华为、三星、小米，Oppo 和 Vivo 等！ ）</p>
+<h3 id="软件准备"><a href="#软件准备" class="headerlink" title="软件准备"></a>软件准备</h3><ul>
+<li>太极（<a href="https://yinzhen.lanzouf.com/ihItj018nc8d">下载</a>）</li>
+<li>酷安 9.1.1版（<a href="https://mp.weixin.qq.com/s/hOdTa8fB_pFwguqzm4uFVQ">查看</a>） </li>
+<li>QQ 8.8.33版（自己去豌豆荚或者其他地方下载，安装包太大了，传不了蓝奏云）</li>
+<li>网易云音乐 6.0.0版（<a href="https://yinzhen.lanzouf.com/i7BnGwe7i6h">下载</a>）</li>
+<li>哔哩哔哩 6.55.0版（<a href="https://yinzhen.lanzouf.com/iVBKC018nkdg">下载</a>）</li>
+<li>CoolapkEx模块（<a href="https://yinzhen.lanzouf.com/iaTOxp649pe">下载</a>） — 配合酷安使用，用于更新app</li>
+<li>哔哩漫游（<a href="https://yinzhen.lanzouf.com/iK7AC018nb5e">下载</a>） — 可优化B站app</li>
+<li>UnblockMusic Pro（<a href="https://yinzhen.lanzouf.com/iJZ9y018noda">下载</a>） — 可解锁灰色音乐</li>
+<li>云村清洁工（<a href="https://yinzhen.lanzouf.com/iIxfY018nnxe">下载</a>） — 可自动签到、移除广告等</li>
+<li>QNotified（<a href="https://yinzhen.lanzouf.com/i9Azf018nbwb">下载</a>） — 用于对QQ的一系列修改如：闪照不销毁、消息防撤回、界面精简等<br><em>注意：软件与模块版本必须对应，否则模块可能不会生效</em></li>
+</ul>
+<h3 id="使用操作"><a href="#使用操作" class="headerlink" title="使用操作"></a>使用操作</h3><p>简单说就是：<br><strong>PS：（我比较懒，而且不怎么会做图，将就着看一下吧🙃）</strong><br>①下载并安装好太极与各个模块<br>②在太极里创建app（这一步需要卸载并重新安装app，会清除所有用户数据哦！<strong>请注意备份数据！</strong>）<br><img src="https://s2.loli.net/2022/07/10/5JKzUyIGxmbCOEL.jpg" style="zoom:33%;" /><br>③在太极里启用模块（把✓勾上就行了）<br><img src="https://s2.loli.net/2022/07/10/TC5DBf29IvxiaXo.jpg" style="zoom:33%;" /><br>④强制停止app （在太极主页点一下软件图标就会出现下图界面了）<br><img src="https://s2.loli.net/2022/07/10/9noLgDyi5VQdx8O.jpg" style="zoom:33%;" /><br>⑤在太极里启动app（只需要这一次，以后就可以通过桌面图标启动了；不过桌面启动有时会闪退，这时也可以在太极里启动）<br>⑥完毕</p>
+<hr>
+<h3 id="后话"><a href="#后话" class="headerlink" title="后话"></a>后话</h3><p>软件与模块能用的话，能不更新就不要更新了；除非软件更新了新的功能，而你又你非常非常想要体验新的功能！否则还是建议以稳定为主！<br>另外，在框架里的软件，会有一些个小问题，比如：有时候打开时直接闪退，有时候卡在开屏页面一段时间（几秒到几十秒不等）<br><strong>再次提醒：入坑需谨慎！</strong></p>
+<p><strong>如果我提供的软件如法使用，可自行上网寻找相应版本！</strong></p>
+<center>------END------</center>
+]]></content>
+      <categories>
+        <category>太极框架</category>
+        <category>模块</category>
+      </categories>
+      <tags>
+        <tag>太极框架</tag>
+        <tag>模块</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>新年快乐！</title>
+    <url>/archives/5785bd01.html</url>
+    <content><![CDATA[<center><h3>2022年列车已发车！我们一起向未来</h3></center>
+
+<span id="more"></span>
+
+<center><h3>新年快乐！年初的目标实现了吗？哈哈！</h3></center>
+
+</br>
+
+<img src="https://s2.loli.net/2022/07/10/wsVuX2xkBOr64dt.jpg" style="zoom: 33%;" />
+
+<center><h3>新年伊始 喜乐安宁 好运连连</h3></center>
+]]></content>
+      <categories>
+        <category>节日祝福</category>
+      </categories>
+      <tags>
+        <tag>节日</tag>
+        <tag>新年快乐</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>好玩的代码</title>
     <url>/archives/81d62aff.html</url>
     <content><![CDATA[<blockquote>
@@ -495,38 +550,6 @@
       </tags>
   </entry>
   <entry>
-    <title>太极框架的基本使用方法</title>
-    <url>/archives/9caa2ea.html</url>
-    <content><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>在几年前当我拥有自己的第一部手机的时候，我就在想一定要将其打造成顺手好用，却又独一无二的设备！如今，几年过去了，实现了的已经实现了，没实现的，还是没能实现！😂<br>不过，经过这一段时间的折腾，我也有了一点点微不足道的经验！现在就记录与此（只是我自己的一点经验之谈，比较浅显！）<br>最开始本来想刷机的，但考虑到风险问题，还是放弃了（翻译翻译就是：俺没钱💰！）；不过，另辟蹊径还是可以的！就比如：使用框架；框架的优点显而易见，风险低、易操作、能反悔（不想搞了可以直接卸载就行）；缺点也有，就是局限性比较大；不过这也不是什么大问题，对于我们已经足够了！</p>
-<p>接下来就是操作了，就以我使用的框架与模块为例吧：（我用的是太极，据官网介绍，其完美支持包括 Android 5－12 在内的几乎所有机型：华为、三星、小米，Oppo 和 Vivo 等！ ）</p>
-<h3 id="软件准备"><a href="#软件准备" class="headerlink" title="软件准备"></a>软件准备</h3><ul>
-<li>太极（<a href="https://yinzhen.lanzouf.com/ihItj018nc8d">下载</a>）</li>
-<li>酷安 9.1.1版（<a href="https://mp.weixin.qq.com/s/hOdTa8fB_pFwguqzm4uFVQ">查看</a>） </li>
-<li>QQ 8.8.33版（自己去豌豆荚或者其他地方下载，安装包太大了，传不了蓝奏云）</li>
-<li>网易云音乐 6.0.0版（<a href="https://yinzhen.lanzouf.com/i7BnGwe7i6h">下载</a>）</li>
-<li>哔哩哔哩 6.55.0版（<a href="https://yinzhen.lanzouf.com/iVBKC018nkdg">下载</a>）</li>
-<li>CoolapkEx模块（<a href="https://yinzhen.lanzouf.com/iaTOxp649pe">下载</a>） — 配合酷安使用，用于更新app</li>
-<li>哔哩漫游（<a href="https://yinzhen.lanzouf.com/iK7AC018nb5e">下载</a>） — 可优化B站app</li>
-<li>UnblockMusic Pro（<a href="https://yinzhen.lanzouf.com/iJZ9y018noda">下载</a>） — 可解锁灰色音乐</li>
-<li>云村清洁工（<a href="https://yinzhen.lanzouf.com/iIxfY018nnxe">下载</a>） — 可自动签到、移除广告等</li>
-<li>QNotified（<a href="https://yinzhen.lanzouf.com/i9Azf018nbwb">下载</a>） — 用于对QQ的一系列修改如：闪照不销毁、消息防撤回、界面精简等<br><em>注意：软件与模块版本必须对应，否则模块可能不会生效</em></li>
-</ul>
-<h3 id="使用操作"><a href="#使用操作" class="headerlink" title="使用操作"></a>使用操作</h3><p>简单说就是：<br><strong>PS：（我比较懒，而且不怎么会做图，将就着看一下吧🙃）</strong><br>①下载并安装好太极与各个模块<br>②在太极里创建app（这一步需要卸载并重新安装app，会清除所有用户数据哦！<strong>请注意备份数据！</strong>）<br><img src="https://s2.loli.net/2022/07/10/5JKzUyIGxmbCOEL.jpg" style="zoom:33%;" /><br>③在太极里启用模块（把✓勾上就行了）<br><img src="https://s2.loli.net/2022/07/10/TC5DBf29IvxiaXo.jpg" style="zoom:33%;" /><br>④强制停止app （在太极主页点一下软件图标就会出现下图界面了）<br><img src="https://s2.loli.net/2022/07/10/9noLgDyi5VQdx8O.jpg" style="zoom:33%;" /><br>⑤在太极里启动app（只需要这一次，以后就可以通过桌面图标启动了；不过桌面启动有时会闪退，这时也可以在太极里启动）<br>⑥完毕</p>
-<hr>
-<h3 id="后话"><a href="#后话" class="headerlink" title="后话"></a>后话</h3><p>软件与模块能用的话，能不更新就不要更新了；除非软件更新了新的功能，而你又你非常非常想要体验新的功能！否则还是建议以稳定为主！<br>另外，在框架里的软件，会有一些个小问题，比如：有时候打开时直接闪退，有时候卡在开屏页面一段时间（几秒到几十秒不等）<br><strong>再次提醒：入坑需谨慎！</strong></p>
-<p><strong>如果我提供的软件如法使用，可自行上网寻找相应版本！</strong></p>
-<center>------END------</center>
-]]></content>
-      <categories>
-        <category>太极框架</category>
-        <category>模块</category>
-      </categories>
-      <tags>
-        <tag>太极框架</tag>
-        <tag>模块</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>新的开始，祝我好运吧！</title>
     <url>/archives/758b7706.html</url>
     <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">
@@ -546,29 +569,6 @@
       </categories>
       <tags>
         <tag>随笔</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>新年快乐！</title>
-    <url>/archives/5785bd01.html</url>
-    <content><![CDATA[<center><h3>2022年列车已发车！我们一起向未来</h3></center>
-
-<span id="more"></span>
-
-<center><h3>新年快乐！年初的目标实现了吗？哈哈！</h3></center>
-
-</br>
-
-<img src="https://s2.loli.net/2022/07/10/wsVuX2xkBOr64dt.jpg" style="zoom: 33%;" />
-
-<center><h3>新年伊始 喜乐安宁 好运连连</h3></center>
-]]></content>
-      <categories>
-        <category>节日祝福</category>
-      </categories>
-      <tags>
-        <tag>节日</tag>
-        <tag>新年快乐</tag>
       </tags>
   </entry>
   <entry>
@@ -601,6 +601,26 @@
       <tags>
         <tag>节日</tag>
         <tag>母亲节快乐</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>毕业季，毕业快乐！</title>
+    <url>/archives/2ed09d89.html</url>
+    <content><![CDATA[<p>祝我和大家：</p>
+<center>
+    毕业快乐，前程似锦
+</center>
+
+<hr>
+<blockquote>
+<p>二零二二年，五月十七日，学校的包裹到家了，现在我有必要说一下我的感受，我没有骑车子，是 徒手一步步将它从快递点拿到家里，四年来第一次感到这么沉重，在家里拆开包裹，很多东西都是刚上大学时我老爸和我一起带去学校的，真是五味杂陈。从图书馆出来，我知道很可能一去不复返，步伐也越来越累，一瞬间想装点思念和回忆，就一个人去拍了小河边的雕塑、外教楼、12号教学楼，当然还有那个高大的图书馆，随后2022年5月15日17时58分 (不想错过公交),我从东门和门卫打过招呼后坐上6路公交，带着背包与行李，四年的青春说快不快，但这一刻真的十分不舍，先收拾行李吧，该洗洗该藏藏，总之，大学结束了。      — LYH（我的室友）</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>毕业了</category>
+      </categories>
+      <tags>
+        <tag>毕业了</tag>
       </tags>
   </entry>
   <entry>
@@ -660,26 +680,6 @@
         <tag>踩坑</tag>
         <tag>博客</tag>
         <tag>hexo</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>毕业季，毕业快乐！</title>
-    <url>/archives/2ed09d89.html</url>
-    <content><![CDATA[<p>祝我和大家：</p>
-<center>
-    毕业快乐，前程似锦
-</center>
-
-<hr>
-<blockquote>
-<p>二零二二年，五月十七日，学校的包裹到家了，现在我有必要说一下我的感受，我没有骑车子，是 徒手一步步将它从快递点拿到家里，四年来第一次感到这么沉重，在家里拆开包裹，很多东西都是刚上大学时我老爸和我一起带去学校的，真是五味杂陈。从图书馆出来，我知道很可能一去不复返，步伐也越来越累，一瞬间想装点思念和回忆，就一个人去拍了小河边的雕塑、外教楼、12号教学楼，当然还有那个高大的图书馆，随后2022年5月15日17时58分 (不想错过公交),我从东门和门卫打过招呼后坐上6路公交，带着背包与行李，四年的青春说快不快，但这一刻真的十分不舍，先收拾行李吧，该洗洗该藏藏，总之，大学结束了。      — LYH（我的室友）</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>毕业了</category>
-      </categories>
-      <tags>
-        <tag>毕业了</tag>
       </tags>
   </entry>
   <entry>
