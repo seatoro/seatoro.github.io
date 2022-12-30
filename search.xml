@@ -186,24 +186,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Hello World</title>
-    <url>/archives/4a17b156.html</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-]]></content>
-  </entry>
-  <entry>
     <title>MarkDown语法基础</title>
     <url>/archives/b797e99c.html</url>
     <content><![CDATA[<p>由于该博客的文章全部都是用markdown写的，所以就写一下MarkDown语法相关吧！<span id="more"></span></p>
@@ -231,6 +213,24 @@
         <tag>干货</tag>
         <tag>markdown</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>Hello World</title>
+    <url>/archives/4a17b156.html</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+]]></content>
   </entry>
   <entry>
     <title>免VIP复制百度文库内容</title>
@@ -265,59 +265,6 @@
         <tag>教程</tag>
         <tag>干货</tag>
         <tag>复制某文库内容</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>今天你“炫父”了吗</title>
-    <url>/archives/13c1bfd.html</url>
-    <content><![CDATA[<h3><center>父亲节了啊</h3>
-
-<center>今天记得给他打个电话哦！</br>
-    也许只是一句话就够他开心好久了！
-</center>
-
-<center>
-<a href="https://music.163.com/outchain/player?type=2&id=362996&auto=1&height=66">
-<img src="https://s2.loli.net/2022/06/19/xS5wFtQ1U7BoMuH.jpg" style="zoom:33%;" />
-</a>
-</center>
-
-<center>点击上方图片聆听《父亲》，走进父亲</center>
-
-<center>祝全天下所有的父亲<br>
-节日快乐！    
-</center>
----
-
-<p><small>图源：河南共青团</small></p>
-]]></content>
-      <categories>
-        <category>节日祝福</category>
-      </categories>
-      <tags>
-        <tag>父亲节快乐</tag>
-        <tag>节日</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>中秋节快乐</title>
-    <url>/archives/9d77eb79.html</url>
-    <content><![CDATA[<center><h3>又到一年中秋时，发个文章纪念一下</h3></center>
-
-<span id="more"></span>
-
-<center><h3>我在这里祝看到这篇文章的陌生人,也祝我和我的家人朋友中秋节快乐！</h3></center>
-
-</br>
-
-<img src="https://s2.loli.net/2022/07/10/iZ8lBAYWgM4tmVq.jpg" style="zoom:50%;" />
-]]></content>
-      <categories>
-        <category>节日祝福</category>
-      </categories>
-      <tags>
-        <tag>节日</tag>
-        <tag>中秋节快乐</tag>
       </tags>
   </entry>
   <entry>
@@ -356,32 +303,6 @@
         <tag>干货</tag>
         <tag>内网穿透</tag>
         <tag>Ngrok</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>国庆快乐</title>
-    <url>/archives/d31b6034.html</url>
-    <content><![CDATA[<center><h3>祖国 72 华诞</h3></center>
-
-<span id="more"></span>
-
-
-<center><h3>愿国：山河锦绣，国泰民安</h3></center>
-
-<center><h3>愿家：阖家欢乐，幸福团圆</h3></center>
-
-<center><h3>愿你：天天开心，事事顺利</h3></center>
-
-</br>
-
-<img src="https://s2.loli.net/2022/07/10/snMEFW9T2Z63g4w.jpg" style="zoom:50%;" />
-]]></content>
-      <categories>
-        <category>节日祝福</category>
-      </categories>
-      <tags>
-        <tag>节日</tag>
-        <tag>国庆快乐</tag>
       </tags>
   </entry>
   <entry>
@@ -470,29 +391,6 @@
       </tags>
   </entry>
   <entry>
-    <title>新年快乐！</title>
-    <url>/archives/5785bd01.html</url>
-    <content><![CDATA[<center><h3>2022年列车已发车！我们一起向未来</h3></center>
-
-<span id="more"></span>
-
-<center><h3>新年快乐！年初的目标实现了吗？哈哈！</h3></center>
-
-</br>
-
-<img src="https://s2.loli.net/2022/07/10/wsVuX2xkBOr64dt.jpg" style="zoom: 33%;" />
-
-<center><h3>新年伊始 喜乐安宁 好运连连</h3></center>
-]]></content>
-      <categories>
-        <category>节日祝福</category>
-      </categories>
-      <tags>
-        <tag>节日</tag>
-        <tag>新年快乐</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>好玩的代码</title>
     <url>/archives/81d62aff.html</url>
     <content><![CDATA[<blockquote>
@@ -548,80 +446,6 @@
       <tags>
         <tag>教程</tag>
         <tag>代码</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>新的开始，祝我好运吧！</title>
-    <url>/archives/758b7706.html</url>
-    <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">
-  <script id="hbeData" type="hbeData" data-hmacdigest="284546a504a2b313e52f4caacc692435f4cf924f8c9a30a9d0c69071eb7d5126">fa49ba0db6b3a8a014bad429b100e075fe461fe20ff799c5607976602c09b6fc4a6714c64d101f3004cc75688e48810b1511d305919ed94d93eee52d0b94dad5e6b68c9fd3cac53fe59f6ff04057e922a068b0e9d7bf0fd4d4f3882846e811a7a982466ce7157f5e33d75ec38dcbf5d98bed1d5bf1b63aaaf58033ad672fab27e7c2948f890910a97229d50eaf3901957c111788c879ef27fcf761f757a4af707b6b9284bff841526d4d5f5e108526ff86897a0246ceda309abbefb516ee0a57d3c437d1e94c8685dd6b119e4996b0636ed25216d710e86a3fca519f9a87d6b7ad62314fa1aae966da6a03fb14274f9edbe986fa0cd125d9175b72577ed99537872c73f64ec715d9a4fb20bd3e6a21a1ad4e991e4c8a90b8fb87bdfc6e8d06c5ae522df3b4fe82843c20fec43b9710c86c194d21b5595654eaee5c3587a60b29afef8d7a7cbeeb1340c2e1d3109ddd901cc228773214ca6c715c5d46399baae7251d2d496b0f576a3a8be1dcd31a10ce4a061bb1d69b0d03eb8c2b94cb0162836245df8d4465004e9dd2ab67f3746498053b6b18563ab86762f56e619cfd55849e8accb76db7a7dc6547b3a828ccaddd52d1960d5790782a2a0d840ebeb8cfa5ca67626a6b4fe918a3502a59bf986f1e7021aa3b22c858afb5fd23ea792810e69aac1601754537b2b6b77cc60134b8df9c2e348657b46c061271eaa7b45b53fdfafb7f50350fffbdd0953a37027328fc947d8a8046b6a6d2b9c46bd00de1313b69185d1bc6740ff65d81b2f6516cb3accbd54948dd296297b727a57f9d27872aef604a62058f03288bd9314cfd074ec502edb1987010a26e6c60c3c331908673deab106beb4a6291e765f88461954376c683a6f9fdbef7947a1c6121668f4e29dc3103cabb06fe42a5f46ffbe030600c0deba6cd3c182eddead069ddc51de872a095ed3b037c983feac6acdf27239a04760ef52b482368c0a271b8450555c14b5434abd05dd20b9455549d9c7e0840fd05e0d4dd3996c58334512e87ab3b324416f7df37229d176e9c8cdd7211c9eed5332bf8958ce071936dfb8d438098204c81756b6461aa519b8fc096585d1b9ef35ed112590d5379b6c6f37d7c083cd168</script>
-  <div class="hbe hbe-content">
-    <div class="hbe hbe-input hbe-input-default">
-      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">
-      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">
-        <span class="hbe hbe-input-label-content hbe-input-label-content-default">您好，这里需要密码才能查看哦！</span>
-      </label>
-    </div>
-  </div>
-</div>
-<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
-      <categories>
-        <category>随笔</category>
-      </categories>
-      <tags>
-        <tag>随笔</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>暂时停更</title>
-    <url>/archives/e4b6eac1.html</url>
-    <content><![CDATA[<h3 id="暂时停更"><a href="#暂时停更" class="headerlink" title="暂时停更"></a>暂时停更</h3><span id="more"></span>
-
-<h4 id="由于个人某些原因，暂时停止更新！"><a href="#由于个人某些原因，暂时停止更新！" class="headerlink" title="由于个人某些原因，暂时停止更新！"></a>由于个人某些原因，暂时停止更新！</h4>]]></content>
-      <categories>
-        <category>停更公告</category>
-      </categories>
-      <tags>
-        <tag>停更公告</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>母亲节快乐</title>
-    <url>/archives/3ea757f.html</url>
-    <content><![CDATA[<h3><center>母亲节了啊</h3>
-
-<center>祝全天下的母亲节日快乐，也祝我的母亲节日快乐！
-
-<center>记得给她们打电话哦！
-
-<p><img src="https://s2.loli.net/2022/07/10/qWpdvGcMT5SDLQP.jpg" alt="母亲节快乐"></p>
-]]></content>
-      <categories>
-        <category>节日祝福</category>
-      </categories>
-      <tags>
-        <tag>节日</tag>
-        <tag>母亲节快乐</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>毕业季，毕业快乐！</title>
-    <url>/archives/2ed09d89.html</url>
-    <content><![CDATA[<p>祝我和大家：</p>
-<center>
-    毕业快乐，前程似锦
-</center>
-
-<hr>
-<blockquote>
-<p>二零二二年，五月十七日，学校的包裹到家了，现在我有必要说一下我的感受，我没有骑车子，是 徒手一步步将它从快递点拿到家里，四年来第一次感到这么沉重，在家里拆开包裹，很多东西都是刚上大学时我老爸和我一起带去学校的，真是五味杂陈。从图书馆出来，我知道很可能一去不复返，步伐也越来越累，一瞬间想装点思念和回忆，就一个人去拍了小河边的雕塑、外教楼、12号教学楼，当然还有那个高大的图书馆，随后2022年5月15日17时58分 (不想错过公交),我从东门和门卫打过招呼后坐上6路公交，带着背包与行李，四年的青春说快不快，但这一刻真的十分不舍，先收拾行李吧，该洗洗该藏藏，总之，大学结束了。      — LYH（我的室友）</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>毕业了</category>
-      </categories>
-      <tags>
-        <tag>毕业了</tag>
       </tags>
   </entry>
   <entry>
@@ -681,36 +505,6 @@
         <tag>踩坑</tag>
         <tag>博客</tag>
         <tag>hexo</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>谷歌账号的注册</title>
-    <url>/archives/c7047092.html</url>
-    <content><![CDATA[<p>今天写一个关于国内注册谷歌账号的方法，防止自己忘记，也可给不会的朋友一点思路！</p>
-<p>这些方法也是截止写这篇文章为止，我自己测试可用的！</p>
-<span id="more"></span>
-
-<p>注册的前提是，你有 “科学上网” 的方法；否则就算注册了也没用不是吗？另外，你还得安装谷歌框架，这个软件你可以点 <a href="https://yinzhen.lanzoui.com/iM4Bkutxnfa">这里</a> 下载。</p>
-<p>这里我不提供该上网方法与软件，有兴趣自己搜！</p>
-<p><strong>ps：文中环境为 “科学上网” 环境下！</strong></p>
-<hr>
-<h3 id="1-利用QQ邮箱"><a href="#1-利用QQ邮箱" class="headerlink" title="1. 利用QQ邮箱"></a>1. 利用QQ邮箱</h3><p>手机上下载QQ邮箱，在 “添加账户” 处选择 Gmail 邮箱，点击后会出现登录页面；你可以点击左下角的 “创建账号” 来进行注册，接着一步一步往下走就行。</p>
-<h3 id="2-利用Gmail邮箱"><a href="#2-利用Gmail邮箱" class="headerlink" title="2. 利用Gmail邮箱"></a>2. 利用Gmail邮箱</h3><p>Gmail邮箱在各大软件商店都能下载，安装完成并打开后选择创建账户，一步一步往下即可，国内手机号是可以接到验证码的！</p>
-<p>今天我刚用此方法注册了一个新的账号，可行！ </p>
-<h3 id="3-利用OurPlay加速器"><a href="#3-利用OurPlay加速器" class="headerlink" title="3. 利用OurPlay加速器"></a>3. 利用OurPlay加速器</h3><p>该软件在各大应用商店也能下载，下载安装后，点击登录账户（此时没有创建账户这个选项，别急，往下看）；随便输入一个已经存在的账号【例如：aaaa666#gmail.com （将 # 改为 @ 即可）】，进入下一步输入密码；不是你的账号，你肯定不知道密码，所以点手机上的返回菜单（不要大返回桌面，返回上一步就行），这是你会发现在登录账户页面的左下角出现了 “创建账户” 的按钮；接着一步一步向下就行了。注册完成就能登录Gmail了，这时就可以将OurPlay加速器卸载了！（没错，卸磨杀驴😉）</p>
-<h3 id="4-利用-Google-Chrome-浏览器"><a href="#4-利用-Google-Chrome-浏览器" class="headerlink" title="4. 利用 Google Chrome 浏览器"></a>4. 利用 Google Chrome 浏览器</h3><p>这个方法是我听别人说的，今天我测试了一下，没成功；但想到可能是我自己的原因，所以就写出来给大家看看，万一你们可以呢，对吧！</p>
-<p>将PC端 Google Chrome 浏览器语言设置为英文，重启浏览器；然后打开页面进行注册，按部就班地往下即可。</p>
-<hr>
-<h3 id="后话"><a href="#后话" class="headerlink" title="后话"></a>后话</h3><p>注册完成后，不要频繁更换代理IP，有可能会被封，就这样。</p>
-]]></content>
-      <categories>
-        <category>干货</category>
-        <category>谷歌</category>
-      </categories>
-      <tags>
-        <tag>教程</tag>
-        <tag>干货</tag>
-        <tag>注册谷歌账号</tag>
       </tags>
   </entry>
   <entry>
@@ -813,6 +607,36 @@
         <tag>踩坑</tag>
         <tag>freenom</tag>
         <tag>域名</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>谷歌账号的注册</title>
+    <url>/archives/c7047092.html</url>
+    <content><![CDATA[<p>今天写一个关于国内注册谷歌账号的方法，防止自己忘记，也可给不会的朋友一点思路！</p>
+<p>这些方法也是截止写这篇文章为止，我自己测试可用的！</p>
+<span id="more"></span>
+
+<p>注册的前提是，你有 “科学上网” 的方法；否则就算注册了也没用不是吗？另外，你还得安装谷歌框架，这个软件你可以点 <a href="https://yinzhen.lanzoui.com/iM4Bkutxnfa">这里</a> 下载。</p>
+<p>这里我不提供该上网方法与软件，有兴趣自己搜！</p>
+<p><strong>ps：文中环境为 “科学上网” 环境下！</strong></p>
+<hr>
+<h3 id="1-利用QQ邮箱"><a href="#1-利用QQ邮箱" class="headerlink" title="1. 利用QQ邮箱"></a>1. 利用QQ邮箱</h3><p>手机上下载QQ邮箱，在 “添加账户” 处选择 Gmail 邮箱，点击后会出现登录页面；你可以点击左下角的 “创建账号” 来进行注册，接着一步一步往下走就行。</p>
+<h3 id="2-利用Gmail邮箱"><a href="#2-利用Gmail邮箱" class="headerlink" title="2. 利用Gmail邮箱"></a>2. 利用Gmail邮箱</h3><p>Gmail邮箱在各大软件商店都能下载，安装完成并打开后选择创建账户，一步一步往下即可，国内手机号是可以接到验证码的！</p>
+<p>今天我刚用此方法注册了一个新的账号，可行！ </p>
+<h3 id="3-利用OurPlay加速器"><a href="#3-利用OurPlay加速器" class="headerlink" title="3. 利用OurPlay加速器"></a>3. 利用OurPlay加速器</h3><p>该软件在各大应用商店也能下载，下载安装后，点击登录账户（此时没有创建账户这个选项，别急，往下看）；随便输入一个已经存在的账号【例如：aaaa666#gmail.com （将 # 改为 @ 即可）】，进入下一步输入密码；不是你的账号，你肯定不知道密码，所以点手机上的返回菜单（不要大返回桌面，返回上一步就行），这是你会发现在登录账户页面的左下角出现了 “创建账户” 的按钮；接着一步一步向下就行了。注册完成就能登录Gmail了，这时就可以将OurPlay加速器卸载了！（没错，卸磨杀驴😉）</p>
+<h3 id="4-利用-Google-Chrome-浏览器"><a href="#4-利用-Google-Chrome-浏览器" class="headerlink" title="4. 利用 Google Chrome 浏览器"></a>4. 利用 Google Chrome 浏览器</h3><p>这个方法是我听别人说的，今天我测试了一下，没成功；但想到可能是我自己的原因，所以就写出来给大家看看，万一你们可以呢，对吧！</p>
+<p>将PC端 Google Chrome 浏览器语言设置为英文，重启浏览器；然后打开页面进行注册，按部就班地往下即可。</p>
+<hr>
+<h3 id="后话"><a href="#后话" class="headerlink" title="后话"></a>后话</h3><p>注册完成后，不要频繁更换代理IP，有可能会被封，就这样。</p>
+]]></content>
+      <categories>
+        <category>干货</category>
+        <category>谷歌</category>
+      </categories>
+      <tags>
+        <tag>教程</tag>
+        <tag>干货</tag>
+        <tag>注册谷歌账号</tag>
       </tags>
   </entry>
 </search>
