@@ -186,24 +186,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Hello World</title>
-    <url>/archives/4a17b156.html</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-]]></content>
-  </entry>
-  <entry>
     <title>MarkDown语法基础</title>
     <url>/archives/b797e99c.html</url>
     <content><![CDATA[<p>由于该博客的文章全部都是用markdown写的，所以就写一下MarkDown语法相关吧！<span id="more"></span></p>
@@ -231,6 +213,24 @@
         <tag>干货</tag>
         <tag>markdown</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>Hello World</title>
+    <url>/archives/4a17b156.html</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+]]></content>
   </entry>
   <entry>
     <title>免VIP复制百度文库内容</title>
@@ -391,6 +391,35 @@
       </tags>
   </entry>
   <entry>
+    <title>突然连接不了GitHub?</title>
+    <url>/archives/d840bd6.html</url>
+    <content><![CDATA[<p>前段时间开学了，比较忙就没空写博客了；不过就在我忙里偷闲抽空写的时候发现连接不了GitHub了，嗯？什么情况？<span id="more"></span></p>
+<p>这是什么情况？不应该啊？我啥都没动咋就不行了？一连串的疑问在我脑中萦绕！</p>
+<p>以下为报错的代码：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">fatal: Could not read from remote repository.</span><br><span class="line"></span><br><span class="line">Please make sure you have the correct access rights</span><br><span class="line">and the repository exists.</span><br><span class="line">FATAL &#123;</span><br><span class="line">  err: Error: Spawn failed</span><br><span class="line">      at ChildProcess.&lt;anonymous&gt; (D:\MyBlog\node_modules\hexo-util\lib\spawn.js:51:21)</span><br><span class="line">      at ChildProcess.emit (events.js:400:28)</span><br><span class="line">      at ChildProcess.cp.emit (D:\MyBlog\node_modules\cross-spawn\lib\enoent.js:34:29)</span><br><span class="line">      at Process.ChildProcess._handle.onexit (internal/child_process.js:277:12) &#123;</span><br><span class="line">    code: 128</span><br><span class="line">  &#125;</span><br><span class="line">&#125; Something&#x27;s wrong. Maybe you can find the solution here: %s https://hexo.io/docs/troubleshooting.html</span><br></pre></td></tr></table></figure>
+
+<p>没办法，第一次遇到，上网搜解决办法吧！大部分的帖子都说ssh失效了，重新生成一下；好，我照做！但完全没效果是什么意思，是我不配了吗？难搞哦！最后想了想先放这儿吧，有空再好好收拾收拾你！</p>
+<p>过了几天，我又屁颠屁颠地回来了；继续搞，我还就不信了！继续上网搜解决办法呗，但结果都大差不差，都让我重新生成ssh；可我都重新生成几遍了，还是不行，这怎搞？老规矩，先晾着，说不定哪天我试试他自己就好了！（<del>我在想peach</del>）</p>
+<p>不过，这次我可没放着就不管了；我甚至走路都在想到底是哪里出问题了；后来仔细分析了一下，好像和家里的改变就只有地区的改变了！再深想一下，网络也随之改变了！嗯，一定是这个原因，死马当做活马医，试试吧！<strong>断开校园网，拔掉网线</strong>，换个手机热点看看！（<em>一定要拔掉网线，不要问我为什么会知道</em>）</p>
+<p>没想到啊，没想到！结果真的出在这里，用手机热点后一下就连通了！！（话说，这是为什么呢？校园网端口没开放？那换个端口行不？我还没试过，有谁试了可以给我说一下哈！）</p>
+<p>到这儿，文章就结束了；结果只是换个网络就行，整的那么复杂。还好我没想不开将博客删了重建！也算是一点经验吧！希望遇到这个问题的朋友看到这儿后可以完美解决！</p>
+<hr>
+<p>突然又想到福尔摩斯的一句名言：</p>
+<blockquote>
+<h4 id="排除一切不可能的，剩下的即使再不可能，那也是真相！-—-夏洛克·福尔摩斯"><a href="#排除一切不可能的，剩下的即使再不可能，那也是真相！-—-夏洛克·福尔摩斯" class="headerlink" title="排除一切不可能的，剩下的即使再不可能，那也是真相！  — 夏洛克·福尔摩斯"></a>排除一切不可能的，剩下的即使再不可能，那也是真相！<br><br>  — 夏洛克·福尔摩斯</h4></blockquote>
+]]></content>
+      <categories>
+        <category>Hexo</category>
+        <category>Github</category>
+      </categories>
+      <tags>
+        <tag>教程</tag>
+        <tag>踩坑</tag>
+        <tag>博客</tag>
+        <tag>hexo</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>好玩的代码</title>
     <url>/archives/81d62aff.html</url>
     <content><![CDATA[<blockquote>
@@ -446,65 +475,6 @@
       <tags>
         <tag>教程</tag>
         <tag>代码</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>淘宝npm镜像将停止解析</title>
-    <url>/archives/12fca523.html</url>
-    <content><![CDATA[<h3 id="老淘宝-npm-镜像域名即将停止解析"><a href="#老淘宝-npm-镜像域名即将停止解析" class="headerlink" title="老淘宝 npm 镜像域名即将停止解析"></a>老淘宝 npm 镜像域名即将停止解析</h3><ul>
-<li><p>淘宝 <code>npm</code> 镜像站品牌升级，新品牌为 <code>npmmirror</code> （<code>npm</code> 中国镜像站）。</p>
-</li>
-<li><p>广为人知的淘宝 <code>npm</code> 镜像老域名（*.npm.taobao.org）将在 <strong>2022.06.30号</strong> 正式下线和停止 <code>DNS</code> 解析。</p>
-</li>
-<li><p>涉及到的域名迁移如下：</p>
-<blockquote>
-<p><a href="http://npm.taobao.org/">http://npm.taobao.org</a> =&gt; <a href="http://npmmirror.com/">http://npmmirror.com</a><br><a href="http://registry.npm.taobao.org/">http://registry.npm.taobao.org</a> =&gt; <a href="http://registry.npmmirror.com/">http://registry.npmmirror.com</a></p>
-</blockquote>
-</li>
-<li><p>可能产生的大影响：</p>
-<ol>
-<li>所有写死的都得换。</li>
-<li>企业用户需要联系 网管/IT/SRE 更新防火墙白名单。</li>
-<li>存量应用的 <code>lock</code> 文件，开发者需要自行执行 <code>sed</code> 等指令去替换或重新生成。</li>
-<li>本地 <code>npmrc</code> 里面的 <code>registry</code> 地址（如果有，则）需要开发者自行更新。</li>
-</ol>
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>资讯</category>
-      </categories>
-      <tags>
-        <tag>资讯</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>突然连接不了GitHub?</title>
-    <url>/archives/d840bd6.html</url>
-    <content><![CDATA[<p>前段时间开学了，比较忙就没空写博客了；不过就在我忙里偷闲抽空写的时候发现连接不了GitHub了，嗯？什么情况？<span id="more"></span></p>
-<p>这是什么情况？不应该啊？我啥都没动咋就不行了？一连串的疑问在我脑中萦绕！</p>
-<p>以下为报错的代码：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">fatal: Could not read from remote repository.</span><br><span class="line"></span><br><span class="line">Please make sure you have the correct access rights</span><br><span class="line">and the repository exists.</span><br><span class="line">FATAL &#123;</span><br><span class="line">  err: Error: Spawn failed</span><br><span class="line">      at ChildProcess.&lt;anonymous&gt; (D:\MyBlog\node_modules\hexo-util\lib\spawn.js:51:21)</span><br><span class="line">      at ChildProcess.emit (events.js:400:28)</span><br><span class="line">      at ChildProcess.cp.emit (D:\MyBlog\node_modules\cross-spawn\lib\enoent.js:34:29)</span><br><span class="line">      at Process.ChildProcess._handle.onexit (internal/child_process.js:277:12) &#123;</span><br><span class="line">    code: 128</span><br><span class="line">  &#125;</span><br><span class="line">&#125; Something&#x27;s wrong. Maybe you can find the solution here: %s https://hexo.io/docs/troubleshooting.html</span><br></pre></td></tr></table></figure>
-
-<p>没办法，第一次遇到，上网搜解决办法吧！大部分的帖子都说ssh失效了，重新生成一下；好，我照做！但完全没效果是什么意思，是我不配了吗？难搞哦！最后想了想先放这儿吧，有空再好好收拾收拾你！</p>
-<p>过了几天，我又屁颠屁颠地回来了；继续搞，我还就不信了！继续上网搜解决办法呗，但结果都大差不差，都让我重新生成ssh；可我都重新生成几遍了，还是不行，这怎搞？老规矩，先晾着，说不定哪天我试试他自己就好了！（<del>我在想peach</del>）</p>
-<p>不过，这次我可没放着就不管了；我甚至走路都在想到底是哪里出问题了；后来仔细分析了一下，好像和家里的改变就只有地区的改变了！再深想一下，网络也随之改变了！嗯，一定是这个原因，死马当做活马医，试试吧！<strong>断开校园网，拔掉网线</strong>，换个手机热点看看！（<em>一定要拔掉网线，不要问我为什么会知道</em>）</p>
-<p>没想到啊，没想到！结果真的出在这里，用手机热点后一下就连通了！！（话说，这是为什么呢？校园网端口没开放？那换个端口行不？我还没试过，有谁试了可以给我说一下哈！）</p>
-<p>到这儿，文章就结束了；结果只是换个网络就行，整的那么复杂。还好我没想不开将博客删了重建！也算是一点经验吧！希望遇到这个问题的朋友看到这儿后可以完美解决！</p>
-<hr>
-<p>突然又想到福尔摩斯的一句名言：</p>
-<blockquote>
-<h4 id="排除一切不可能的，剩下的即使再不可能，那也是真相！-—-夏洛克·福尔摩斯"><a href="#排除一切不可能的，剩下的即使再不可能，那也是真相！-—-夏洛克·福尔摩斯" class="headerlink" title="排除一切不可能的，剩下的即使再不可能，那也是真相！  — 夏洛克·福尔摩斯"></a>排除一切不可能的，剩下的即使再不可能，那也是真相！<br><br>  — 夏洛克·福尔摩斯</h4></blockquote>
-]]></content>
-      <categories>
-        <category>Hexo</category>
-        <category>Github</category>
-      </categories>
-      <tags>
-        <tag>教程</tag>
-        <tag>踩坑</tag>
-        <tag>博客</tag>
-        <tag>hexo</tag>
       </tags>
   </entry>
   <entry>
@@ -575,6 +545,36 @@
         <tag>教程</tag>
         <tag>干货</tag>
         <tag>搜索技巧</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>淘宝npm镜像将停止解析</title>
+    <url>/archives/12fca523.html</url>
+    <content><![CDATA[<h3 id="老淘宝-npm-镜像域名即将停止解析"><a href="#老淘宝-npm-镜像域名即将停止解析" class="headerlink" title="老淘宝 npm 镜像域名即将停止解析"></a>老淘宝 npm 镜像域名即将停止解析</h3><ul>
+<li><p>淘宝 <code>npm</code> 镜像站品牌升级，新品牌为 <code>npmmirror</code> （<code>npm</code> 中国镜像站）。</p>
+</li>
+<li><p>广为人知的淘宝 <code>npm</code> 镜像老域名（*.npm.taobao.org）将在 <strong>2022.06.30号</strong> 正式下线和停止 <code>DNS</code> 解析。</p>
+</li>
+<li><p>涉及到的域名迁移如下：</p>
+<blockquote>
+<p><a href="http://npm.taobao.org/">http://npm.taobao.org</a> =&gt; <a href="http://npmmirror.com/">http://npmmirror.com</a><br><a href="http://registry.npm.taobao.org/">http://registry.npm.taobao.org</a> =&gt; <a href="http://registry.npmmirror.com/">http://registry.npmmirror.com</a></p>
+</blockquote>
+</li>
+<li><p>可能产生的大影响：</p>
+<ol>
+<li>所有写死的都得换。</li>
+<li>企业用户需要联系 网管/IT/SRE 更新防火墙白名单。</li>
+<li>存量应用的 <code>lock</code> 文件，开发者需要自行执行 <code>sed</code> 等指令去替换或重新生成。</li>
+<li>本地 <code>npmrc</code> 里面的 <code>registry</code> 地址（如果有，则）需要开发者自行更新。</li>
+</ol>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>资讯</category>
+      </categories>
+      <tags>
+        <tag>资讯</tag>
       </tags>
   </entry>
   <entry>
