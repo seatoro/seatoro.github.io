@@ -4,6 +4,35 @@
   
     
     <entry>
+      <title>Docker常用命令</title>
+      <link href="/archives/29dc6fe8.html"/>
+      <url>/archives/29dc6fe8.html</url>
+      
+        <content type="html"><![CDATA[<ul><li>启动所有容器</li></ul><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker start $(docker ps -a -q)</span><br></pre></td></tr></table></figure><ul><li>停止所有容器</li></ul><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker stop $(docker ps -a -q)</span><br></pre></td></tr></table></figure><ul><li>停止容器</li></ul><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker stop 容器名/容器ID</span><br></pre></td></tr></table></figure><ul><li>删除容器</li></ul><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">docker rm -f 容器名/容器ID #删除一个容器</span><br><span class="line">docker rm -f 容器名/容器ID 容器名/容器ID #删除多个容器 空格隔开要删除的容器名或容器ID</span><br><span class="line">docker rm -f $(docker ps -aq)    #删除全部容器</span><br></pre></td></tr></table></figure><ul><li>删除所有镜像</li></ul><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker rmi $(docker images -q)</span><br></pre></td></tr></table></figure><ul><li>删除镜像</li></ul><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker rmi -f 镜像名/镜像ID</span><br></pre></td></tr></table></figure><ul><li>查看运行的容器</li></ul><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker ps</span><br></pre></td></tr></table></figure><ul><li>查看所有镜像</li></ul><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker images</span><br></pre></td></tr></table></figure><ul><li>对指定容器操作</li></ul><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">docker start 容器id          # 启动容器</span><br><span class="line">docker restart 容器id        # 重启容器</span><br><span class="line">docker stop 容器id           # 停止当前运行的容器</span><br><span class="line">docker kill 容器id           # 强制停止当前容器</span><br></pre></td></tr></table></figure><ul><li>保存镜像</li></ul><p><em>将我们的镜像 保存为 tar压缩文件，这样方便镜像转移和保存，然后 可以在任何一台安装了docker的服务器上加载这个镜像</em></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker save 镜像名/镜像ID -o 镜像保存在哪个位置与名字</span><br></pre></td></tr></table></figure><ul><li>加载镜像</li></ul><p><em>任何装有docker 的地方加载镜像保存文件，使其恢复为一个镜像</em></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker load -i 镜像保存文件位置</span><br></pre></td></tr></table></figure><ul><li>获取容器ID</li></ul><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker ps | grep &quot;$filename&quot; | awk &#x27;&#123;print $1&#125;&#x27;</span><br></pre></td></tr></table></figure><hr><p><strong>待续…</strong></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 干货 </category>
+          
+          <category> Docker </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 教程 </tag>
+            
+            <tag> Docker </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>CentOS部署Memos</title>
       <link href="/archives/5fc31910.html"/>
       <url>/archives/5fc31910.html</url>
