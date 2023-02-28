@@ -1,756 +1,498 @@
 <?xml version="1.0" encoding="utf-8"?>
-<search>
-  <entry>
-    <title>FFmpeg的简单使用</title>
-    <url>/archives/d9d00a92.html</url>
-    <content><![CDATA[<p>简单聊一聊FFmpeg的使用；</p>
-<p>其有非常强大的功能：包括但不限于 视频采集功能、视频格式转换、视频抓图、给视频加水印等。<span id="more"></span></p>
-<p><em>以下来源于百度百科：FFmpeg是一套可以用来记录、转换数字音频、视频，并能将其转化为流的开源计算机程序。采用LGPL或GPL许可证。它提供了录制、转换以及流化音视频的完整解决方案。它包含了非常先进的音频/视频编解码库libavcodec，为了保证高可移植性和编解码质量，libavcodec里很多code都是从头开发的。</em></p>
-<hr>
-<h3 id="简单介绍一下使用方法："><a href="#简单介绍一下使用方法：" class="headerlink" title="简单介绍一下使用方法："></a>简单介绍一下使用方法：</h3><h3 id="应用场景1：格式转换"><a href="#应用场景1：格式转换" class="headerlink" title="应用场景1：格式转换"></a>应用场景1：格式转换</h3><p>我想把用iPhone拍的.MOV文件转成.avi文件。最简单了，可以执行下面的命令：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ffmpeg -i D:\Media\IMG_0873.MOV D:\Media\output.avi  </span><br></pre></td></tr></table></figure>
-
-<p>【意思是，把D:\Media目录下的源文件IMG_0873.MOV（视频：h.264，音频：aac）转换成output.avi（编码格式自动选择为：视频mpeg4，音频mp3），目标文件仍然保存到D:\Media目录下。】</p>
-<p>问题来了：我想自己指定编码格式，怎么办呢？可通过目标文件的扩展名（.flv、.mpg、.mp4、.wmv等）来控制，比如：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ffmpeg -i D:\Media\IMG_0873.MOV D:\Media\output2.flv</span><br></pre></td></tr></table></figure>
-
-<h3 id="应用场景2：调整大小"><a href="#应用场景2：调整大小" class="headerlink" title="应用场景2：调整大小"></a>应用场景2：调整大小</h3><p>若源文件的图像帧尺寸是1920x 1080，我不需要这么大——能有720 x 480就够了。于是，就要用上-s参数了。为了保证图像缩放后的质量，最好加上码流参数-b:v。如下：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ffmpeg -i D:\Media\IMG_0873.MOV -s 720x480 -b:v 1500k D:\Media\output2.avi</span><br></pre></td></tr></table></figure>
-
-<h3 id="应用场景3：翻转视频"><a href="#应用场景3：翻转视频" class="headerlink" title="应用场景3：翻转视频"></a>应用场景3：翻转视频</h3><p>手机拍的视频中，有些是颠倒的，我想让它顺时针旋转90度。这时候，可以使用-vf参数加入一个过滤器，如下：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ffmpeg -i D:\Media\IMG_0873.MOV -vf &quot;rotate=90*PI/180&quot; D:\Media\output3.avi</span><br></pre></td></tr></table></figure>
-
-<p>注：如果想逆时针旋转90度，90前面加个负号就可以了。</p>
-<h3 id="应用场景4：截取一段"><a href="#应用场景4：截取一段" class="headerlink" title="应用场景4：截取一段"></a>应用场景4：截取一段</h3><p>需要从源视频里截取一小段，怎么办呢？比如从第2秒的地方开始，往后截取10秒钟。命令行可以这样：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ffmpeg -ss 2 -t 10 -i D:\Media\IMG_0873.MOV D:\Media\output4.avi</span><br></pre></td></tr></table></figure>
-
-<p>注：这种情况下，-ss和-t参数必须放在-i前面，表示是限定后面跟着的输入文件的。</p>
-<h3 id="应用场景5：视频合成"><a href="#应用场景5：视频合成" class="headerlink" title="应用场景5：视频合成"></a>应用场景5：视频合成</h3><p>用手机拍的视频有时候背景噪音比较大。怎么把噪音去掉，换成一段美妙的音乐呢？使用FFmpeg也能轻易做到。</p>
-<p><em><strong>第一步：</strong></em>把源文件里的音频去掉，生成一个临时文件tmp.mov</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ffmpeg -i D:\Media\IMG_0873.MOV -vcodec copy -an D:\Media\tmp.mov</span><br></pre></td></tr></table></figure>
-
-<p>注：-vcodec copy的意思是对源视频不解码，直接拷贝到目标文件；-an的意思是将源文件里的音频丢弃。</p>
-<p><em><strong>第二步：</strong></em>把这个无声的视频文件（tmp.mov）与一个音乐文件（music.mp3）合成，最终生成output.mov</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ffmpeg -i D:\Media\tmp.mov -ss 30 -t 52 -i D:\Media\music.mp3 -vcodec copy D:\Media\output5.avi</span><br><span class="line"></span><br><span class="line">ffmpeg.exe -i G:\test\removebgm.mp4 -ss 00:00:00.0 -t 00:03:31 -i G:\test\456.mp3 -acodec copy G:\test\hfdk.mp4</span><br></pre></td></tr></table></figure>
-
-<p>为了保证良好的合成效果，音乐时长必须匹配视频时长。这里我们事先知道视频时长为52秒，于是截取music.mp3文件的第30秒往后的52秒与视频合成。另外，为了保证音频时长截取的准确性，我们这里没有使用-acodec copy，而是让音频重新转码。</p>
-<p>还有一种情况：我们希望在一段视频上叠加一张图片（将视频画面全部显示该图片）。可以简单实现如下：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ffmpeg -i D:\Media\IMG_0873.MOV -i D:\Media\logo.png -filter_complex   &#x27;overlay&#x27; D:\Media\output6.avi</span><br></pre></td></tr></table></figure>
-
-<h3 id="应用场景6：视频播放"><a href="#应用场景6：视频播放" class="headerlink" title="应用场景6：视频播放"></a>应用场景6：视频播放</h3><p>格式转换或合成之后，我们需要试着播放一下。播放器的选择很多。这里顺手用ffplay工具也行：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ffplay -i D:\Media\output6.avi</span><br></pre></td></tr></table></figure>
-
-<h3 id="应用场景7：获取视频信息"><a href="#应用场景7：获取视频信息" class="headerlink" title="应用场景7：获取视频信息"></a>应用场景7：获取视频信息</h3><p>有时候，我只是想看看这个视频文件的格式信息。可以用ffprobe工具：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ffprobe -i D:\Media\IMG_0873.MOV</span><br></pre></td></tr></table></figure>
-
-<h3 id="应用场景8：截取视频前3秒-并转化为gif"><a href="#应用场景8：截取视频前3秒-并转化为gif" class="headerlink" title="应用场景8：截取视频前3秒 并转化为gif"></a>应用场景8：截取视频前3秒 并转化为gif</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ffmpeg -ss 00:00:01 -t 3 -i 123.mp4 -vf crop=iw:ih*2/3 -s 320x240 -r 7 456.gif</span><br></pre></td></tr></table></figure>
-
-<p>ps: -ss 00：00：01表示从视频第一秒开始截取  ;  - t 表示截图3秒钟的视频  ;   -vf crop=iw:ih*2/3 表示截取视频的部分区域，其中宽为视频宽度，高为原视频的2/3  ;     -r 7 表示每秒帧率为7帧  ; </p>
-<h3 id="应用场景9：把AVI里的音频保存成mp3文件"><a href="#应用场景9：把AVI里的音频保存成mp3文件" class="headerlink" title="应用场景9：把AVI里的音频保存成mp3文件"></a>应用场景9：把AVI里的音频保存成mp3文件</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ffmpeg -i source_video.avi -vn -ar 44100 -acodec libmp3lame -ac 2 -ab 192K -f mp3 sound.mp3</span><br></pre></td></tr></table></figure>
-
-<h3 id="应用场景10：分离视频音频流"><a href="#应用场景10：分离视频音频流" class="headerlink" title="应用场景10：分离视频音频流"></a>应用场景10：<strong>分离视频音频流</strong></h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ffmpeg.exe -i G:\test\123.mp4 -f mp3 -vn G:\test\fgsiug.mp3</span><br><span class="line"></span><br><span class="line">ffmpeg.exe -i G:\test\123.mp4 -vn -codec copy G:\test\123.m4a</span><br><span class="line">//分离音频流      //  m4a 与 MP3 还不一样</span><br></pre></td></tr></table></figure>
-
-<p><em>ps：以上来源于互联网以及FFmpeg官方文档</em></p>
-<hr>
-<h3 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h3><p>附上FFmpeg官网链接：<a href="https://github.com/FFmpeg/FFmpeg">FFmpeg/FFmpeg: Mirror of https://git.ffmpeg.org/ffmpeg.git (github.com)</a></p>
-]]></content>
+<search> 
+  
+  
+    
+    <entry>
+      <title>CentOS部署Memos</title>
+      <link href="/archives/5fc31910.html"/>
+      <url>/archives/5fc31910.html</url>
+      
+        <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>最近又白嫖一个月服务器，闲着没事就想着用来干点啥；刚好看见一个实用的备忘项目，就来搞搞，顺便 <del>水</del> 写一篇博客。</p><h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><ul><li>一台服务器，我这个是白嫖阿里云的</li><li>一个域名（如果只是玩玩，练练手没想让别人访问就不用了）</li><li>Xshell或者其他同类型软件（主要是用网页不太方便）</li><li>一个聪明的大脑</li></ul><h2 id="服务器"><a href="#服务器" class="headerlink" title="服务器"></a>服务器</h2><p>选择服务器操作系统：建议选Linux，我这里用的是CentOS7.8_x64。</p><p>设置你的实例密码，待会儿用得上</p><h2 id="Xshell"><a href="#Xshell" class="headerlink" title="Xshell"></a>Xshell</h2><p>这里我用的是 <a href="https://www.xshell.com/zh/free-for-home-school/">Xshell</a> ，你也可以用其他同类型软件；链接服务器：</p><p>主机：填你服务器的公网IP；端口号：22；    如下：</p><img src="https://s2.loli.net/2023/02/28/X5aCnYug4RdKAMw.jpg" alt="xshell1" style="zoom: 67%;" /><p>然后选择左侧栏中的“用户身份验证”，填写  用户名：root；密码：就是你刚才设置的；    如下：</p><img src="https://s2.loli.net/2023/02/28/cpiFaOkmuUfKS9P.jpg" style="zoom:67%;" /><p>点击下边的“连接”即可连接到你的服务器；出现以下字样（即root@主机名）即算连接成功，如下图：</p><img src="https://s2.loli.net/2023/02/28/wEexMlhjY7VOidR.jpg" style="zoom:67%;" /><h3 id="检查服务器是否支持docker"><a href="#检查服务器是否支持docker" class="headerlink" title="检查服务器是否支持docker"></a>检查服务器是否支持docker</h3><p>安装docker的前提条件：</p><ul><li>必须是64位CPU架构的计算机，Docker目前不支持32位CPU；</li><li>运行Linux3.8或更高版本内核，CentOS时内核必不小于3.10；</li></ul><p>可使用以下命令来查看centos内核版本</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">uname -r</span><br></pre></td></tr></table></figure><h3 id="yum安装docker"><a href="#yum安装docker" class="headerlink" title="yum安装docker"></a>yum安装docker</h3><ul><li>先更新yum包，使用最新版本</li></ul><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum update</span><br></pre></td></tr></table></figure><p>中间需要你输入一次 “y”  如下：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Is this ok [y/d/N]: y               //这里输入y即可</span><br></pre></td></tr></table></figure><p>最后出现 <code>Complete!</code> 更新表示完成</p><ul><li>安装需要的软件包</li></ul><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install -y yum-utils device-mapper-persistent-data lvm2</span><br></pre></td></tr></table></figure><ul><li>设置yum docker 源</li></ul><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum-config-manager --add-repo http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo                     //这里用阿里镜像 </span><br></pre></td></tr></table></figure><ul><li>安装docker，默认安装最新稳定版，你也可以指定版本号，这里我用最新版</li></ul><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install -y docker-ce</span><br></pre></td></tr></table></figure><ul><li>验证是否安装成功</li></ul><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker version</span><br></pre></td></tr></table></figure><p>出现以下即成功：</p><img src="https://s2.loli.net/2023/02/28/5W2GywjUCrvBsIz.jpg" style="zoom:67%;" /><ul><li>启动docker</li></ul><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl start docker</span><br></pre></td></tr></table></figure><ul><li>加入开机自启</li></ul><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl enable docker</span><br></pre></td></tr></table></figure><center>—— 至此，docker安装完毕 ——</center><h2 id="部署Memos"><a href="#部署Memos" class="headerlink" title="部署Memos"></a>部署Memos</h2><ul><li>拉取镜像</li></ul><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull neosmemo/memos:latest</span><br></pre></td></tr></table></figure><ul><li>运行</li></ul><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -d --name memos -p 5230:5230 -v ~/.memos/:/var/opt/memos neosmemo/memos:latest</span><br></pre></td></tr></table></figure><p>然后我们检查项目是否运行</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker ps</span><br></pre></td></tr></table></figure><p>如下图：说明已经运行。</p><img src="https://s2.loli.net/2023/02/28/5BjGSn2fDrdiTo6.jpg" style="zoom:67%;" /><p>不过，现在我们还不能访问，因为我们的5230端口还没有开放。</p><p>回到  控制台 -&gt; 云服务器ECS -&gt; 网络与安全 -&gt; 安全组 -&gt; 管理规则 -&gt; 入方向 -&gt; 手动添加</p><p>添加一个如下所示的规则，然后保存即可：</p><img src="https://s2.loli.net/2023/02/28/XMINo6dHUTGb3OB.jpg" style="zoom:67%;" /><p>这样我们就可以在浏览器里通过你的  <code>公网IP:5230</code>  访问Memos了。</p><h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>第一次打开Memos，是英文界面，你可以在底部设置语言，然后注册个管理员账号，注册完成就可以登录了；登陆后，界面还是英文，你可以在左侧栏找到 Setting -&gt; Preference -&gt; Language -&gt; 简体中文 来设置中文。</p><p>至此，教程全部结束；</p><p>不过话又说回来，这个Memos确实好用，自己去发现吧！</p><center>——  END ——</center>]]></content>
+      
+      
       <categories>
-        <category>干货</category>
+          
+          <category> 干货 </category>
+          
+          <category> Docker </category>
+          
+          <category> CentOS </category>
+          
       </categories>
-      <tags>
-        <tag>FFmpeg</tag>
-        <tag>教程</tag>
-        <tag>干货</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Github+PicGo图床搭建</title>
-    <url>/archives/febc4fee.html</url>
-    <content><![CDATA[<h3 id="准备工作："><a href="#准备工作：" class="headerlink" title="准备工作："></a>准备工作：</h3><p>首先需要准备：</p>
-<ul>
-<li>一个GitHub账号</li>
-<li>（没有的话先注册一个）</li>
-<li>下载PicGo软件并安装</li>
-<li>（软件GitHub地址：<a href="https://github.com/Molunerfinn/PicGo/releases%EF%BC%89">https://github.com/Molunerfinn/PicGo/releases）</a><span id="more"></span></li>
-</ul>
-<h3 id="创建仓库："><a href="#创建仓库：" class="headerlink" title="创建仓库："></a>创建仓库：</h3><p>打开GitHub，点击右上角的 “＋” 号，选择第一个 “New repository” 创建一个存放图片的仓库；</p>
-<img src="https://s2.loli.net/2022/07/10/VE75bD61GXOge2n.jpg" style="zoom: 80%;" />
-
-<p>仓库名称可以起个 “Image” ，描述的话随便就行，然后一定要选 “Public” 不要选 “Private” 下边随便勾一下 “Add a README file” 就行！最后点击 “Create repository” 来创建，具体如下图：</p>
-<img src="https://s2.loli.net/2022/07/10/hWmGrZ3es5Ry6d1.jpg" style="zoom: 50%;" />
-
-<h3 id="获取Token："><a href="#获取Token：" class="headerlink" title="获取Token："></a>获取Token：</h3><p>回到GitHub主页，点击右上角头像，在下拉菜单中找到 “Setting”；然后翻到最下边，点击 “Developer setting”，</p>
-<img src="https://s2.loli.net/2022/07/10/fhEZRywAuSnGc1M.jpg" style="zoom: 50%;" />
-
-<p>再点击最下边的 “Personal access tokens” ，然后新建一个 token 就行，如下：</p>
-<img src="https://s2.loli.net/2022/07/10/coxK8Pjd5OF4rqX.jpg" style="zoom: 50%;" />
-
-<img src="https://s2.loli.net/2022/07/10/QmsSeE2Y7fAaVPb.jpg" style="zoom:50%;" />
-
-<p>“Note” 可以随便填一个，时间的话自己选个天数就行（这个天数是 token 过期的时间），我这里就选个90天吧！最重要的是上面图中我圈起来的一定要打上勾！一定要！然后划到最下边点击创建就行了！然后你就会看到你的 Token ，值得注意的是：<strong>这个token只会出现一次，一定要记在什么地方备用</strong>，要是真么忘记的话，可以再新建一个！</p>
-<h3 id="配置PicGo"><a href="#配置PicGo" class="headerlink" title="配置PicGo"></a>配置PicGo</h3><p>打开picgo软件，找到“图床设置”，点击“Github图床”，按如下配置：</p>
-<img src="https://s2.loli.net/2022/07/10/xEsorp9iFnIAYPq.jpg" style="zoom:50%;" />
-
-<p>解释一下：</p>
-<ul>
-<li>设定仓库名：这里填的是 你GitHub的用户名 + 你刚才建的仓库名</li>
-<li>设定分支名：<strong>一定要填 “main”</strong> 不要填 “master” 否则配置不生效！！</li>
-<li>设定Token：这里填你刚才创建的 token 即可</li>
-<li>指定存储路径：按图上填就行</li>
-<li>设定自定义域名：前面的都是一样的，后面两项为你的用户名和仓库名；具体为：<a href="https://cdn.jsdelivr.net/gh/%E7%94%A8%E6%88%B7%E5%90%8D/%E4%BB%93%E5%BA%93%E5%90%8D">https://cdn.jsdelivr.net/gh/用户名/仓库名</a></li>
-</ul>
-<p>点击确定，就可以了，现在你可以上传一张图片测试一下！</p>
-<p>如果不成功的话，就去问百度吧！</p>
-<hr>
-<p>哦，对了，最后附上 PicGo的官方文档吧：</p>
-<p><a href="https://picgo.github.io/PicGo-Doc/zh/guide/#%E5%BA%94%E7%94%A8%E6%A6%82%E8%BF%B0">官方指南</a></p>
-<p><a href="https://picgo.github.io/PicGo-Doc/zh/guide/config.html#github%E5%9B%BE%E5%BA%8A">用户配置</a></p>
-<p>注意：设定分支名：<strong>一定要填 “main”</strong> 不要填 “master” 否则配置不生效！！这一点不要按照官方文档的来！</p>
-<p>好了，这下真完事了！</p>
-]]></content>
+      
+      
+        <tags>
+            
+            <tag> CentOS </tag>
+            
+            <tag> 教程 </tag>
+            
+            <tag> Memos </tag>
+            
+            <tag> Docker </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>软件列表</title>
+      <link href="/archives/798b3e38.html"/>
+      <url>/archives/798b3e38.html</url>
+      
+        <content type="html"><![CDATA[<h2 id="温馨提醒："><a href="#温馨提醒：" class="headerlink" title="温馨提醒："></a>温馨提醒：</h2><p><strong>1. 所有软件均按照首字母顺序排列</strong></p><p><strong>2. 软件繁多，请用网页搜索功能（Ctrl + F）查询您想要的软件 ^_^</strong></p><h2 id="注："><a href="#注：" class="headerlink" title="注："></a>注：</h2><p><strong>1. 请关注我们的公众号「龙猫网络站」。</strong></p><p><strong>2. 链接失效或者打不开请在公众号或者QQ群（984329120）留言！</strong></p><p><strong>3. 由于蓝奏云上传文件有大小限制（100MB以内），故超过100MB的会用其他盘分享。且之后的软件更新都会在相同的文件夹里，点开链接就可以获取最新版哦！</strong></p><hr><p><em>所有软件均在不断更新中…</em></p><h2 id="Android软件："><a href="#Android软件：" class="headerlink" title="Android软件："></a>Android软件：</h2><p>APKPure（类似于谷歌商店）：<a href="https://yinzhen.lanzoue.com/b00whg9ej">https://yinzhen.lanzoue.com/b00whg9ej</a>   密码:6e3m</p><p>Autojs（JS脚本执行软件）：<a href="https://yinzhen.lanzoue.com/b00whfcxa">https://yinzhen.lanzoue.com/b00whfcxa</a>   密码:9hmz</p><p>AdGuard（强大的广告拦截器）：<a href="https://yinzhen.lanzoue.com/b00whhori">https://yinzhen.lanzoue.com/b00whhori</a>   密码:1ukm</p><p>ADM+ / IDM+：<a href="https://yinzhen.lanzoum.com/b00wf47hg">https://yinzhen.lanzoum.com/b00wf47hg</a>   密码:27eg</p><p>安卓清理君：<a href="https://yinzhen.lanzoue.com/b00whhmyd">https://yinzhen.lanzoue.com/b00whhmyd</a>   密码:g9za</p><p>百度网盘： <a href="https://yinzhen.lanzoue.com/b00wf493e">https://yinzhen.lanzoue.com/b00wf493e</a>   密码:cpcy</p><p>哔哩哔哩：<a href="https://yinzhen.lanzoum.com/b00wk68ob">https://yinzhen.lanzoum.com/b00wk68ob</a>   密码:g3ws</p><p>哔哩哔哩（第三方TV版）：<a href="https://yoyodadada.lanzouw.com/b07qdyaf">https://yoyodadada.lanzouw.com/b07qdyaf</a></p><p>百度地图：<a href="https://yoyodadada.lanzouw.com/b07ujf0b">https://yoyodadada.lanzouw.com/b07ujf0b</a></p><p>百度贴吧：<a href="https://yinzhen.lanzoue.com/b00whhpkh">https://yinzhen.lanzoue.com/b00whhpkh</a>   密码:b9a0</p><p>Calc_Business（卡西欧科学计算器）：<a href="https://yoyodadada.lanzouw.com/b07psqyf">https://yoyodadada.lanzouw.com/b07psqyf</a></p><p>DU GIF Maker（GIF图制作）： <a href="https://yinzhen.lanzoue.com/i9Pvmea0yad">https://yinzhen.lanzoue.com/i9Pvmea0yad</a></p><p>抖音：<a href="https://www.123pan.com/s/ab3UVv-D54T3">https://www.123pan.com/s/ab3UVv-D54T3</a>   提取码:C9eh</p><p>ES文件浏览器： <a href="https://yinzhen.lanzoue.com/b00whfcuh">https://yinzhen.lanzoue.com/b00whfcuh</a>   密码:1lgi</p><p>高德地图：<a href="https://yinzhen.lanzoum.com/b00wm3u3g">https://yinzhen.lanzoum.com/b00wm3u3g</a>   密码:1y02</p><p>歌词适配（音乐下载）：<a href="https://gcsp.lanzoux.com/b0e895h2b?w1?2">https://gcsp.lanzoux.com/b0e895h2b?w1?2</a></p><p>Google Play商店（谷歌商店）：<a href="https://yoyodadada.lanzouw.com/b01e2aqla#8n64">https://yoyodadada.lanzouw.com/b01e2aqla#8n64</a>   密码:8n64</p><p>Instagram：<a href="https://yoyodadada.lanzouw.com/b07psope">https://yoyodadada.lanzouw.com/b07psope</a></p><p>Instander（第三方Instagram）<a href="https://yoyodadada.lanzouw.com/b01c7ybcd#e3lv">https://yoyodadada.lanzouw.com/b01c7ybcd#e3lv</a>   密码:e3lv</p><p>InstaMod（第三方Instagram）：<a href="https://yoyodadada.lanzouw.com/b07rqgvc">https://yoyodadada.lanzouw.com/b07rqgvc</a></p><p>酷安：<a href="https://yinzhen.lanzoue.com/b00whhpsf">https://yinzhen.lanzoue.com/b00whhpsf</a>   密码:263b</p><p>夸克： <a href="https://yinzhen.lanzoue.com/b00wf473c">https://yinzhen.lanzoue.com/b00wf473c</a>   密码:bfxw</p><p>李跳跳：<a href="https://wwe.lanzouw.com/b01v0g3wj?w1?2">https://wwe.lanzouw.com/b01v0g3wj?w1?2</a>   密码:1233</p><p>MXPlayer（强大的Android视频播放器）： <a href="https://yinzhen.lanzoue.com/b00wfjq2f">https://yinzhen.lanzoue.com/b00wfjq2f</a>   密码:6dn8</p><p>Pure Tuber（第三方油管，去广告解锁VIP）：<a href="https://yinzhen.lanzoue.com/b00whfcob">https://yinzhen.lanzoue.com/b00whfcob</a>   密码:6emm</p><p>清浊：<a href="https://yinzhen.lanzoue.com/b00whhlyh">https://yinzhen.lanzoue.com/b00whhlyh</a>   密码:80br</p><p>Symbolab（科学计算器）： <a href="https://yinzhen.lanzoue.com/b00wf477g">https://yinzhen.lanzoue.com/b00wf477g</a>   密码:bvwu</p><p>SpeedTest（网络测速）：<a href="https://yinzhen.lanzoue.com/b00whhqra">https://yinzhen.lanzoue.com/b00whhqra</a>   密码:6329</p><p>图片压缩（缩小图片体积）： <a href="https://yinzhen.lanzoue.com/iFhOZea0yjc">https://yinzhen.lanzoue.com/iFhOZea0yjc</a></p><p>微博（国际版去广告，解锁本地会员）： <a href="https://yinzhen.lanzoue.com/b00wf48yj">https://yinzhen.lanzoue.com/b00wf48yj</a>   密码:f3ce</p><p>wifi万能钥匙：<a href="https://yinzhen.lanzoue.com/b00whhrdc">https://yinzhen.lanzoue.com/b00whhrdc</a>   密码:hbve</p><p>WPS：<a href="https://yinzhen.lanzoue.com/b00whhrti">https://yinzhen.lanzoue.com/b00whhrti</a>   密码:3b9s</p><blockquote><p>WPS（超过100MB文件）：<a href="https://www.123pan.com/s/ab3UVv-754T3">https://www.123pan.com/s/ab3UVv-754T3</a></p></blockquote><p>喜马拉雅：<a href="https://yinzhen.lanzoue.com/b00whhtne">https://yinzhen.lanzoue.com/b00whhtne</a>   密码:8dg4</p><p>西窗烛（解锁会员）： <a href="https://yinzhen.lanzoue.com/b00whfc6d">https://yinzhen.lanzoue.com/b00whfc6d</a>   密码:5i8a</p><p>Xmind（思维导图）： <a href="https://yinzhen.lanzoue.com/b00wf475e">https://yinzhen.lanzoue.com/b00wf475e</a>   密码:hh8z</p><p>邮箱： <a href="https://yinzhen.lanzoue.com/b00wf48bg">https://yinzhen.lanzoue.com/b00wf48bg</a>   密码:700e</p><p>阅读：<a href="https://kunfei.lanzoui.com/b0f810h4b">https://kunfei.lanzoui.com/b0f810h4b</a>   密码:d8j9</p><p>知乎：<a href="https://yoyodadada.lanzouw.com/b07psrob">https://yoyodadada.lanzouw.com/b07psrob</a></p><p>照片编辑器： <a href="https://yinzhen.lanzoue.com/b00wf47ba">https://yinzhen.lanzoue.com/b00wf47ba</a>   密码:et3r</p><p>账号本子（账号密码保存）： <a href="https://yinzhen.lanzoue.com/b00wf48je">https://yinzhen.lanzoue.com/b00wf48je</a>   密码:fjnn</p><p>ZArchiver Pro（好用的Android解压缩软件）： <a href="https://yinzhen.lanzoue.com/ifKoRygsacf">https://yinzhen.lanzoue.com/ifKoRygsacf</a></p><h3 id="Android端其它未分类工具"><a href="#Android端其它未分类工具" class="headerlink" title="Android端其它未分类工具"></a>Android端其它未分类工具</h3><p>看电视：<a href="https://yinzhen.lanzoum.com/b00wnh5kd">https://yinzhen.lanzoum.com/b00wnh5kd</a>   密码:e41z</p><p>手机小游戏： <a href="https://yinzhen.lanzoue.com/b00wf48uf">https://yinzhen.lanzoue.com/b00wf48uf</a>   密码:2gvi</p><h2 id="Windows软件："><a href="#Windows软件：" class="headerlink" title="Windows软件："></a>Windows软件：</h2><p>爱奇艺： <a href="https://yinzhen.lanzoum.com/b00wi1r3c">https://yinzhen.lanzoum.com/b00wi1r3c</a>   密码:9mqc</p><p>阿里云盘小白羊版：<a href="https://github.com/liupan1890/aliyunpan">https://github.com/liupan1890/aliyunpan</a></p><p>百度网盘：<a href="https://yinzhen.lanzoum.com/b00wlu3da">https://yinzhen.lanzoum.com/b00wlu3da</a>   密码:i0mn</p><p>百分浏览器（符合国人使用习惯的、自带手势功能的浏览器）：<a href="https://www.centbrowser.cn/">https://www.centbrowser.cn/</a></p><p>Bitwarden（密码管理）：<a href="https://yinzhen.lanzoue.com/b00whk5af">https://yinzhen.lanzoue.com/b00whk5af</a>   密码:7y4c</p><p>CCleaner：<a href="https://yinzhen.lanzoue.com/b00whhxqb">https://yinzhen.lanzoue.com/b00whhxqb</a>   密码:1hu1</p><p>Dism++（电脑管理工具）：<a href="https://github.com/Chuyu-Team/Dism-Multi-language">https://github.com/Chuyu-Team/Dism-Multi-language</a></p><p>Easy Cat Timer（可爱的猫咪计时器）：<a href="https://github.com/xujiangjiang/Easy-Cat-Timer">https://github.com/xujiangjiang/Easy-Cat-Timer</a></p><p>Everything（官网）：<a href="https://www.voidtools.com/zh-cn/">https://www.voidtools.com/zh-cn/</a></p><p>格式工厂：<a href="https://www.123pan.com/s/ab3UVv-r54T3">https://www.123pan.com/s/ab3UVv-r54T3</a>   提取码:keqE</p><p>谷歌浏览器（国内可访问）：<a href="https://www.google.cn/chrome/">https://www.google.cn/chrome/</a></p><p>Geek卸载：<a href="https://yinzhen.lanzoue.com/b00whk5uf">https://yinzhen.lanzoue.com/b00whk5uf</a>   密码:7tgh</p><p>GIF图工具：<a href="https://yinzhen.lanzoue.com/b00whk6ja">https://yinzhen.lanzoue.com/b00whk6ja</a>  密码:18pg</p><p>火绒工具：<a href="https://yinzhen.lanzoue.com/b00whk5xi">https://yinzhen.lanzoue.com/b00whk5xi</a>   密码:2e7h</p><p>IDM：<a href="https://yinzhen.lanzoue.com/b00whk62d">https://yinzhen.lanzoue.com/b00whk62d</a>   密码:28l9</p><p>JJDown（B站视频、弹幕下载器）：<a href="http://www.jijidown.com/">http://www.jijidown.com/</a></p><p>酷我音乐：<a href="https://yinzhen.lanzoue.com/b00whk1lc">https://yinzhen.lanzoue.com/b00whk1lc</a>   密码:bz2e</p><p>落雪音乐助手（音乐下载）：<a href="https://www.lanzoui.com/b0bf2cfa/">https://www.lanzoui.com/b0bf2cfa/</a>   密码:glqw</p><p>雷电模拟器：<a href="https://pan.baidu.com/s/1X7_AWDkSU6EeduhiAw-_WA">https://pan.baidu.com/s/1X7_AWDkSU6EeduhiAw-_WA</a>   提取码:8qy7</p><p>Notepad3（功能强大的记事本）：<a href="https://github.com/rizonesoft/Notepad3">https://github.com/rizonesoft/Notepad3</a></p><p>PotPlayer：<a href="https://yinzhen.lanzoue.com/b00whjyqj">https://yinzhen.lanzoue.com/b00whjyqj</a>   密码:4dyl</p><p>PandaOCR（文字、公式识别）：<a href="https://github.com/miaomiaosoft/PandaOCR">https://github.com/miaomiaosoft/PandaOCR</a></p><p>PDF工具：<a href="https://yinzhen.lanzoue.com/b00whk6ub">https://yinzhen.lanzoue.com/b00whk6ub</a>   密码:787j</p><p>PS插件：<a href="https://yinzhen.lanzoue.com/b00whk83g">https://yinzhen.lanzoue.com/b00whk83g</a>   密码:hp7r</p><p>QuickLook（快速浏览）：<a href="https://github.com/QL-Win/QuickLook">https://github.com/QL-Win/QuickLook</a></p><p>RevokeMsgPatcher（PC版微信、QQ、TIM防撤回补丁）：<a href="https://github.com/huiyadanli/RevokeMsgPatcher">https://github.com/huiyadanli/RevokeMsgPatcher</a></p><p>鼠标手势增强：<a href="https://gitee.com/majorworld/mouseplus">https://gitee.com/majorworld/mouseplus</a></p><p>ScreenToGif（强大开源的git图录制、制作工具）：<a href="https://github.com/NickeManarin/ScreenToGif">https://github.com/NickeManarin/ScreenToGif</a></p><p>搜狗输入法（去广告）：<a href="https://yinzhen.lanzoue.com/b00whk70h">https://yinzhen.lanzoue.com/b00whk70h</a>   密码:gn9y</p><p>思维导图：<a href="https://yinzhen.lanzoue.com/b00whk5yj">https://yinzhen.lanzoue.com/b00whk5yj</a>   密码:89mb</p><p>腾讯视频 <a href="https://yinzhen.lanzoue.com/b00whx77c">https://yinzhen.lanzoue.com/b00whx77c</a>   密码:i387</p><p>Typora（MarkDown工具）：<a href="https://yinzhen.lanzoue.com/b00whk7wj">https://yinzhen.lanzoue.com/b00whk7wj</a>   密码:g0zq</p><p>TrafficMonitor（网速监控悬浮窗软件）：<a href="https://github.com/zhongyang219/TrafficMonitor">https://github.com/zhongyang219/TrafficMonitor</a></p><p>Watt Toolkit - 瓦特工具箱（解决GitHub打不开的问题）：<a href="https://steampp.net/">https://steampp.net/</a></p><p>万彩办公大师（官网）：<a href="http://www.wofficebox.com/">http://www.wofficebox.com/</a></p><p>Windows10Manager：<a href="https://yinzhen.lanzoue.com/b00whk0mh">https://yinzhen.lanzoue.com/b00whk0mh</a>   密码:49iw</p><p>WinRAR（解压缩工具）：<a href="https://yinzhen.lanzoue.com/b00whk5lg">https://yinzhen.lanzoue.com/b00whk5lg</a>   密码:8qrv</p><p>文件夹加密：<a href="https://yinzhen.lanzoue.com/b00whk5pa">https://yinzhen.lanzoue.com/b00whk5pa</a>   密码:f7k3</p><p>迅雷：<a href="https://yinzhen.lanzoue.com/b00whk8ad">https://yinzhen.lanzoue.com/b00whk8ad</a>   密码:gbcu</p><h3 id="Windows端其它未分类工具"><a href="#Windows端其它未分类工具" class="headerlink" title="Windows端其它未分类工具"></a>Windows端其它未分类工具</h3><p>激活工具：<a href="https://yinzhen.lanzoue.com/b00whk60b">https://yinzhen.lanzoue.com/b00whk60b</a>   密码:8gr6</p><p>浏览器插件：<a href="https://yinzhen.lanzoue.com/b00u1tiih">https://yinzhen.lanzoue.com/b00u1tiih</a></p><p>浏览器加速工具：<a href="https://yinzhen.lanzoum.com/b00wp8yoj">https://yinzhen.lanzoum.com/b00wp8yoj</a>   密码:f0qg</p><p>360单文件：<a href="https://yinzhen.lanzoum.com/b00wp8wzi">https://yinzhen.lanzoum.com/b00wp8wzi</a>   密码:da8t</p><p>窗口置顶：<a href="https://yinzhen.lanzoum.com/b00wp9b2f">https://yinzhen.lanzoum.com/b00wp9b2f</a>   密码:9yf6</p><p>TV、盒子端应用（电视家等软件）：<a href="https://yinzhen.lanzoue.com/b00whjxbi">https://yinzhen.lanzoue.com/b00whjxbi</a>   密码:637i</p><p>图片浏览工具：<a href="https://yinzhen.lanzoue.com/b00whjyad">https://yinzhen.lanzoue.com/b00whjyad</a>   密码:5fdw</p><p>微软DirectX9.0c最终用户运行库：<a href="https://blog.csdn.net/vbcom/article/details/6962388">https://blog.csdn.net/vbcom/article/details/6962388</a></p><p>微软常用运行库合集：<a href="https://yoyodadada.lanzouw.com/b07pycad">https://yoyodadada.lanzouw.com/b07pycad</a></p><p>微软.NET离线运行库合集：<a href="https://www.123pan.com/s/JceA-wUfi">https://www.123pan.com/s/JceA-wUfi</a></p><p>PC小游戏：<a href="https://yinzhen.lanzoue.com/b00whk8fi">https://yinzhen.lanzoue.com/b00whk8fi</a>   密码:28g5</p>]]></content>
+      
+      
       <categories>
-        <category>干货</category>
+          
+          <category> 软件列表 </category>
+          
       </categories>
-      <tags>
-        <tag>Github</tag>
-        <tag>PicGo</tag>
-        <tag>图床</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Hexo博客搭建</title>
-    <url>/archives/f3fb008f.html</url>
-    <content><![CDATA[<blockquote>
-<h4 id="写在前边"><a href="#写在前边" class="headerlink" title="写在前边"></a>写在前边</h4><p>我的第一篇博客，关于博客搭建的（hexo + github），记录搭建过程以及我踩过的坑！</p>
-<p>有兴趣可以点开看看哦！</p>
-</blockquote>
-<span id="more"></span>
-
-<hr>
-<h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><ol>
-<li>安装 git</li>
-<li>安装 node.js</li>
-<li>安装 hexo</li>
-<li>注册一个 github 账号</li>
-<li>搭建仓库</li>
-<li>生成SSH Keys</li>
-<li>生成博客内容</li>
-<li>发布博客至互联网</li>
-</ol>
-<hr>
-<h3 id="安装git"><a href="#安装git" class="headerlink" title="安装git"></a>安装git</h3><p>​    首先，我们先来了解一下什么是 git；简单来说 git 是开源的分布式版本控制系统，用于敏捷高效地处理项目。我们网站在本地搭建好了，需要使用 git 同步到 GitHub 上。这里，我们就不多说了！</p>
-<p>​    附上 git 官网地址：<a href="https://git-scm.com/">git官网</a></p>
-<p>​    去官网下载适合自己电脑的版本，下一步，下一步跟着安装即可！我这里提供个教程，仅供参考！<a href="https://blog.csdn.net/ssd21988/article/details/107826076">git安装教程</a></p>
-<p>安装完成后，我们可以测试一下安装成功与否：按键盘上 win + R 键，输入 cmd ，打开命令提示符窗口，接着输入 <code>git --version</code> ，看其是否出现版本号；如下图：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/seatoro/Image/img/git-v.jpg"></p>
-<p>​    如果出现，那么恭喜你，安装成功！</p>
-<p>​    这时候你会发现，鼠标右击后会出现两个新的菜单 <code>Git GUI Here</code> 和 <code>Git Bash Here</code>，我们平时只会用到后者，不要搞错了！</p>
-<h3 id="安装node-js"><a href="#安装node-js" class="headerlink" title="安装node.js"></a>安装node.js</h3><p>​    因为，我们的博客是基于 hexo 的，而 hexo 又是基于 node.js 的，所以这是必不可少的！</p>
-<p>​    我们可以去其<a href="http://nodejs.cn/download/">官网</a>，下载并安装；也是直接下一步、下一步就行；这里我也放个教程，可以参考一下：<a href="https://blog.csdn.net/antma/article/details/86104068">node.js 安装详细步骤教程</a>；不过，值得注意的是：安装 node.js 会包含环境变量及 npm 的安装</p>
-<p>​    安装好以后，我们要检测 node 与 npm 是否安装成功：按键盘上 win + R 键，输入 cmd ，打开命令提示符窗口，分别输入 <code>node -v</code> ，<code>npm -v</code> 看其是否出现版本号；</p>
-<h3 id="安装hexo"><a href="#安装hexo" class="headerlink" title="安装hexo"></a>安装hexo</h3><p>​    hexo 就是我们的个人博客网站的框架；安装的话也很简单，按键盘上 win + R 键，输入 cmd ，打开命令提示符窗口，输入<code>npm install -g hexo-cli </code>，进行安装hexo，等待安装好后，我们检验其是否安装成功输入<code>hexo -v</code>看是否出现版本号；如下图：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/seatoro/Image/img/hexo-v.jpg"></p>
-<h3 id="注册github"><a href="#注册github" class="headerlink" title="注册github"></a>注册github</h3><p>​    我们打开<a href="https://github.com/">github官网</a>，然后点右上角的Sign up，即可注册，其实也很简单；这里还是提供一篇教程，不会的可以看看：<a href="https://www.bilibili.com/read/cv5107169">github注册教程</a>，<strong>注意：一定要记住注册名、注册邮箱和注册密码哦！!</strong></p>
-<blockquote>
-<p>至此，我们的准备工作就做完了，接下来就是实操时间！</p>
-</blockquote>
-<hr>
-<h3 id="搭建仓库"><a href="#搭建仓库" class="headerlink" title="搭建仓库"></a>搭建仓库</h3><p>​    注册完账号后登陆，点击右上角的 + 号，选择 New repository  ；然后，仓库名字填你的注册名 + <code>.github.io</code>，例如我的就是 <code>seatoro.github.io</code>，之后的 Description 可填可不填； 接下来选择 Public ，否则别人访问不了你的博客！然后把 Add a README file 勾上；最后，点击最下边的 Create repository 的按钮就能创建好你的仓库了！如下图：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/seatoro/Image/img/create%20repository.jpg"></p>
-<h3 id="生成SSH-Keys"><a href="#生成SSH-Keys" class="headerlink" title="生成SSH Keys"></a>生成SSH Keys</h3><p>​    我们可以在合适的盘新建一个文件夹，可以命名为MyBlog，hexo 框架与以后你自己发布的网页都会在这个文件夹中。一定要记住路径哦，别之后找不到了！打开这个文件夹，鼠标右键，点击 <code>Git Bash Here</code>，然后我们就会进入一个黑框框页面；直接输入 <code>SSH</code> ，来检测我们是否装有SSH，其实默认是装过的！然后输入 <code>ssh-keygen -t -C &quot;你注册github的邮件地址&quot;</code>。之后敲4次回车键（<strong>注意：不是连着敲，敲一次，等里面的内容不再变化后再敲下一次！</strong>）最后，你会看到一个用短线组成的框框，到这儿你就成功了！不要关闭这个窗口，一会还要用！！</p>
-<p>​    按 Win + E 打开文件资源管理器，打开C盘 –&gt; 用户文件夹 –&gt; 个人文件夹 –&gt; .ssh文件夹，进入后我们可以看到里面有两个文件，用文本编辑器打开名为 <code>id_rsa.pub</code>的文件，<code>ctrl + a</code> <code>ctrl + c</code>复制里面的全部内容！</p>
-<p>​    打开 github ，点击右上角头像找到 Setting ，点进去，往下划在左侧栏找到 SSH and GPG keys，点进去，第一个就是SSH Keys，点击 New SSH Key ，Title 随便填如：MyBlog；Key 就填你刚才复制 id_rsa.pub 里的一大串内容，（以你的邮箱结尾）；点 Add SSH Key 按钮即可。</p>
-<p>​    测试是否绑定成功：在刚刚到黑框中输入 <code>ssh -T git@github.com</code>，敲回车，再输入 yes 敲回车即可，只要出现<code>Hi 你的github用户名</code>，就说明成功了！</p>
-<h3 id="生成本地博客内容"><a href="#生成本地博客内容" class="headerlink" title="生成本地博客内容"></a>生成本地博客内容</h3><p>​    进入你在上一步中创建的文件夹，在空白处右键，点击 <code>Git Bash Here</code>，在出现的黑框中输入 <code>hexo init</code>来初始化我们的hexo，等待执行完成（如果出现错误，可多尝试几次），成功的标志：<code>INFO Start blogging with Hexo!</code>，这时我们打开上一步中创建的文件夹就会发现里面多了很多内容！</p>
-<p>​    继续在黑框中敲命令：<code>hexo s</code>，启动本地服务器，看到出现 <code>http://localhost:4000</code>后就大功告成，接着我们只需要复制这个地址，去浏览器打开，就能看到我们的博客了；关闭服务器的话只需按 <code>ctrl + c</code>（没错就是复制的快捷键）就能关闭了，关闭后浏览器就打不开你的博客了！</p>
-<h3 id="发布博客至互联网"><a href="#发布博客至互联网" class="headerlink" title="发布博客至互联网"></a>发布博客至互联网</h3><p>​    进入你在上上一步中创建的文件夹，找到<code>config.yml</code>文件（注意：没有扩展名是因为你没有开启这个功能，开启方法<a href="https://jingyan.baidu.com/article/f00622282564bdfbd3f0c827.html">点这儿</a> ）并用文本编辑器打开，找到最后几行更改为下图所示。（<strong>注意：最后一行要空出来，即branch: main 后面要空一行；每个冒号后面有一个空格</strong>）另，repo后面的内容把我的用户名（seatoro）改为你自己的！！保存，退出即可。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/seatoro/Image/img/yml.jpg"></p>
-<p>​    进入你的博客文件夹，在空白处右键，点击 <code>Git Bash Here</code>，在出现的黑框中输入 <code>npm install hexo-deployer-git --save</code>，安装 hexo-deployer-git ；安装成功后接着敲命令<code>hexo g</code>，回车；执行完后接着敲 <code>hexo d</code>，这个命令是发布网页至服务器中的！（如若出错，多试几次）这时需要验证你的github账号，用户名，就是github用户名，密码就不是你设置的密码了；我们打开github，点击右上角头像找到 Setting ，点进去，往下划在左侧栏找到 Developer settings，点进去，在左侧栏找到 Personal access tokens ，点进去，Note 随便填，Expiration 默认30天就行，下边的复选框全部勾上，最后点击 Generate token 按钮生成令牌。复制生成的令牌，它只会出现一次，一定要记好；将复制的内容粘贴到刚才的密码框中点击 OK 就行了！这时就将本地内容上传到 github 中了，然后你就能通过网址访问了，网址就是你 github 主页左上角的网址，如下：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/seatoro/Image/img/webline.jpg"></p>
-<hr>
-<p>​    至此，hexo + github 搭建博客就算是成功了，恭喜！！</p>
-<p>​    不过这只是最初的内容，其实还有好多内容，比如：怎样美化你的博客、更换主题；怎样添加各种小功能；怎样新建、删除文章；怎样搭建自己的图床等等！</p>
-<p>​    但我实在是不想写了，写教程太累了，😭  看情况，之后有时间再补充吧！如果在搭建过程中遇到了问题，可以将错误内容复制到百度，搜一下，你肯定会看到解答的；因为你肯定不是第一个遇到问题的人，如果没有搜到，只能说，你搜索的姿势不对，可以考虑换个姿势再来一次，哈哈哈！</p>
-<p>​    就这样吧！！</p>
-]]></content>
+      
+      
+        <tags>
+            
+            <tag> 软件列表 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>太极框架的基本使用方法</title>
+      <link href="/archives/9caa2ea.html"/>
+      <url>/archives/9caa2ea.html</url>
+      
+        <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>在几年前当我拥有自己的第一部手机的时候，我就在想一定要将其打造成顺手好用，却又独一无二的设备！如今，几年过去了，实现了的已经实现了，没实现的，还是没能实现！😂<br>不过，经过这一段时间的折腾，我也有了一点点微不足道的经验！现在就记录与此（只是我自己的一点经验之谈，比较浅显！）<br>最开始本来想刷机的，但考虑到风险问题，还是放弃了（翻译翻译就是：俺没钱💰！）；不过，另辟蹊径还是可以的！就比如：使用框架；框架的优点显而易见，风险低、易操作、能反悔（不想搞了可以直接卸载就行）；缺点也有，就是局限性比较大；不过这也不是什么大问题，对于我们已经足够了！</p><p>接下来就是操作了，就以我使用的框架与模块为例吧：（我用的是太极，据官网介绍，其完美支持包括 Android 5－12 在内的几乎所有机型：华为、三星、小米，Oppo 和 Vivo 等！ ）</p><h3 id="软件准备"><a href="#软件准备" class="headerlink" title="软件准备"></a>软件准备</h3><ul><li>太极（<a href="https://yinzhen.lanzouf.com/ihItj018nc8d">下载</a>）</li><li>酷安 9.1.1版（<a href="https://mp.weixin.qq.com/s/hOdTa8fB_pFwguqzm4uFVQ">查看</a>） </li><li>QQ 8.8.33版（自己去豌豆荚或者其他地方下载，安装包太大了，传不了蓝奏云）</li><li>网易云音乐 6.0.0版（<a href="https://yinzhen.lanzouf.com/i7BnGwe7i6h">下载</a>）</li><li>哔哩哔哩 6.55.0版（<a href="https://yinzhen.lanzouf.com/iVBKC018nkdg">下载</a>）</li><li>CoolapkEx模块（<a href="https://yinzhen.lanzouf.com/iaTOxp649pe">下载</a>） — 配合酷安使用，用于更新app</li><li>哔哩漫游（<a href="https://yinzhen.lanzouf.com/iK7AC018nb5e">下载</a>） — 可优化B站app</li><li>UnblockMusic Pro（<a href="https://yinzhen.lanzouf.com/iJZ9y018noda">下载</a>） — 可解锁灰色音乐</li><li>云村清洁工（<a href="https://yinzhen.lanzouf.com/iIxfY018nnxe">下载</a>） — 可自动签到、移除广告等</li><li>QNotified（<a href="https://yinzhen.lanzouf.com/i9Azf018nbwb">下载</a>） — 用于对QQ的一系列修改如：闪照不销毁、消息防撤回、界面精简等<br><em>注意：软件与模块版本必须对应，否则模块可能不会生效</em></li></ul><h3 id="使用操作"><a href="#使用操作" class="headerlink" title="使用操作"></a>使用操作</h3><p>简单说就是：<br><strong>PS：（我比较懒，而且不怎么会做图，将就着看一下吧🙃）</strong><br>①下载并安装好太极与各个模块<br>②在太极里创建app（这一步需要卸载并重新安装app，会清除所有用户数据哦！<strong>请注意备份数据！</strong>）<br><img src="https://s2.loli.net/2022/07/10/5JKzUyIGxmbCOEL.jpg" style="zoom:33%;" /><br>③在太极里启用模块（把✓勾上就行了）<br><img src="https://s2.loli.net/2022/07/10/TC5DBf29IvxiaXo.jpg" style="zoom:33%;" /><br>④强制停止app （在太极主页点一下软件图标就会出现下图界面了）<br><img src="https://s2.loli.net/2022/07/10/9noLgDyi5VQdx8O.jpg" style="zoom:33%;" /><br>⑤在太极里启动app（只需要这一次，以后就可以通过桌面图标启动了；不过桌面启动有时会闪退，这时也可以在太极里启动）<br>⑥完毕</p><hr><h3 id="后话"><a href="#后话" class="headerlink" title="后话"></a>后话</h3><p>软件与模块能用的话，能不更新就不要更新了；除非软件更新了新的功能，而你又你非常非常想要体验新的功能！否则还是建议以稳定为主！<br>另外，在框架里的软件，会有一些个小问题，比如：有时候打开时直接闪退，有时候卡在开屏页面一段时间（几秒到几十秒不等）<br><strong>再次提醒：入坑需谨慎！</strong></p><p><strong>如果我提供的软件如法使用，可自行上网寻找相应版本！</strong></p><center>------END------</center>]]></content>
+      
+      
       <categories>
-        <category>干货</category>
-        <category>Hexo</category>
-        <category>Github</category>
+          
+          <category> 太极框架 </category>
+          
+          <category> 模块 </category>
+          
       </categories>
-      <tags>
-        <tag>教程</tag>
-        <tag>踩坑</tag>
-        <tag>博客</tag>
-        <tag>hexo</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>MarkDown语法基础</title>
-    <url>/archives/b797e99c.html</url>
-    <content><![CDATA[<p>由于该博客的文章全部都是用markdown写的，所以就写一下MarkDown语法相关吧！<span id="more"></span></p>
-<hr>
-<p>Markdown 是一种轻量级标记语言，它允许人们使用易读易写的纯文本格式编写文档。</p>
-<p>Markdown 语言在 2004 由约翰·格鲁伯（英语：John Gruber）创建。</p>
-<p>Markdown 编写的文档可以导出 HTML 、Word、图像、PDF、Epub 等多种格式的文档。</p>
-<p>Markdown 编写的文档后缀为 <strong>.md</strong>, <strong>.markdown</strong>。</p>
-<hr>
-<p>Markdown 能被使用来撰写电子书，如：Gitbook。</p>
-<p>当前许多网站都广泛使用 Markdown 来撰写帮助文档或是用于论坛上发表消息。例如：GitHub、简书、reddit、Diaspora、Stack Exchange、OpenStreetMap 、SourceForge等。</p>
-<hr>
-<p>教程网站：<a href="https://www.runoob.com/markdown/md-tutorial.html">Markdown 教程 | 菜鸟教程</a></p>
-<p>个人觉得好用的在线编辑网站：<a href="https://dillinger.io/">Online Markdown Editor - Dillinger, the Last Markdown Editor ever.</a></p>
-<p>LaTex公式手册网站：<a href="https://www.zybuluo.com/codeep/note/163962#mjx-eqn-eqsample">LaTex 公式指导手册</a> </p>
-<p>个人觉得好用的PC端MarkDown软件：<a href="https://www.typora.io/">Typora — a markdown editor, markdown reader.</a>  – （现在收费了，不过是买断制，如果喜欢可以购买正版！）</p>
-<hr>
-<p>结束！！</p>
-]]></content>
+      
+      
+        <tags>
+            
+            <tag> 太极框架 </tag>
+            
+            <tag> 模块 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>淘宝npm镜像将停止解析</title>
+      <link href="/archives/12fca523.html"/>
+      <url>/archives/12fca523.html</url>
+      
+        <content type="html"><![CDATA[<h3 id="老淘宝-npm-镜像域名即将停止解析"><a href="#老淘宝-npm-镜像域名即将停止解析" class="headerlink" title="老淘宝 npm 镜像域名即将停止解析"></a>老淘宝 npm 镜像域名即将停止解析</h3><ul><li><p>淘宝 <code>npm</code> 镜像站品牌升级，新品牌为 <code>npmmirror</code> （<code>npm</code> 中国镜像站）。</p></li><li><p>广为人知的淘宝 <code>npm</code> 镜像老域名（*.npm.taobao.org）将在 <strong>2022.06.30号</strong> 正式下线和停止 <code>DNS</code> 解析。</p></li><li><p>涉及到的域名迁移如下：</p><blockquote><p><a href="http://npm.taobao.org/">http://npm.taobao.org</a> =&gt; <a href="http://npmmirror.com/">http://npmmirror.com</a><br><a href="http://registry.npm.taobao.org/">http://registry.npm.taobao.org</a> =&gt; <a href="http://registry.npmmirror.com/">http://registry.npmmirror.com</a></p></blockquote></li><li><p>可能产生的大影响：</p><ol><li>所有写死的都得换。</li><li>企业用户需要联系 网管/IT/SRE 更新防火墙白名单。</li><li>存量应用的 <code>lock</code> 文件，开发者需要自行执行 <code>sed</code> 等指令去替换或重新生成。</li><li>本地 <code>npmrc</code> 里面的 <code>registry</code> 地址（如果有，则）需要开发者自行更新。</li></ol></li></ul>]]></content>
+      
+      
       <categories>
-        <category>干货</category>
+          
+          <category> 资讯 </category>
+          
       </categories>
-      <tags>
-        <tag>教程</tag>
-        <tag>干货</tag>
-        <tag>markdown</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Hello World</title>
-    <url>/archives/4a17b156.html</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-]]></content>
-  </entry>
-  <entry>
-    <title>免VIP复制百度文库内容</title>
-    <url>/archives/631e63b6.html</url>
-    <content><![CDATA[<p>今天发一下 4 种我自己知道的免VIP复制网页内容的方法</p>
-<p>以下方法都是截止我发文时，自己测试管用的！</p>
-<span id="more"></span>
-
-<hr>
-<ul>
-<li><h3 id="利用开发者工具"><a href="#利用开发者工具" class="headerlink" title="利用开发者工具"></a>利用开发者工具</h3></li>
-</ul>
-<p>在遇到不可复制的网页内容时，可鼠标右键，选择 “检查”，打开 “开发者模式” ，在 “元素” 中向下滑动可以找到你要复制的内容；不过，都是一句一句的，不连贯，对于篇幅比较长的内容不太适用。</p>
-<ul>
-<li><h3 id="关闭该网页的-JS"><a href="#关闭该网页的-JS" class="headerlink" title="关闭该网页的 JS"></a>关闭该网页的 JS</h3></li>
-</ul>
-<p>具体如下：</p>
-<p>打开浏览器设置，搜索 JavaScript 然后你会看见该设置的内容，你可以将要复制的网页链接添加到 “不允许使用 JavaScript” 一栏中；若你比较懒，也可以直接将 JavaScript 整个关闭，然后回到你要复制内容的网页刷新，就能任意复制了；不过某些网站关闭 JavaScript 后可能不能正常运行；<strong>因此，复制完内容后一定要记得将 JavaScript 的开关打开！！</strong></p>
-<ul>
-<li><h3 id="利用插件"><a href="#利用插件" class="headerlink" title="利用插件"></a>利用插件</h3></li>
-</ul>
-<p>插件就比较简单了，可有时候作者不维护了就可能会失效；也可能出现一些别的什么问题；不过总的来说还可以。插件的话可以看这篇文章 <a href="https://mp.weixin.qq.com/s/7YwBXLyWnwUFdloToimFVA">插件的获取与使用</a></p>
-<ul>
-<li><h3 id="利用OCR识别"><a href="#利用OCR识别" class="headerlink" title="利用OCR识别"></a>利用OCR识别</h3></li>
-</ul>
-<p>这种软件很多，PC端的QQ好像也有这个功能？（太久没用过QQ了，不知道，听别人说的）；我这里说一下我常用的一个软件 PanderOCR ，这是在 GitHub 上开源的，想用可直接去 GitHub 上搜 PanderOCR ，也可以点 <a href="https://github.com/miaomiaosoft/PandaOCR">这里直达</a>，如果前面那个链接打不开，那么点 <a href="https://gitee.com/DDDDDGOOO/PandaOCR">这个备用链接</a> 吧！</p>
-]]></content>
+      
+      
+        <tags>
+            
+            <tag> 资讯 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>命令提示符的一些小作用</title>
+      <link href="/archives/1ff8041c.html"/>
+      <url>/archives/1ff8041c.html</url>
+      
+        <content type="html"><![CDATA[<h2 id="cmd-命令行常用基础语法"><a href="#cmd-命令行常用基础语法" class="headerlink" title="cmd 命令行常用基础语法"></a>cmd 命令行常用基础语法</h2><h3 id="1-查看并导出目录文件夹名称"><a href="#1-查看并导出目录文件夹名称" class="headerlink" title="1. 查看并导出目录文件夹名称"></a>1. 查看并导出目录文件夹名称</h3><figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">tree</span>&gt;list.txt//查看文件夹并导出为list.txt文件</span><br><span class="line"><span class="built_in">tree</span> /f &gt;list.txt//查看文件夹及里面的文件并导出为list.txt文件</span><br><span class="line"></span><br><span class="line"><span class="built_in">dir</span>//查看目录列表，与<span class="built_in">tree</span>命令不太一样！</span><br></pre></td></tr></table></figure><p>解释：</p><ul><li>只查看不导出，只用 <code>tree</code> 就行</li><li><code>list.txt</code> 可以自己更改（<code>list</code> 为文件名，<code>txt</code> 为后缀；文件名可以自定义，后缀可以为：<code>txt、md、xls</code> 等）</li><li>加上 <code>/f</code> 为显示文件夹下的文件，不加的话就只显示文件夹</li></ul><h3 id="2-批量更改文件名及后缀"><a href="#2-批量更改文件名及后缀" class="headerlink" title="2. 批量更改文件名及后缀"></a>2. 批量更改文件名及后缀</h3><figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">ren</span> *.txt *.<span class="built_in">md</span>//改后缀名</span><br><span class="line"><span class="built_in">ren</span> 旧文件名.txt 新文件名.txt//改文件名</span><br></pre></td></tr></table></figure><p>解释：</p><ul><li><code>ren</code> 为更改后缀的命令</li><li><code>*.txt</code> 为更改前的后缀</li><li><code>*.md </code> 为你要更改的后缀</li></ul><p>如果你要更改所有文件，不只是<code>txt</code> 文件；那么可以用 <code>ren *. *.md</code> 命令！</p><p>ps: 上面的 <code>*</code> 为通配符，通配符还有一个 <code>? </code>; 具体作用为：<code>? </code>代表匹配一个字符， <code>*</code> 代表匹配多个字符；</p><p>其应用也很广，可以用来搜索你不记得具体名称的文件夹：</p><blockquote><ol><li><p>比如你记得你磁盘有一个文件，它的文件名的第一个字符不记得了，只记得第二个是a，第三个不记得了，第四个是1，后面的又不记得了，而且是一个 <code>css</code> 文件，怎么搜索呢？</p><p>答：<code>?a?1*.css </code> 这样就能找到了。</p></li><li><p>还有一个文件，文件名的前三个字符不记得了，后面是hello，是一个 <code>css</code> 文件，怎么找呢？</p><p>答：<code>???hello.css</code></p></li><li><p>如果一个文件是以 <code>module</code> 结尾的该怎么搜索？</p><p>答：<code>dir *module </code></p></li><li><p>如果一个文件是以 <code>module</code> 开头的怎么搜索？</p><p>答：<code>dir module*</code></p></li></ol></blockquote><h3 id="3-新建文件及文件夹"><a href="#3-新建文件及文件夹" class="headerlink" title="3. 新建文件及文件夹"></a>3. 新建文件及文件夹</h3><figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">md</span> 新建文件夹名称//直接就可以新建一个文件夹了</span><br><span class="line"><span class="built_in">cd</span>.&gt;文件名称.txt  //直接就可以新建一个文本文件了</span><br></pre></td></tr></table></figure><p>解释：</p><ul><li><code>cd.</code> 是当前目录的意思</li></ul>]]></content>
+      
+      
       <categories>
-        <category>干货</category>
+          
+          <category> 干货 </category>
+          
+          <category> 小玩意儿 </category>
+          
       </categories>
-      <tags>
-        <tag>教程</tag>
-        <tag>干货</tag>
-        <tag>复制某文库内容</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>内网穿透</title>
-    <url>/archives/bd50b816.html</url>
-    <content><![CDATA[<p>内网穿透，即 NAT 穿透，进行 NAT 穿透是为了使具有某一个特定源 IP 地址和源端口号的数据包不被 NAT 设备屏蔽而正确路由到内网主机。<span id="more"></span></p>
-<p>最开始了解内网穿透是为了将自己写的HTML项目能够让别人看见，但当时又不了解服务器等东西，就上网搜方法；偶然看到说内网穿透可以，所以就找了好多教程；最终就选了以下这种方法！</p>
-<hr>
-<h3 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h3><p>安装好jdk并配置环境变量、下载Tomcat并配置环境变量、注册一个Ngrok账号、一台电脑</p>
-<h3 id="配置jdk与Tomcat"><a href="#配置jdk与Tomcat" class="headerlink" title="配置jdk与Tomcat"></a>配置jdk与Tomcat</h3><p>这个就不详写了，上网一搜一大堆！（注意Tomcat要与jdk的版本号对应，具体看官网对应关系：<a href="http://tomcat.apache.org/whichversion.html">Apache Tomcat® - Which Version Do I Want?</a>）</p>
-<h3 id="注册并登录Ngrok以及开通隧道"><a href="#注册并登录Ngrok以及开通隧道" class="headerlink" title="注册并登录Ngrok以及开通隧道"></a>注册并登录Ngrok以及开通隧道</h3><p>Ngrok官网：<a href="https://www.ngrok.cc/">Sunny-Ngrok内网穿透服务</a></p>
-<p>因为Ngrok是有免费线路的，所以完全可以白嫖。😁 一般不会失效，如果失效，再次开通就行。</p>
-<p>登录进入后选择“隧道管理” —&gt; “开通隧道” —&gt; 向下滑，找到最后一个价格为0元的，购买就行；</p>
-<p><strong>协议</strong>选<code>http/https</code>均可，<strong>隧道名称</strong>随便起，<strong>前置域名</strong>随便起（尽量短，好记；用英文、数字都行），<strong>本地端口</strong>默认就行，下面两个不用填，点击<strong>确定添加</strong>就可以了。</p>
-<p>开通成功后可以在<strong>隧道管理</strong>查看自己的隧道了。然后下载客户端，<a href="https://www.ngrok.cc/download.html">Sunny-Ngrok内网转发客户端</a>，选择自己电脑的版本即可！</p>
-<h3 id="内网穿透"><a href="#内网穿透" class="headerlink" title="内网穿透"></a>内网穿透</h3><p>下载后解压双击运行<code>Sunny-Ngrok启动工具.bat</code>，它会提示你要id,这时回到网页<strong>隧道管理</strong>找到你的<strong>隧道id</strong>粘贴进去，然后回车就行。</p>
-<p>这时如果你通过你的网址进行访问会提示你隧道不可用；这是因为你没有运行Tomcat，你cmd运行Tomcat后，再刷新就能看到Tomcat的页面了，如图：</p>
-<p><img src="https://s2.loli.net/2022/07/10/TOGBXVCNj68AmiZ.jpg"></p>
-<p>出现这个页面就恭喜你了，你已经成功了！</p>
-<hr>
-<h3 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h3><p>这时你的内网穿透已经成功了，但是如果你有自己的HTML项目，该怎样让别人通过你的网址访问呢？</p>
-<p>其实也很简单，将项目放到Tomcat目录下的<code>webapps</code>目录就行；访问的话就是<code>你的网址+项目的目录名+项目的名.html</code>，如我的一个就是<code>http://to.free.idcfengye.com/migong/index.html</code></p>
-<p>这样就能让别人通过你的网址来访问你的项目了！</p>
-<hr>
-<h3 id="最后的最后"><a href="#最后的最后" class="headerlink" title="最后的最后"></a>最后的最后</h3><p>注意，内网穿透的过程中你运行的 <code>Tomcat</code> 与 <code>Sunny-Ngrok启动工具</code> 不能关闭，否则连接会断开！</p>
-<p>完！</p>
-<hr>
-<p>更新：现在Ngrok免费的不太稳定，推荐使用 <a href="https://open.dingtalk.com/document/resourcedownload/http-intranet-penetration">钉钉内网穿透</a></p>
-<p>再次更新： <a href="https://open.dingtalk.com/document/resourcedownload/http-intranet-penetration">钉钉内网穿透</a> 也废弃了！  — 2022.07.21</p>
-]]></content>
+      
+      
+        <tags>
+            
+            <tag> 命令提示符 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Github+PicGo图床搭建</title>
+      <link href="/archives/febc4fee.html"/>
+      <url>/archives/febc4fee.html</url>
+      
+        <content type="html"><![CDATA[<h3 id="准备工作："><a href="#准备工作：" class="headerlink" title="准备工作："></a>准备工作：</h3><p>首先需要准备：</p><ul><li>一个GitHub账号</li><li>（没有的话先注册一个）</li><li>下载PicGo软件并安装</li><li>（软件GitHub地址：<a href="https://github.com/Molunerfinn/PicGo/releases%EF%BC%89">https://github.com/Molunerfinn/PicGo/releases）</a><span id="more"></span></li></ul><h3 id="创建仓库："><a href="#创建仓库：" class="headerlink" title="创建仓库："></a>创建仓库：</h3><p>打开GitHub，点击右上角的 “＋” 号，选择第一个 “New repository” 创建一个存放图片的仓库；</p><img src="https://s2.loli.net/2022/07/10/VE75bD61GXOge2n.jpg" style="zoom: 80%;" /><p>仓库名称可以起个 “Image” ，描述的话随便就行，然后一定要选 “Public” 不要选 “Private” 下边随便勾一下 “Add a README file” 就行！最后点击 “Create repository” 来创建，具体如下图：</p><img src="https://s2.loli.net/2022/07/10/hWmGrZ3es5Ry6d1.jpg" style="zoom: 50%;" /><h3 id="获取Token："><a href="#获取Token：" class="headerlink" title="获取Token："></a>获取Token：</h3><p>回到GitHub主页，点击右上角头像，在下拉菜单中找到 “Setting”；然后翻到最下边，点击 “Developer setting”，</p><img src="https://s2.loli.net/2022/07/10/fhEZRywAuSnGc1M.jpg" style="zoom: 50%;" /><p>再点击最下边的 “Personal access tokens” ，然后新建一个 token 就行，如下：</p><img src="https://s2.loli.net/2022/07/10/coxK8Pjd5OF4rqX.jpg" style="zoom: 50%;" /><img src="https://s2.loli.net/2022/07/10/QmsSeE2Y7fAaVPb.jpg" style="zoom:50%;" /><p>“Note” 可以随便填一个，时间的话自己选个天数就行（这个天数是 token 过期的时间），我这里就选个90天吧！最重要的是上面图中我圈起来的一定要打上勾！一定要！然后划到最下边点击创建就行了！然后你就会看到你的 Token ，值得注意的是：<strong>这个token只会出现一次，一定要记在什么地方备用</strong>，要是真么忘记的话，可以再新建一个！</p><h3 id="配置PicGo"><a href="#配置PicGo" class="headerlink" title="配置PicGo"></a>配置PicGo</h3><p>打开picgo软件，找到“图床设置”，点击“Github图床”，按如下配置：</p><img src="https://s2.loli.net/2022/07/10/xEsorp9iFnIAYPq.jpg" style="zoom:50%;" /><p>解释一下：</p><ul><li>设定仓库名：这里填的是 你GitHub的用户名 + 你刚才建的仓库名</li><li>设定分支名：<strong>一定要填 “main”</strong> 不要填 “master” 否则配置不生效！！</li><li>设定Token：这里填你刚才创建的 token 即可</li><li>指定存储路径：按图上填就行</li><li>设定自定义域名：前面的都是一样的，后面两项为你的用户名和仓库名；具体为：<a href="https://cdn.jsdelivr.net/gh/%E7%94%A8%E6%88%B7%E5%90%8D/%E4%BB%93%E5%BA%93%E5%90%8D">https://cdn.jsdelivr.net/gh/用户名/仓库名</a></li></ul><p>点击确定，就可以了，现在你可以上传一张图片测试一下！</p><p>如果不成功的话，就去问百度吧！</p><hr><p>哦，对了，最后附上 PicGo的官方文档吧：</p><p><a href="https://picgo.github.io/PicGo-Doc/zh/guide/#%E5%BA%94%E7%94%A8%E6%A6%82%E8%BF%B0">官方指南</a></p><p><a href="https://picgo.github.io/PicGo-Doc/zh/guide/config.html#github%E5%9B%BE%E5%BA%8A">用户配置</a></p><p>注意：设定分支名：<strong>一定要填 “main”</strong> 不要填 “master” 否则配置不生效！！这一点不要按照官方文档的来！</p><p>好了，这下真完事了！</p>]]></content>
+      
+      
       <categories>
-        <category>内网穿透</category>
+          
+          <category> 干货 </category>
+          
       </categories>
-      <tags>
-        <tag>教程</tag>
-        <tag>干货</tag>
-        <tag>内网穿透</tag>
-        <tag>Ngrok</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>命令提示符的一些小作用</title>
-    <url>/archives/1ff8041c.html</url>
-    <content><![CDATA[<h2 id="cmd-命令行常用基础语法"><a href="#cmd-命令行常用基础语法" class="headerlink" title="cmd 命令行常用基础语法"></a>cmd 命令行常用基础语法</h2><h3 id="1-查看并导出目录文件夹名称"><a href="#1-查看并导出目录文件夹名称" class="headerlink" title="1. 查看并导出目录文件夹名称"></a>1. 查看并导出目录文件夹名称</h3><figure class="highlight cmd"><table><tr><td class="code"><pre><span class="line"><span class="built_in">tree</span>&gt;list.txt		//查看文件夹并导出为list.txt文件</span><br><span class="line"><span class="built_in">tree</span> /f &gt;list.txt		//查看文件夹及里面的文件并导出为list.txt文件</span><br><span class="line"></span><br><span class="line"><span class="built_in">dir</span>		//查看目录列表，与<span class="built_in">tree</span>命令不太一样！</span><br></pre></td></tr></table></figure>
-
-<p>解释：</p>
-<ul>
-<li>只查看不导出，只用 <code>tree</code> 就行</li>
-<li><code>list.txt</code> 可以自己更改（<code>list</code> 为文件名，<code>txt</code> 为后缀；文件名可以自定义，后缀可以为：<code>txt、md、xls</code> 等）</li>
-<li>加上 <code>/f</code> 为显示文件夹下的文件，不加的话就只显示文件夹</li>
-</ul>
-<h3 id="2-批量更改文件名及后缀"><a href="#2-批量更改文件名及后缀" class="headerlink" title="2. 批量更改文件名及后缀"></a>2. 批量更改文件名及后缀</h3><figure class="highlight cmd"><table><tr><td class="code"><pre><span class="line"><span class="built_in">ren</span> *.txt *.<span class="built_in">md</span>		//改后缀名</span><br><span class="line"><span class="built_in">ren</span> 旧文件名.txt 新文件名.txt		//改文件名</span><br></pre></td></tr></table></figure>
-
-<p>解释：</p>
-<ul>
-<li><code>ren</code> 为更改后缀的命令</li>
-<li><code>*.txt</code> 为更改前的后缀</li>
-<li><code>*.md </code> 为你要更改的后缀</li>
-</ul>
-<p>如果你要更改所有文件，不只是<code>txt</code> 文件；那么可以用 <code>ren *. *.md</code> 命令！</p>
-<p>ps: 上面的 <code>*</code> 为通配符，通配符还有一个 <code>? </code>; 具体作用为：<code>? </code>代表匹配一个字符， <code>*</code> 代表匹配多个字符；</p>
-<p>其应用也很广，可以用来搜索你不记得具体名称的文件夹：</p>
-<blockquote>
-<ol>
-<li><p>比如你记得你磁盘有一个文件，它的文件名的第一个字符不记得了，只记得第二个是a，第三个不记得了，第四个是1，后面的又不记得了，而且是一个 <code>css</code> 文件，怎么搜索呢？</p>
-<p>答：<code>?a?1*.css </code> 这样就能找到了。</p>
-</li>
-<li><p>还有一个文件，文件名的前三个字符不记得了，后面是hello，是一个 <code>css</code> 文件，怎么找呢？</p>
-<p>答：<code>???hello.css</code></p>
-</li>
-<li><p>如果一个文件是以 <code>module</code> 结尾的该怎么搜索？</p>
-<p>答：<code>dir *module </code></p>
-</li>
-<li><p>如果一个文件是以 <code>module</code> 开头的怎么搜索？</p>
-<p>答：<code>dir module*</code></p>
-</li>
-</ol>
-</blockquote>
-<h3 id="3-新建文件及文件夹"><a href="#3-新建文件及文件夹" class="headerlink" title="3. 新建文件及文件夹"></a>3. 新建文件及文件夹</h3><figure class="highlight cmd"><table><tr><td class="code"><pre><span class="line"><span class="built_in">md</span> 新建文件夹名称		//直接就可以新建一个文件夹了</span><br><span class="line"><span class="built_in">cd</span>.&gt;文件名称.txt		  //直接就可以新建一个文本文件了</span><br></pre></td></tr></table></figure>
-
-<p>解释：</p>
-<ul>
-<li><code>cd.</code> 是当前目录的意思</li>
-</ul>
-]]></content>
+      
+      
+        <tags>
+            
+            <tag> Github </tag>
+            
+            <tag> PicGo </tag>
+            
+            <tag> 图床 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>内网穿透</title>
+      <link href="/archives/bd50b816.html"/>
+      <url>/archives/bd50b816.html</url>
+      
+        <content type="html"><![CDATA[<p>内网穿透，即 NAT 穿透，进行 NAT 穿透是为了使具有某一个特定源 IP 地址和源端口号的数据包不被 NAT 设备屏蔽而正确路由到内网主机。<span id="more"></span></p><p>最开始了解内网穿透是为了将自己写的HTML项目能够让别人看见，但当时又不了解服务器等东西，就上网搜方法；偶然看到说内网穿透可以，所以就找了好多教程；最终就选了以下这种方法！</p><hr><h3 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h3><p>安装好jdk并配置环境变量、下载Tomcat并配置环境变量、注册一个Ngrok账号、一台电脑</p><h3 id="配置jdk与Tomcat"><a href="#配置jdk与Tomcat" class="headerlink" title="配置jdk与Tomcat"></a>配置jdk与Tomcat</h3><p>这个就不详写了，上网一搜一大堆！（注意Tomcat要与jdk的版本号对应，具体看官网对应关系：<a href="http://tomcat.apache.org/whichversion.html">Apache Tomcat® - Which Version Do I Want?</a>）</p><h3 id="注册并登录Ngrok以及开通隧道"><a href="#注册并登录Ngrok以及开通隧道" class="headerlink" title="注册并登录Ngrok以及开通隧道"></a>注册并登录Ngrok以及开通隧道</h3><p>Ngrok官网：<a href="https://www.ngrok.cc/">Sunny-Ngrok内网穿透服务</a></p><p>因为Ngrok是有免费线路的，所以完全可以白嫖。😁 一般不会失效，如果失效，再次开通就行。</p><p>登录进入后选择“隧道管理” —&gt; “开通隧道” —&gt; 向下滑，找到最后一个价格为0元的，购买就行；</p><p><strong>协议</strong>选<code>http/https</code>均可，<strong>隧道名称</strong>随便起，<strong>前置域名</strong>随便起（尽量短，好记；用英文、数字都行），<strong>本地端口</strong>默认就行，下面两个不用填，点击<strong>确定添加</strong>就可以了。</p><p>开通成功后可以在<strong>隧道管理</strong>查看自己的隧道了。然后下载客户端，<a href="https://www.ngrok.cc/download.html">Sunny-Ngrok内网转发客户端</a>，选择自己电脑的版本即可！</p><h3 id="内网穿透"><a href="#内网穿透" class="headerlink" title="内网穿透"></a>内网穿透</h3><p>下载后解压双击运行<code>Sunny-Ngrok启动工具.bat</code>，它会提示你要id,这时回到网页<strong>隧道管理</strong>找到你的<strong>隧道id</strong>粘贴进去，然后回车就行。</p><p>这时如果你通过你的网址进行访问会提示你隧道不可用；这是因为你没有运行Tomcat，你cmd运行Tomcat后，再刷新就能看到Tomcat的页面了，如图：</p><p><img src="https://s2.loli.net/2022/07/10/TOGBXVCNj68AmiZ.jpg"></p><p>出现这个页面就恭喜你了，你已经成功了！</p><hr><h3 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h3><p>这时你的内网穿透已经成功了，但是如果你有自己的HTML项目，该怎样让别人通过你的网址访问呢？</p><p>其实也很简单，将项目放到Tomcat目录下的<code>webapps</code>目录就行；访问的话就是<code>你的网址+项目的目录名+项目的名.html</code>，如我的一个就是<code>http://to.free.idcfengye.com/migong/index.html</code></p><p>这样就能让别人通过你的网址来访问你的项目了！</p><hr><h3 id="最后的最后"><a href="#最后的最后" class="headerlink" title="最后的最后"></a>最后的最后</h3><p>注意，内网穿透的过程中你运行的 <code>Tomcat</code> 与 <code>Sunny-Ngrok启动工具</code> 不能关闭，否则连接会断开！</p><p>完！</p><hr><p>更新：现在Ngrok免费的不太稳定，推荐使用 <a href="https://open.dingtalk.com/document/resourcedownload/http-intranet-penetration">钉钉内网穿透</a></p><p>再次更新： <a href="https://open.dingtalk.com/document/resourcedownload/http-intranet-penetration">钉钉内网穿透</a> 也废弃了！  — 2022.07.21</p>]]></content>
+      
+      
       <categories>
-        <category>干货</category>
-        <category>小玩意儿</category>
+          
+          <category> 内网穿透 </category>
+          
       </categories>
-      <tags>
-        <tag>命令提示符</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>太极框架的基本使用方法</title>
-    <url>/archives/9caa2ea.html</url>
-    <content><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>在几年前当我拥有自己的第一部手机的时候，我就在想一定要将其打造成顺手好用，却又独一无二的设备！如今，几年过去了，实现了的已经实现了，没实现的，还是没能实现！😂<br>不过，经过这一段时间的折腾，我也有了一点点微不足道的经验！现在就记录与此（只是我自己的一点经验之谈，比较浅显！）<br>最开始本来想刷机的，但考虑到风险问题，还是放弃了（翻译翻译就是：俺没钱💰！）；不过，另辟蹊径还是可以的！就比如：使用框架；框架的优点显而易见，风险低、易操作、能反悔（不想搞了可以直接卸载就行）；缺点也有，就是局限性比较大；不过这也不是什么大问题，对于我们已经足够了！</p>
-<p>接下来就是操作了，就以我使用的框架与模块为例吧：（我用的是太极，据官网介绍，其完美支持包括 Android 5－12 在内的几乎所有机型：华为、三星、小米，Oppo 和 Vivo 等！ ）</p>
-<h3 id="软件准备"><a href="#软件准备" class="headerlink" title="软件准备"></a>软件准备</h3><ul>
-<li>太极（<a href="https://yinzhen.lanzouf.com/ihItj018nc8d">下载</a>）</li>
-<li>酷安 9.1.1版（<a href="https://mp.weixin.qq.com/s/hOdTa8fB_pFwguqzm4uFVQ">查看</a>） </li>
-<li>QQ 8.8.33版（自己去豌豆荚或者其他地方下载，安装包太大了，传不了蓝奏云）</li>
-<li>网易云音乐 6.0.0版（<a href="https://yinzhen.lanzouf.com/i7BnGwe7i6h">下载</a>）</li>
-<li>哔哩哔哩 6.55.0版（<a href="https://yinzhen.lanzouf.com/iVBKC018nkdg">下载</a>）</li>
-<li>CoolapkEx模块（<a href="https://yinzhen.lanzouf.com/iaTOxp649pe">下载</a>） — 配合酷安使用，用于更新app</li>
-<li>哔哩漫游（<a href="https://yinzhen.lanzouf.com/iK7AC018nb5e">下载</a>） — 可优化B站app</li>
-<li>UnblockMusic Pro（<a href="https://yinzhen.lanzouf.com/iJZ9y018noda">下载</a>） — 可解锁灰色音乐</li>
-<li>云村清洁工（<a href="https://yinzhen.lanzouf.com/iIxfY018nnxe">下载</a>） — 可自动签到、移除广告等</li>
-<li>QNotified（<a href="https://yinzhen.lanzouf.com/i9Azf018nbwb">下载</a>） — 用于对QQ的一系列修改如：闪照不销毁、消息防撤回、界面精简等<br><em>注意：软件与模块版本必须对应，否则模块可能不会生效</em></li>
-</ul>
-<h3 id="使用操作"><a href="#使用操作" class="headerlink" title="使用操作"></a>使用操作</h3><p>简单说就是：<br><strong>PS：（我比较懒，而且不怎么会做图，将就着看一下吧🙃）</strong><br>①下载并安装好太极与各个模块<br>②在太极里创建app（这一步需要卸载并重新安装app，会清除所有用户数据哦！<strong>请注意备份数据！</strong>）<br><img src="https://s2.loli.net/2022/07/10/5JKzUyIGxmbCOEL.jpg" style="zoom:33%;" /><br>③在太极里启用模块（把✓勾上就行了）<br><img src="https://s2.loli.net/2022/07/10/TC5DBf29IvxiaXo.jpg" style="zoom:33%;" /><br>④强制停止app （在太极主页点一下软件图标就会出现下图界面了）<br><img src="https://s2.loli.net/2022/07/10/9noLgDyi5VQdx8O.jpg" style="zoom:33%;" /><br>⑤在太极里启动app（只需要这一次，以后就可以通过桌面图标启动了；不过桌面启动有时会闪退，这时也可以在太极里启动）<br>⑥完毕</p>
-<hr>
-<h3 id="后话"><a href="#后话" class="headerlink" title="后话"></a>后话</h3><p>软件与模块能用的话，能不更新就不要更新了；除非软件更新了新的功能，而你又你非常非常想要体验新的功能！否则还是建议以稳定为主！<br>另外，在框架里的软件，会有一些个小问题，比如：有时候打开时直接闪退，有时候卡在开屏页面一段时间（几秒到几十秒不等）<br><strong>再次提醒：入坑需谨慎！</strong></p>
-<p><strong>如果我提供的软件如法使用，可自行上网寻找相应版本！</strong></p>
-<center>------END------</center>
-]]></content>
+      
+      
+        <tags>
+            
+            <tag> 教程 </tag>
+            
+            <tag> 干货 </tag>
+            
+            <tag> 内网穿透 </tag>
+            
+            <tag> Ngrok </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>MarkDown语法基础</title>
+      <link href="/archives/b797e99c.html"/>
+      <url>/archives/b797e99c.html</url>
+      
+        <content type="html"><![CDATA[<p>由于该博客的文章全部都是用markdown写的，所以就写一下MarkDown语法相关吧！<span id="more"></span></p><hr><p>Markdown 是一种轻量级标记语言，它允许人们使用易读易写的纯文本格式编写文档。</p><p>Markdown 语言在 2004 由约翰·格鲁伯（英语：John Gruber）创建。</p><p>Markdown 编写的文档可以导出 HTML 、Word、图像、PDF、Epub 等多种格式的文档。</p><p>Markdown 编写的文档后缀为 <strong>.md</strong>, <strong>.markdown</strong>。</p><hr><p>Markdown 能被使用来撰写电子书，如：Gitbook。</p><p>当前许多网站都广泛使用 Markdown 来撰写帮助文档或是用于论坛上发表消息。例如：GitHub、简书、reddit、Diaspora、Stack Exchange、OpenStreetMap 、SourceForge等。</p><hr><p>教程网站：<a href="https://www.runoob.com/markdown/md-tutorial.html">Markdown 教程 | 菜鸟教程</a></p><p>个人觉得好用的在线编辑网站：<a href="https://dillinger.io/">Online Markdown Editor - Dillinger, the Last Markdown Editor ever.</a></p><p>LaTex公式手册网站：<a href="https://www.zybuluo.com/codeep/note/163962#mjx-eqn-eqsample">LaTex 公式指导手册</a> </p><p>个人觉得好用的PC端MarkDown软件：<a href="https://www.typora.io/">Typora — a markdown editor, markdown reader.</a>  – （现在收费了，不过是买断制，如果喜欢可以购买正版！）</p><hr><p>结束！！</p>]]></content>
+      
+      
       <categories>
-        <category>太极框架</category>
-        <category>模块</category>
+          
+          <category> 干货 </category>
+          
       </categories>
-      <tags>
-        <tag>太极框架</tag>
-        <tag>模块</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>好玩的代码</title>
-    <url>/archives/81d62aff.html</url>
-    <content><![CDATA[<blockquote>
-<p>这篇博客主要介绍几种好玩的代码！“更改网页文字”、“修复电脑桌面白图标”、“微信消息轰炸PC端”等！有兴趣可以点开看看！</p>
-</blockquote>
-<span id="more"></span>
-
-<ol>
-<li><h3 id="更改网页文字"><a href="#更改网页文字" class="headerlink" title="更改网页文字"></a>更改网页文字</h3></li>
-</ol>
-<p>这个是很好玩的代码，你可以更改任意网页的任何文字；但要注意的是你更改后的网页并不会保留，关闭后再次打开还是原样！不过这样在某些时候已经足够了；无法保存你就截个图嘛~    这也是变相保存了。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">document.body.contentEditable=&#x27;true&#x27;;</span><br></pre></td></tr></table></figure>
-
-<p>​    <strong>使用：</strong>打开网页，按F12或者鼠标右键“检查”，打开控制台，将上面的代码复制到最下边的空白处敲击回车键，当显示“true”后，你就可以为所欲为了，最后别忘记截图哦~    哈哈！</p>
-<ol start="2">
-<li><h3 id="查看WiFi密码"><a href="#查看WiFi密码" class="headerlink" title="查看WiFi密码"></a>查看WiFi密码</h3></li>
-</ol>
-<p>这个代码可以查看你的笔记本电脑已经连接过的wifi密码，主要用于连接上但密码忘记的情况！</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">for /f &quot;skip=9 tokens=1,2 delims=:&quot; %i in (&#x27;netsh wlan show profiles&#x27;) do @echo %j | findstr -i -v echo | netsh wlan show profiles %j key=clear</span><br></pre></td></tr></table></figure>
-
-<p>​    <strong>使用：</strong>按住键盘上的Win和R键，在弹出的窗口中输入CMD, 按下回车，将上面的代码粘贴进去再次敲回车键就OK了，它会显示你这台电脑连接过的所有WiFi及其对应的密码，自己很容易就可以找到了。</p>
-<ol start="3">
-<li><h3 id="修复电脑桌面白图标"><a href="#修复电脑桌面白图标" class="headerlink" title="修复电脑桌面白图标"></a>修复电脑桌面白图标</h3></li>
-</ol>
-<p>电脑桌面的某些图标突然变白，什么也不显示， 非常难看 ，重启也解决不了问题。这个时候就用到下面的代码了！</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@duecho off</span><br><span class="line">taskkill /f /im explorer.exe</span><br><span class="line">CD /d %userprofile%\AppData\Local</span><br><span class="line">DEL IconCache.db /a</span><br><span class="line">start explorer.exe</span><br><span class="line">cho 执行完成</span><br></pre></td></tr></table></figure>
-
-<p>​    <strong>使用：</strong>复制上面的代码，在桌面新建一个文本文档，将其粘贴进去，再将后缀改为 bat ，双击运行。然后刷新一下桌面就可以看到那个白图标已经恢复到原来的样子了！</p>
-<ol start="4">
-<li><h3 id="微信消息轰炸PC端"><a href="#微信消息轰炸PC端" class="headerlink" title="微信消息轰炸PC端"></a>微信消息轰炸PC端</h3></li>
-</ol>
-<p>这个应用场景就自己看着办吧！</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">On Error Resume Next</span><br><span class="line">Dim wsh,ye</span><br><span class="line">set wsh=createobject(&quot;wscript.shell&quot;)</span><br><span class="line">for i=1 to 10</span><br><span class="line">wscript.sleep 700</span><br><span class="line">wsh.AppActivate(&quot;与某某聊天中&quot;)</span><br><span class="line">wsh.sendKeys &quot;^v&quot;</span><br><span class="line">wsh.sendKeys i</span><br><span class="line">wsh.sendKeys &quot;%s&quot;</span><br><span class="line">next</span><br><span class="line">wscript.quit</span><br></pre></td></tr></table></figure>
-
-<p>​    <strong>使用：</strong>在桌面新建一个文本文档，名称随便起，将上面的代码粘贴进去，最后将后缀改为 vbs，把要发给朋友的话复制，然后再双击此vbs文件，最后鼠标点击一下发送框即可。</p>
-<blockquote>
-<p>说明：代码中的 “10” 代表发送的消息数，“与某某聊天中”则是你要发送的对象的，只需将“某某”改为你给好友的备注即可，建议消息的数目不要改太多！！！</p>
-</blockquote>
-<ol start="5">
-<li><h3 id="图片隐写法"><a href="#图片隐写法" class="headerlink" title="图片隐写法"></a>图片隐写法</h3></li>
-</ol>
-<p>将你的文件隐藏在图片里，谁也找不到！</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">copy /b test.jpg + document.rar yincang.jpg</span><br></pre></td></tr></table></figure>
-
-<p>​    __使用：__将你要隐藏的文件和图片放在同一个文件夹中；按住键盘上的Win和R键，在弹出的窗口中输入CMD, 按下回车，并cd到你存放图片和文件的文件夹，输入以上代码（其中<code>test.jpg</code>为图片名称，<code>doucument.rar</code>为压缩包名称，<code>yicang.jpg</code>为输出的含有文件的图片名称）；这样就完成将文件隐藏到图片中了！</p>
-<blockquote>
-<p>说明：如果要找回文件，将输出的图片后缀改为<code>.rar</code>再解压即可！</p>
-</blockquote>
-]]></content>
+      
+      
+        <tags>
+            
+            <tag> 教程 </tag>
+            
+            <tag> 干货 </tag>
+            
+            <tag> markdown </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>FFmpeg的简单使用</title>
+      <link href="/archives/d9d00a92.html"/>
+      <url>/archives/d9d00a92.html</url>
+      
+        <content type="html"><![CDATA[<p>简单聊一聊FFmpeg的使用；</p><p>其有非常强大的功能：包括但不限于 视频采集功能、视频格式转换、视频抓图、给视频加水印等。<span id="more"></span></p><p><em>以下来源于百度百科：FFmpeg是一套可以用来记录、转换数字音频、视频，并能将其转化为流的开源计算机程序。采用LGPL或GPL许可证。它提供了录制、转换以及流化音视频的完整解决方案。它包含了非常先进的音频/视频编解码库libavcodec，为了保证高可移植性和编解码质量，libavcodec里很多code都是从头开发的。</em></p><hr><h3 id="简单介绍一下使用方法："><a href="#简单介绍一下使用方法：" class="headerlink" title="简单介绍一下使用方法："></a>简单介绍一下使用方法：</h3><h3 id="应用场景1：格式转换"><a href="#应用场景1：格式转换" class="headerlink" title="应用场景1：格式转换"></a>应用场景1：格式转换</h3><p>我想把用iPhone拍的.MOV文件转成.avi文件。最简单了，可以执行下面的命令：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ffmpeg -i D:\Media\IMG_0873.MOV D:\Media\output.avi  </span><br></pre></td></tr></table></figure><p>【意思是，把D:\Media目录下的源文件IMG_0873.MOV（视频：h.264，音频：aac）转换成output.avi（编码格式自动选择为：视频mpeg4，音频mp3），目标文件仍然保存到D:\Media目录下。】</p><p>问题来了：我想自己指定编码格式，怎么办呢？可通过目标文件的扩展名（.flv、.mpg、.mp4、.wmv等）来控制，比如：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ffmpeg -i D:\Media\IMG_0873.MOV D:\Media\output2.flv</span><br></pre></td></tr></table></figure><h3 id="应用场景2：调整大小"><a href="#应用场景2：调整大小" class="headerlink" title="应用场景2：调整大小"></a>应用场景2：调整大小</h3><p>若源文件的图像帧尺寸是1920x 1080，我不需要这么大——能有720 x 480就够了。于是，就要用上-s参数了。为了保证图像缩放后的质量，最好加上码流参数-b:v。如下：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ffmpeg -i D:\Media\IMG_0873.MOV -s 720x480 -b:v 1500k D:\Media\output2.avi</span><br></pre></td></tr></table></figure><h3 id="应用场景3：翻转视频"><a href="#应用场景3：翻转视频" class="headerlink" title="应用场景3：翻转视频"></a>应用场景3：翻转视频</h3><p>手机拍的视频中，有些是颠倒的，我想让它顺时针旋转90度。这时候，可以使用-vf参数加入一个过滤器，如下：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ffmpeg -i D:\Media\IMG_0873.MOV -vf &quot;rotate=90*PI/180&quot; D:\Media\output3.avi</span><br></pre></td></tr></table></figure><p>注：如果想逆时针旋转90度，90前面加个负号就可以了。</p><h3 id="应用场景4：截取一段"><a href="#应用场景4：截取一段" class="headerlink" title="应用场景4：截取一段"></a>应用场景4：截取一段</h3><p>需要从源视频里截取一小段，怎么办呢？比如从第2秒的地方开始，往后截取10秒钟。命令行可以这样：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ffmpeg -ss 2 -t 10 -i D:\Media\IMG_0873.MOV D:\Media\output4.avi</span><br></pre></td></tr></table></figure><p>注：这种情况下，-ss和-t参数必须放在-i前面，表示是限定后面跟着的输入文件的。</p><h3 id="应用场景5：视频合成"><a href="#应用场景5：视频合成" class="headerlink" title="应用场景5：视频合成"></a>应用场景5：视频合成</h3><p>用手机拍的视频有时候背景噪音比较大。怎么把噪音去掉，换成一段美妙的音乐呢？使用FFmpeg也能轻易做到。</p><p><em><strong>第一步：</strong></em>把源文件里的音频去掉，生成一个临时文件tmp.mov</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ffmpeg -i D:\Media\IMG_0873.MOV -vcodec copy -an D:\Media\tmp.mov</span><br></pre></td></tr></table></figure><p>注：-vcodec copy的意思是对源视频不解码，直接拷贝到目标文件；-an的意思是将源文件里的音频丢弃。</p><p><em><strong>第二步：</strong></em>把这个无声的视频文件（tmp.mov）与一个音乐文件（music.mp3）合成，最终生成output.mov</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ffmpeg -i D:\Media\tmp.mov -ss 30 -t 52 -i D:\Media\music.mp3 -vcodec copy D:\Media\output5.avi</span><br><span class="line"></span><br><span class="line">ffmpeg.exe -i G:\test\removebgm.mp4 -ss 00:00:00.0 -t 00:03:31 -i G:\test\456.mp3 -acodec copy G:\test\hfdk.mp4</span><br></pre></td></tr></table></figure><p>为了保证良好的合成效果，音乐时长必须匹配视频时长。这里我们事先知道视频时长为52秒，于是截取music.mp3文件的第30秒往后的52秒与视频合成。另外，为了保证音频时长截取的准确性，我们这里没有使用-acodec copy，而是让音频重新转码。</p><p>还有一种情况：我们希望在一段视频上叠加一张图片（将视频画面全部显示该图片）。可以简单实现如下：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ffmpeg -i D:\Media\IMG_0873.MOV -i D:\Media\logo.png -filter_complex   &#x27;overlay&#x27; D:\Media\output6.avi</span><br></pre></td></tr></table></figure><h3 id="应用场景6：视频播放"><a href="#应用场景6：视频播放" class="headerlink" title="应用场景6：视频播放"></a>应用场景6：视频播放</h3><p>格式转换或合成之后，我们需要试着播放一下。播放器的选择很多。这里顺手用ffplay工具也行：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ffplay -i D:\Media\output6.avi</span><br></pre></td></tr></table></figure><h3 id="应用场景7：获取视频信息"><a href="#应用场景7：获取视频信息" class="headerlink" title="应用场景7：获取视频信息"></a>应用场景7：获取视频信息</h3><p>有时候，我只是想看看这个视频文件的格式信息。可以用ffprobe工具：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ffprobe -i D:\Media\IMG_0873.MOV</span><br></pre></td></tr></table></figure><h3 id="应用场景8：截取视频前3秒-并转化为gif"><a href="#应用场景8：截取视频前3秒-并转化为gif" class="headerlink" title="应用场景8：截取视频前3秒 并转化为gif"></a>应用场景8：截取视频前3秒 并转化为gif</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ffmpeg -ss 00:00:01 -t 3 -i 123.mp4 -vf crop=iw:ih*2/3 -s 320x240 -r 7 456.gif</span><br></pre></td></tr></table></figure><p>ps: -ss 00：00：01表示从视频第一秒开始截取  ;  - t 表示截图3秒钟的视频  ;   -vf crop=iw:ih*2/3 表示截取视频的部分区域，其中宽为视频宽度，高为原视频的2/3  ;     -r 7 表示每秒帧率为7帧  ; </p><h3 id="应用场景9：把AVI里的音频保存成mp3文件"><a href="#应用场景9：把AVI里的音频保存成mp3文件" class="headerlink" title="应用场景9：把AVI里的音频保存成mp3文件"></a>应用场景9：把AVI里的音频保存成mp3文件</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ffmpeg -i source_video.avi -vn -ar 44100 -acodec libmp3lame -ac 2 -ab 192K -f mp3 sound.mp3</span><br></pre></td></tr></table></figure><h3 id="应用场景10：分离视频音频流"><a href="#应用场景10：分离视频音频流" class="headerlink" title="应用场景10：分离视频音频流"></a>应用场景10：<strong>分离视频音频流</strong></h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ffmpeg.exe -i G:\test\123.mp4 -f mp3 -vn G:\test\fgsiug.mp3</span><br><span class="line"></span><br><span class="line">ffmpeg.exe -i G:\test\123.mp4 -vn -codec copy G:\test\123.m4a</span><br><span class="line">//分离音频流      //  m4a 与 MP3 还不一样</span><br></pre></td></tr></table></figure><p><em>ps：以上来源于互联网以及FFmpeg官方文档</em></p><hr><h3 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h3><p>附上FFmpeg官网链接：<a href="https://github.com/FFmpeg/FFmpeg">FFmpeg/FFmpeg: Mirror of https://git.ffmpeg.org/ffmpeg.git (github.com)</a></p>]]></content>
+      
+      
       <categories>
-        <category>小玩意儿</category>
+          
+          <category> 干货 </category>
+          
       </categories>
-      <tags>
-        <tag>教程</tag>
-        <tag>代码</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>淘宝npm镜像将停止解析</title>
-    <url>/archives/12fca523.html</url>
-    <content><![CDATA[<h3 id="老淘宝-npm-镜像域名即将停止解析"><a href="#老淘宝-npm-镜像域名即将停止解析" class="headerlink" title="老淘宝 npm 镜像域名即将停止解析"></a>老淘宝 npm 镜像域名即将停止解析</h3><ul>
-<li><p>淘宝 <code>npm</code> 镜像站品牌升级，新品牌为 <code>npmmirror</code> （<code>npm</code> 中国镜像站）。</p>
-</li>
-<li><p>广为人知的淘宝 <code>npm</code> 镜像老域名（*.npm.taobao.org）将在 <strong>2022.06.30号</strong> 正式下线和停止 <code>DNS</code> 解析。</p>
-</li>
-<li><p>涉及到的域名迁移如下：</p>
-<blockquote>
-<p><a href="http://npm.taobao.org/">http://npm.taobao.org</a> =&gt; <a href="http://npmmirror.com/">http://npmmirror.com</a><br><a href="http://registry.npm.taobao.org/">http://registry.npm.taobao.org</a> =&gt; <a href="http://registry.npmmirror.com/">http://registry.npmmirror.com</a></p>
-</blockquote>
-</li>
-<li><p>可能产生的大影响：</p>
-<ol>
-<li>所有写死的都得换。</li>
-<li>企业用户需要联系 网管/IT/SRE 更新防火墙白名单。</li>
-<li>存量应用的 <code>lock</code> 文件，开发者需要自行执行 <code>sed</code> 等指令去替换或重新生成。</li>
-<li>本地 <code>npmrc</code> 里面的 <code>registry</code> 地址（如果有，则）需要开发者自行更新。</li>
-</ol>
-</li>
-</ul>
-]]></content>
+      
+      
+        <tags>
+            
+            <tag> 教程 </tag>
+            
+            <tag> FFmpeg </tag>
+            
+            <tag> 干货 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>突然连接不了GitHub?</title>
+      <link href="/archives/d840bd6.html"/>
+      <url>/archives/d840bd6.html</url>
+      
+        <content type="html"><![CDATA[<p>前段时间开学了，比较忙就没空写博客了；不过就在我忙里偷闲抽空写的时候发现连接不了GitHub了，嗯？什么情况？<span id="more"></span></p><p>这是什么情况？不应该啊？我啥都没动咋就不行了？一连串的疑问在我脑中萦绕！</p><p>以下为报错的代码：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">fatal: Could not read from remote repository.</span><br><span class="line"></span><br><span class="line">Please make sure you have the correct access rights</span><br><span class="line">and the repository exists.</span><br><span class="line">FATAL &#123;</span><br><span class="line">  err: Error: Spawn failed</span><br><span class="line">      at ChildProcess.&lt;anonymous&gt; (D:\MyBlog\node_modules\hexo-util\lib\spawn.js:51:21)</span><br><span class="line">      at ChildProcess.emit (events.js:400:28)</span><br><span class="line">      at ChildProcess.cp.emit (D:\MyBlog\node_modules\cross-spawn\lib\enoent.js:34:29)</span><br><span class="line">      at Process.ChildProcess._handle.onexit (internal/child_process.js:277:12) &#123;</span><br><span class="line">    code: 128</span><br><span class="line">  &#125;</span><br><span class="line">&#125; Something&#x27;s wrong. Maybe you can find the solution here: %s https://hexo.io/docs/troubleshooting.html</span><br></pre></td></tr></table></figure><p>没办法，第一次遇到，上网搜解决办法吧！大部分的帖子都说ssh失效了，重新生成一下；好，我照做！但完全没效果是什么意思，是我不配了吗？难搞哦！最后想了想先放这儿吧，有空再好好收拾收拾你！</p><p>过了几天，我又屁颠屁颠地回来了；继续搞，我还就不信了！继续上网搜解决办法呗，但结果都大差不差，都让我重新生成ssh；可我都重新生成几遍了，还是不行，这怎搞？老规矩，先晾着，说不定哪天我试试他自己就好了！（<del>我在想peach</del>）</p><p>不过，这次我可没放着就不管了；我甚至走路都在想到底是哪里出问题了；后来仔细分析了一下，好像和家里的改变就只有地区的改变了！再深想一下，网络也随之改变了！嗯，一定是这个原因，死马当做活马医，试试吧！<strong>断开校园网，拔掉网线</strong>，换个手机热点看看！（<em>一定要拔掉网线，不要问我为什么会知道</em>）</p><p>没想到啊，没想到！结果真的出在这里，用手机热点后一下就连通了！！（话说，这是为什么呢？校园网端口没开放？那换个端口行不？我还没试过，有谁试了可以给我说一下哈！）</p><p>到这儿，文章就结束了；结果只是换个网络就行，整的那么复杂。还好我没想不开将博客删了重建！也算是一点经验吧！希望遇到这个问题的朋友看到这儿后可以完美解决！</p><hr><p>突然又想到福尔摩斯的一句名言：</p><blockquote><h4 id="排除一切不可能的，剩下的即使再不可能，那也是真相！-—-夏洛克·福尔摩斯"><a href="#排除一切不可能的，剩下的即使再不可能，那也是真相！-—-夏洛克·福尔摩斯" class="headerlink" title="排除一切不可能的，剩下的即使再不可能，那也是真相！  — 夏洛克·福尔摩斯"></a>排除一切不可能的，剩下的即使再不可能，那也是真相！<br><br>  — 夏洛克·福尔摩斯</h4></blockquote>]]></content>
+      
+      
       <categories>
-        <category>资讯</category>
+          
+          <category> Hexo </category>
+          
+          <category> Github </category>
+          
       </categories>
-      <tags>
-        <tag>资讯</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>突然连接不了GitHub?</title>
-    <url>/archives/d840bd6.html</url>
-    <content><![CDATA[<p>前段时间开学了，比较忙就没空写博客了；不过就在我忙里偷闲抽空写的时候发现连接不了GitHub了，嗯？什么情况？<span id="more"></span></p>
-<p>这是什么情况？不应该啊？我啥都没动咋就不行了？一连串的疑问在我脑中萦绕！</p>
-<p>以下为报错的代码：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">fatal: Could not read from remote repository.</span><br><span class="line"></span><br><span class="line">Please make sure you have the correct access rights</span><br><span class="line">and the repository exists.</span><br><span class="line">FATAL &#123;</span><br><span class="line">  err: Error: Spawn failed</span><br><span class="line">      at ChildProcess.&lt;anonymous&gt; (D:\MyBlog\node_modules\hexo-util\lib\spawn.js:51:21)</span><br><span class="line">      at ChildProcess.emit (events.js:400:28)</span><br><span class="line">      at ChildProcess.cp.emit (D:\MyBlog\node_modules\cross-spawn\lib\enoent.js:34:29)</span><br><span class="line">      at Process.ChildProcess._handle.onexit (internal/child_process.js:277:12) &#123;</span><br><span class="line">    code: 128</span><br><span class="line">  &#125;</span><br><span class="line">&#125; Something&#x27;s wrong. Maybe you can find the solution here: %s https://hexo.io/docs/troubleshooting.html</span><br></pre></td></tr></table></figure>
-
-<p>没办法，第一次遇到，上网搜解决办法吧！大部分的帖子都说ssh失效了，重新生成一下；好，我照做！但完全没效果是什么意思，是我不配了吗？难搞哦！最后想了想先放这儿吧，有空再好好收拾收拾你！</p>
-<p>过了几天，我又屁颠屁颠地回来了；继续搞，我还就不信了！继续上网搜解决办法呗，但结果都大差不差，都让我重新生成ssh；可我都重新生成几遍了，还是不行，这怎搞？老规矩，先晾着，说不定哪天我试试他自己就好了！（<del>我在想peach</del>）</p>
-<p>不过，这次我可没放着就不管了；我甚至走路都在想到底是哪里出问题了；后来仔细分析了一下，好像和家里的改变就只有地区的改变了！再深想一下，网络也随之改变了！嗯，一定是这个原因，死马当做活马医，试试吧！<strong>断开校园网，拔掉网线</strong>，换个手机热点看看！（<em>一定要拔掉网线，不要问我为什么会知道</em>）</p>
-<p>没想到啊，没想到！结果真的出在这里，用手机热点后一下就连通了！！（话说，这是为什么呢？校园网端口没开放？那换个端口行不？我还没试过，有谁试了可以给我说一下哈！）</p>
-<p>到这儿，文章就结束了；结果只是换个网络就行，整的那么复杂。还好我没想不开将博客删了重建！也算是一点经验吧！希望遇到这个问题的朋友看到这儿后可以完美解决！</p>
-<hr>
-<p>突然又想到福尔摩斯的一句名言：</p>
-<blockquote>
-<h4 id="排除一切不可能的，剩下的即使再不可能，那也是真相！-—-夏洛克·福尔摩斯"><a href="#排除一切不可能的，剩下的即使再不可能，那也是真相！-—-夏洛克·福尔摩斯" class="headerlink" title="排除一切不可能的，剩下的即使再不可能，那也是真相！  — 夏洛克·福尔摩斯"></a>排除一切不可能的，剩下的即使再不可能，那也是真相！<br><br>  — 夏洛克·福尔摩斯</h4></blockquote>
-]]></content>
+      
+      
+        <tags>
+            
+            <tag> 教程 </tag>
+            
+            <tag> 踩坑 </tag>
+            
+            <tag> 博客 </tag>
+            
+            <tag> hexo </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>精确搜索你需要的资料</title>
+      <link href="/archives/c485373b.html"/>
+      <url>/archives/c485373b.html</url>
+      
+        <content type="html"><![CDATA[<h3 id="今天写写关于搜索的文章吧！"><a href="#今天写写关于搜索的文章吧！" class="headerlink" title="今天写写关于搜索的文章吧！"></a>今天写写关于搜索的文章吧！</h3><p>“搜索”如果用好了，你几乎可以搜到任何你要的资料，但前提是你得会搜哦！</p><p>以下是我常用的搜索小技巧，你可以参考参考。</p><span id="more"></span><hr><h3 id="1-将结果限定在某个网站中"><a href="#1-将结果限定在某个网站中" class="headerlink" title="1. 将结果限定在某个网站中"></a>1. 将结果限定在某个网站中</h3><p>实现这个操作并不难，用<code>site</code>指令即可；</p><p>如：我要搜知乎中关于 “人工智能” 的内容，就可以这样来表达：<code>人工智能  site:zhihu.com</code>，这样就能搜到知乎中所有有关人工智能的文章，还弥补知乎站内搜索效果差的缺陷。</p><h3 id="2-将结果限定为某种文件类型"><a href="#2-将结果限定为某种文件类型" class="headerlink" title="2. 将结果限定为某种文件类型"></a>2. 将结果限定为某种文件类型</h3><p>这个也不难理解，不过你得有明确的目标，知道你要搜索的文件类型；这种适合用来搜电子教材或文档；</p><p>如：我要搜 “2020考研数学真题”，就可以这样表示：<code>2020考研数学真题 filetype:pdf</code>，这样你搜到的就都是各大网站的PDF文件。</p><h3 id="3-限定搜索结果的时间范围"><a href="#3-限定搜索结果的时间范围" class="headerlink" title="3. 限定搜索结果的时间范围"></a>3. 限定搜索结果的时间范围</h3><p>你如果要搜比较新的内容，不想要时间久远的内容来徒增工作量，那么就能用得上这个指令了；</p><p>如：我要搜 “人工智能” 最前沿的资讯，就能这样写：<code>人工智能 2020..2021</code>，这样搜出来的基本就是2020年到2021年关于人工智能的信息了。当然，时间你可以随便更换。</p><h3 id="4-限定标题中必须包含的关键字"><a href="#4-限定标题中必须包含的关键字" class="headerlink" title="4. 限定标题中必须包含的关键字"></a>4. 限定标题中必须包含的关键字</h3><p>这个也很容易理解了</p><p>如：我要搜关于 “ AI ” 的文章，但标题中必须包含 “大数据”，就能这样写：<code>AI intitle:大数据</code>，这样搜到的 AI 信息就都是标题中带有 “大数据” 三个字的。</p><h3 id="5-限定结果网址中包含字段"><a href="#5-限定结果网址中包含字段" class="headerlink" title="5. 限定结果网址中包含字段"></a>5. 限定结果网址中包含字段</h3><p>如：我要搜腾讯的关于 “人工智能” 的网站，那么就能写为：<code>人工智能 inurl:tencent</code>，这样就能直接看到所有腾讯旗下关于人工智能的内容，不用再在浏览器中一页一页向下找。</p><h3 id="6-删除结果中你不想要的信息"><a href="#6-删除结果中你不想要的信息" class="headerlink" title="6. 删除结果中你不想要的信息"></a>6. 删除结果中你不想要的信息</h3><p>此指令可以删除搜索结果中不必要的信息；不过，我一般用来去掉广告、推广之类的。</p><p>如：我要搜 “人工智能学习” ，就能写为：<code>人工智能学习 -广告 -推广</code>，这样搜出来的没有广告，没有搜索引擎的推广，都是精华；不信你可以试试。</p><p>当然，这个指令不止可以用来去广告，你也可以开动你那聪明的小脑瓜，想想怎样用可以更加方便、快捷、高效。</p><h3 id="7-总结"><a href="#7-总结" class="headerlink" title="7. 总结"></a>7. 总结</h3><table><thead><tr><th align="center">指令</th><th align="center">作用</th><th align="center">举例</th></tr></thead><tbody><tr><td align="center">site</td><td align="center">将结果限定在某个网站中</td><td align="center">见文中</td></tr><tr><td align="center">filetype</td><td align="center">将结果限定为某种文件类型</td><td align="center">见文中</td></tr><tr><td align="center">时间1..时间2</td><td align="center">限定搜索结果的时间范围</td><td align="center">见文中</td></tr><tr><td align="center">intitle</td><td align="center">限定标题中必须包含的关键字</td><td align="center">见文中</td></tr><tr><td align="center">inurl</td><td align="center">限定结果网址中包含字段</td><td align="center">见文中</td></tr><tr><td align="center">“ -“（减号）</td><td align="center">删除结果中你不想要的信息</td><td align="center">见文中</td></tr></tbody></table>]]></content>
+      
+      
       <categories>
-        <category>Hexo</category>
-        <category>Github</category>
+          
+          <category> 干货 </category>
+          
+          <category> 准确搜索 </category>
+          
       </categories>
-      <tags>
-        <tag>教程</tag>
-        <tag>踩坑</tag>
-        <tag>博客</tag>
-        <tag>hexo</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>精确搜索你需要的资料</title>
-    <url>/archives/c485373b.html</url>
-    <content><![CDATA[<h3 id="今天写写关于搜索的文章吧！"><a href="#今天写写关于搜索的文章吧！" class="headerlink" title="今天写写关于搜索的文章吧！"></a>今天写写关于搜索的文章吧！</h3><p>“搜索”如果用好了，你几乎可以搜到任何你要的资料，但前提是你得会搜哦！</p>
-<p>以下是我常用的搜索小技巧，你可以参考参考。</p>
-<span id="more"></span>
-
-<hr>
-<h3 id="1-将结果限定在某个网站中"><a href="#1-将结果限定在某个网站中" class="headerlink" title="1. 将结果限定在某个网站中"></a>1. 将结果限定在某个网站中</h3><p>实现这个操作并不难，用<code>site</code>指令即可；</p>
-<p>如：我要搜知乎中关于 “人工智能” 的内容，就可以这样来表达：<code>人工智能  site:zhihu.com</code>，这样就能搜到知乎中所有有关人工智能的文章，还弥补知乎站内搜索效果差的缺陷。</p>
-<h3 id="2-将结果限定为某种文件类型"><a href="#2-将结果限定为某种文件类型" class="headerlink" title="2. 将结果限定为某种文件类型"></a>2. 将结果限定为某种文件类型</h3><p>这个也不难理解，不过你得有明确的目标，知道你要搜索的文件类型；这种适合用来搜电子教材或文档；</p>
-<p>如：我要搜 “2020考研数学真题”，就可以这样表示：<code>2020考研数学真题 filetype:pdf</code>，这样你搜到的就都是各大网站的PDF文件。</p>
-<h3 id="3-限定搜索结果的时间范围"><a href="#3-限定搜索结果的时间范围" class="headerlink" title="3. 限定搜索结果的时间范围"></a>3. 限定搜索结果的时间范围</h3><p>你如果要搜比较新的内容，不想要时间久远的内容来徒增工作量，那么就能用得上这个指令了；</p>
-<p>如：我要搜 “人工智能” 最前沿的资讯，就能这样写：<code>人工智能 2020..2021</code>，这样搜出来的基本就是2020年到2021年关于人工智能的信息了。当然，时间你可以随便更换。</p>
-<h3 id="4-限定标题中必须包含的关键字"><a href="#4-限定标题中必须包含的关键字" class="headerlink" title="4. 限定标题中必须包含的关键字"></a>4. 限定标题中必须包含的关键字</h3><p>这个也很容易理解了</p>
-<p>如：我要搜关于 “ AI ” 的文章，但标题中必须包含 “大数据”，就能这样写：<code>AI intitle:大数据</code>，这样搜到的 AI 信息就都是标题中带有 “大数据” 三个字的。</p>
-<h3 id="5-限定结果网址中包含字段"><a href="#5-限定结果网址中包含字段" class="headerlink" title="5. 限定结果网址中包含字段"></a>5. 限定结果网址中包含字段</h3><p>如：我要搜腾讯的关于 “人工智能” 的网站，那么就能写为：<code>人工智能 inurl:tencent</code>，这样就能直接看到所有腾讯旗下关于人工智能的内容，不用再在浏览器中一页一页向下找。</p>
-<h3 id="6-删除结果中你不想要的信息"><a href="#6-删除结果中你不想要的信息" class="headerlink" title="6. 删除结果中你不想要的信息"></a>6. 删除结果中你不想要的信息</h3><p>此指令可以删除搜索结果中不必要的信息；不过，我一般用来去掉广告、推广之类的。</p>
-<p>如：我要搜 “人工智能学习” ，就能写为：<code>人工智能学习 -广告 -推广</code>，这样搜出来的没有广告，没有搜索引擎的推广，都是精华；不信你可以试试。</p>
-<p>当然，这个指令不止可以用来去广告，你也可以开动你那聪明的小脑瓜，想想怎样用可以更加方便、快捷、高效。</p>
-<h3 id="7-总结"><a href="#7-总结" class="headerlink" title="7. 总结"></a>7. 总结</h3><table>
-<thead>
-<tr>
-<th align="center">指令</th>
-<th align="center">作用</th>
-<th align="center">举例</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">site</td>
-<td align="center">将结果限定在某个网站中</td>
-<td align="center">见文中</td>
-</tr>
-<tr>
-<td align="center">filetype</td>
-<td align="center">将结果限定为某种文件类型</td>
-<td align="center">见文中</td>
-</tr>
-<tr>
-<td align="center">时间1..时间2</td>
-<td align="center">限定搜索结果的时间范围</td>
-<td align="center">见文中</td>
-</tr>
-<tr>
-<td align="center">intitle</td>
-<td align="center">限定标题中必须包含的关键字</td>
-<td align="center">见文中</td>
-</tr>
-<tr>
-<td align="center">inurl</td>
-<td align="center">限定结果网址中包含字段</td>
-<td align="center">见文中</td>
-</tr>
-<tr>
-<td align="center">“ -“（减号）</td>
-<td align="center">删除结果中你不想要的信息</td>
-<td align="center">见文中</td>
-</tr>
-</tbody></table>
-]]></content>
+      
+      
+        <tags>
+            
+            <tag> 教程 </tag>
+            
+            <tag> 干货 </tag>
+            
+            <tag> 搜索技巧 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>谷歌账号的注册</title>
+      <link href="/archives/c7047092.html"/>
+      <url>/archives/c7047092.html</url>
+      
+        <content type="html"><![CDATA[<p>今天写一个关于国内注册谷歌账号的方法，防止自己忘记，也可给不会的朋友一点思路！</p><p>这些方法也是截止写这篇文章为止，我自己测试可用的！</p><span id="more"></span><p>注册的前提是，你有 “科学上网” 的方法；否则就算注册了也没用不是吗？另外，你还得安装谷歌框架，这个软件你可以点 <a href="https://yinzhen.lanzoui.com/iM4Bkutxnfa">这里</a> 下载。</p><p>这里我不提供该上网方法与软件，有兴趣自己搜！</p><p><strong>ps：文中环境为 “科学上网” 环境下！</strong></p><hr><h3 id="1-利用QQ邮箱"><a href="#1-利用QQ邮箱" class="headerlink" title="1. 利用QQ邮箱"></a>1. 利用QQ邮箱</h3><p>手机上下载QQ邮箱，在 “添加账户” 处选择 Gmail 邮箱，点击后会出现登录页面；你可以点击左下角的 “创建账号” 来进行注册，接着一步一步往下走就行。</p><h3 id="2-利用Gmail邮箱"><a href="#2-利用Gmail邮箱" class="headerlink" title="2. 利用Gmail邮箱"></a>2. 利用Gmail邮箱</h3><p>Gmail邮箱在各大软件商店都能下载，安装完成并打开后选择创建账户，一步一步往下即可，国内手机号是可以接到验证码的！</p><p>今天我刚用此方法注册了一个新的账号，可行！ </p><h3 id="3-利用OurPlay加速器"><a href="#3-利用OurPlay加速器" class="headerlink" title="3. 利用OurPlay加速器"></a>3. 利用OurPlay加速器</h3><p>该软件在各大应用商店也能下载，下载安装后，点击登录账户（此时没有创建账户这个选项，别急，往下看）；随便输入一个已经存在的账号【例如：aaaa666#gmail.com （将 # 改为 @ 即可）】，进入下一步输入密码；不是你的账号，你肯定不知道密码，所以点手机上的返回菜单（不要大返回桌面，返回上一步就行），这是你会发现在登录账户页面的左下角出现了 “创建账户” 的按钮；接着一步一步向下就行了。注册完成就能登录Gmail了，这时就可以将OurPlay加速器卸载了！（没错，卸磨杀驴😉）</p><h3 id="4-利用-Google-Chrome-浏览器"><a href="#4-利用-Google-Chrome-浏览器" class="headerlink" title="4. 利用 Google Chrome 浏览器"></a>4. 利用 Google Chrome 浏览器</h3><p>这个方法是我听别人说的，今天我测试了一下，没成功；但想到可能是我自己的原因，所以就写出来给大家看看，万一你们可以呢，对吧！</p><p>将PC端 Google Chrome 浏览器语言设置为英文，重启浏览器；然后打开页面进行注册，按部就班地往下即可。</p><hr><h3 id="后话"><a href="#后话" class="headerlink" title="后话"></a>后话</h3><p>注册完成后，不要频繁更换代理IP，有可能会被封，就这样。</p>]]></content>
+      
+      
       <categories>
-        <category>干货</category>
-        <category>准确搜索</category>
+          
+          <category> 干货 </category>
+          
+          <category> 谷歌 </category>
+          
       </categories>
-      <tags>
-        <tag>教程</tag>
-        <tag>干货</tag>
-        <tag>搜索技巧</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>解析freenom域名</title>
-    <url>/archives/79444b31.html</url>
-    <content><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>​        前几天刚用 github + hexo 搭建了一个博客，用来记录自己的学习成果！但域名是 github 的二级域名，看着不太好看；就寻思怎样白嫖一个域名；<span id="more"></span>搜来搜去，看到了一个帖子说可以去 freenom 白嫖，就想着试试；结果自己根本搞不了，无奈继续搜教程呗！看了好多教程，都没成功；想来想去就上 Youtube 了，按时间排序，第一个就是；真是保姆级的教程，一次成功，哈哈！视频链接我放这儿了，有需自取：<a href="https://www.youtube.com/watch?v=dTVKfuW9BiU">白嫖freenom域名</a></p>
-<p>​        白嫖成功了，自然要用起来，不然费那么大劲干什么！其实我之前是有买过域名和服务器的，但感觉有一丢丢贵，就没续费了；但那是在阿里云买的，域名解析和现在的情况完全不同；没办法，就又双叒上网搜教程，还是找了好多，搜索的姿势也换了好多，终于还是让我找到了，难呐！（该说不说，搞这个也许代码功夫没长进，搜索资源的心得倒是攒了一大堆！）于是又是一波操作，现在弄成功了，域名是 totoro933.tk ，不出意外应该之后的很长一段时间都有效，若是打不开了，或者打开后不是我的博客，就说明被回收了（免费的还是有弊端的，有条件还是自己买个吧）。好了，接下来我会将我踩的坑分享一下，有需要的可要好好看了！</p>
-<h3 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h3><p>​        有一个域名，也可以和我一样去 freenom.com 白嫖（教程在上边）</p>
-<p>​        注册好并实名认证 Dnspod ，官网地址：<a href="https://console.dnspod.cn/">Dnspod官网</a></p>
-<h3 id="DNS解析"><a href="#DNS解析" class="headerlink" title="DNS解析"></a>DNS解析</h3><p>​        其实在 freenom 买过域名后，它本就提供了 DNS 解析服务，但因为 freenom 的 DNS 解析在国内可能不是很流畅，所以我才会选用 Dnspod （这是腾讯家的网站）；在解析之前，我们要把这个域名的控制权从 freenom 交到 Dnspod 的手上：打开 Dnspod 主页，在侧栏中选择“我的域名”，点击添加域名，把你的域名填进去，如 我的就是：totoro933.tk ，点击确定；接着往下，他会给你两个 dns server 地址，将其填到 freenom 中，具体流程为：</p>
-<blockquote>
-<p>登陆freenom，从首页点击 services -&gt; my domain -&gt; manage domain -&gt; Management Tools -&gt; Nameservers -&gt; Use custom nameservers (enter below) -&gt; 在前两个空中填入 Dnspod 给你的两个的 dns server 地址，最后点击最下边的提交按钮就好了。</p>
-<p>如果你找不到 My domain ， 请确认你是不是登录了。</p>
-</blockquote>
-<p>​        完成上述步骤后，打开你的 Dnspod 主页，找到你刚才添加的域名，点击它，你会跳到添加解析度页面，点击添加记录，<em>主机记录</em> 一栏填<code>www</code>，<em>记录类型</em> 填<code>A</code>，<em>线路类型</em> 为默认，<em>记录值</em> 填 ping xxxx.github.io后所得到的IP地址，其中xxxx为你的 github 仓库名，后边的默认就行，点击确定；然后再点击快速添加解析，选择“域名映射(CNAME)”，填入xxxx.github.io，确定即可！到这里，DNS解析已经完成了。<strong>（注意：有时候 DNS 的设置不是即时生效的，不同地方需要不同的时间，有时候几分钟就好了，有时候要一晚上一天，设置好后可以美美的睡一觉，第二天应该就没问题了！）</strong></p>
-<h3 id="设置github"><a href="#设置github" class="headerlink" title="设置github"></a>设置github</h3><p>​        进入 github 你托管博客的那个项目，按顺序依次点<code>setting -&gt; GitHub Pages -&gt; Custom domain</code>， 输入你的域名，如 我的为：totoro933.tk，点 save 。</p>
-<h3 id="增加-CNAME-文件"><a href="#增加-CNAME-文件" class="headerlink" title="增加 CNAME 文件"></a>增加 CNAME 文件</h3><p>​        在你存放博客的根目录的 <code>source</code> 文件夹下新建一个文件  <code>CNAME </code>，注意，它没有后缀，就叫 CNAME ，文件内容填你的域名！</p>
-<h3 id="修改-config-文件"><a href="#修改-config-文件" class="headerlink" title="修改 _config 文件"></a>修改 _config 文件</h3><p>​        去你 blog 的根目录下，修改 _config.yml 文件：打开后搜 skip ，你会看到 <code>skip_render:</code>，然后在后边添加<code>CNAME</code>，注意，在CNAME前有个空格！！！</p>
-<p>​        然后保存，之后就能通过你的域名来访问你的博客了；如果没生效的话，可以先进行一波</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">hexo clean &amp;&amp; hexo g &amp;&amp; hexo d</span><br></pre></td></tr></table></figure>
-
-<p>​        然后就能愉快的访问了！</p>
-]]></content>
+      
+      
+        <tags>
+            
+            <tag> 教程 </tag>
+            
+            <tag> 干货 </tag>
+            
+            <tag> 注册谷歌账号 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>免VIP复制百度文库内容</title>
+      <link href="/archives/631e63b6.html"/>
+      <url>/archives/631e63b6.html</url>
+      
+        <content type="html"><![CDATA[<p>今天发一下 4 种我自己知道的免VIP复制网页内容的方法</p><p>以下方法都是截止我发文时，自己测试管用的！</p><span id="more"></span><hr><ul><li><h3 id="利用开发者工具"><a href="#利用开发者工具" class="headerlink" title="利用开发者工具"></a>利用开发者工具</h3></li></ul><p>在遇到不可复制的网页内容时，可鼠标右键，选择 “检查”，打开 “开发者模式” ，在 “元素” 中向下滑动可以找到你要复制的内容；不过，都是一句一句的，不连贯，对于篇幅比较长的内容不太适用。</p><ul><li><h3 id="关闭该网页的-JS"><a href="#关闭该网页的-JS" class="headerlink" title="关闭该网页的 JS"></a>关闭该网页的 JS</h3></li></ul><p>具体如下：</p><p>打开浏览器设置，搜索 JavaScript 然后你会看见该设置的内容，你可以将要复制的网页链接添加到 “不允许使用 JavaScript” 一栏中；若你比较懒，也可以直接将 JavaScript 整个关闭，然后回到你要复制内容的网页刷新，就能任意复制了；不过某些网站关闭 JavaScript 后可能不能正常运行；<strong>因此，复制完内容后一定要记得将 JavaScript 的开关打开！！</strong></p><ul><li><h3 id="利用插件"><a href="#利用插件" class="headerlink" title="利用插件"></a>利用插件</h3></li></ul><p>插件就比较简单了，可有时候作者不维护了就可能会失效；也可能出现一些别的什么问题；不过总的来说还可以。插件的话可以看这篇文章 <a href="https://mp.weixin.qq.com/s/7YwBXLyWnwUFdloToimFVA">插件的获取与使用</a></p><ul><li><h3 id="利用OCR识别"><a href="#利用OCR识别" class="headerlink" title="利用OCR识别"></a>利用OCR识别</h3></li></ul><p>这种软件很多，PC端的QQ好像也有这个功能？（太久没用过QQ了，不知道，听别人说的）；我这里说一下我常用的一个软件 PanderOCR ，这是在 GitHub 上开源的，想用可直接去 GitHub 上搜 PanderOCR ，也可以点 <a href="https://github.com/miaomiaosoft/PandaOCR">这里直达</a>，如果前面那个链接打不开，那么点 <a href="https://gitee.com/DDDDDGOOO/PandaOCR">这个备用链接</a> 吧！</p>]]></content>
+      
+      
       <categories>
-        <category>干货</category>
-        <category>Freenom</category>
+          
+          <category> 干货 </category>
+          
       </categories>
-      <tags>
-        <tag>教程</tag>
-        <tag>踩坑</tag>
-        <tag>freenom</tag>
-        <tag>域名</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>谷歌账号的注册</title>
-    <url>/archives/c7047092.html</url>
-    <content><![CDATA[<p>今天写一个关于国内注册谷歌账号的方法，防止自己忘记，也可给不会的朋友一点思路！</p>
-<p>这些方法也是截止写这篇文章为止，我自己测试可用的！</p>
-<span id="more"></span>
-
-<p>注册的前提是，你有 “科学上网” 的方法；否则就算注册了也没用不是吗？另外，你还得安装谷歌框架，这个软件你可以点 <a href="https://yinzhen.lanzoui.com/iM4Bkutxnfa">这里</a> 下载。</p>
-<p>这里我不提供该上网方法与软件，有兴趣自己搜！</p>
-<p><strong>ps：文中环境为 “科学上网” 环境下！</strong></p>
-<hr>
-<h3 id="1-利用QQ邮箱"><a href="#1-利用QQ邮箱" class="headerlink" title="1. 利用QQ邮箱"></a>1. 利用QQ邮箱</h3><p>手机上下载QQ邮箱，在 “添加账户” 处选择 Gmail 邮箱，点击后会出现登录页面；你可以点击左下角的 “创建账号” 来进行注册，接着一步一步往下走就行。</p>
-<h3 id="2-利用Gmail邮箱"><a href="#2-利用Gmail邮箱" class="headerlink" title="2. 利用Gmail邮箱"></a>2. 利用Gmail邮箱</h3><p>Gmail邮箱在各大软件商店都能下载，安装完成并打开后选择创建账户，一步一步往下即可，国内手机号是可以接到验证码的！</p>
-<p>今天我刚用此方法注册了一个新的账号，可行！ </p>
-<h3 id="3-利用OurPlay加速器"><a href="#3-利用OurPlay加速器" class="headerlink" title="3. 利用OurPlay加速器"></a>3. 利用OurPlay加速器</h3><p>该软件在各大应用商店也能下载，下载安装后，点击登录账户（此时没有创建账户这个选项，别急，往下看）；随便输入一个已经存在的账号【例如：aaaa666#gmail.com （将 # 改为 @ 即可）】，进入下一步输入密码；不是你的账号，你肯定不知道密码，所以点手机上的返回菜单（不要大返回桌面，返回上一步就行），这是你会发现在登录账户页面的左下角出现了 “创建账户” 的按钮；接着一步一步向下就行了。注册完成就能登录Gmail了，这时就可以将OurPlay加速器卸载了！（没错，卸磨杀驴😉）</p>
-<h3 id="4-利用-Google-Chrome-浏览器"><a href="#4-利用-Google-Chrome-浏览器" class="headerlink" title="4. 利用 Google Chrome 浏览器"></a>4. 利用 Google Chrome 浏览器</h3><p>这个方法是我听别人说的，今天我测试了一下，没成功；但想到可能是我自己的原因，所以就写出来给大家看看，万一你们可以呢，对吧！</p>
-<p>将PC端 Google Chrome 浏览器语言设置为英文，重启浏览器；然后打开页面进行注册，按部就班地往下即可。</p>
-<hr>
-<h3 id="后话"><a href="#后话" class="headerlink" title="后话"></a>后话</h3><p>注册完成后，不要频繁更换代理IP，有可能会被封，就这样。</p>
-]]></content>
+      
+      
+        <tags>
+            
+            <tag> 教程 </tag>
+            
+            <tag> 干货 </tag>
+            
+            <tag> 复制某文库内容 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>解析freenom域名</title>
+      <link href="/archives/79444b31.html"/>
+      <url>/archives/79444b31.html</url>
+      
+        <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>​        前几天刚用 github + hexo 搭建了一个博客，用来记录自己的学习成果！但域名是 github 的二级域名，看着不太好看；就寻思怎样白嫖一个域名；<span id="more"></span>搜来搜去，看到了一个帖子说可以去 freenom 白嫖，就想着试试；结果自己根本搞不了，无奈继续搜教程呗！看了好多教程，都没成功；想来想去就上 Youtube 了，按时间排序，第一个就是；真是保姆级的教程，一次成功，哈哈！视频链接我放这儿了，有需自取：<a href="https://www.youtube.com/watch?v=dTVKfuW9BiU">白嫖freenom域名</a></p><p>​        白嫖成功了，自然要用起来，不然费那么大劲干什么！其实我之前是有买过域名和服务器的，但感觉有一丢丢贵，就没续费了；但那是在阿里云买的，域名解析和现在的情况完全不同；没办法，就又双叒上网搜教程，还是找了好多，搜索的姿势也换了好多，终于还是让我找到了，难呐！（该说不说，搞这个也许代码功夫没长进，搜索资源的心得倒是攒了一大堆！）于是又是一波操作，现在弄成功了，域名是 totoro933.tk ，不出意外应该之后的很长一段时间都有效，若是打不开了，或者打开后不是我的博客，就说明被回收了（免费的还是有弊端的，有条件还是自己买个吧）。好了，接下来我会将我踩的坑分享一下，有需要的可要好好看了！</p><h3 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h3><p>​        有一个域名，也可以和我一样去 freenom.com 白嫖（教程在上边）</p><p>​        注册好并实名认证 Dnspod ，官网地址：<a href="https://console.dnspod.cn/">Dnspod官网</a></p><h3 id="DNS解析"><a href="#DNS解析" class="headerlink" title="DNS解析"></a>DNS解析</h3><p>​        其实在 freenom 买过域名后，它本就提供了 DNS 解析服务，但因为 freenom 的 DNS 解析在国内可能不是很流畅，所以我才会选用 Dnspod （这是腾讯家的网站）；在解析之前，我们要把这个域名的控制权从 freenom 交到 Dnspod 的手上：打开 Dnspod 主页，在侧栏中选择“我的域名”，点击添加域名，把你的域名填进去，如 我的就是：totoro933.tk ，点击确定；接着往下，他会给你两个 dns server 地址，将其填到 freenom 中，具体流程为：</p><blockquote><p>登陆freenom，从首页点击 services -&gt; my domain -&gt; manage domain -&gt; Management Tools -&gt; Nameservers -&gt; Use custom nameservers (enter below) -&gt; 在前两个空中填入 Dnspod 给你的两个的 dns server 地址，最后点击最下边的提交按钮就好了。</p><p>如果你找不到 My domain ， 请确认你是不是登录了。</p></blockquote><p>​        完成上述步骤后，打开你的 Dnspod 主页，找到你刚才添加的域名，点击它，你会跳到添加解析度页面，点击添加记录，<em>主机记录</em> 一栏填<code>www</code>，<em>记录类型</em> 填<code>A</code>，<em>线路类型</em> 为默认，<em>记录值</em> 填 ping xxxx.github.io后所得到的IP地址，其中xxxx为你的 github 仓库名，后边的默认就行，点击确定；然后再点击快速添加解析，选择“域名映射(CNAME)”，填入xxxx.github.io，确定即可！到这里，DNS解析已经完成了。<strong>（注意：有时候 DNS 的设置不是即时生效的，不同地方需要不同的时间，有时候几分钟就好了，有时候要一晚上一天，设置好后可以美美的睡一觉，第二天应该就没问题了！）</strong></p><h3 id="设置github"><a href="#设置github" class="headerlink" title="设置github"></a>设置github</h3><p>​        进入 github 你托管博客的那个项目，按顺序依次点<code>setting -&gt; GitHub Pages -&gt; Custom domain</code>， 输入你的域名，如 我的为：totoro933.tk，点 save 。</p><h3 id="增加-CNAME-文件"><a href="#增加-CNAME-文件" class="headerlink" title="增加 CNAME 文件"></a>增加 CNAME 文件</h3><p>​        在你存放博客的根目录的 <code>source</code> 文件夹下新建一个文件  <code>CNAME </code>，注意，它没有后缀，就叫 CNAME ，文件内容填你的域名！</p><h3 id="修改-config-文件"><a href="#修改-config-文件" class="headerlink" title="修改 _config 文件"></a>修改 _config 文件</h3><p>​        去你 blog 的根目录下，修改 _config.yml 文件：打开后搜 skip ，你会看到 <code>skip_render:</code>，然后在后边添加<code>CNAME</code>，注意，在CNAME前有个空格！！！</p><p>​        然后保存，之后就能通过你的域名来访问你的博客了；如果没生效的话，可以先进行一波</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo clean &amp;&amp; hexo g &amp;&amp; hexo d</span><br></pre></td></tr></table></figure><p>​        然后就能愉快的访问了！</p>]]></content>
+      
+      
       <categories>
-        <category>干货</category>
-        <category>谷歌</category>
+          
+          <category> 干货 </category>
+          
+          <category> Freenom </category>
+          
       </categories>
-      <tags>
-        <tag>教程</tag>
-        <tag>干货</tag>
-        <tag>注册谷歌账号</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>软件列表</title>
-    <url>/archives/798b3e38.html</url>
-    <content><![CDATA[<h2 id="温馨提醒："><a href="#温馨提醒：" class="headerlink" title="温馨提醒："></a>温馨提醒：</h2><p><strong>1. 所有软件均按照首字母顺序排列</strong></p>
-<p><strong>2. 软件繁多，请用网页搜索功能（Ctrl + F）查询您想要的软件 ^_^</strong></p>
-<h2 id="注："><a href="#注：" class="headerlink" title="注："></a>注：</h2><p><strong>1. 请关注我们的公众号「龙猫网络站」。</strong></p>
-<p><strong>2. 链接失效或者打不开请在公众号或者QQ群（984329120）留言！</strong></p>
-<p><strong>3. 由于蓝奏云上传文件有大小限制（100MB以内），故超过100MB的会用其他盘分享。且之后的软件更新都会在相同的文件夹里，点开链接就可以获取最新版哦！</strong></p>
-<hr>
-<p><em>所有软件均在不断更新中…</em></p>
-<h2 id="Android软件："><a href="#Android软件：" class="headerlink" title="Android软件："></a>Android软件：</h2><p>APKPure（类似于谷歌商店）：<a href="https://yinzhen.lanzoue.com/b00whg9ej">https://yinzhen.lanzoue.com/b00whg9ej</a>   密码:6e3m</p>
-<p>Autojs（JS脚本执行软件）：<a href="https://yinzhen.lanzoue.com/b00whfcxa">https://yinzhen.lanzoue.com/b00whfcxa</a>   密码:9hmz</p>
-<p>AdGuard（强大的广告拦截器）：<a href="https://yinzhen.lanzoue.com/b00whhori">https://yinzhen.lanzoue.com/b00whhori</a>   密码:1ukm</p>
-<p>ADM+ / IDM+：<a href="https://yinzhen.lanzoum.com/b00wf47hg">https://yinzhen.lanzoum.com/b00wf47hg</a>   密码:27eg</p>
-<p>安卓清理君：<a href="https://yinzhen.lanzoue.com/b00whhmyd">https://yinzhen.lanzoue.com/b00whhmyd</a>   密码:g9za</p>
-<p>百度网盘： <a href="https://yinzhen.lanzoue.com/b00wf493e">https://yinzhen.lanzoue.com/b00wf493e</a>   密码:cpcy</p>
-<p>哔哩哔哩：<a href="https://yinzhen.lanzoum.com/b00wk68ob">https://yinzhen.lanzoum.com/b00wk68ob</a>   密码:g3ws</p>
-<p>哔哩哔哩（第三方TV版）：<a href="https://yoyodadada.lanzouw.com/b07qdyaf">https://yoyodadada.lanzouw.com/b07qdyaf</a></p>
-<p>百度地图：<a href="https://yoyodadada.lanzouw.com/b07ujf0b">https://yoyodadada.lanzouw.com/b07ujf0b</a></p>
-<p>百度贴吧：<a href="https://yinzhen.lanzoue.com/b00whhpkh">https://yinzhen.lanzoue.com/b00whhpkh</a>   密码:b9a0</p>
-<p>Calc_Business（卡西欧科学计算器）：<a href="https://yoyodadada.lanzouw.com/b07psqyf">https://yoyodadada.lanzouw.com/b07psqyf</a></p>
-<p>DU GIF Maker（GIF图制作）： <a href="https://yinzhen.lanzoue.com/i9Pvmea0yad">https://yinzhen.lanzoue.com/i9Pvmea0yad</a></p>
-<p>抖音：<a href="https://www.123pan.com/s/ab3UVv-D54T3">https://www.123pan.com/s/ab3UVv-D54T3</a>   提取码:C9eh</p>
-<p>ES文件浏览器： <a href="https://yinzhen.lanzoue.com/b00whfcuh">https://yinzhen.lanzoue.com/b00whfcuh</a>   密码:1lgi</p>
-<p>高德地图：<a href="https://yinzhen.lanzoum.com/b00wm3u3g">https://yinzhen.lanzoum.com/b00wm3u3g</a>   密码:1y02</p>
-<p>歌词适配（音乐下载）：<a href="https://gcsp.lanzoux.com/b0e895h2b?w1?2">https://gcsp.lanzoux.com/b0e895h2b?w1?2</a></p>
-<p>Google Play商店（谷歌商店）：<a href="https://yoyodadada.lanzouw.com/b01e2aqla#8n64">https://yoyodadada.lanzouw.com/b01e2aqla#8n64</a>   密码:8n64</p>
-<p>Instagram：<a href="https://yoyodadada.lanzouw.com/b07psope">https://yoyodadada.lanzouw.com/b07psope</a></p>
-<p>Instander（第三方Instagram）<a href="https://yoyodadada.lanzouw.com/b01c7ybcd#e3lv">https://yoyodadada.lanzouw.com/b01c7ybcd#e3lv</a>   密码:e3lv</p>
-<p>InstaMod（第三方Instagram）：<a href="https://yoyodadada.lanzouw.com/b07rqgvc">https://yoyodadada.lanzouw.com/b07rqgvc</a></p>
-<p>酷安：<a href="https://yinzhen.lanzoue.com/b00whhpsf">https://yinzhen.lanzoue.com/b00whhpsf</a>   密码:263b</p>
-<p>夸克： <a href="https://yinzhen.lanzoue.com/b00wf473c">https://yinzhen.lanzoue.com/b00wf473c</a>   密码:bfxw</p>
-<p>李跳跳：<a href="https://wwe.lanzouw.com/b01v0g3wj?w1?2">https://wwe.lanzouw.com/b01v0g3wj?w1?2</a>   密码:1233</p>
-<p>MXPlayer（强大的Android视频播放器）： <a href="https://yinzhen.lanzoue.com/b00wfjq2f">https://yinzhen.lanzoue.com/b00wfjq2f</a>   密码:6dn8</p>
-<p>Pure Tuber（第三方油管，去广告解锁VIP）：<a href="https://yinzhen.lanzoue.com/b00whfcob">https://yinzhen.lanzoue.com/b00whfcob</a>   密码:6emm</p>
-<p>清浊：<a href="https://yinzhen.lanzoue.com/b00whhlyh">https://yinzhen.lanzoue.com/b00whhlyh</a>   密码:80br</p>
-<p>Symbolab（科学计算器）： <a href="https://yinzhen.lanzoue.com/b00wf477g">https://yinzhen.lanzoue.com/b00wf477g</a>   密码:bvwu</p>
-<p>SpeedTest（网络测速）：<a href="https://yinzhen.lanzoue.com/b00whhqra">https://yinzhen.lanzoue.com/b00whhqra</a>   密码:6329</p>
-<p>图片压缩（缩小图片体积）： <a href="https://yinzhen.lanzoue.com/iFhOZea0yjc">https://yinzhen.lanzoue.com/iFhOZea0yjc</a></p>
-<p>微博（国际版去广告，解锁本地会员）： <a href="https://yinzhen.lanzoue.com/b00wf48yj">https://yinzhen.lanzoue.com/b00wf48yj</a>   密码:f3ce</p>
-<p>wifi万能钥匙：<a href="https://yinzhen.lanzoue.com/b00whhrdc">https://yinzhen.lanzoue.com/b00whhrdc</a>   密码:hbve</p>
-<p>WPS：<a href="https://yinzhen.lanzoue.com/b00whhrti">https://yinzhen.lanzoue.com/b00whhrti</a>   密码:3b9s</p>
-<blockquote>
-<p>WPS（超过100MB文件）：<a href="https://www.123pan.com/s/ab3UVv-754T3">https://www.123pan.com/s/ab3UVv-754T3</a></p>
-</blockquote>
-<p>喜马拉雅：<a href="https://yinzhen.lanzoue.com/b00whhtne">https://yinzhen.lanzoue.com/b00whhtne</a>   密码:8dg4</p>
-<p>西窗烛（解锁会员）： <a href="https://yinzhen.lanzoue.com/b00whfc6d">https://yinzhen.lanzoue.com/b00whfc6d</a>   密码:5i8a</p>
-<p>Xmind（思维导图）： <a href="https://yinzhen.lanzoue.com/b00wf475e">https://yinzhen.lanzoue.com/b00wf475e</a>   密码:hh8z</p>
-<p>邮箱： <a href="https://yinzhen.lanzoue.com/b00wf48bg">https://yinzhen.lanzoue.com/b00wf48bg</a>   密码:700e</p>
-<p>阅读：<a href="https://kunfei.lanzoui.com/b0f810h4b">https://kunfei.lanzoui.com/b0f810h4b</a>   密码:d8j9</p>
-<p>知乎：<a href="https://yoyodadada.lanzouw.com/b07psrob">https://yoyodadada.lanzouw.com/b07psrob</a></p>
-<p>照片编辑器： <a href="https://yinzhen.lanzoue.com/b00wf47ba">https://yinzhen.lanzoue.com/b00wf47ba</a>   密码:et3r</p>
-<p>账号本子（账号密码保存）： <a href="https://yinzhen.lanzoue.com/b00wf48je">https://yinzhen.lanzoue.com/b00wf48je</a>   密码:fjnn</p>
-<p>ZArchiver Pro（好用的Android解压缩软件）： <a href="https://yinzhen.lanzoue.com/ifKoRygsacf">https://yinzhen.lanzoue.com/ifKoRygsacf</a></p>
-<h3 id="Android端其它未分类工具"><a href="#Android端其它未分类工具" class="headerlink" title="Android端其它未分类工具"></a>Android端其它未分类工具</h3><p>看电视：<a href="https://yinzhen.lanzoum.com/b00wnh5kd">https://yinzhen.lanzoum.com/b00wnh5kd</a>   密码:e41z</p>
-<p>手机小游戏： <a href="https://yinzhen.lanzoue.com/b00wf48uf">https://yinzhen.lanzoue.com/b00wf48uf</a>   密码:2gvi</p>
-<h2 id="Windows软件："><a href="#Windows软件：" class="headerlink" title="Windows软件："></a>Windows软件：</h2><p>爱奇艺： <a href="https://yinzhen.lanzoum.com/b00wi1r3c">https://yinzhen.lanzoum.com/b00wi1r3c</a>   密码:9mqc</p>
-<p>阿里云盘小白羊版：<a href="https://github.com/liupan1890/aliyunpan">https://github.com/liupan1890/aliyunpan</a></p>
-<p>百度网盘：<a href="https://yinzhen.lanzoum.com/b00wlu3da">https://yinzhen.lanzoum.com/b00wlu3da</a>   密码:i0mn</p>
-<p>百分浏览器（符合国人使用习惯的、自带手势功能的浏览器）：<a href="https://www.centbrowser.cn/">https://www.centbrowser.cn/</a></p>
-<p>Bitwarden（密码管理）：<a href="https://yinzhen.lanzoue.com/b00whk5af">https://yinzhen.lanzoue.com/b00whk5af</a>   密码:7y4c</p>
-<p>CCleaner：<a href="https://yinzhen.lanzoue.com/b00whhxqb">https://yinzhen.lanzoue.com/b00whhxqb</a>   密码:1hu1</p>
-<p>Dism++（电脑管理工具）：<a href="https://github.com/Chuyu-Team/Dism-Multi-language">https://github.com/Chuyu-Team/Dism-Multi-language</a></p>
-<p>Easy Cat Timer（可爱的猫咪计时器）：<a href="https://github.com/xujiangjiang/Easy-Cat-Timer">https://github.com/xujiangjiang/Easy-Cat-Timer</a></p>
-<p>Everything（官网）：<a href="https://www.voidtools.com/zh-cn/">https://www.voidtools.com/zh-cn/</a></p>
-<p>格式工厂：<a href="https://www.123pan.com/s/ab3UVv-r54T3">https://www.123pan.com/s/ab3UVv-r54T3</a>   提取码:keqE</p>
-<p>谷歌浏览器（国内可访问）：<a href="https://www.google.cn/chrome/">https://www.google.cn/chrome/</a></p>
-<p>Geek卸载：<a href="https://yinzhen.lanzoue.com/b00whk5uf">https://yinzhen.lanzoue.com/b00whk5uf</a>   密码:7tgh</p>
-<p>GIF图工具：<a href="https://yinzhen.lanzoue.com/b00whk6ja">https://yinzhen.lanzoue.com/b00whk6ja</a>  密码:18pg</p>
-<p>火绒工具：<a href="https://yinzhen.lanzoue.com/b00whk5xi">https://yinzhen.lanzoue.com/b00whk5xi</a>   密码:2e7h</p>
-<p>IDM：<a href="https://yinzhen.lanzoue.com/b00whk62d">https://yinzhen.lanzoue.com/b00whk62d</a>   密码:28l9</p>
-<p>JJDown（B站视频、弹幕下载器）：<a href="http://www.jijidown.com/">http://www.jijidown.com/</a></p>
-<p>酷我音乐：<a href="https://yinzhen.lanzoue.com/b00whk1lc">https://yinzhen.lanzoue.com/b00whk1lc</a>   密码:bz2e</p>
-<p>落雪音乐助手（音乐下载）：<a href="https://www.lanzoui.com/b0bf2cfa/">https://www.lanzoui.com/b0bf2cfa/</a>   密码:glqw</p>
-<p>雷电模拟器：<a href="https://pan.baidu.com/s/1X7_AWDkSU6EeduhiAw-_WA">https://pan.baidu.com/s/1X7_AWDkSU6EeduhiAw-_WA</a>   提取码:8qy7</p>
-<p>Notepad3（功能强大的记事本）：<a href="https://github.com/rizonesoft/Notepad3">https://github.com/rizonesoft/Notepad3</a></p>
-<p>PotPlayer：<a href="https://yinzhen.lanzoue.com/b00whjyqj">https://yinzhen.lanzoue.com/b00whjyqj</a>   密码:4dyl</p>
-<p>PandaOCR（文字、公式识别）：<a href="https://github.com/miaomiaosoft/PandaOCR">https://github.com/miaomiaosoft/PandaOCR</a></p>
-<p>PDF工具：<a href="https://yinzhen.lanzoue.com/b00whk6ub">https://yinzhen.lanzoue.com/b00whk6ub</a>   密码:787j</p>
-<p>PS插件：<a href="https://yinzhen.lanzoue.com/b00whk83g">https://yinzhen.lanzoue.com/b00whk83g</a>   密码:hp7r</p>
-<p>QuickLook（快速浏览）：<a href="https://github.com/QL-Win/QuickLook">https://github.com/QL-Win/QuickLook</a></p>
-<p>RevokeMsgPatcher（PC版微信、QQ、TIM防撤回补丁）：<a href="https://github.com/huiyadanli/RevokeMsgPatcher">https://github.com/huiyadanli/RevokeMsgPatcher</a></p>
-<p>鼠标手势增强：<a href="https://gitee.com/majorworld/mouseplus">https://gitee.com/majorworld/mouseplus</a></p>
-<p>ScreenToGif（强大开源的git图录制、制作工具）：<a href="https://github.com/NickeManarin/ScreenToGif">https://github.com/NickeManarin/ScreenToGif</a></p>
-<p>搜狗输入法（去广告）：<a href="https://yinzhen.lanzoue.com/b00whk70h">https://yinzhen.lanzoue.com/b00whk70h</a>   密码:gn9y</p>
-<p>思维导图：<a href="https://yinzhen.lanzoue.com/b00whk5yj">https://yinzhen.lanzoue.com/b00whk5yj</a>   密码:89mb</p>
-<p>腾讯视频 <a href="https://yinzhen.lanzoue.com/b00whx77c">https://yinzhen.lanzoue.com/b00whx77c</a>   密码:i387</p>
-<p>Typora（MarkDown工具）：<a href="https://yinzhen.lanzoue.com/b00whk7wj">https://yinzhen.lanzoue.com/b00whk7wj</a>   密码:g0zq</p>
-<p>TrafficMonitor（网速监控悬浮窗软件）：<a href="https://github.com/zhongyang219/TrafficMonitor">https://github.com/zhongyang219/TrafficMonitor</a></p>
-<p>Watt Toolkit - 瓦特工具箱（解决GitHub打不开的问题）：<a href="https://steampp.net/">https://steampp.net/</a></p>
-<p>万彩办公大师（官网）：<a href="http://www.wofficebox.com/">http://www.wofficebox.com/</a></p>
-<p>Windows10Manager：<a href="https://yinzhen.lanzoue.com/b00whk0mh">https://yinzhen.lanzoue.com/b00whk0mh</a>   密码:49iw</p>
-<p>WinRAR（解压缩工具）：<a href="https://yinzhen.lanzoue.com/b00whk5lg">https://yinzhen.lanzoue.com/b00whk5lg</a>   密码:8qrv</p>
-<p>文件夹加密：<a href="https://yinzhen.lanzoue.com/b00whk5pa">https://yinzhen.lanzoue.com/b00whk5pa</a>   密码:f7k3</p>
-<p>迅雷：<a href="https://yinzhen.lanzoue.com/b00whk8ad">https://yinzhen.lanzoue.com/b00whk8ad</a>   密码:gbcu</p>
-<h3 id="Windows端其它未分类工具"><a href="#Windows端其它未分类工具" class="headerlink" title="Windows端其它未分类工具"></a>Windows端其它未分类工具</h3><p>激活工具：<a href="https://yinzhen.lanzoue.com/b00whk60b">https://yinzhen.lanzoue.com/b00whk60b</a>   密码:8gr6</p>
-<p>浏览器插件：<a href="https://yinzhen.lanzoue.com/b00u1tiih">https://yinzhen.lanzoue.com/b00u1tiih</a></p>
-<p>浏览器加速工具：<a href="https://yinzhen.lanzoum.com/b00wp8yoj">https://yinzhen.lanzoum.com/b00wp8yoj</a>   密码:f0qg</p>
-<p>360单文件：<a href="https://yinzhen.lanzoum.com/b00wp8wzi">https://yinzhen.lanzoum.com/b00wp8wzi</a>   密码:da8t</p>
-<p>窗口置顶：<a href="https://yinzhen.lanzoum.com/b00wp9b2f">https://yinzhen.lanzoum.com/b00wp9b2f</a>   密码:9yf6</p>
-<p>TV、盒子端应用（电视家等软件）：<a href="https://yinzhen.lanzoue.com/b00whjxbi">https://yinzhen.lanzoue.com/b00whjxbi</a>   密码:637i</p>
-<p>图片浏览工具：<a href="https://yinzhen.lanzoue.com/b00whjyad">https://yinzhen.lanzoue.com/b00whjyad</a>   密码:5fdw</p>
-<p>微软DirectX9.0c最终用户运行库：<a href="https://blog.csdn.net/vbcom/article/details/6962388">https://blog.csdn.net/vbcom/article/details/6962388</a></p>
-<p>微软常用运行库合集：<a href="https://yoyodadada.lanzouw.com/b07pycad">https://yoyodadada.lanzouw.com/b07pycad</a></p>
-<p>微软.NET离线运行库合集：<a href="https://www.123pan.com/s/JceA-wUfi">https://www.123pan.com/s/JceA-wUfi</a></p>
-<p>PC小游戏：<a href="https://yinzhen.lanzoue.com/b00whk8fi">https://yinzhen.lanzoue.com/b00whk8fi</a>   密码:28g5</p>
-]]></content>
+      
+      
+        <tags>
+            
+            <tag> 教程 </tag>
+            
+            <tag> 踩坑 </tag>
+            
+            <tag> freenom </tag>
+            
+            <tag> 域名 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>好玩的代码</title>
+      <link href="/archives/81d62aff.html"/>
+      <url>/archives/81d62aff.html</url>
+      
+        <content type="html"><![CDATA[<blockquote><p>这篇博客主要介绍几种好玩的代码！“更改网页文字”、“修复电脑桌面白图标”、“微信消息轰炸PC端”等！有兴趣可以点开看看！</p></blockquote><span id="more"></span><ol><li><h3 id="更改网页文字"><a href="#更改网页文字" class="headerlink" title="更改网页文字"></a>更改网页文字</h3></li></ol><p>这个是很好玩的代码，你可以更改任意网页的任何文字；但要注意的是你更改后的网页并不会保留，关闭后再次打开还是原样！不过这样在某些时候已经足够了；无法保存你就截个图嘛~    这也是变相保存了。</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">document.body.contentEditable=&#x27;true&#x27;;</span><br></pre></td></tr></table></figure><p>​    <strong>使用：</strong>打开网页，按F12或者鼠标右键“检查”，打开控制台，将上面的代码复制到最下边的空白处敲击回车键，当显示“true”后，你就可以为所欲为了，最后别忘记截图哦~    哈哈！</p><ol start="2"><li><h3 id="查看WiFi密码"><a href="#查看WiFi密码" class="headerlink" title="查看WiFi密码"></a>查看WiFi密码</h3></li></ol><p>这个代码可以查看你的笔记本电脑已经连接过的wifi密码，主要用于连接上但密码忘记的情况！</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">for /f &quot;skip=9 tokens=1,2 delims=:&quot; %i in (&#x27;netsh wlan show profiles&#x27;) do @echo %j | findstr -i -v echo | netsh wlan show profiles %j key=clear</span><br></pre></td></tr></table></figure><p>​    <strong>使用：</strong>按住键盘上的Win和R键，在弹出的窗口中输入CMD, 按下回车，将上面的代码粘贴进去再次敲回车键就OK了，它会显示你这台电脑连接过的所有WiFi及其对应的密码，自己很容易就可以找到了。</p><ol start="3"><li><h3 id="修复电脑桌面白图标"><a href="#修复电脑桌面白图标" class="headerlink" title="修复电脑桌面白图标"></a>修复电脑桌面白图标</h3></li></ol><p>电脑桌面的某些图标突然变白，什么也不显示， 非常难看 ，重启也解决不了问题。这个时候就用到下面的代码了！</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">@duecho off</span><br><span class="line">taskkill /f /im explorer.exe</span><br><span class="line">CD /d %userprofile%\AppData\Local</span><br><span class="line">DEL IconCache.db /a</span><br><span class="line">start explorer.exe</span><br><span class="line">cho 执行完成</span><br></pre></td></tr></table></figure><p>​    <strong>使用：</strong>复制上面的代码，在桌面新建一个文本文档，将其粘贴进去，再将后缀改为 bat ，双击运行。然后刷新一下桌面就可以看到那个白图标已经恢复到原来的样子了！</p><ol start="4"><li><h3 id="微信消息轰炸PC端"><a href="#微信消息轰炸PC端" class="headerlink" title="微信消息轰炸PC端"></a>微信消息轰炸PC端</h3></li></ol><p>这个应用场景就自己看着办吧！</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">On Error Resume Next</span><br><span class="line">Dim wsh,ye</span><br><span class="line">set wsh=createobject(&quot;wscript.shell&quot;)</span><br><span class="line">for i=1 to 10</span><br><span class="line">wscript.sleep 700</span><br><span class="line">wsh.AppActivate(&quot;与某某聊天中&quot;)</span><br><span class="line">wsh.sendKeys &quot;^v&quot;</span><br><span class="line">wsh.sendKeys i</span><br><span class="line">wsh.sendKeys &quot;%s&quot;</span><br><span class="line">next</span><br><span class="line">wscript.quit</span><br></pre></td></tr></table></figure><p>​    <strong>使用：</strong>在桌面新建一个文本文档，名称随便起，将上面的代码粘贴进去，最后将后缀改为 vbs，把要发给朋友的话复制，然后再双击此vbs文件，最后鼠标点击一下发送框即可。</p><blockquote><p>说明：代码中的 “10” 代表发送的消息数，“与某某聊天中”则是你要发送的对象的，只需将“某某”改为你给好友的备注即可，建议消息的数目不要改太多！！！</p></blockquote><ol start="5"><li><h3 id="图片隐写法"><a href="#图片隐写法" class="headerlink" title="图片隐写法"></a>图片隐写法</h3></li></ol><p>将你的文件隐藏在图片里，谁也找不到！</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">copy /b test.jpg + document.rar yincang.jpg</span><br></pre></td></tr></table></figure><p>​    __使用：__将你要隐藏的文件和图片放在同一个文件夹中；按住键盘上的Win和R键，在弹出的窗口中输入CMD, 按下回车，并cd到你存放图片和文件的文件夹，输入以上代码（其中<code>test.jpg</code>为图片名称，<code>doucument.rar</code>为压缩包名称，<code>yicang.jpg</code>为输出的含有文件的图片名称）；这样就完成将文件隐藏到图片中了！</p><blockquote><p>说明：如果要找回文件，将输出的图片后缀改为<code>.rar</code>再解压即可！</p></blockquote>]]></content>
+      
+      
       <categories>
-        <category>软件列表</category>
+          
+          <category> 小玩意儿 </category>
+          
       </categories>
-      <tags>
-        <tag>软件列表</tag>
-      </tags>
-  </entry>
+      
+      
+        <tags>
+            
+            <tag> 教程 </tag>
+            
+            <tag> 代码 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Hexo博客搭建</title>
+      <link href="/archives/f3fb008f.html"/>
+      <url>/archives/f3fb008f.html</url>
+      
+        <content type="html"><![CDATA[<blockquote><h4 id="写在前边"><a href="#写在前边" class="headerlink" title="写在前边"></a>写在前边</h4><p>我的第一篇博客，关于博客搭建的（hexo + github），记录搭建过程以及我踩过的坑！</p><p>有兴趣可以点开看看哦！</p></blockquote><span id="more"></span><hr><h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><ol><li>安装 git</li><li>安装 node.js</li><li>安装 hexo</li><li>注册一个 github 账号</li><li>搭建仓库</li><li>生成SSH Keys</li><li>生成博客内容</li><li>发布博客至互联网</li></ol><hr><h3 id="安装git"><a href="#安装git" class="headerlink" title="安装git"></a>安装git</h3><p>​    首先，我们先来了解一下什么是 git；简单来说 git 是开源的分布式版本控制系统，用于敏捷高效地处理项目。我们网站在本地搭建好了，需要使用 git 同步到 GitHub 上。这里，我们就不多说了！</p><p>​    附上 git 官网地址：<a href="https://git-scm.com/">git官网</a></p><p>​    去官网下载适合自己电脑的版本，下一步，下一步跟着安装即可！我这里提供个教程，仅供参考！<a href="https://blog.csdn.net/ssd21988/article/details/107826076">git安装教程</a></p><p>安装完成后，我们可以测试一下安装成功与否：按键盘上 win + R 键，输入 cmd ，打开命令提示符窗口，接着输入 <code>git --version</code> ，看其是否出现版本号；如下图：</p><p><img src="https://cdn.jsdelivr.net/gh/seatoro/Image/img/git-v.jpg"></p><p>​    如果出现，那么恭喜你，安装成功！</p><p>​    这时候你会发现，鼠标右击后会出现两个新的菜单 <code>Git GUI Here</code> 和 <code>Git Bash Here</code>，我们平时只会用到后者，不要搞错了！</p><h3 id="安装node-js"><a href="#安装node-js" class="headerlink" title="安装node.js"></a>安装node.js</h3><p>​    因为，我们的博客是基于 hexo 的，而 hexo 又是基于 node.js 的，所以这是必不可少的！</p><p>​    我们可以去其<a href="http://nodejs.cn/download/">官网</a>，下载并安装；也是直接下一步、下一步就行；这里我也放个教程，可以参考一下：<a href="https://blog.csdn.net/antma/article/details/86104068">node.js 安装详细步骤教程</a>；不过，值得注意的是：安装 node.js 会包含环境变量及 npm 的安装</p><p>​    安装好以后，我们要检测 node 与 npm 是否安装成功：按键盘上 win + R 键，输入 cmd ，打开命令提示符窗口，分别输入 <code>node -v</code> ，<code>npm -v</code> 看其是否出现版本号；</p><h3 id="安装hexo"><a href="#安装hexo" class="headerlink" title="安装hexo"></a>安装hexo</h3><p>​    hexo 就是我们的个人博客网站的框架；安装的话也很简单，按键盘上 win + R 键，输入 cmd ，打开命令提示符窗口，输入<code>npm install -g hexo-cli </code>，进行安装hexo，等待安装好后，我们检验其是否安装成功输入<code>hexo -v</code>看是否出现版本号；如下图：</p><p><img src="https://cdn.jsdelivr.net/gh/seatoro/Image/img/hexo-v.jpg"></p><h3 id="注册github"><a href="#注册github" class="headerlink" title="注册github"></a>注册github</h3><p>​    我们打开<a href="https://github.com/">github官网</a>，然后点右上角的Sign up，即可注册，其实也很简单；这里还是提供一篇教程，不会的可以看看：<a href="https://www.bilibili.com/read/cv5107169">github注册教程</a>，<strong>注意：一定要记住注册名、注册邮箱和注册密码哦！!</strong></p><blockquote><p>至此，我们的准备工作就做完了，接下来就是实操时间！</p></blockquote><hr><h3 id="搭建仓库"><a href="#搭建仓库" class="headerlink" title="搭建仓库"></a>搭建仓库</h3><p>​    注册完账号后登陆，点击右上角的 + 号，选择 New repository  ；然后，仓库名字填你的注册名 + <code>.github.io</code>，例如我的就是 <code>seatoro.github.io</code>，之后的 Description 可填可不填； 接下来选择 Public ，否则别人访问不了你的博客！然后把 Add a README file 勾上；最后，点击最下边的 Create repository 的按钮就能创建好你的仓库了！如下图：</p><p><img src="https://cdn.jsdelivr.net/gh/seatoro/Image/img/create%20repository.jpg"></p><h3 id="生成SSH-Keys"><a href="#生成SSH-Keys" class="headerlink" title="生成SSH Keys"></a>生成SSH Keys</h3><p>​    我们可以在合适的盘新建一个文件夹，可以命名为MyBlog，hexo 框架与以后你自己发布的网页都会在这个文件夹中。一定要记住路径哦，别之后找不到了！打开这个文件夹，鼠标右键，点击 <code>Git Bash Here</code>，然后我们就会进入一个黑框框页面；直接输入 <code>SSH</code> ，来检测我们是否装有SSH，其实默认是装过的！然后输入 <code>ssh-keygen -t -C &quot;你注册github的邮件地址&quot;</code>。之后敲4次回车键（<strong>注意：不是连着敲，敲一次，等里面的内容不再变化后再敲下一次！</strong>）最后，你会看到一个用短线组成的框框，到这儿你就成功了！不要关闭这个窗口，一会还要用！！</p><p>​    按 Win + E 打开文件资源管理器，打开C盘 –&gt; 用户文件夹 –&gt; 个人文件夹 –&gt; .ssh文件夹，进入后我们可以看到里面有两个文件，用文本编辑器打开名为 <code>id_rsa.pub</code>的文件，<code>ctrl + a</code> <code>ctrl + c</code>复制里面的全部内容！</p><p>​    打开 github ，点击右上角头像找到 Setting ，点进去，往下划在左侧栏找到 SSH and GPG keys，点进去，第一个就是SSH Keys，点击 New SSH Key ，Title 随便填如：MyBlog；Key 就填你刚才复制 id_rsa.pub 里的一大串内容，（以你的邮箱结尾）；点 Add SSH Key 按钮即可。</p><p>​    测试是否绑定成功：在刚刚到黑框中输入 <code>ssh -T git@github.com</code>，敲回车，再输入 yes 敲回车即可，只要出现<code>Hi 你的github用户名</code>，就说明成功了！</p><h3 id="生成本地博客内容"><a href="#生成本地博客内容" class="headerlink" title="生成本地博客内容"></a>生成本地博客内容</h3><p>​    进入你在上一步中创建的文件夹，在空白处右键，点击 <code>Git Bash Here</code>，在出现的黑框中输入 <code>hexo init</code>来初始化我们的hexo，等待执行完成（如果出现错误，可多尝试几次），成功的标志：<code>INFO Start blogging with Hexo!</code>，这时我们打开上一步中创建的文件夹就会发现里面多了很多内容！</p><p>​    继续在黑框中敲命令：<code>hexo s</code>，启动本地服务器，看到出现 <code>http://localhost:4000</code>后就大功告成，接着我们只需要复制这个地址，去浏览器打开，就能看到我们的博客了；关闭服务器的话只需按 <code>ctrl + c</code>（没错就是复制的快捷键）就能关闭了，关闭后浏览器就打不开你的博客了！</p><h3 id="发布博客至互联网"><a href="#发布博客至互联网" class="headerlink" title="发布博客至互联网"></a>发布博客至互联网</h3><p>​    进入你在上上一步中创建的文件夹，找到<code>config.yml</code>文件（注意：没有扩展名是因为你没有开启这个功能，开启方法<a href="https://jingyan.baidu.com/article/f00622282564bdfbd3f0c827.html">点这儿</a> ）并用文本编辑器打开，找到最后几行更改为下图所示。（<strong>注意：最后一行要空出来，即branch: main 后面要空一行；每个冒号后面有一个空格</strong>）另，repo后面的内容把我的用户名（seatoro）改为你自己的！！保存，退出即可。</p><p><img src="https://cdn.jsdelivr.net/gh/seatoro/Image/img/yml.jpg"></p><p>​    进入你的博客文件夹，在空白处右键，点击 <code>Git Bash Here</code>，在出现的黑框中输入 <code>npm install hexo-deployer-git --save</code>，安装 hexo-deployer-git ；安装成功后接着敲命令<code>hexo g</code>，回车；执行完后接着敲 <code>hexo d</code>，这个命令是发布网页至服务器中的！（如若出错，多试几次）这时需要验证你的github账号，用户名，就是github用户名，密码就不是你设置的密码了；我们打开github，点击右上角头像找到 Setting ，点进去，往下划在左侧栏找到 Developer settings，点进去，在左侧栏找到 Personal access tokens ，点进去，Note 随便填，Expiration 默认30天就行，下边的复选框全部勾上，最后点击 Generate token 按钮生成令牌。复制生成的令牌，它只会出现一次，一定要记好；将复制的内容粘贴到刚才的密码框中点击 OK 就行了！这时就将本地内容上传到 github 中了，然后你就能通过网址访问了，网址就是你 github 主页左上角的网址，如下：</p><p><img src="https://cdn.jsdelivr.net/gh/seatoro/Image/img/webline.jpg"></p><hr><p>​    至此，hexo + github 搭建博客就算是成功了，恭喜！！</p><p>​    不过这只是最初的内容，其实还有好多内容，比如：怎样美化你的博客、更换主题；怎样添加各种小功能；怎样新建、删除文章；怎样搭建自己的图床等等！</p><p>​    但我实在是不想写了，写教程太累了，😭  看情况，之后有时间再补充吧！如果在搭建过程中遇到了问题，可以将错误内容复制到百度，搜一下，你肯定会看到解答的；因为你肯定不是第一个遇到问题的人，如果没有搜到，只能说，你搜索的姿势不对，可以考虑换个姿势再来一次，哈哈哈！</p><p>​    就这样吧！！</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 干货 </category>
+          
+          <category> Hexo </category>
+          
+          <category> Github </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 教程 </tag>
+            
+            <tag> 踩坑 </tag>
+            
+            <tag> 博客 </tag>
+            
+            <tag> hexo </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Hello World</title>
+      <link href="/archives/4a17b156.html"/>
+      <url>/archives/4a17b156.html</url>
+      
+        <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+  
+  
 </search>
