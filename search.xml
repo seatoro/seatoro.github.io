@@ -115,6 +115,121 @@
       </tags>
   </entry>
   <entry>
+    <title>Ubuntu下不使用宝塔面板建站</title>
+    <url>/archives/fe15a55f.html</url>
+    <content><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>恰逢国庆中秋双节放假，闲来无事，想着搞点什么玩玩；思来想去，还是写个博客吧！</p>
+<p>由于之前建站都是使用的宝塔或者直接docker部署，感觉没什么进步；就想着不使用宝塔来建个站，虽然不好管理，但学习嘛，不怕困难。</p>
+<h2 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h2><ul>
+<li>服务器</li>
+<li>域名（非必须）</li>
+<li>爱折腾的心</li>
+</ul>
+<h2 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h2><h3 id="Apache"><a href="#Apache" class="headerlink" title="Apache"></a>Apache</h3><p><strong>更新源</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo apt update //先更新一下源再安装，否则有可能安装不成功</span><br></pre></td></tr></table></figure>
+
+<p><strong>安装</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo apt install apache2</span><br></pre></td></tr></table></figure>
+
+<p><strong>查看apache运行状态</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo systemctl status apache2</span><br></pre></td></tr></table></figure>
+
+<p><strong>开机自启Apache</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo systemctl enable apache2</span><br></pre></td></tr></table></figure>
+
+<p><strong>修改配置文件</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">vi /etc/apache2/apache2.conf          //不会使用vi编辑器的可百度下，也不难</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;Directory /var/www&gt;                  //这里是自己的网站目录</span><br><span class="line">	Options Indexes FollowSymLinks</span><br><span class="line">	AllowOverride None</span><br><span class="line">	Require all granted</span><br><span class="line">&lt;/Directory&gt;</span><br></pre></td></tr></table></figure>
+
+<p><strong>修改端口文件</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">vi /etc/apache2/ports.conf</span><br></pre></td></tr></table></figure>
+
+<p>其中 <code>Listen 80</code> 改为你想要的端口，如8080</p>
+<p><strong>绑定文件夹位置对应端口</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">vi /etc/apache2/sites-available/000-default.conf</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;VirtualHost *:8080&gt;                    //这里是你上面设置的端口号</span><br><span class="line">	ServerAdmin webmaster@localhost</span><br><span class="line">	DocumentRoot /var/www               //这里是你上面设置的目录</span><br><span class="line">	ErrorLog $&#123;APACHE_LOG_DIR&#125;/error.log</span><br><span class="line">	CustomLog $&#123;APACHE_LOG_DIR&#125;/access.log combined</span><br><span class="line">&lt;/VirtualHost&gt;</span><br></pre></td></tr></table></figure>
+
+<p><strong>修改网站文件夹权限 – 给读写权限</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo chmod 775 -R /var/www              //这里必须为 -R，不可为 -r</span><br></pre></td></tr></table></figure>
+
+<p><strong>重启Apache</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo systemctl restart apache2</span><br></pre></td></tr></table></figure>
+
+<p><strong>启动Apache</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo systemctl start apache2</span><br></pre></td></tr></table></figure>
+
+<p><strong>停止Apache</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo systemctl restart apache2</span><br></pre></td></tr></table></figure>
+
+<p><em>注：安装完毕apache并运行后如果访问不了网站，可能是因为端口未开放，开放端口即可；apache监听了80（http）与443（https）端口，需要开放这两个，此外如果你上面更改了端口号，也需将你更改过的端口开放；具体方法见下</em></p>
+<h3 id="防火墙-端口"><a href="#防火墙-端口" class="headerlink" title="防火墙 - 端口"></a>防火墙 - 端口</h3><p><strong>打开防火墙端口</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo ufw allow 8080/tcp</span><br><span class="line">//即：sudo ufw allow [端口号]/[协议]</span><br></pre></td></tr></table></figure>
+
+<p><strong>批量开放端口</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo ufw allow 20:21/tcp</span><br></pre></td></tr></table></figure>
+
+<p><strong>关闭端口</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo ufw delete allow 8080</span><br></pre></td></tr></table></figure>
+
+<p><strong>查看开放端口</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo ufw status</span><br></pre></td></tr></table></figure>
+
+<p><strong>关闭/启用所有防火墙</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo ufw disable/enable</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="PHP"><a href="#PHP" class="headerlink" title="PHP"></a>PHP</h3><p><strong>安装php8.0</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo apt-get install php8.0</span><br></pre></td></tr></table></figure>
+
+<p><strong>安装时可能会报错，如下</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">E: Unable to locate package php8.0</span><br><span class="line">E: Couldn&#x27;t find any package by glob &#x27;php8.0&#x27;</span><br></pre></td></tr></table></figure>
+
+<p><strong>依次执行以下命令</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo add-apt-repository ppa:ondrej/php</span><br><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install php8.0</span><br></pre></td></tr></table></figure>
+
+<p><strong>检查是否安装成功</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">php -v</span><br></pre></td></tr></table></figure>
+
+<p><strong>安装php拓展</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo apt-get install php8.0-mysqli </span><br><span class="line">//即：sudo apt-get install php8.0-(拓展名)</span><br></pre></td></tr></table></figure>
+
+<p><strong>安装完成后在Apache中启用php8.0</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">a2enmod php8.0</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="ftp服务器"><a href="#ftp服务器" class="headerlink" title="ftp服务器"></a>ftp服务器</h3><p><strong>安装</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo apt update</span><br><span class="line">sudo apt install vsftpd</span><br></pre></td></tr></table></figure>
+
+<p><strong>配置 vsftpd – 具体百度</strong><br>要注意一点除了百度上设置的外，还要在 <code>vi /etc/vsftpd/vsftpd.conf</code> 中添加 <code>allow_writeable_chroot=YES</code>（读写权限），否则连接不上；至少我的情况是这样。</p>
+<p><strong>启动</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo systemctl start vsftpd</span><br></pre></td></tr></table></figure>
+
+<p><strong>停止</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo systemctl stop vsftpd</span><br></pre></td></tr></table></figure>
+
+<p><strong>重启</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo systemctl restart vsftpd</span><br></pre></td></tr></table></figure>
+
+<p><strong>开机自启</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo systemctl enable vsftpd</span><br></pre></td></tr></table></figure>
+
+
+
+<center>——  END ——</center>
+]]></content>
+      <categories>
+        <category>建站</category>
+        <category>Ubuntu</category>
+      </categories>
+      <tags>
+        <tag>Ubuntu</tag>
+        <tag>建站</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>精确搜索之Google搜索语法大全</title>
     <url>/archives/c54b318a.html</url>
     <content><![CDATA[<h2 id="Google谷歌搜索语法大全"><a href="#Google谷歌搜索语法大全" class="headerlink" title="Google谷歌搜索语法大全"></a>Google谷歌搜索语法大全</h2><table>
@@ -285,7 +400,7 @@
       </tags>
   </entry>
   <entry>
-    <title>CentOS部署Docker项目</title>
+    <title>Ubuntu部署Docker项目</title>
     <url>/archives/db0817f.html</url>
     <content><![CDATA[<ul>
 <li>拉取Alist镜像并部署</li>
@@ -335,11 +450,11 @@
 ]]></content>
       <categories>
         <category>Docker</category>
-        <category>CentOS</category>
+        <category>Ubuntu</category>
       </categories>
       <tags>
-        <tag>CentOS</tag>
         <tag>Docker</tag>
+        <tag>Ubuntu</tag>
       </tags>
   </entry>
   <entry>
@@ -440,7 +555,7 @@
       </tags>
   </entry>
   <entry>
-    <title>CentOS部署Memos</title>
+    <title>Linux(Ubuntu)部署Memos</title>
     <url>/archives/5fc31910.html</url>
     <content><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>最近又白嫖了一个月服务器，反正空着也是空着，就想着用来练练手；刚好看见一个实用的备忘项目，就来搞搞，顺便（<del>水</del>）写一篇博客。此博客纯属小白向，零基础也能可以试试。</p>
 <h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><ul>
@@ -448,7 +563,7 @@
 <li>一个域名（如果只是练练手，没想让别人访问的话不用也行）</li>
 <li>Xshell或者其他同类型软件</li>
 </ul>
-<h2 id="服务器"><a href="#服务器" class="headerlink" title="服务器"></a>服务器</h2><p>选择服务器操作系统：建议选Linux，我这里用的是CentOS7.8_x64。</p>
+<h2 id="服务器"><a href="#服务器" class="headerlink" title="服务器"></a>服务器</h2><p>选择服务器操作系统：建议选Linux，我这里用的是Ubuntu_20.04。</p>
 <p>设置你的实例密码，待会儿用得上</p>
 <h2 id="Xshell"><a href="#Xshell" class="headerlink" title="Xshell"></a>Xshell</h2><p>这里我用的是 <a href="https://www.xshell.com/zh/free-for-home-school/">Xshell</a> ，你也可以用其他同类型软件；连接服务器：</p>
 <p>主机：填你服务器的公网IP；    端口号：22        ；如下：</p>
@@ -460,37 +575,37 @@
 <p>点击下边的“连接”即可连接到你的服务器；出现以下字样（即root@主机名）即算连接成功，如下图：</p>
 <img src="https://s2.loli.net/2023/02/28/wEexMlhjY7VOidR.jpg" style="zoom:67%;" />
 
-<h3 id="检查服务器是否支持docker"><a href="#检查服务器是否支持docker" class="headerlink" title="检查服务器是否支持docker"></a>检查服务器是否支持docker</h3><p>安装docker的前提条件：</p>
-<ul>
-<li>必须是64位CPU架构的计算机，Docker目前不支持32位CPU；</li>
-<li>运行Linux3.8或更高版本内核，CentOS时内核必不小于3.10；</li>
-</ul>
-<p>可使用以下命令来查看CentOS内核版本</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">uname -r</span><br></pre></td></tr></table></figure>
 
-<h3 id="yum安装docker"><a href="#yum安装docker" class="headerlink" title="yum安装docker"></a>yum安装docker</h3><ul>
-<li>先更新yum包，保证是最新版本</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">yum update</span><br></pre></td></tr></table></figure>
 
-<p>中间需要你输入一次 “y”  如下：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Is this ok [y/d/N]: y 		//这里输入y即可</span><br></pre></td></tr></table></figure>
-
-<p>最后出现 <code>Complete!</code> 字样表示更新完成。</p>
-<ul>
-<li>安装需要的软件包</li>
+<h3 id="安装Docker"><a href="#安装Docker" class="headerlink" title="安装Docker"></a>安装Docker</h3><ul>
+<li>先更源，保证是最新</li>
 </ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">yum install -y yum-utils device-mapper-persistent-data lvm2</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo apt-get update</span><br></pre></td></tr></table></figure>
 
 <ul>
-<li>设置 yum docker 源</li>
+<li>先卸载旧版本Docker</li>
 </ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">yum-config-manager --add-repo http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo</span><br><span class="line">//这里用阿里镜像 </span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo apt-get remove docker docker-engine docker.io containerd runc</span><br></pre></td></tr></table></figure>
 
 <ul>
-<li>安装docker，默认安装最新稳定版</li>
+<li>安装Docker依赖（Docker在Ubuntu上依赖一些软件包）</li>
 </ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">yum install -y docker-ce</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">apt-get install ca-certificates curl gnupg lsb-release</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>添加Docker官方密匙</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">curl -fsSL http://mirrors.aliyun.com/docker-ce/linux/ubuntu/gpg | sudo apt-key add -</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>添加Docker软件源</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo add-apt-repository &quot;deb [arch=amd64] http://mirrors.aliyun.com/docker-ce/linux/ubuntu $(lsb_release -cs) stable&quot;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>安装Docker</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">apt-get install docker-ce docker-ce-cli containerd.io</span><br></pre></td></tr></table></figure>
 
 <ul>
 <li>验证是否安装成功</li>
@@ -498,7 +613,7 @@
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker version</span><br></pre></td></tr></table></figure>
 
 <p>出现以下即成功：</p>
-<img src="https://s2.loli.net/2023/02/28/5W2GywjUCrvBsIz.jpg" style="zoom:67%;" />
+<img src="https://s2.loli.net/2023/09/30/9gZMGPLCAWj87UE.jpg" style="zoom:50%;" />
 
 <ul>
 <li>启动docker</li>
@@ -570,11 +685,11 @@
 ]]></content>
       <categories>
         <category>Docker</category>
-        <category>CentOS</category>
+        <category>Ubuntu</category>
       </categories>
       <tags>
-        <tag>CentOS</tag>
         <tag>Docker</tag>
+        <tag>Ubuntu</tag>
         <tag>Memos</tag>
       </tags>
   </entry>
