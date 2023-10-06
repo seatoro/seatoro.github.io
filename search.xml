@@ -31,7 +31,6 @@
 <p>InstaMod（第三方Instagram）：<a href="https://yoyodadada.lanzouw.com/b07rqgvc">https://yoyodadada.lanzouw.com/b07rqgvc</a></p>
 <p>酷安：<a href="https://yinzhen.lanzoue.com/b00whhpsf">https://yinzhen.lanzoue.com/b00whhpsf</a>   密码:263b</p>
 <p>夸克：<a href="https://yinzhen.lanzoue.com/b00wf473c">https://yinzhen.lanzoue.com/b00wf473c</a>   密码:bfxw</p>
-<p>李跳跳：<a href="https://wwe.lanzouw.com/b01v0g3wj?w1?2">https://wwe.lanzouw.com/b01v0g3wj?w1?2</a>   密码:1233</p>
 <p>MXPlayer（强大的Android视频播放器）：<a href="https://yinzhen.lanzoue.com/b00wfjq2f">https://yinzhen.lanzoue.com/b00wfjq2f</a>   密码:6dn8</p>
 <p>Pure Tuber（第三方油管，去广告解锁VIP）：<a href="https://yinzhen.lanzoue.com/b00whfcob">https://yinzhen.lanzoue.com/b00whfcob</a>   密码:6emm</p>
 <p>清浊：<a href="https://yinzhen.lanzoue.com/b00whhlyh">https://yinzhen.lanzoue.com/b00whhlyh</a>   密码:80br</p>
@@ -48,7 +47,6 @@
 <p>西窗烛（解锁会员）：<a href="https://yinzhen.lanzoue.com/b00whfc6d">https://yinzhen.lanzoue.com/b00whfc6d</a>   密码:5i8a</p>
 <p>Xmind（思维导图）：<a href="https://yinzhen.lanzoue.com/b00wf475e">https://yinzhen.lanzoue.com/b00wf475e</a>   密码:hh8z</p>
 <p>邮箱：<a href="https://yinzhen.lanzoue.com/b00wf48bg">https://yinzhen.lanzoue.com/b00wf48bg</a>   密码:700e</p>
-<p>阅读：<a href="https://kunfei.lanzoui.com/b0f810h4b">https://kunfei.lanzoui.com/b0f810h4b</a>   密码:d8j9</p>
 <p>知乎：<a href="https://yoyodadada.lanzouw.com/b07psrob">https://yoyodadada.lanzouw.com/b07psrob</a></p>
 <p>照片编辑器：<a href="https://yinzhen.lanzoue.com/b00wf47ba">https://yinzhen.lanzoue.com/b00wf47ba</a>   密码:et3r</p>
 <p>账号本子（账号密码保存）：<a href="https://yinzhen.lanzoue.com/b00wf48je">https://yinzhen.lanzoue.com/b00wf48je</a>   密码:fjnn</p>
@@ -793,12 +791,7 @@
 </li>
 </ol>
 </blockquote>
-<h3 id="3-新建文件及文件夹"><a href="#3-新建文件及文件夹" class="headerlink" title="3. 新建文件及文件夹"></a>3. 新建文件及文件夹</h3><figure class="highlight cmd"><table><tr><td class="code"><pre><span class="line"><span class="built_in">md</span> 新建文件夹名称		//直接就可以新建一个文件夹了</span><br><span class="line"><span class="built_in">cd</span>.&gt;文件名称.txt		  //直接就可以新建一个文本文件了</span><br></pre></td></tr></table></figure>
-
-<p>解释：</p>
-<ul>
-<li><code>cd.</code> 是当前目录的意思</li>
-</ul>
+<p><em>待续…</em></p>
 ]]></content>
       <categories>
         <category>命令提示符</category>
@@ -889,7 +882,7 @@
 <p>完！</p>
 <hr>
 <p>更新：现在Ngrok免费的不太稳定，推荐使用 <a href="https://open.dingtalk.com/document/resourcedownload/http-intranet-penetration">钉钉内网穿透</a></p>
-<p>再次更新： <a href="https://open.dingtalk.com/document/resourcedownload/http-intranet-penetration">钉钉内网穿透</a> 也废弃了！  — 2022.07.21</p>
+<p>更新： <a href="https://open.dingtalk.com/document/resourcedownload/http-intranet-penetration">钉钉内网穿透</a> 也废弃了！  — 2022.07.21</p>
 ]]></content>
       <categories>
         <category>内网穿透</category>
@@ -930,7 +923,7 @@
     <title>FFmpeg的简单使用</title>
     <url>/archives/d9d00a92.html</url>
     <content><![CDATA[<p>简单聊一聊FFmpeg的使用；</p>
-<p>其有非常强大的功能：包括但不限于 视频采集功能、视频格式转换、视频抓图、给视频加水印等。<span id="more"></span></p>
+<p>其有非常强大的功能：包括但不限于 视频采集功能、视频格式转换、视频抓图、给视频加水印等。</p>
 <p><em>以下来源于百度百科：FFmpeg是一套可以用来记录、转换数字音频、视频，并能将其转化为流的开源计算机程序。采用LGPL或GPL许可证。它提供了录制、转换以及流化音视频的完整解决方案。它包含了非常先进的音频/视频编解码库libavcodec，为了保证高可移植性和编解码质量，libavcodec里很多code都是从头开发的。</em></p>
 <hr>
 <h3 id="简单介绍一下使用方法："><a href="#简单介绍一下使用方法：" class="headerlink" title="简单介绍一下使用方法："></a>简单介绍一下使用方法：</h3><h3 id="应用场景1：格式转换"><a href="#应用场景1：格式转换" class="headerlink" title="应用场景1：格式转换"></a>应用场景1：格式转换</h3><p>我想把用iPhone拍的.MOV文件转成.avi文件。最简单了，可以执行下面的命令：</p>
@@ -948,7 +941,7 @@
 
 <p>注：如果想逆时针旋转90度，90前面加个负号就可以了。</p>
 <h3 id="应用场景4：截取一段"><a href="#应用场景4：截取一段" class="headerlink" title="应用场景4：截取一段"></a>应用场景4：截取一段</h3><p>需要从源视频里截取一小段，怎么办呢？比如从第2秒的地方开始，往后截取10秒钟。命令行可以这样：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ffmpeg -ss 2 -t 10 -i D:\Media\IMG_0873.MOV D:\Media\output4.avi</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ffmpeg -ss 2 -t 10 -i D:\Media\IMG_0873.MOV D:\Media\output4.avi</span><br><span class="line">或</span><br><span class="line">ffmpeg -i ./input.mp4 -c:v libx264 -crf 18 -ss 00:00:10 -to 00:00:15 ./cut_out.mp4</span><br></pre></td></tr></table></figure>
 
 <p>注：这种情况下，-ss和-t参数必须放在-i前面，表示是限定后面跟着的输入文件的。</p>
 <h3 id="应用场景5：视频合成"><a href="#应用场景5：视频合成" class="headerlink" title="应用场景5：视频合成"></a>应用场景5：视频合成</h3><p>用手机拍的视频有时候背景噪音比较大。怎么把噪音去掉，换成一段美妙的音乐呢？使用FFmpeg也能轻易做到。</p>
@@ -974,7 +967,15 @@
 <p>ps: -ss 00：00：01表示从视频第一秒开始截取  ;  - t 表示截图3秒钟的视频  ;   -vf crop=iw:ih*2/3 表示截取视频的部分区域，其中宽为视频宽度，高为原视频的2/3  ;     -r 7 表示每秒帧率为7帧  ; </p>
 <h3 id="应用场景9：把AVI里的音频保存成mp3文件"><a href="#应用场景9：把AVI里的音频保存成mp3文件" class="headerlink" title="应用场景9：把AVI里的音频保存成mp3文件"></a>应用场景9：把AVI里的音频保存成mp3文件</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ffmpeg -i source_video.avi -vn -ar 44100 -acodec libmp3lame -ac 2 -ab 192K -f mp3 sound.mp3</span><br></pre></td></tr></table></figure>
 
-<h3 id="应用场景10：分离视频音频流"><a href="#应用场景10：分离视频音频流" class="headerlink" title="应用场景10：分离视频音频流"></a>应用场景10：<strong>分离视频音频流</strong></h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ffmpeg.exe -i G:\test\123.mp4 -f mp3 -vn G:\test\fgsiug.mp3</span><br><span class="line"></span><br><span class="line">ffmpeg.exe -i G:\test\123.mp4 -vn -codec copy G:\test\123.m4a</span><br><span class="line">//分离音频流      //  m4a 与 MP3 还不一样</span><br></pre></td></tr></table></figure>
+<h3 id="应用场景10：分离视频音频流"><a href="#应用场景10：分离视频音频流" class="headerlink" title="应用场景10：分离视频音频流"></a>应用场景10：分离视频音频流</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ffmpeg.exe -i G:\test\123.mp4 -f mp3 -vn G:\test\fgsiug.mp3</span><br></pre></td></tr></table></figure>
+
+<h3 id="应用场景11：截取音频"><a href="#应用场景11：截取音频" class="headerlink" title="应用场景11：截取音频"></a>应用场景11：截取音频</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ffmpeg -i demo.mp3 -ss 00:26 -to 01:16:43 -c copy demo1.mp3</span><br><span class="line">//从26秒截取到一小时16分43秒，并导出</span><br></pre></td></tr></table></figure>
+
+<h3 id="应用场景12：拼接视频"><a href="#应用场景12：拼接视频" class="headerlink" title="应用场景12：拼接视频"></a>应用场景12：拼接视频</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ffmpeg -f concat -i filelist.txt -c copy output.mp4</span><br><span class="line">//需要在目录下创建一个filelist.txt文件，内容如下：</span><br><span class="line">file &#x27;1.mp4&#x27;</span><br><span class="line">file &#x27;2.mp4&#x27;</span><br><span class="line">file &#x27;3.mp4&#x27;</span><br></pre></td></tr></table></figure>
+
+<h3 id="应用场景13：添加封面"><a href="#应用场景13：添加封面" class="headerlink" title="应用场景13：添加封面"></a>应用场景13：添加封面</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line">ffmpeg -i output.mp4 -i cover.jpg -<span class="built_in">map</span> <span class="number">1</span> -<span class="built_in">map</span> <span class="number">0</span> -c copy -disposition:<span class="number">0</span> attached_pic -y output_1.mp4</span><br></pre></td></tr></table></figure>
+
+
 
 <p><em>ps：以上来源于互联网以及FFmpeg官方文档</em></p>
 <hr>
@@ -990,7 +991,7 @@
   <entry>
     <title>突然连接不了GitHub?</title>
     <url>/archives/d840bd6.html</url>
-    <content><![CDATA[<p>前段时间开学了，比较忙就没空写博客了；不过就在我忙里偷闲抽空写的时候发现连接不了GitHub了，嗯？什么情况？<span id="more"></span></p>
+    <content><![CDATA[<p>前段时间开学了，比较忙就没空写博客了；不过就在我忙里偷闲抽空写的时候发现连接不了GitHub了，嗯？什么情况？</p>
 <p>这是什么情况？不应该啊？我啥都没动咋就不行了？一连串的疑问在我脑中萦绕！</p>
 <p>以下为报错的代码：</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">fatal: Could not read from remote repository.</span><br><span class="line"></span><br><span class="line">Please make sure you have the correct access rights</span><br><span class="line">and the repository exists.</span><br><span class="line">FATAL &#123;</span><br><span class="line">  err: Error: Spawn failed</span><br><span class="line">      at ChildProcess.&lt;anonymous&gt; (D:\MyBlog\node_modules\hexo-util\lib\spawn.js:51:21)</span><br><span class="line">      at ChildProcess.emit (events.js:400:28)</span><br><span class="line">      at ChildProcess.cp.emit (D:\MyBlog\node_modules\cross-spawn\lib\enoent.js:34:29)</span><br><span class="line">      at Process.ChildProcess._handle.onexit (internal/child_process.js:277:12) &#123;</span><br><span class="line">    code: 128</span><br><span class="line">  &#125;</span><br><span class="line">&#125; Something&#x27;s wrong. Maybe you can find the solution here: %s https://hexo.io/docs/troubleshooting.html</span><br></pre></td></tr></table></figure>
@@ -1109,39 +1110,6 @@
       </tags>
   </entry>
   <entry>
-    <title>免VIP复制百度文库内容</title>
-    <url>/archives/631e63b6.html</url>
-    <content><![CDATA[<p>今天发一下 4 种我自己知道的免VIP复制网页内容的方法</p>
-<p>以下方法都是截止我发文时，自己测试管用的！</p>
-<span id="more"></span>
-
-<hr>
-<ul>
-<li><h3 id="利用开发者工具"><a href="#利用开发者工具" class="headerlink" title="利用开发者工具"></a>利用开发者工具</h3></li>
-</ul>
-<p>在遇到不可复制的网页内容时，可鼠标右键，选择 “检查”，打开 “开发者模式” ，在 “元素” 中向下滑动可以找到你要复制的内容；不过，都是一句一句的，不连贯，对于篇幅比较长的内容不太适用。</p>
-<ul>
-<li><h3 id="关闭该网页的-JS"><a href="#关闭该网页的-JS" class="headerlink" title="关闭该网页的 JS"></a>关闭该网页的 JS</h3></li>
-</ul>
-<p>具体如下：</p>
-<p>打开浏览器设置，搜索 JavaScript 然后你会看见该设置的内容，你可以将要复制的网页链接添加到 “不允许使用 JavaScript” 一栏中；若你比较懒，也可以直接将 JavaScript 整个关闭，然后回到你要复制内容的网页刷新，就能任意复制了；不过某些网站关闭 JavaScript 后可能不能正常运行；<strong>因此，复制完内容后一定要记得将 JavaScript 的开关打开！！</strong></p>
-<ul>
-<li><h3 id="利用插件"><a href="#利用插件" class="headerlink" title="利用插件"></a>利用插件</h3></li>
-</ul>
-<p>插件就比较简单了，可有时候作者不维护了就可能会失效；也可能出现一些别的什么问题；不过总的来说还可以。插件的话可以看这篇文章 <a href="https://mp.weixin.qq.com/s/7YwBXLyWnwUFdloToimFVA">插件的获取与使用</a></p>
-<ul>
-<li><h3 id="利用OCR识别"><a href="#利用OCR识别" class="headerlink" title="利用OCR识别"></a>利用OCR识别</h3></li>
-</ul>
-<p>这种软件很多，PC端的QQ好像也有这个功能？（太久没用过QQ了，不知道，听别人说的）；我这里说一下我常用的一个软件 PanderOCR ，这是在 GitHub 上开源的，想用可直接去 GitHub 上搜 PanderOCR ，也可以点 <a href="https://github.com/miaomiaosoft/PandaOCR">这里直达</a>，如果前面那个链接打不开，那么点 <a href="https://gitee.com/DDDDDGOOO/PandaOCR">这个备用链接</a> 吧！</p>
-]]></content>
-      <categories>
-        <category>百度</category>
-      </categories>
-      <tags>
-        <tag>百度</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>解析Freenom域名</title>
     <url>/archives/79444b31.html</url>
     <content><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>​        前几天刚用 github + hexo 搭建了一个博客，用来记录自己的学习成果！但域名是 github 的二级域名，看着不太好看；就寻思怎样白嫖一个域名；<span id="more"></span>搜来搜去，看到了一个帖子说可以去 freenom 白嫖，就想着试试；结果自己根本搞不了，无奈继续搜教程呗！看了好多教程，都没成功；想来想去就上 Youtube 了，按时间排序，第一个就是；真是保姆级的教程，一次成功，哈哈！视频链接我放这儿了，有需自取：<a href="https://www.youtube.com/watch?v=dTVKfuW9BiU">白嫖freenom域名</a></p>
@@ -1172,14 +1140,9 @@
       </tags>
   </entry>
   <entry>
-    <title>常用技巧</title>
+    <title>实用方法</title>
     <url>/archives/81d62aff.html</url>
-    <content><![CDATA[<blockquote>
-<p>这篇博客主要介绍几种好玩的代码！“更改网页文字”、“修复电脑桌面白图标”、“微信消息轰炸PC端”等！有兴趣可以点开看看！</p>
-</blockquote>
-<span id="more"></span>
-
-<ol>
+    <content><![CDATA[<ol>
 <li><h3 id="更改网页文字"><a href="#更改网页文字" class="headerlink" title="更改网页文字"></a>更改网页文字</h3></li>
 </ol>
 <p>这个是很好玩的代码，你可以更改任意网页的任何文字；但要注意的是你更改后的网页并不会保留，关闭后再次打开还是原样！不过这样在某些时候已经足够了；无法保存你就截个图嘛~    这也是变相保存了。</p>
