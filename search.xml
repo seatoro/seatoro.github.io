@@ -1295,14 +1295,14 @@
 <p>​    附上 git 官网地址：<a href="https://git-scm.com/">git官网</a></p>
 <p>​    去官网下载适合自己电脑的版本，下一步，下一步跟着安装即可！我这里提供个教程，仅供参考！<a href="https://blog.csdn.net/ssd21988/article/details/107826076">git安装教程</a>  步骤可能有些不一样，不过一般都按默认即可。</p>
 <p>安装完成后，我们可以测试一下安装成功与否：按键盘上 win + R 键，输入 cmd ，打开命令提示符窗口，接着输入 <code>git --version</code> ，看其是否出现版本号；如下图：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/seatoro/Image/img/git-v.jpg"></p>
+<p><img src="https://s2.loli.net/2024/07/12/sn7HMNDolVeBwKk.jpg"></p>
 <p>​    如果出现，那么恭喜你，安装成功！（如果命令提示符上没有可以重启电脑后再次查看或在git上查看）</p>
 <p>​    这时候你会发现，鼠标右击后会出现两个新的菜单 <code>Git GUI Here</code> 和 <code>Git Bash Here</code>，我们平时只会用到后者，不要搞错了！</p>
 <h3 id="安装node-js"><a href="#安装node-js" class="headerlink" title="安装node.js"></a>安装node.js</h3><p>​    因为，我们的博客是基于 hexo 的，而 hexo 又是基于 node.js 的，所以这是必不可少的！</p>
 <p>​    我们可以去其<a href="http://nodejs.cn/download/">官网</a>，下载并安装；也是直接下一步、下一步就行；这里我也放个教程，可以参考一下：<a href="https://blog.csdn.net/antma/article/details/86104068">node.js 安装详细步骤教程</a>；不过，值得注意的是：安装 node.js 会包含环境变量及 npm 的安装</p>
 <p>​    安装好以后，我们要检测 node 与 npm 是否安装成功：按键盘上 win + R 键，输入 cmd ，打开命令提示符窗口，分别输入 <code>node -v</code> ，<code>npm -v</code> 看其是否出现版本号；</p>
 <h3 id="安装hexo"><a href="#安装hexo" class="headerlink" title="安装hexo"></a>安装hexo</h3><p>​    hexo 就是我们的个人博客网站的框架；安装的话也很简单，按键盘上 win + R 键，输入 cmd ，打开命令提示符窗口，输入<code>npm install -g hexo-cli </code>，进行安装hexo，等待安装好后，我们检验其是否安装成功输入<code>hexo -v</code>看是否出现版本号；如下图：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/seatoro/Image/img/hexo-v.jpg"></p>
+<p><img src="https://s2.loli.net/2024/07/12/uZSAWjHx3JCBndT.jpg"></p>
 <p>如果安装不成功（前提是按照<a href="https://blog.csdn.net/antma/article/details/86104068">node.js 安装详细步骤教程</a>的步骤来进行）那么可以按照<a href="https://blog.csdn.net/fuyuanduan/article/details/128750582">此方法</a>来进行设置，给完权限后再次执行安装hexo的命令即可安装成功了！</p>
 <h3 id="注册github"><a href="#注册github" class="headerlink" title="注册github"></a>注册github</h3><p>​    我们打开<a href="https://github.com/">github官网</a>，然后点右上角的Sign up，即可注册，其实也很简单；这里还是提供一篇教程，不会的可以看看：<a href="https://www.bilibili.com/read/cv5107169">github注册教程</a>，<strong>注意：一定要记住注册名、注册邮箱和注册密码哦！!</strong></p>
 <blockquote>
@@ -1310,7 +1310,7 @@
 </blockquote>
 <hr>
 <h3 id="搭建仓库"><a href="#搭建仓库" class="headerlink" title="搭建仓库"></a>搭建仓库</h3><p>​    注册完账号后登陆，点击右上角的 + 号，选择 New repository  ；然后，仓库名字填你的注册名 + <code>.github.io</code>，例如我的就是 <code>seatoro.github.io</code>，之后的 Description 可填可不填； 接下来选择 Public ，否则别人访问不了你的博客！然后把 Add a README file 勾上；最后，点击最下边的 Create repository 的按钮就能创建好你的仓库了！如下图：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/seatoro/Image/img/create%20repository.jpg"></p>
+<p><img src="https://s2.loli.net/2024/07/12/BAeQ2Smnj1h94Tx.jpg"></p>
 <h3 id="生成SSH-Keys"><a href="#生成SSH-Keys" class="headerlink" title="生成SSH Keys"></a>生成SSH Keys</h3><p>​    我们可以在合适的盘新建一个文件夹，可以命名为MyBlog，hexo 框架与以后你自己发布的网页都会在这个文件夹中。一定要记住路径哦，别之后找不到了！打开这个文件夹，鼠标右键，点击 <code>Git Bash Here</code>，然后我们就会进入一个黑框框页面；直接输入 <code>SSH</code> ，来检测我们是否装有SSH，其实默认是装过的！然后输入 <code>ssh-keygen -t rsa -C &quot;你注册github的邮件地址&quot;</code>。之后敲4次回车键（<strong>注意：不是连着敲，敲一次，等里面的内容不再变化后再敲下一次！</strong>）最后，你会看到一个用短线组成的框框，到这儿你就成功了！不要关闭这个窗口，一会还要用！！</p>
 <p>​    按 Win + E 打开文件资源管理器，打开C盘 –&gt; 用户文件夹 –&gt; 个人文件夹 –&gt; .ssh文件夹，进入后我们可以看到里面有两个文件，用文本编辑器打开名为 <code>id_rsa.pub</code>的文件，<code>ctrl + a</code> <code>ctrl + c</code>复制里面的全部内容！</p>
 <p>​    打开 github ，点击右上角头像找到 Setting ，点进去，往下划在左侧栏找到 SSH and GPG keys，点进去，第一个就是SSH Keys，点击 New SSH Key ，Title 随便填如：MyBlog；Key 就填你刚才复制 id_rsa.pub 里的一大串内容，（以你的邮箱结尾）；点 Add SSH Key 按钮即可。</p>
@@ -1318,9 +1318,9 @@
 <h3 id="生成本地博客内容"><a href="#生成本地博客内容" class="headerlink" title="生成本地博客内容"></a>生成本地博客内容</h3><p>​    进入你在上一步中创建的文件夹，在空白处右键，点击 <code>Git Bash Here</code>，在出现的黑框中输入 <code>hexo init</code>来初始化我们的hexo，等待执行完成（如果出现错误，可多尝试几次），成功的标志：<code>INFO Start blogging with Hexo!</code>，这时我们打开上一步中创建的文件夹就会发现里面多了很多内容！</p>
 <p>​    继续在黑框中敲命令：<code>hexo s</code>，启动本地服务器，看到出现 <code>http://localhost:4000</code>后就大功告成，接着我们只需要复制这个地址，去浏览器打开，就能看到我们的博客了；关闭服务器的话只需按 <code>ctrl + c</code>（没错就是复制的快捷键）就能关闭了，关闭后浏览器就打不开你的博客了！</p>
 <h3 id="发布博客至互联网"><a href="#发布博客至互联网" class="headerlink" title="发布博客至互联网"></a>发布博客至互联网</h3><p>​    进入你在上上一步中创建的文件夹，找到<code>config.yml</code>文件（注意：没有扩展名是因为你没有开启这个功能，开启方法<a href="https://jingyan.baidu.com/article/f00622282564bdfbd3f0c827.html">点这儿</a> ）并用文本编辑器打开，找到最后几行更改为下图所示。（<strong>注意：最后一行要空出来，即branch: main 后面要空一行；每个冒号后面有一个空格</strong>）另，repo后面的内容把我的用户名（seatoro）改为你自己的！！保存，退出即可。</p>
-<p><img src="https://cdn.jsdelivr.net/gh/seatoro/Image/img/yml.jpg"></p>
+<p><img src="https://s2.loli.net/2024/07/12/qi1TzakEo74xWfe.jpg"></p>
 <p>​    进入你的博客文件夹，在空白处右键，点击 <code>Git Bash Here</code>，在出现的黑框中输入 <code>npm install hexo-deployer-git --save</code>，安装 hexo-deployer-git ；安装成功后接着敲命令<code>hexo g</code>，回车；执行完后接着敲 <code>hexo d</code>，这个命令是发布网页至服务器中的！（如若出错，多试几次）这时需要验证你的github账号，用户名，就是github用户名，密码就不是你设置的密码了；我们打开github，点击右上角头像找到 Setting ，点进去，往下划在左侧栏找到 Developer settings，点进去，在左侧栏找到 Personal access tokens ，点进去，Note 随便填，Expiration 默认30天就行，下边的复选框全部勾上，最后点击 Generate token 按钮生成令牌。复制生成的令牌，它只会出现一次，一定要记好；将复制的内容粘贴到刚才的密码框中点击 OK 就行了！这时就将本地内容上传到 github 中了，然后你就能通过网址访问了，网址就是你 github 主页左上角的网址，如下：</p>
-<p><img src="https://cdn.jsdelivr.net/gh/seatoro/Image/img/webline.jpg"></p>
+<p><img src="https://s2.loli.net/2024/07/12/miawLHGdNXhAC3c.jpg"></p>
 <hr>
 <p>​    至此，hexo + github 搭建博客就算是成功了，恭喜！！</p>
 <p>​    不过这只是最初的内容，其实还有好多内容，比如：怎样美化你的博客、更换主题；怎样添加各种小功能；怎样新建、删除文章；怎样搭建自己的图床等等！</p>
