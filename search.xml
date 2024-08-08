@@ -8,6 +8,8 @@
 </ul>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker start 容器id               # 启动容器</span><br><span class="line">docker restart 容器id             # 重启容器</span><br><span class="line">docker start $(docker ps -a -q)  # 启动所有容器</span><br></pre></td></tr></table></figure>
 
+<span id="more"></span>
+
 <h3 id="停止"><a href="#停止" class="headerlink" title="停止"></a>停止</h3><ul>
 <li>停止容器</li>
 </ul>
@@ -103,6 +105,8 @@
     <content><![CDATA[<p>简单聊一聊FFmpeg的使用；</p>
 <p>其有非常强大的功能：包括但不限于 视频采集功能、视频格式转换、视频抓图、给视频加水印等。</p>
 <p><em>以下来源于百度百科：FFmpeg是一套可以用来记录、转换数字音频、视频，并能将其转化为流的开源计算机程序。采用LGPL或GPL许可证。它提供了录制、转换以及流化音视频的完整解决方案。它包含了非常先进的音频/视频编解码库libavcodec，为了保证高可移植性和编解码质量，libavcodec里很多code都是从头开发的。</em></p>
+<span id="more"></span>
+
 <hr>
 <h3 id="简单介绍一下使用方法："><a href="#简单介绍一下使用方法：" class="headerlink" title="简单介绍一下使用方法："></a>简单介绍一下使用方法：</h3><h3 id="应用场景1：格式转换"><a href="#应用场景1：格式转换" class="headerlink" title="应用场景1：格式转换"></a>应用场景1：格式转换</h3><p>我想把用iPhone拍的.MOV文件转成.avi文件。最简单了，可以执行下面的命令：</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ffmpeg -i D:\Media\IMG_0873.MOV D:\Media\output.avi  </span><br></pre></td></tr></table></figure>
@@ -289,9 +293,38 @@
       </tags>
   </entry>
   <entry>
+    <title>MarkDown语法基础</title>
+    <url>/archives/b797e99c.html</url>
+    <content><![CDATA[<p>由于该博客的文章全部都是用markdown写的，所以就写一下MarkDown语法相关吧！<span id="more"></span></p>
+<hr>
+<p>Markdown 是一种轻量级标记语言，它允许人们使用易读易写的纯文本格式编写文档。</p>
+<p>Markdown 语言在 2004 由约翰·格鲁伯（英语：John Gruber）创建。</p>
+<p>Markdown 编写的文档可以导出 HTML 、Word、图像、PDF、Epub 等多种格式的文档。</p>
+<p>Markdown 编写的文档后缀为 <strong>.md</strong>, <strong>.markdown</strong>。</p>
+<hr>
+<p>Markdown 能被使用来撰写电子书，如：Gitbook。</p>
+<p>当前许多网站都广泛使用 Markdown 来撰写帮助文档或是用于论坛上发表消息。例如：GitHub、简书、reddit、Diaspora、Stack Exchange、OpenStreetMap 、SourceForge等。</p>
+<hr>
+<p>教程网站：<a href="https://www.runoob.com/markdown/md-tutorial.html">Markdown 教程 | 菜鸟教程</a></p>
+<p>个人觉得好用的在线编辑网站：<a href="https://dillinger.io/">Online Markdown Editor - Dillinger, the Last Markdown Editor ever.</a></p>
+<p>LaTex公式手册网站：<a href="https://www.zybuluo.com/codeep/note/163962#mjx-eqn-eqsample">LaTex 公式指导手册</a> </p>
+<p>个人觉得好用的PC端MarkDown软件：<a href="https://www.typora.io/">Typora — a markdown editor, markdown reader.</a>  – （现在收费了，不过是买断制，如果喜欢可以购买正版！）</p>
+<hr>
+<p>结束！！</p>
+]]></content>
+      <categories>
+        <category>Markdown</category>
+      </categories>
+      <tags>
+        <tag>Markdown</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Linux(Ubuntu)部署Memos</title>
     <url>/archives/5fc31910.html</url>
     <content><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>最近又白嫖了一个月服务器，反正空着也是空着，就想着用来练练手；刚好看见一个实用的备忘项目，就来搞搞，顺便（<del>水</del>）写一篇博客。此博客纯属小白向，零基础也能可以试试。</p>
+<span id="more"></span>
+
 <h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><ul>
 <li>一台服务器</li>
 <li>一个域名（如果只是练练手，没想让别人访问的话不用也行）</li>
@@ -437,36 +470,11 @@
       </tags>
   </entry>
   <entry>
-    <title>MarkDown语法基础</title>
-    <url>/archives/b797e99c.html</url>
-    <content><![CDATA[<p>由于该博客的文章全部都是用markdown写的，所以就写一下MarkDown语法相关吧！<span id="more"></span></p>
-<hr>
-<p>Markdown 是一种轻量级标记语言，它允许人们使用易读易写的纯文本格式编写文档。</p>
-<p>Markdown 语言在 2004 由约翰·格鲁伯（英语：John Gruber）创建。</p>
-<p>Markdown 编写的文档可以导出 HTML 、Word、图像、PDF、Epub 等多种格式的文档。</p>
-<p>Markdown 编写的文档后缀为 <strong>.md</strong>, <strong>.markdown</strong>。</p>
-<hr>
-<p>Markdown 能被使用来撰写电子书，如：Gitbook。</p>
-<p>当前许多网站都广泛使用 Markdown 来撰写帮助文档或是用于论坛上发表消息。例如：GitHub、简书、reddit、Diaspora、Stack Exchange、OpenStreetMap 、SourceForge等。</p>
-<hr>
-<p>教程网站：<a href="https://www.runoob.com/markdown/md-tutorial.html">Markdown 教程 | 菜鸟教程</a></p>
-<p>个人觉得好用的在线编辑网站：<a href="https://dillinger.io/">Online Markdown Editor - Dillinger, the Last Markdown Editor ever.</a></p>
-<p>LaTex公式手册网站：<a href="https://www.zybuluo.com/codeep/note/163962#mjx-eqn-eqsample">LaTex 公式指导手册</a> </p>
-<p>个人觉得好用的PC端MarkDown软件：<a href="https://www.typora.io/">Typora — a markdown editor, markdown reader.</a>  – （现在收费了，不过是买断制，如果喜欢可以购买正版！）</p>
-<hr>
-<p>结束！！</p>
-]]></content>
-      <categories>
-        <category>Markdown</category>
-      </categories>
-      <tags>
-        <tag>Markdown</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>NMOS和PMOS有什么区别</title>
     <url>/archives/2e946417.html</url>
     <content><![CDATA[<p>​        MOS管，分为N沟道和P沟道两种。由于PMOS导通电阻大，价格贵，替换种类少等原因，故常用NMOS，因为其导通电阻小，且容易制造。</p>
+<span id="more"></span>
+
 <ol>
 <li>导通特性</li>
 </ol>
@@ -491,6 +499,8 @@
 <li>域名（非必须）</li>
 <li>爱折腾的心</li>
 </ul>
+<span id="more"></span>
+
 <h2 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h2><h3 id="Apache"><a href="#Apache" class="headerlink" title="Apache"></a>Apache</h3><p><strong>更新源</strong></p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo apt update //先更新一下源再安装，否则有可能安装不成功</span><br></pre></td></tr></table></figure>
 
@@ -600,6 +610,8 @@
     <title>Ubuntu服务器部署FRP内网穿透</title>
     <url>/archives/2bb50ac9.html</url>
     <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>由于有给服务器传文件的需求，又没有FTP，就想着先给服务器装个FRP内网穿透；就百度了一下，结果好几天也没成功，后来又不甘心，又继续搞，终于有结果了，记录一下。</p>
+<span id="more"></span>
+
 <h2 id="安装vsftpd"><a href="#安装vsftpd" class="headerlink" title="安装vsftpd"></a>安装vsftpd</h2><ul>
 <li>安装 vsftpd</li>
 </ul>
@@ -686,6 +698,8 @@
 </ul>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker run -d --restart=always -v /etc/alist:/opt/alist/data -p 5244:5244 -e PUID=0 -e PGID=0 -e UMASK=022 --name=&quot;alist&quot; xhofe/alist:latest</span><br></pre></td></tr></table></figure>
 
+<span id="more"></span>
+
 <p>通过日志获取默认密码</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker logs alist</span><br><span class="line">#或者</span><br><span class="line">docker exec -it alist ./alist admin</span><br></pre></td></tr></table></figure>
 
@@ -743,6 +757,8 @@
 <h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new My New Post</span><br></pre></td></tr></table></figure>
 
 <p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
+<span id="more"></span>
+
 <h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
 
 <p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
@@ -755,98 +771,45 @@
 ]]></content>
   </entry>
   <entry>
-    <title>嵌入式之红外通信</title>
-    <url>/archives/bbd81c5a.html</url>
-    <content><![CDATA[<h1 id="红外通信"><a href="#红外通信" class="headerlink" title="红外通信"></a>红外通信</h1><p>上一篇只是粗略地提了一下红外通信，这篇来说些注意事项与细节问题</p>
-<span id="more"></span>
-
-<h2 id="载波"><a href="#载波" class="headerlink" title="载波"></a>载波</h2><p>红外通信一般为 <code>38K</code> 载波，“载波” 简单来讲就是一段周期性的、<strong>不断震荡</strong>的波；</p>
-<p><em>注：特别注意的是，对于一些非信号专业的新手来讲，虽然眼睛看到了该条件，但并没有进行思考，只当作“公理”给记住，这时在使用时往往会忽略掉。与福尔摩斯说过的话有异曲同工之处：“你只是用眼睛看，并不是在观察”，现在是：“你只是眼睛看到了，却没有在思考。”</em></p>
-<p>我们可通过调制将信息加载到载波上，这样信息就会随着波的传播而发射出去了；波发出去后会受到外界环境光的干扰，这就可能会导致信息的丢失或篡改；理论上来讲：传播距离越远，信息丢失的概率越大。</p>
-<h2 id="38K频率"><a href="#38K频率" class="headerlink" title="38K频率"></a>38K频率</h2><p>上面提到载波上的信息可能会丢失，那有没有什么预防措施呢？</p>
-<p>这就要说到用 <code>38K</code> 载波的原因了：主要是为了<strong>提高抗干扰能力</strong>，尽量避免因环境光干扰导致的信息丢失或篡改；</p>
-<p>另外的原因（来自百度）：</p>
-<p>这一频率的选择与常用的 <code>455kHz</code> 晶振密切相关。‌在发射端，‌通过对晶振进行整数分频，‌通常取分频系数为12，‌从而得到 <code>38kHz</code> 的载波频率。‌这种分频方式不仅技术上可行，‌而且经济实用，‌因为它利用了现有的成熟技术和组件，‌避免了开发高精度晶振的成本和复杂性。‌</p>
-<p>此外，‌<code>38kHz</code> 的载波频率还具有其特定的优势。‌在红外通信中，‌使用 <code>38kHz</code> 的载波可以实现较高的通信质量和较远的通信距离，‌同时保持较低的功耗和成本。‌这种频率的选择也符合红外通信的基本需求，‌即在保证通信效果的同时，‌尽可能地降低系统成本和功耗。‌</p>
-<p><strong>值得注意的是：</strong></p>
-<p><code>38K</code> 载波意味着每秒有38000个周期，单个周期的时间为1/38000S。‌这个时间长度代表了<strong>一个完整脉冲</strong>的时间，‌包括高电平和低电平的总时间。‌</p>
-<p>但是我们红外通信需要的是高低电平均为1/38000S，因此我们定时器应配置为 <code>76K</code> ，这样每次进中断的时间就是1/38000S，那么产生的高、低电平就是1/38000S了。</p>
-<p>OK，了解基本原理后就有大概的框架了：</p>
-<ol>
-<li>首先要有个波形发生器，用来产生 <code>38K</code> 载波</li>
-<li>制定自己的通信协议（也可以使用现有的协议，如： NEC协议）</li>
-<li>代码实现</li>
-</ol>
+    <title>内网穿透</title>
+    <url>/archives/bd50b816.html</url>
+    <content><![CDATA[<p>内网穿透，即 NAT 穿透，进行 NAT 穿透是为了使具有某一个特定源 IP 地址和源端口号的数据包不被 NAT 设备屏蔽而正确路由到内网主机。<span id="more"></span></p>
+<p>最开始了解内网穿透是为了将自己写的HTML项目能够让别人看见，但当时又不了解服务器等东西，就上网搜方法；偶然看到说内网穿透可以，所以就找了好多教程；最终就选了以下这种方法！</p>
+<hr>
+<h3 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h3><p>安装好jdk并配置环境变量、下载Tomcat并配置环境变量、注册一个Ngrok账号、一台电脑</p>
+<h3 id="配置jdk与Tomcat"><a href="#配置jdk与Tomcat" class="headerlink" title="配置jdk与Tomcat"></a>配置jdk与Tomcat</h3><p>这个就不详写了，上网一搜一大堆！（注意Tomcat要与jdk的版本号对应，具体看官网对应关系：<a href="http://tomcat.apache.org/whichversion.html">Apache Tomcat® - Which Version Do I Want?</a>）</p>
+<h3 id="注册并登录Ngrok以及开通隧道"><a href="#注册并登录Ngrok以及开通隧道" class="headerlink" title="注册并登录Ngrok以及开通隧道"></a>注册并登录Ngrok以及开通隧道</h3><p>Ngrok官网：<a href="https://www.ngrok.cc/">Sunny-Ngrok内网穿透服务</a></p>
+<p>因为Ngrok是有免费线路的，所以完全可以白嫖。😁 一般不会失效，如果失效，再次开通就行。</p>
+<p>登录进入后选择“隧道管理” —&gt; “开通隧道” —&gt; 向下滑，找到最后一个价格为0元的，购买就行；</p>
+<p><strong>协议</strong>选<code>http/https</code>均可，<strong>隧道名称</strong>随便起，<strong>前置域名</strong>随便起（尽量短，好记；用英文、数字都行），<strong>本地端口</strong>默认就行，下面两个不用填，点击<strong>确定添加</strong>就可以了。</p>
+<p>开通成功后可以在<strong>隧道管理</strong>查看自己的隧道了。然后下载客户端，<a href="https://www.ngrok.cc/download.html">Sunny-Ngrok内网转发客户端</a>，选择自己电脑的版本即可！</p>
+<h3 id="内网穿透"><a href="#内网穿透" class="headerlink" title="内网穿透"></a>内网穿透</h3><p>下载后解压双击运行<code>Sunny-Ngrok启动工具.bat</code>，它会提示你要id,这时回到网页<strong>隧道管理</strong>找到你的<strong>隧道id</strong>粘贴进去，然后回车就行。</p>
+<p>这时如果你通过你的网址进行访问会提示你隧道不可用；这是因为你没有运行Tomcat，你cmd运行Tomcat后，再刷新就能看到Tomcat的页面了，如图：</p>
+<p><img src="https://s2.loli.net/2022/07/10/TOGBXVCNj68AmiZ.jpg"></p>
+<p>出现这个页面就恭喜你了，你已经成功了！</p>
+<hr>
+<h3 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h3><p>这时你的内网穿透已经成功了，但是如果你有自己的HTML项目，该怎样让别人通过你的网址访问呢？</p>
+<p>其实也很简单，将项目放到Tomcat目录下的<code>webapps</code>目录就行；访问的话就是<code>你的网址+项目的目录名+项目的名.html</code>，如我的一个就是<code>http://to.free.idcfengye.com/migong/index.html</code></p>
+<p>这样就能让别人通过你的网址来访问你的项目了！</p>
+<hr>
+<h3 id="最后的最后"><a href="#最后的最后" class="headerlink" title="最后的最后"></a>最后的最后</h3><p>注意，内网穿透的过程中你运行的 <code>Tomcat</code> 与 <code>Sunny-Ngrok启动工具</code> 不能关闭，否则连接会断开！</p>
+<p>完！</p>
+<hr>
+<p>更新：现在Ngrok免费的不太稳定，推荐使用 <a href="https://open.dingtalk.com/document/resourcedownload/http-intranet-penetration">钉钉内网穿透</a></p>
+<p>更新： <a href="https://open.dingtalk.com/document/resourcedownload/http-intranet-penetration">钉钉内网穿透</a> 也废弃了！  — 2022.07.21</p>
 ]]></content>
       <categories>
-        <category>嵌入式</category>
-        <category>红外</category>
+        <category>内网穿透</category>
       </categories>
       <tags>
-        <tag>嵌入式</tag>
-        <tag>红外</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>常用的命令提示符</title>
-    <url>/archives/1ff8041c.html</url>
-    <content><![CDATA[<h3 id="1-查看并导出目录文件夹名称"><a href="#1-查看并导出目录文件夹名称" class="headerlink" title="1. 查看并导出目录文件夹名称"></a>1. 查看并导出目录文件夹名称</h3><figure class="highlight cmd"><table><tr><td class="code"><pre><span class="line"><span class="built_in">tree</span>&gt;list.txt		//查看文件夹并导出为list.txt文件</span><br><span class="line"><span class="built_in">tree</span> /f &gt;list.txt		//查看文件夹及里面的文件并导出为list.txt文件</span><br></pre></td></tr></table></figure>
-
-<p><strong>解释：</strong></p>
-<ul>
-<li>只查看不导出，只用 <code>tree</code> 就行</li>
-<li><code>list.txt</code> 可以自己更改（<code>list</code> 为文件名，<code>txt</code> 为后缀；文件名可以自定义，后缀可以为：<code>txt、md、xls</code> 等）</li>
-<li>加上 <code>/f</code> 为显示文件夹下的文件，不加的话就只显示文件夹</li>
-</ul>
-<h3 id="2-批量更改文件名及后缀"><a href="#2-批量更改文件名及后缀" class="headerlink" title="2. 批量更改文件名及后缀"></a>2. 批量更改文件名及后缀</h3><figure class="highlight cmd"><table><tr><td class="code"><pre><span class="line"><span class="built_in">ren</span> *.txt *.<span class="built_in">md</span>		//改后缀名</span><br><span class="line"><span class="built_in">ren</span> 旧文件名.txt 新文件名.txt		//改文件名</span><br></pre></td></tr></table></figure>
-
-<p><strong>解释：</strong></p>
-<ul>
-<li><code>ren</code> 为更改后缀的命令</li>
-<li><code>*.txt</code> 为更改前的后缀</li>
-<li><code>*.md </code> 为你要更改的后缀</li>
-</ul>
-<p>如果你要更改所有文件，不只是<code>txt</code> 文件；那么可以用 <code>ren *. *.md</code> 命令！</p>
-<p>ps: 上面的 <code>*</code> 为通配符，通配符还有一个 <code>? </code>; 具体作用为：<code>? </code>代表匹配一个字符， <code>*</code> 代表匹配多个字符；</p>
-<p>其应用也很广，可以用来搜索你不记得具体名称的文件夹：</p>
-<blockquote>
-<ol>
-<li><p>比如你记得你磁盘有一个文件，它的文件名的第一个字符不记得了，只记得第二个是a，第三个不记得了，第四个是1，后面的又不记得了，而且是一个 <code>css</code> 文件，怎么搜索呢？</p>
-<p>答：<code>?a?1*.css </code> 这样就能找到了。</p>
-</li>
-<li><p>还有一个文件，文件名的前三个字符不记得了，后面是hello，是一个 <code>css</code> 文件，怎么找呢？</p>
-<p>答：<code>???hello.css</code></p>
-</li>
-<li><p>如果一个文件是以 <code>module</code> 结尾的该怎么搜索？</p>
-<p>答：<code>dir *module </code></p>
-</li>
-<li><p>如果一个文件是以 <code>module</code> 开头的怎么搜索？</p>
-<p>答：<code>dir module*</code></p>
-</li>
-</ol>
-</blockquote>
-<h3 id="3-查看WiFi密码"><a href="#3-查看WiFi密码" class="headerlink" title="3. 查看WiFi密码"></a>3. 查看WiFi密码</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">for /f &quot;skip=9 tokens=1,2 delims=:&quot; %i in (&#x27;netsh wlan show profiles&#x27;) do @echo %j | findstr -i -v echo | netsh wlan show profiles %j key=clear</span><br></pre></td></tr></table></figure>
-
-<p><strong>使用：</strong>这个代码可以查看你的笔记本电脑已经连接过的<code>wifi</code>密码，主要用于连接上但密码忘记的情况！</p>
-<h3 id="4-修复电脑桌面白图标"><a href="#4-修复电脑桌面白图标" class="headerlink" title="4. 修复电脑桌面白图标"></a>4. 修复电脑桌面白图标</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@duecho off</span><br><span class="line">taskkill /f /im explorer.exe</span><br><span class="line">CD /d %userprofile%\AppData\Local</span><br><span class="line">DEL IconCache.db /a</span><br><span class="line">start explorer.exe</span><br><span class="line">cho 执行完成</span><br></pre></td></tr></table></figure>
-
-<p><strong>使用：</strong>复制上面的代码，在桌面新建一个文本文档，将其粘贴进去，再将后缀改为<code>.bat</code> ，双击运行，然后刷新一下桌面即可。</p>
-<h3 id="5-图片隐写"><a href="#5-图片隐写" class="headerlink" title="5. 图片隐写"></a>5. 图片隐写</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">copy /b test.jpg + document.rar yincang.jpg</span><br></pre></td></tr></table></figure>
-
-<p><strong>使用：</strong>将要隐藏的文件和图片放在同一个文件夹中；打开命令提示符窗口并输入以上代码（其中<code>test.jpg</code>为图片名称，<code>doucument.rar</code>为压缩包名称，<code>yincang.jpg</code>为输出的含有文件的图片名称）</p>
-<p><strong>说明：</strong>如果要找回文件，将输出的图片后缀改为<code>.rar</code>再解压即可！</p>
-]]></content>
-      <categories>
-        <category>CMD</category>
-      </categories>
-      <tags>
-        <tag>CMD</tag>
+        <tag>内网穿透</tag>
+        <tag>Ngrok</tag>
       </tags>
   </entry>
   <entry>
     <title>嵌入式总结（一）</title>
     <url>/archives/76bb4a41.html</url>
-    <content><![CDATA[<h2 id="红外通信原理"><a href="#红外通信原理" class="headerlink" title="红外通信原理"></a>红外通信原理</h2><h3 id="红外通信的整个工作过程"><a href="#红外通信的整个工作过程" class="headerlink" title="红外通信的整个工作过程"></a>红外通信的整个工作过程</h3><h4 id="发送过程"><a href="#发送过程" class="headerlink" title="发送过程"></a>发送过程</h4><p><strong>数据 -&gt; 编码 -&gt; 调制 -&gt; 发送电路</strong></p>
+    <content><![CDATA[<h2 id="红外通信原理"><a href="#红外通信原理" class="headerlink" title="红外通信原理"></a>红外通信原理</h2><h3 id="红外通信的整个工作过程"><a href="#红外通信的整个工作过程" class="headerlink" title="红外通信的整个工作过程"></a>红外通信的整个工作过程</h3><h4 id="发送过程"><a href="#发送过程" class="headerlink" title="发送过程"></a>发送过程</h4><p><strong>数据 -&gt; 编码 -&gt; 调制 -&gt; 发送电路</strong><span id="more"></span></p>
 <ol>
 <li><p>数据：假设发送的数据为 0XA5，二进制为：10100101 </p>
 </li>
@@ -858,8 +821,6 @@
 <li>调制：就是把编码数据放到一定频率的载波上面，即使用数据调制载波，形成一串脉冲信号</li>
 <li>发送电路：即：红外灯珠对脉冲信号的发送 + 脉冲信号的放大</li>
 </ol>
-<span id="more"></span>
-
 <h4 id="接收过程"><a href="#接收过程" class="headerlink" title="接收过程"></a>接收过程</h4><p><strong>接收电路 -&gt; 解调 -&gt; 解码 -&gt; 数据</strong></p>
 <ol>
 <li>接收电路：接收发过来的红外信号</li>
@@ -1018,45 +979,42 @@
       </tags>
   </entry>
   <entry>
-    <title>内网穿透</title>
-    <url>/archives/bd50b816.html</url>
-    <content><![CDATA[<p>内网穿透，即 NAT 穿透，进行 NAT 穿透是为了使具有某一个特定源 IP 地址和源端口号的数据包不被 NAT 设备屏蔽而正确路由到内网主机。<span id="more"></span></p>
-<p>最开始了解内网穿透是为了将自己写的HTML项目能够让别人看见，但当时又不了解服务器等东西，就上网搜方法；偶然看到说内网穿透可以，所以就找了好多教程；最终就选了以下这种方法！</p>
-<hr>
-<h3 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h3><p>安装好jdk并配置环境变量、下载Tomcat并配置环境变量、注册一个Ngrok账号、一台电脑</p>
-<h3 id="配置jdk与Tomcat"><a href="#配置jdk与Tomcat" class="headerlink" title="配置jdk与Tomcat"></a>配置jdk与Tomcat</h3><p>这个就不详写了，上网一搜一大堆！（注意Tomcat要与jdk的版本号对应，具体看官网对应关系：<a href="http://tomcat.apache.org/whichversion.html">Apache Tomcat® - Which Version Do I Want?</a>）</p>
-<h3 id="注册并登录Ngrok以及开通隧道"><a href="#注册并登录Ngrok以及开通隧道" class="headerlink" title="注册并登录Ngrok以及开通隧道"></a>注册并登录Ngrok以及开通隧道</h3><p>Ngrok官网：<a href="https://www.ngrok.cc/">Sunny-Ngrok内网穿透服务</a></p>
-<p>因为Ngrok是有免费线路的，所以完全可以白嫖。😁 一般不会失效，如果失效，再次开通就行。</p>
-<p>登录进入后选择“隧道管理” —&gt; “开通隧道” —&gt; 向下滑，找到最后一个价格为0元的，购买就行；</p>
-<p><strong>协议</strong>选<code>http/https</code>均可，<strong>隧道名称</strong>随便起，<strong>前置域名</strong>随便起（尽量短，好记；用英文、数字都行），<strong>本地端口</strong>默认就行，下面两个不用填，点击<strong>确定添加</strong>就可以了。</p>
-<p>开通成功后可以在<strong>隧道管理</strong>查看自己的隧道了。然后下载客户端，<a href="https://www.ngrok.cc/download.html">Sunny-Ngrok内网转发客户端</a>，选择自己电脑的版本即可！</p>
-<h3 id="内网穿透"><a href="#内网穿透" class="headerlink" title="内网穿透"></a>内网穿透</h3><p>下载后解压双击运行<code>Sunny-Ngrok启动工具.bat</code>，它会提示你要id,这时回到网页<strong>隧道管理</strong>找到你的<strong>隧道id</strong>粘贴进去，然后回车就行。</p>
-<p>这时如果你通过你的网址进行访问会提示你隧道不可用；这是因为你没有运行Tomcat，你cmd运行Tomcat后，再刷新就能看到Tomcat的页面了，如图：</p>
-<p><img src="https://s2.loli.net/2022/07/10/TOGBXVCNj68AmiZ.jpg"></p>
-<p>出现这个页面就恭喜你了，你已经成功了！</p>
-<hr>
-<h3 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h3><p>这时你的内网穿透已经成功了，但是如果你有自己的HTML项目，该怎样让别人通过你的网址访问呢？</p>
-<p>其实也很简单，将项目放到Tomcat目录下的<code>webapps</code>目录就行；访问的话就是<code>你的网址+项目的目录名+项目的名.html</code>，如我的一个就是<code>http://to.free.idcfengye.com/migong/index.html</code></p>
-<p>这样就能让别人通过你的网址来访问你的项目了！</p>
-<hr>
-<h3 id="最后的最后"><a href="#最后的最后" class="headerlink" title="最后的最后"></a>最后的最后</h3><p>注意，内网穿透的过程中你运行的 <code>Tomcat</code> 与 <code>Sunny-Ngrok启动工具</code> 不能关闭，否则连接会断开！</p>
-<p>完！</p>
-<hr>
-<p>更新：现在Ngrok免费的不太稳定，推荐使用 <a href="https://open.dingtalk.com/document/resourcedownload/http-intranet-penetration">钉钉内网穿透</a></p>
-<p>更新： <a href="https://open.dingtalk.com/document/resourcedownload/http-intranet-penetration">钉钉内网穿透</a> 也废弃了！  — 2022.07.21</p>
+    <title>嵌入式之红外通信</title>
+    <url>/archives/bbd81c5a.html</url>
+    <content><![CDATA[<h1 id="红外通信"><a href="#红外通信" class="headerlink" title="红外通信"></a>红外通信</h1><p>上一篇只是粗略地提了一下红外通信，这篇来说些注意事项与细节问题</p>
+<span id="more"></span>
+
+<h2 id="载波"><a href="#载波" class="headerlink" title="载波"></a>载波</h2><p>红外通信一般为 <code>38K</code> 载波，“载波” 简单来讲就是一段周期性的、<strong>不断震荡</strong>的波；</p>
+<p><em>注：特别注意的是，对于一些非信号专业的新手来讲，虽然眼睛看到了该条件，但并没有进行思考，只当作“公理”给记住，这时在使用时往往会忽略掉。与福尔摩斯说过的话有异曲同工之处：“你只是用眼睛看，并不是在观察”，现在是：“你只是眼睛看到了，却没有在思考。”</em></p>
+<p>我们可通过调制将信息加载到载波上，这样信息就会随着波的传播而发射出去了；波发出去后会受到外界环境光的干扰，这就可能会导致信息的丢失或篡改；理论上来讲：传播距离越远，信息丢失的概率越大。</p>
+<h2 id="38K频率"><a href="#38K频率" class="headerlink" title="38K频率"></a>38K频率</h2><p>上面提到载波上的信息可能会丢失，那有没有什么预防措施呢？</p>
+<p>这就要说到用 <code>38K</code> 载波的原因了：主要是为了<strong>提高抗干扰能力</strong>，尽量避免因环境光干扰导致的信息丢失或篡改；</p>
+<p>另外的原因（来自百度）：</p>
+<p>这一频率的选择与常用的 <code>455kHz</code> 晶振密切相关。‌在发射端，‌通过对晶振进行整数分频，‌通常取分频系数为12，‌从而得到 <code>38kHz</code> 的载波频率。‌这种分频方式不仅技术上可行，‌而且经济实用，‌因为它利用了现有的成熟技术和组件，‌避免了开发高精度晶振的成本和复杂性。‌</p>
+<p>此外，‌<code>38kHz</code> 的载波频率还具有其特定的优势。‌在红外通信中，‌使用 <code>38kHz</code> 的载波可以实现较高的通信质量和较远的通信距离，‌同时保持较低的功耗和成本。‌这种频率的选择也符合红外通信的基本需求，‌即在保证通信效果的同时，‌尽可能地降低系统成本和功耗。‌</p>
+<p><strong>值得注意的是：</strong></p>
+<p><code>38K</code> 载波意味着每秒有38000个周期，单个周期的时间为1/38000S。‌这个时间长度代表了<strong>一个完整脉冲</strong>的时间，‌包括高电平和低电平的总时间。‌</p>
+<p>但是我们红外通信需要的是高低电平均为1/38000S，因此我们定时器应配置为 <code>76K</code> ，这样每次进中断的时间就是1/38000S，那么产生的高、低电平就是1/38000S了。</p>
+<p>OK，了解基本原理后就有大概的框架了：</p>
+<ol>
+<li>首先要有个波形发生器，用来产生 <code>38K</code> 载波</li>
+<li>制定自己的通信协议（也可以使用现有的协议，如： NEC协议）</li>
+<li>代码实现</li>
+</ol>
 ]]></content>
       <categories>
-        <category>内网穿透</category>
+        <category>嵌入式</category>
+        <category>红外</category>
       </categories>
       <tags>
-        <tag>内网穿透</tag>
-        <tag>Ngrok</tag>
+        <tag>嵌入式</tag>
+        <tag>红外</tag>
       </tags>
   </entry>
   <entry>
     <title>突然连接不了GitHub?</title>
     <url>/archives/d840bd6.html</url>
-    <content><![CDATA[<p>前段时间开学了，比较忙就没空写博客了；不过就在我忙里偷闲抽空写的时候发现连接不了GitHub了，嗯？什么情况？</p>
+    <content><![CDATA[<p>前段时间开学了，比较忙就没空写博客了；不过就在我忙里偷闲抽空写的时候发现连接不了GitHub了，嗯？什么情况？<span id="more"></span></p>
 <p>这是什么情况？不应该啊？我啥都没动咋就不行了？一连串的疑问在我脑中萦绕！</p>
 <p>以下为报错的代码：</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">fatal: Could not read from remote repository.</span><br><span class="line"></span><br><span class="line">Please make sure you have the correct access rights</span><br><span class="line">and the repository exists.</span><br><span class="line">FATAL &#123;</span><br><span class="line">  err: Error: Spawn failed</span><br><span class="line">      at ChildProcess.&lt;anonymous&gt; (D:\MyBlog\node_modules\hexo-util\lib\spawn.js:51:21)</span><br><span class="line">      at ChildProcess.emit (events.js:400:28)</span><br><span class="line">      at ChildProcess.cp.emit (D:\MyBlog\node_modules\cross-spawn\lib\enoent.js:34:29)</span><br><span class="line">      at Process.ChildProcess._handle.onexit (internal/child_process.js:277:12) &#123;</span><br><span class="line">    code: 128</span><br><span class="line">  &#125;</span><br><span class="line">&#125; Something&#x27;s wrong. Maybe you can find the solution here: %s https://hexo.io/docs/troubleshooting.html</span><br></pre></td></tr></table></figure>
@@ -1081,9 +1039,134 @@
       </tags>
   </entry>
   <entry>
+    <title>精确搜索你需要的资料</title>
+    <url>/archives/c485373b.html</url>
+    <content><![CDATA[<h3 id="今天写写关于搜索的文章吧！"><a href="#今天写写关于搜索的文章吧！" class="headerlink" title="今天写写关于搜索的文章吧！"></a>今天写写关于搜索的文章吧！</h3><p>“搜索”如果用好了，你几乎可以搜到任何你要的资料，但前提是你得会搜哦！</p>
+<p>以下是我常用的搜索小技巧，你可以参考参考。</p>
+<span id="more"></span>
+
+<hr>
+<h3 id="1-将结果限定在某个网站中"><a href="#1-将结果限定在某个网站中" class="headerlink" title="1. 将结果限定在某个网站中"></a>1. 将结果限定在某个网站中</h3><p>实现这个操作并不难，用<code>site</code>指令即可；</p>
+<p>如：我要搜知乎中关于 “人工智能” 的内容，就可以这样来表达：<code>人工智能  site:zhihu.com</code>，这样就能搜到知乎中所有有关人工智能的文章，还弥补知乎站内搜索效果差的缺陷。</p>
+<h3 id="2-将结果限定为某种文件类型"><a href="#2-将结果限定为某种文件类型" class="headerlink" title="2. 将结果限定为某种文件类型"></a>2. 将结果限定为某种文件类型</h3><p>这个也不难理解，不过你得有明确的目标，知道你要搜索的文件类型；这种适合用来搜电子教材或文档；</p>
+<p>如：我要搜 “2020考研数学真题”，就可以这样表示：<code>2020考研数学真题 filetype:pdf</code>，这样你搜到的就都是各大网站的PDF文件。</p>
+<h3 id="3-限定搜索结果的时间范围"><a href="#3-限定搜索结果的时间范围" class="headerlink" title="3. 限定搜索结果的时间范围"></a>3. 限定搜索结果的时间范围</h3><p>你如果要搜比较新的内容，不想要时间久远的内容来徒增工作量，那么就能用得上这个指令了；</p>
+<p>如：我要搜 “人工智能” 最前沿的资讯，就能这样写：<code>人工智能 2020..2021</code>，这样搜出来的基本就是2020年到2021年关于人工智能的信息了。当然，时间你可以随便更换。</p>
+<h3 id="4-限定标题中必须包含的关键字"><a href="#4-限定标题中必须包含的关键字" class="headerlink" title="4. 限定标题中必须包含的关键字"></a>4. 限定标题中必须包含的关键字</h3><p>这个也很容易理解了</p>
+<p>如：我要搜关于 “ AI ” 的文章，但标题中必须包含 “大数据”，就能这样写：<code>AI intitle:大数据</code>，这样搜到的 AI 信息就都是标题中带有 “大数据” 三个字的。</p>
+<h3 id="5-限定结果网址中包含字段"><a href="#5-限定结果网址中包含字段" class="headerlink" title="5. 限定结果网址中包含字段"></a>5. 限定结果网址中包含字段</h3><p>如：我要搜腾讯的关于 “人工智能” 的网站，那么就能写为：<code>人工智能 inurl:tencent</code>，这样就能直接看到所有腾讯旗下关于人工智能的内容，不用再在浏览器中一页一页向下找。</p>
+<h3 id="6-删除结果中你不想要的信息"><a href="#6-删除结果中你不想要的信息" class="headerlink" title="6. 删除结果中你不想要的信息"></a>6. 删除结果中你不想要的信息</h3><p>此指令可以删除搜索结果中不必要的信息；不过，我一般用来去掉广告、推广之类的。</p>
+<p>如：我要搜 “人工智能学习” ，就能写为：<code>人工智能学习 -广告 -推广</code>，这样搜出来的没有广告，没有搜索引擎的推广，都是精华；不信你可以试试。</p>
+<p>当然，这个指令不止可以用来去广告，你也可以开动你那聪明的小脑瓜，想想怎样用可以更加方便、快捷、高效。</p>
+<h3 id="7-总结"><a href="#7-总结" class="headerlink" title="7. 总结"></a>7. 总结</h3><table>
+<thead>
+<tr>
+<th align="center">指令</th>
+<th align="center">作用</th>
+<th align="center">举例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">site</td>
+<td align="center">将结果限定在某个网站中</td>
+<td align="center">见文中</td>
+</tr>
+<tr>
+<td align="center">filetype</td>
+<td align="center">将结果限定为某种文件类型</td>
+<td align="center">见文中</td>
+</tr>
+<tr>
+<td align="center">时间1..时间2</td>
+<td align="center">限定搜索结果的时间范围</td>
+<td align="center">见文中</td>
+</tr>
+<tr>
+<td align="center">intitle</td>
+<td align="center">限定标题中必须包含的关键字</td>
+<td align="center">见文中</td>
+</tr>
+<tr>
+<td align="center">inurl</td>
+<td align="center">限定结果网址中包含字段</td>
+<td align="center">见文中</td>
+</tr>
+<tr>
+<td align="center">“ -“（减号）</td>
+<td align="center">删除结果中你不想要的信息</td>
+<td align="center">见文中</td>
+</tr>
+</tbody></table>
+]]></content>
+      <categories>
+        <category>精确搜索</category>
+      </categories>
+      <tags>
+        <tag>搜索技巧</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>常用的命令提示符</title>
+    <url>/archives/1ff8041c.html</url>
+    <content><![CDATA[<h3 id="1-查看并导出目录文件夹名称"><a href="#1-查看并导出目录文件夹名称" class="headerlink" title="1. 查看并导出目录文件夹名称"></a>1. 查看并导出目录文件夹名称</h3><figure class="highlight cmd"><table><tr><td class="code"><pre><span class="line"><span class="built_in">tree</span>&gt;list.txt		//查看文件夹并导出为list.txt文件</span><br><span class="line"><span class="built_in">tree</span> /f &gt;list.txt		//查看文件夹及里面的文件并导出为list.txt文件</span><br></pre></td></tr></table></figure>
+
+<p><strong>解释：</strong><span id="more"></span></p>
+<ul>
+<li>只查看不导出，只用 <code>tree</code> 就行</li>
+<li><code>list.txt</code> 可以自己更改（<code>list</code> 为文件名，<code>txt</code> 为后缀；文件名可以自定义，后缀可以为：<code>txt、md、xls</code> 等）</li>
+<li>加上 <code>/f</code> 为显示文件夹下的文件，不加的话就只显示文件夹</li>
+</ul>
+<h3 id="2-批量更改文件名及后缀"><a href="#2-批量更改文件名及后缀" class="headerlink" title="2. 批量更改文件名及后缀"></a>2. 批量更改文件名及后缀</h3><figure class="highlight cmd"><table><tr><td class="code"><pre><span class="line"><span class="built_in">ren</span> *.txt *.<span class="built_in">md</span>		//改后缀名</span><br><span class="line"><span class="built_in">ren</span> 旧文件名.txt 新文件名.txt		//改文件名</span><br></pre></td></tr></table></figure>
+
+<p><strong>解释：</strong></p>
+<ul>
+<li><code>ren</code> 为更改后缀的命令</li>
+<li><code>*.txt</code> 为更改前的后缀</li>
+<li><code>*.md </code> 为你要更改的后缀</li>
+</ul>
+<p>如果你要更改所有文件，不只是<code>txt</code> 文件；那么可以用 <code>ren *. *.md</code> 命令！</p>
+<p>ps: 上面的 <code>*</code> 为通配符，通配符还有一个 <code>? </code>; 具体作用为：<code>? </code>代表匹配一个字符， <code>*</code> 代表匹配多个字符；</p>
+<p>其应用也很广，可以用来搜索你不记得具体名称的文件夹：</p>
+<blockquote>
+<ol>
+<li><p>比如你记得你磁盘有一个文件，它的文件名的第一个字符不记得了，只记得第二个是a，第三个不记得了，第四个是1，后面的又不记得了，而且是一个 <code>css</code> 文件，怎么搜索呢？</p>
+<p>答：<code>?a?1*.css </code> 这样就能找到了。</p>
+</li>
+<li><p>还有一个文件，文件名的前三个字符不记得了，后面是hello，是一个 <code>css</code> 文件，怎么找呢？</p>
+<p>答：<code>???hello.css</code></p>
+</li>
+<li><p>如果一个文件是以 <code>module</code> 结尾的该怎么搜索？</p>
+<p>答：<code>dir *module </code></p>
+</li>
+<li><p>如果一个文件是以 <code>module</code> 开头的怎么搜索？</p>
+<p>答：<code>dir module*</code></p>
+</li>
+</ol>
+</blockquote>
+<h3 id="3-查看WiFi密码"><a href="#3-查看WiFi密码" class="headerlink" title="3. 查看WiFi密码"></a>3. 查看WiFi密码</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">for /f &quot;skip=9 tokens=1,2 delims=:&quot; %i in (&#x27;netsh wlan show profiles&#x27;) do @echo %j | findstr -i -v echo | netsh wlan show profiles %j key=clear</span><br></pre></td></tr></table></figure>
+
+<p><strong>使用：</strong>这个代码可以查看你的笔记本电脑已经连接过的<code>wifi</code>密码，主要用于连接上但密码忘记的情况！</p>
+<h3 id="4-修复电脑桌面白图标"><a href="#4-修复电脑桌面白图标" class="headerlink" title="4. 修复电脑桌面白图标"></a>4. 修复电脑桌面白图标</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@duecho off</span><br><span class="line">taskkill /f /im explorer.exe</span><br><span class="line">CD /d %userprofile%\AppData\Local</span><br><span class="line">DEL IconCache.db /a</span><br><span class="line">start explorer.exe</span><br><span class="line">cho 执行完成</span><br></pre></td></tr></table></figure>
+
+<p><strong>使用：</strong>复制上面的代码，在桌面新建一个文本文档，将其粘贴进去，再将后缀改为<code>.bat</code> ，双击运行，然后刷新一下桌面即可。</p>
+<h3 id="5-图片隐写"><a href="#5-图片隐写" class="headerlink" title="5. 图片隐写"></a>5. 图片隐写</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">copy /b test.jpg + document.rar yincang.jpg</span><br></pre></td></tr></table></figure>
+
+<p><strong>使用：</strong>将要隐藏的文件和图片放在同一个文件夹中；打开命令提示符窗口并输入以上代码（其中<code>test.jpg</code>为图片名称，<code>doucument.rar</code>为压缩包名称，<code>yincang.jpg</code>为输出的含有文件的图片名称）</p>
+<p><strong>说明：</strong>如果要找回文件，将输出的图片后缀改为<code>.rar</code>再解压即可！</p>
+]]></content>
+      <categories>
+        <category>CMD</category>
+      </categories>
+      <tags>
+        <tag>CMD</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>精确搜索之Google搜索语法大全</title>
     <url>/archives/c54b318a.html</url>
-    <content><![CDATA[<h2 id="Google谷歌搜索语法大全"><a href="#Google谷歌搜索语法大全" class="headerlink" title="Google谷歌搜索语法大全"></a>Google谷歌搜索语法大全</h2><table>
+    <content><![CDATA[<h2 id="Google谷歌搜索语法大全"><a href="#Google谷歌搜索语法大全" class="headerlink" title="Google谷歌搜索语法大全"></a>Google谷歌搜索语法大全</h2><span id="more"></span>
+
+<table>
 <thead>
 <tr>
 <th align="center"><strong>算</strong> <strong>符</strong></th>
@@ -1242,73 +1325,6 @@
 <p><strong>Google对于检索词中的大小写是完全不做区分的；在Google中，检索词的排序方式对于整个检索式具有重要的影响，它将首先匹配按照检索式给出的次序进行搜索。同时它也将优先匹配检索词相互邻接的网页。GOOGLE支持多达132种语言，包括简体中文和繁体中文，可以设置页面语言和搜索语言，可对汉字繁简体进行转换，可以跨语言搜索。Google搜索结果中可对搜索范围进行限制，如：网页的发布更新时间或一个时间段内，搜索结果的类型选择如图片、视频、书籍、应用程序、新闻。</strong></p>
 </blockquote>
 <p>PS:之前还有一篇与此文类似，<a href="https://blog.totoroweb.fun/archives/c485373b.html">点我跳转</a></p>
-]]></content>
-      <categories>
-        <category>精确搜索</category>
-      </categories>
-      <tags>
-        <tag>搜索技巧</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>精确搜索你需要的资料</title>
-    <url>/archives/c485373b.html</url>
-    <content><![CDATA[<h3 id="今天写写关于搜索的文章吧！"><a href="#今天写写关于搜索的文章吧！" class="headerlink" title="今天写写关于搜索的文章吧！"></a>今天写写关于搜索的文章吧！</h3><p>“搜索”如果用好了，你几乎可以搜到任何你要的资料，但前提是你得会搜哦！</p>
-<p>以下是我常用的搜索小技巧，你可以参考参考。</p>
-<span id="more"></span>
-
-<hr>
-<h3 id="1-将结果限定在某个网站中"><a href="#1-将结果限定在某个网站中" class="headerlink" title="1. 将结果限定在某个网站中"></a>1. 将结果限定在某个网站中</h3><p>实现这个操作并不难，用<code>site</code>指令即可；</p>
-<p>如：我要搜知乎中关于 “人工智能” 的内容，就可以这样来表达：<code>人工智能  site:zhihu.com</code>，这样就能搜到知乎中所有有关人工智能的文章，还弥补知乎站内搜索效果差的缺陷。</p>
-<h3 id="2-将结果限定为某种文件类型"><a href="#2-将结果限定为某种文件类型" class="headerlink" title="2. 将结果限定为某种文件类型"></a>2. 将结果限定为某种文件类型</h3><p>这个也不难理解，不过你得有明确的目标，知道你要搜索的文件类型；这种适合用来搜电子教材或文档；</p>
-<p>如：我要搜 “2020考研数学真题”，就可以这样表示：<code>2020考研数学真题 filetype:pdf</code>，这样你搜到的就都是各大网站的PDF文件。</p>
-<h3 id="3-限定搜索结果的时间范围"><a href="#3-限定搜索结果的时间范围" class="headerlink" title="3. 限定搜索结果的时间范围"></a>3. 限定搜索结果的时间范围</h3><p>你如果要搜比较新的内容，不想要时间久远的内容来徒增工作量，那么就能用得上这个指令了；</p>
-<p>如：我要搜 “人工智能” 最前沿的资讯，就能这样写：<code>人工智能 2020..2021</code>，这样搜出来的基本就是2020年到2021年关于人工智能的信息了。当然，时间你可以随便更换。</p>
-<h3 id="4-限定标题中必须包含的关键字"><a href="#4-限定标题中必须包含的关键字" class="headerlink" title="4. 限定标题中必须包含的关键字"></a>4. 限定标题中必须包含的关键字</h3><p>这个也很容易理解了</p>
-<p>如：我要搜关于 “ AI ” 的文章，但标题中必须包含 “大数据”，就能这样写：<code>AI intitle:大数据</code>，这样搜到的 AI 信息就都是标题中带有 “大数据” 三个字的。</p>
-<h3 id="5-限定结果网址中包含字段"><a href="#5-限定结果网址中包含字段" class="headerlink" title="5. 限定结果网址中包含字段"></a>5. 限定结果网址中包含字段</h3><p>如：我要搜腾讯的关于 “人工智能” 的网站，那么就能写为：<code>人工智能 inurl:tencent</code>，这样就能直接看到所有腾讯旗下关于人工智能的内容，不用再在浏览器中一页一页向下找。</p>
-<h3 id="6-删除结果中你不想要的信息"><a href="#6-删除结果中你不想要的信息" class="headerlink" title="6. 删除结果中你不想要的信息"></a>6. 删除结果中你不想要的信息</h3><p>此指令可以删除搜索结果中不必要的信息；不过，我一般用来去掉广告、推广之类的。</p>
-<p>如：我要搜 “人工智能学习” ，就能写为：<code>人工智能学习 -广告 -推广</code>，这样搜出来的没有广告，没有搜索引擎的推广，都是精华；不信你可以试试。</p>
-<p>当然，这个指令不止可以用来去广告，你也可以开动你那聪明的小脑瓜，想想怎样用可以更加方便、快捷、高效。</p>
-<h3 id="7-总结"><a href="#7-总结" class="headerlink" title="7. 总结"></a>7. 总结</h3><table>
-<thead>
-<tr>
-<th align="center">指令</th>
-<th align="center">作用</th>
-<th align="center">举例</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">site</td>
-<td align="center">将结果限定在某个网站中</td>
-<td align="center">见文中</td>
-</tr>
-<tr>
-<td align="center">filetype</td>
-<td align="center">将结果限定为某种文件类型</td>
-<td align="center">见文中</td>
-</tr>
-<tr>
-<td align="center">时间1..时间2</td>
-<td align="center">限定搜索结果的时间范围</td>
-<td align="center">见文中</td>
-</tr>
-<tr>
-<td align="center">intitle</td>
-<td align="center">限定标题中必须包含的关键字</td>
-<td align="center">见文中</td>
-</tr>
-<tr>
-<td align="center">inurl</td>
-<td align="center">限定结果网址中包含字段</td>
-<td align="center">见文中</td>
-</tr>
-<tr>
-<td align="center">“ -“（减号）</td>
-<td align="center">删除结果中你不想要的信息</td>
-<td align="center">见文中</td>
-</tr>
-</tbody></table>
 ]]></content>
       <categories>
         <category>精确搜索</category>
