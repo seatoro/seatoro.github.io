@@ -1,136 +1,19 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>MarkDown语法基础 | 龙猫知识库</title><meta name="author" content="Totoro"><meta name="copyright" content="Totoro"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="由于该博客的文章全部都是用markdown写的，所以就写一下MarkDown语法相关吧！"><meta property="og:type" content="article"><meta property="og:title" content="MarkDown语法基础"><meta property="og:url" content="https://blog.totoroweb.fun/archives/b797e99c.html"><meta property="og:site_name" content="龙猫知识库"><meta property="og:description" content="由于该博客的文章全部都是用markdown写的，所以就写一下MarkDown语法相关吧！"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://s2.loli.net/2023/01/07/lqBowEhKpRn1HXP.jpg"><meta property="article:published_time" content="2021-10-26T14:01:14.000Z"><meta property="article:modified_time" content="2023-03-05T06:11:04.116Z"><meta property="article:author" content="Totoro"><meta property="article:tag" content="Markdown"><meta name="twitter:card" content="summary"><meta name="twitter:image" content="https://s2.loli.net/2023/01/07/lqBowEhKpRn1HXP.jpg"><link rel="shortcut icon" href="/img/favicon.ico"><link rel="canonical" href="https://blog.totoroweb.fun/archives/b797e99c.html"><link rel="preconnect" href="//cdn.jsdelivr.net"><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.min.css" media="print" onload='this.media="all"'><script>const GLOBAL_CONFIG = {
-  root: '/',
-  algolia: undefined,
-  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
-  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
-  noticeOutdate: undefined,
-  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
-  copy: {
-    success: '复制成功',
-    error: '复制错误',
-    noSupport: '浏览器不支持'
-  },
-  relativeDate: {
-    homepage: false,
-    post: false
-  },
-  runtime: '天',
-  dateSuffix: {
-    just: '刚刚',
-    min: '分钟前',
-    hour: '小时前',
-    day: '天前',
-    month: '个月前'
-  },
-  copyright: undefined,
-  lightbox: 'fancybox',
-  Snackbar: undefined,
-  infinitegrid: {
-    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid@4.11.1/dist/infinitegrid.min.js',
-    buttonText: '加载更多'
-  },
-  isPhotoFigcaption: false,
-  islazyload: false,
-  isAnchor: false,
-  percent: {
-    toc: true,
-    rightside: false,
-  },
-  autoDarkmode: false
-}</script><script id="config-diff">var GLOBAL_CONFIG_SITE={title:"MarkDown语法基础",isPost:!0,isHome:!1,isHighlightShrink:!1,isToc:!1,postUpdate:"2023-03-05 14:11:04"}</script><script>(win=>{
-      win.saveToLocal = {
-        set: (key, value, ttl) => {
-          if (ttl === 0) return
-          const now = Date.now()
-          const expiry = now + ttl * 86400000
-          const item = {
-            value,
-            expiry
-          }
-          localStorage.setItem(key, JSON.stringify(item))
-        },
-      
-        get: key => {
-          const itemStr = localStorage.getItem(key)
-      
-          if (!itemStr) {
-            return undefined
-          }
-          const item = JSON.parse(itemStr)
-          const now = Date.now()
-      
-          if (now > item.expiry) {
-            localStorage.removeItem(key)
-            return undefined
-          }
-          return item.value
-        }
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=2"><meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.2"><link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png"><link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png"><link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png"><link rel="mask-icon" href="/images/logo.svg" color="#222"><link rel="stylesheet" href="/css/main.css"><link rel="stylesheet" href="/lib/font-awesome/css/all.min.css"><script id="hexo-configurations">var NexT=window.NexT||{},CONFIG={hostname:"101.133.132.187",root:"/",scheme:"Muse",version:"7.8.0",exturl:!1,sidebar:{position:"right",display:"remove",padding:18,offset:12,onmobile:!1},copycode:{enable:!1,show_result:!1,style:null},back2top:{enable:!0,sidebar:!1,scrollpercent:!1},bookmark:{enable:!1,color:"#222",save:"auto"},fancybox:!1,mediumzoom:!1,lazyload:!1,pangu:!1,comments:{style:"tabs",active:null,storage:!0,lazyload:!1,nav:null},algolia:{hits:{per_page:10},labels:{input_placeholder:"Search for Posts",hits_empty:"We didn't find any results for the search: ${query}",hits_stats:"${hits} results found in ${time} ms"}},localsearch:{enable:!0,trigger:"auto",top_n_per_article:1,unescape:!1,preload:!1},motion:{enable:!0,async:!0,transition:{post_block:"fadeIn",post_header:"slideDownIn",post_body:"slideDownIn",coll_header:"slideLeftIn",sidebar:"slideUpIn"}},path:"search.xml"}</script><meta name="description" content="由于该博客的文章全部都是用markdown写的，所以就写一下MarkDown语法相关吧！"><meta property="og:type" content="article"><meta property="og:title" content="MarkDown语法基础"><meta property="og:url" content="http://101.133.132.187/archives/b797e99c.html"><meta property="og:site_name" content="龙猫知识库"><meta property="og:description" content="由于该博客的文章全部都是用markdown写的，所以就写一下MarkDown语法相关吧！"><meta property="og:locale" content="zh_CN"><meta property="article:published_time" content="2021-10-26T14:01:14.000Z"><meta property="article:modified_time" content="2023-03-05T06:11:04.116Z"><meta property="article:author" content="Totoro"><meta property="article:tag" content="Markdown"><meta name="twitter:card" content="summary"><link rel="canonical" href="http://101.133.132.187/archives/b797e99c.html"><script id="page-configurations">CONFIG.page={sidebar:"",isHome:!1,isPost:!0,lang:"zh-CN"}</script><title>MarkDown语法基础 | 龙猫知识库</title><noscript><style>.sidebar-inner,.use-motion .brand,.use-motion .collection-header,.use-motion .comments,.use-motion .menu-item,.use-motion .pagination,.use-motion .post-block,.use-motion .post-body,.use-motion .post-header{opacity:initial}.use-motion .site-subtitle,.use-motion .site-title{opacity:initial;top:initial}.use-motion .logo-line-before i{left:initial}.use-motion .logo-line-after i{right:initial}</style></noscript></head><body itemscope itemtype="http://schema.org/WebPage"><div class="container use-motion"><div class="headband"></div><header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="header-inner"><div class="site-brand-container"><div class="site-nav-toggle"><div class="toggle" aria-label="切换导航栏"><span class="toggle-line toggle-line-first"></span> <span class="toggle-line toggle-line-middle"></span> <span class="toggle-line toggle-line-last"></span></div></div><div class="site-meta"><a href="/" class="brand" rel="start"><span class="logo-line-before"><i></i></span><h1 class="site-title">龙猫知识库</h1><span class="logo-line-after"><i></i></span></a></div><div class="site-nav-right"><div class="toggle popup-trigger"><i class="fa fa-search fa-fw fa-lg"></i></div></div></div><nav class="site-nav"><ul id="menu" class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-search"><a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索</a></li></ul></nav><div class="search-pop-overlay"><div class="popup search-popup"><div class="search-header"><span class="search-icon"><i class="fa fa-search"></i></span><div class="search-input-container"><input autocomplete="off" autocapitalize="off" placeholder="搜索..." spellcheck="false" type="search" class="search-input"></div><span class="popup-btn-close"><i class="fa fa-times-circle"></i></span></div><div id="search-result"><div id="no-result"><i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i></div></div></div></div></div></header><div class="back-to-top"><i class="fa fa-arrow-up"></i> <span>0%</span></div><main class="main"><div class="main-inner"><div class="content-wrap"><div class="content post posts-expand"><article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN"><link itemprop="mainEntityOfPage" href="http://101.133.132.187/archives/b797e99c.html"><span hidden itemprop="author" itemscope itemtype="http://schema.org/Person"><meta itemprop="image" content="/images/avatar.gif"><meta itemprop="name" content="Totoro"><meta itemprop="description" content="学而时习之，不亦说乎"></span><span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization"><meta itemprop="name" content="龙猫知识库"></span><header class="post-header"><h1 class="post-title" itemprop="name headline">MarkDown语法基础</h1><div class="post-meta"><span class="post-meta-item"><span class="post-meta-item-icon"><i class="far fa-calendar"></i> </span><span class="post-meta-item-text">发表于</span> <time title="创建时间：2021-10-26 22:01:14" itemprop="dateCreated datePublished" datetime="2021-10-26T22:01:14+08:00">2021-10-26</time> </span><span class="post-meta-item"><span class="post-meta-item-icon"><i class="far fa-calendar-check"></i> </span><span class="post-meta-item-text">更新于</span> <time title="修改时间：2023-03-05 14:11:04" itemprop="dateModified" datetime="2023-03-05T14:11:04+08:00">2023-03-05</time> </span><span class="post-meta-item"><span class="post-meta-item-icon"><i class="far fa-folder"></i> </span><span class="post-meta-item-text">分类于</span> <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Markdown/" itemprop="url" rel="index"><span itemprop="name">Markdown</span></a></span></span></div></header><div class="post-body" itemprop="articleBody"><p>由于该博客的文章全部都是用markdown写的，所以就写一下MarkDown语法相关吧！<span id="more"></span></p><hr><p>Markdown 是一种轻量级标记语言，它允许人们使用易读易写的纯文本格式编写文档。</p><p>Markdown 语言在 2004 由约翰·格鲁伯（英语：John Gruber）创建。</p><p>Markdown 编写的文档可以导出 HTML 、Word、图像、PDF、Epub 等多种格式的文档。</p><p>Markdown 编写的文档后缀为 <strong>.md</strong>, <strong>.markdown</strong>。</p><hr><p>Markdown 能被使用来撰写电子书，如：Gitbook。</p><p>当前许多网站都广泛使用 Markdown 来撰写帮助文档或是用于论坛上发表消息。例如：GitHub、简书、reddit、Diaspora、Stack Exchange、OpenStreetMap 、SourceForge等。</p><hr><p>教程网站：<a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.runoob.com/markdown/md-tutorial.html">Markdown 教程 | 菜鸟教程</a></p><p>个人觉得好用的在线编辑网站：<a target="_blank" rel="noopener external nofollow noreferrer" href="https://dillinger.io/">Online Markdown Editor - Dillinger, the Last Markdown Editor ever.</a></p><p>LaTex公式手册网站：<a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.zybuluo.com/codeep/note/163962#mjx-eqn-eqsample">LaTex 公式指导手册</a></p><p>个人觉得好用的PC端MarkDown软件：<a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.typora.io/">Typora — a markdown editor, markdown reader.</a> – （现在收费了，不过是买断制，如果喜欢可以购买正版！）</p><hr><p>结束！！</p></div><footer class="post-footer"><div class="post-tags"><a href="/tags/Markdown/" rel="tag"># Markdown</a></div><div class="post-nav"><div class="post-nav-item"><a href="/archives/d9d00a92.html" rel="prev" title="FFmpeg的简单使用"><i class="fa fa-chevron-left"></i> FFmpeg的简单使用</a></div><div class="post-nav-item"><a href="/archives/bd50b816.html" rel="next" title="内网穿透">内网穿透 <i class="fa fa-chevron-right"></i></a></div></div></footer></article></div><script>window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
       }
-    
-      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
-        const script = document.createElement('script')
-        script.src = url
-        script.async = true
-        script.onerror = reject
-        script.onload = script.onreadystatechange = function() {
-          const loadState = this.readyState
-          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
-          script.onload = script.onreadystatechange = null
-          resolve()
-        }
-
-        Object.keys(attr).forEach(key => {
-          script.setAttribute(key, attr[key])
-        })
-
-        document.head.appendChild(script)
-      })
-    
-      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
-        const link = document.createElement('link')
-        link.rel = 'stylesheet'
-        link.href = url
-        if (id) link.id = id
-        link.onerror = reject
-        link.onload = link.onreadystatechange = function() {
-          const loadState = this.readyState
-          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
-          link.onload = link.onreadystatechange = null
-          resolve()
-        }
-        document.head.appendChild(link)
-      })
-    
-      win.activateDarkMode = () => {
-        document.documentElement.setAttribute('data-theme', 'dark')
-        if (document.querySelector('meta[name="theme-color"]') !== null) {
-          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
-        }
-      }
-      win.activateLightMode = () => {
-        document.documentElement.setAttribute('data-theme', 'light')
-        if (document.querySelector('meta[name="theme-color"]') !== null) {
-          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
-        }
-      }
-      const t = saveToLocal.get('theme')
-    
-        if (t === 'dark') activateDarkMode()
-        else if (t === 'light') activateLightMode()
-      
-      const asideStatus = saveToLocal.get('aside-status')
-      if (asideStatus !== undefined) {
-        if (asideStatus === 'hide') {
-          document.documentElement.classList.add('hide-aside')
-        } else {
-          document.documentElement.classList.remove('hide-aside')
-        }
-      }
-    
-      const detectApple = () => {
-        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
-          document.documentElement.classList.add('apple')
-        }
-      }
-      detectApple()
-    })(window)</script><meta name="generator" content="Hexo 5.4.2"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="https://s2.loli.net/2024/07/12/AhMNiwOf1svYjbQ.png" onerror='onerror=null,src="https://s2.loli.net/2024/07/12/NXLrA7wViyQqhSF.gif"' alt="avatar"></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">20</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">21</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">19</div></a></div><hr class="custom-hr"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image:url(https://s2.loli.net/2023/01/07/lqBowEhKpRn1HXP.jpg)"><nav id="nav"><span id="blog-info"><a href="/" title="龙猫知识库"><span class="site-name">龙猫知识库</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">MarkDown语法基础</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2021-10-26T14:01:14.000Z" title="发表于 2021-10-26 22:01:14">2021-10-26</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-03-05T06:11:04.116Z" title="更新于 2023-03-05 14:11:04">2023-03-05</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/Markdown/">Markdown</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">254</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>1分钟</span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p>由于该博客的文章全部都是用markdown写的，所以就写一下MarkDown语法相关吧！<span id="more"></span></p><hr><p>Markdown 是一种轻量级标记语言，它允许人们使用易读易写的纯文本格式编写文档。</p><p>Markdown 语言在 2004 由约翰·格鲁伯（英语：John Gruber）创建。</p><p>Markdown 编写的文档可以导出 HTML 、Word、图像、PDF、Epub 等多种格式的文档。</p><p>Markdown 编写的文档后缀为 <strong>.md</strong>, <strong>.markdown</strong>。</p><hr><p>Markdown 能被使用来撰写电子书，如：Gitbook。</p><p>当前许多网站都广泛使用 Markdown 来撰写帮助文档或是用于论坛上发表消息。例如：GitHub、简书、reddit、Diaspora、Stack Exchange、OpenStreetMap 、SourceForge等。</p><hr><p>教程网站：<a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.runoob.com/markdown/md-tutorial.html">Markdown 教程 | 菜鸟教程</a></p><p>个人觉得好用的在线编辑网站：<a target="_blank" rel="noopener external nofollow noreferrer" href="https://dillinger.io/">Online Markdown Editor - Dillinger, the Last Markdown Editor ever.</a></p><p>LaTex公式手册网站：<a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.zybuluo.com/codeep/note/163962#mjx-eqn-eqsample">LaTex 公式指导手册</a></p><p>个人觉得好用的PC端MarkDown软件：<a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.typora.io/">Typora — a markdown editor, markdown reader.</a> – （现在收费了，不过是买断制，如果喜欢可以购买正版！）</p><hr><p>结束！！</p></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://blog.totoroweb.fun">Totoro</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://blog.totoroweb.fun/archives/b797e99c.html">https://blog.totoroweb.fun/archives/b797e99c.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow noreferrer" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://blog.totoroweb.fun" target="_blank">龙猫知识库</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Markdown/">Markdown</a></div><div class="post_share"></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/archives/bd50b816.html" title="内网穿透"><img class="cover" src="https://s2.loli.net/2023/01/07/VtEk14hnpR2OSMb.jpg" onerror='onerror=null,src="https://s2.loli.net/2024/07/12/UQB3i6InDq4ygur.jpg"' alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">内网穿透</div></div></a></div><div class="next-post pull-right"><a href="/archives/d9d00a92.html" title="FFmpeg的简单使用"><img class="cover" src="https://s2.loli.net/2023/01/07/VtEk14hnpR2OSMb.jpg" onerror='onerror=null,src="https://s2.loli.net/2024/07/12/UQB3i6InDq4ygur.jpg"' alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">FFmpeg的简单使用</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="https://s2.loli.net/2024/07/12/AhMNiwOf1svYjbQ.png" onerror='this.onerror=null,this.src="https://s2.loli.net/2024/07/12/NXLrA7wViyQqhSF.gif"' alt="avatar"></div><div class="author-info__name">Totoro</div><div class="author-info__description">学而时习之，不亦说乎</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">20</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">21</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">19</div></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">欢迎来到我的博客！<br>本站内容仅作为备份，以便之后学习查阅！<br>如无特别说明本站所有内容均为原创，转载请注明出处！</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/archives/2e946417.html" title="NMOS和PMOS有什么区别"><img src="https://s2.loli.net/2022/07/10/TscDU4kfPyx2MYr.png" onerror='this.onerror=null,this.src="https://s2.loli.net/2024/07/12/UQB3i6InDq4ygur.jpg"' alt="NMOS和PMOS有什么区别"></a><div class="content"><a class="title" href="/archives/2e946417.html" title="NMOS和PMOS有什么区别">NMOS和PMOS有什么区别</a><time datetime="2024-07-24T04:37:04.635Z" title="发表于 2024-07-24 12:37:04">2024-07-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/archives/bbd81c5a.html" title="嵌入式之红外通信"><img src="https://s2.loli.net/2023/01/07/VtEk14hnpR2OSMb.jpg" onerror='this.onerror=null,this.src="https://s2.loli.net/2024/07/12/UQB3i6InDq4ygur.jpg"' alt="嵌入式之红外通信"></a><div class="content"><a class="title" href="/archives/bbd81c5a.html" title="嵌入式之红外通信">嵌入式之红外通信</a><time datetime="2024-07-11T11:42:00.000Z" title="发表于 2024-07-11 19:42:00">2024-07-11</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/archives/76bb4a41.html" title="嵌入式总结（一）"><img src="https://s2.loli.net/2022/07/10/vkaUunPI1HXOVmN.png" onerror='this.onerror=null,this.src="https://s2.loli.net/2024/07/12/UQB3i6InDq4ygur.jpg"' alt="嵌入式总结（一）"></a><div class="content"><a class="title" href="/archives/76bb4a41.html" title="嵌入式总结（一）">嵌入式总结（一）</a><time datetime="2024-06-12T03:30:24.000Z" title="发表于 2024-06-12 11:30:24">2024-06-12</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/archives/2bb50ac9.html" title="Ubuntu服务器部署FRP内网穿透"><img src="https://s2.loli.net/2022/07/10/TscDU4kfPyx2MYr.png" onerror='this.onerror=null,this.src="https://s2.loli.net/2024/07/12/UQB3i6InDq4ygur.jpg"' alt="Ubuntu服务器部署FRP内网穿透"></a><div class="content"><a class="title" href="/archives/2bb50ac9.html" title="Ubuntu服务器部署FRP内网穿透">Ubuntu服务器部署FRP内网穿透</a><time datetime="2023-12-31T14:44:04.000Z" title="发表于 2023-12-31 22:44:04">2023-12-31</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/archives/fe15a55f.html" title="Ubuntu下不使用宝塔面板建站"><img src="https://s2.loli.net/2023/01/07/VtEk14hnpR2OSMb.jpg" onerror='this.onerror=null,this.src="https://s2.loli.net/2024/07/12/UQB3i6InDq4ygur.jpg"' alt="Ubuntu下不使用宝塔面板建站"></a><div class="content"><a class="title" href="/archives/fe15a55f.html" title="Ubuntu下不使用宝塔面板建站">Ubuntu下不使用宝塔面板建站</a><time datetime="2023-09-30T10:35:18.000Z" title="发表于 2023-09-30 18:35:18">2023-09-30</time></div></div></div></div></div></div></main><footer id="footer" style="background-image:url(https://s2.loli.net/2023/01/07/lqBowEhKpRn1HXP.jpg)"><div id="footer-wrap"><div class="copyright">&copy;2021 - 2024 By Totoro</div><div class="footer_custom_text">Never too late!</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="/js/tw_cn.js?v=4.13.0"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.33/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/dist/fireworks.min.js"></script><script defer id="ribbon" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1.1.3/dist/canvas-ribbon.min.js" size="150" alpha="0.6" zindex="-1" mobile="false" data-click="false"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span> 数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"></div></div><hr><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=4.13.0"></script></div></div></body></html>
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }</script></div></div></main><footer class="footer"><div class="footer-inner"><div class="copyright">&copy; <span itemprop="copyrightYear">2024</span> <span class="with-love"><i class="fa fa-heart"></i> </span><span class="author" itemprop="copyrightHolder">Totoro</span></div></div></footer></div><script src="/lib/anime.min.js"></script><script src="/lib/velocity/velocity.min.js"></script><script src="/lib/velocity/velocity.ui.min.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/schemes/muse.js"></script><script src="/js/next-boot.js"></script><script src="/js/local-search.js"></script></body></html>
