@@ -1,6 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>单片机while循环一次时间是多少</title>
+    <url>/archives/3a69b252.html</url>
+    <content><![CDATA[<h1 id="单片机while-t–-延时时间怎样获取"><a href="#单片机while-t–-延时时间怎样获取" class="headerlink" title="单片机while(t–)延时时间怎样获取"></a>单片机while(t–)延时时间怎样获取</h1><p>先打开keil，</p>
+<p>找到 <code>魔法棒 -&gt; Debug -&gt; Use Simulator</code>，将该选项选上，</p>
+<p>然后进 <code>Debug</code> 模式</p>
+<span id="more"></span>
+
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">My_Delay</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span> i = <span class="number">20</span>;</span><br><span class="line">    <span class="keyword">while</span>(i--);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">while</span>(<span class="number">1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        My_Delay();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在左侧栏选择 <code>Register</code> 有个 <code>Sec</code> 可计程序运行时间（单位为秒）</p>
+<p>可精确到 <code>us</code> 级</p>
+<p>单步运行，然后算出时间差值即可知道 <code>while</code> 的延时时间</p>
+]]></content>
+      <tags>
+        <tag>单片机</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>NMOS和PMOS有什么区别</title>
     <url>/archives/2e946417.html</url>
     <content><![CDATA[<p>​        MOS管，分为N沟道和P沟道两种。由于PMOS导通电阻大，价格贵，替换种类少等原因，故常用NMOS，因为其导通电阻小，且容易制造。</p>
