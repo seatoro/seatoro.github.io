@@ -242,10 +242,6 @@
 <li>其他</li>
 </ul>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">ps -ef | grep alist  # 查看alist进程</span><br><span class="line">ps -ef | grep frps</span><br><span class="line"></span><br><span class="line">find / -name xxx   # 查找名字为xxx的文件</span><br></pre></td></tr></table></figure>
-
-
-
-<center>---END---</center>
 ]]></content>
       <tags>
         <tag>Ubuntu</tag>
