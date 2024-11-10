@@ -1,251 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>OrangePi zero 3</title>
-    <url>/archives/3f4f88f3.html</url>
-    <content><![CDATA[<h1 id="OrangePi-ZERO-3"><a href="#OrangePi-ZERO-3" class="headerlink" title="OrangePi ZERO 3"></a>OrangePi ZERO 3</h1><p>最近刷视频突然有了个买块开发板的念头，而且这个念头一形成就挥之不去；忍耐了几周，终于还是下手了！</p>
-<p>由于是第一次买Orangepi，且网上关于Orangepi的资料也不如Raspberry pi，故记录一下使用过程，方便之后查阅。</p>
-<h2 id="刷-Ubuntu-系统"><a href="#刷-Ubuntu-系统" class="headerlink" title="刷 Ubuntu 系统"></a>刷 <code>Ubuntu</code> 系统</h2><p>参照网上教程，不多赘述</p>
-<p>不过需注意一点：要找适合自己开发板内存的系统镜像</p>
-<p>刷完使用串口线连接电脑与板子即可，我使用的工具是：<a href="https://mobaxterm.mobatek.net/download.html">MobaXterm</a></p>
+    <title>NMOS和PMOS有什么区别</title>
+    <url>/archives/2e946417.html</url>
+    <content><![CDATA[<p>​        MOS管，分为N沟道和P沟道两种。由于PMOS导通电阻大，价格贵，替换种类少等原因，故常用NMOS，因为其导通电阻小，且容易制造。</p>
 <span id="more"></span>
 
-<h2 id="部署博客"><a href="#部署博客" class="headerlink" title="部署博客"></a>部署博客</h2><h3 id="开发板架构"><a href="#开发板架构" class="headerlink" title="开发板架构"></a>开发板架构</h3><p>刷完系统先看下镜像版本与开发板 <code>CPU</code> 架构</p>
-<ul>
-<li>查看版本</li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">lsb_release -a	</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>查看架构</li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">uname -m （或 arch）		</span><br></pre></td></tr></table></figure>
-
-<p>返回参数说明：</p>
-<ul>
-<li><p>x86_64、x64、AMD64 是同一个东西，都为x86架构；</p>
-</li>
-<li><p>aarch64 是 ARM 架构的 64 位版本</p>
-</li>
-</ul>
-<p>要根据架构选择对应的源！否则在 <code>sudo apt update</code> 时会出错！</p>
-<p>（若开发板的cpu是arm架构，默认匹配都是x86架构处理器的软件包，用错源会找不到所需的包信息，就会报错）</p>
-<h3 id="连接WiFi"><a href="#连接WiFi" class="headerlink" title="连接WiFi"></a>连接WiFi</h3><p>若接了网线可跳过此步</p>
-<ul>
-<li>查看附近所有wifi</li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">nmcli dev wifi list	</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>连接wifi</li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo nmcli device wifi connect &quot;WiFi名称&quot; password &quot;密码&quot;	</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>查看连接wifi后的ip，方便之后连接SSH</li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">ifconfig	</span><br></pre></td></tr></table></figure>
-
-<h3 id="换源"><a href="#换源" class="headerlink" title="换源"></a>换源</h3><p>我刷的系统为 Ubuntu 22.04，不同版本系统可能会有差异，可百度对应版本换源方法；此处以22.04为例：</p>
-<ul>
-<li>先备份</li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo cp /etc/apt/sources.list /etc/apt/sources.list.bk	</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>修改</li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo vim /etc/apt/sources.list</span><br></pre></td></tr></table></figure>
-
-<p>将以下内容覆盖即可：</p>
-<p>此处用的是 <a href="https://mirrors.ustc.edu.cn/help/ubuntu-ports.html">中科大源</a></p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">默认注释了源码仓库，如有需要可自行取消注释</span></span><br><span class="line">deb https://mirrors.ustc.edu.cn/ubuntu-ports/ jammy main restricted universe multiverse</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">deb-src https://mirrors.ustc.edu.cn/ubuntu-ports/ jammy main restricted universe multiverse</span></span><br><span class="line"></span><br><span class="line">deb https://mirrors.ustc.edu.cn/ubuntu-ports/ jammy-security main restricted universe multiverse</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">deb-src https://mirrors.ustc.edu.cn/ubuntu-ports/ jammy-security main restricted universe multiverse</span></span><br><span class="line"></span><br><span class="line">deb https://mirrors.ustc.edu.cn/ubuntu-ports/ jammy-updates main restricted universe multiverse</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">deb-src https://mirrors.ustc.edu.cn/ubuntu-ports/ jammy-updates main restricted universe multiverse</span></span><br><span class="line"></span><br><span class="line">deb https://mirrors.ustc.edu.cn/ubuntu-ports/ jammy-backports main restricted universe multiverse</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">deb-src https://mirrors.ustc.edu.cn/ubuntu-ports/ jammy-backports main restricted universe multiverse</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">预发布软件源，不建议启用</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">deb https://mirrors.ustc.edu.cn/ubuntu-ports/ jammy-proposed main restricted universe multiverse</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">deb-src https://mirrors.ustc.edu.cn/ubuntu-ports/ jammy-proposed main restricted universe multiverse</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="改时区"><a href="#改时区" class="headerlink" title="改时区"></a>改时区</h3><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo orangepi-config</span><br></pre></td></tr></table></figure>
-
-<p>找到 <code>timezone</code> ，改为 <code>Asia</code> <code>shanghai</code> 保存并退出即可</p>
-<ul>
-<li>查看系统日期及时间</li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">date</span><br></pre></td></tr></table></figure>
-
-<h3 id="更新"><a href="#更新" class="headerlink" title="更新"></a>更新</h3><p>依次执行即可：</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get upgrade</span><br></pre></td></tr></table></figure>
-
-<h3 id="部署-hexo-博客"><a href="#部署-hexo-博客" class="headerlink" title="部署 hexo 博客"></a>部署 <code>hexo</code> 博客</h3><p>参考文章<a href="https://zhuanlan.zhihu.com/p/402382426">用树莓派服务器运行Hexo博客网页 - 知乎</a></p>
-<p>跟着上面文章来就行，我这里简单记录一下使用到的命令</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">ssh-copy-id -p 22 orangepi@192.168.10.11</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>安装git</li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo apt-get install git</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>查看是否安装成功</li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git --version</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>安装nginx</li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo apt-get install nginx</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>查看是否安装成功</li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">nginx -v</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>其他</li>
-</ul>
-<p>以下操作最好不要使用root用户</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo mkdir /var/repo/</span><br><span class="line">sudo chown -R $USER:$USER /var/repo/</span><br><span class="line">sudo chmod -R 755 /var/repo/</span><br><span class="line">cd /var/repo/</span><br><span class="line">git init --bare web_blog.git</span><br><span class="line">sudo mkdir -p /var/www/hexo</span><br><span class="line">sudo chown -R $USER:$USER /var/www/hexo</span><br><span class="line">sudo chmod -R 755 /var/www/hexo</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>脚本</li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo vim /var/repo/web_blog.git/hooks/post-receive</span><br></pre></td></tr></table></figure>
-
-<p>填写如下内容：</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">!/bin/bash</span></span><br><span class="line">git --work-tree=/var/www/hexo --git-dir=/var/repo/web_blog.git checkout -f</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>赋予脚本可执行权限</li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo chmod +x /var/repo/web_blog.git/hooks/post-receive</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>修改nginx配置</li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo vim /etc/nginx/sites-available/default</span><br></pre></td></tr></table></figure>
-
-<p>将其中路径改为你自己的hexo目录的路径</p>
-<ul>
-<li>重启nginx即可</li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo service nginx restart</span><br></pre></td></tr></table></figure>
-
-<h2 id="内网穿透"><a href="#内网穿透" class="headerlink" title="内网穿透"></a>内网穿透</h2><p>因为我还有个服务器，故这里直接用frp穿透</p>
-<p>赋予可执行权限：</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">chmod +x frpc</span><br></pre></td></tr></table></figure>
-
-<p>贴一下frpc.ini的配置内容</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[common]</span><br><span class="line">server_addr = 服务器外网IP</span><br><span class="line">server_port = 7000</span><br><span class="line">authentication_method = token</span><br><span class="line">token = 自己想个密码</span><br><span class="line"></span><br><span class="line">[SSH]</span><br><span class="line">type = tcp</span><br><span class="line">local_ip = 127.0.0.1</span><br><span class="line">local_port = 22</span><br><span class="line">remote_port = 6000</span><br><span class="line"></span><br><span class="line">[Web]</span><br><span class="line">type = tcp</span><br><span class="line">local_ip = 127.0.0.1</span><br><span class="line">local_port = 80</span><br><span class="line">remote_port = 3000</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>使其开机自启</li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo vim /etc/systemd/system/frpc.service</span><br></pre></td></tr></table></figure>
-
-<p>填入以下内容：</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[Unit]</span><br><span class="line">Description=FRP Client Service</span><br><span class="line"> </span><br><span class="line">[Service]</span><br><span class="line">Type=simple</span><br><span class="line">Restart=always</span><br><span class="line">RestartSec=3</span><br><span class="line">ExecStart=/home/orangepi/frp/frpc -c /home/orangepi/frp/frpc.ini</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">这里应为自己frp路径</span></span><br><span class="line"></span><br><span class="line">[Install]</span><br><span class="line">WantedBy=multi-user.target</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>使其生效</li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">重载</span></span><br><span class="line">sudo systemctl daemon-reload</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">开机自启</span></span><br><span class="line">sudo systemctl enable frpc.service</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">启动</span></span><br><span class="line">sudo systemctl start frpc.service</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">运行状态</span></span><br><span class="line">sudo systemctl status frpc.service</span><br></pre></td></tr></table></figure>
-
-<h2 id="散热"><a href="#散热" class="headerlink" title="散热"></a>散热</h2><p>可以搞个 外壳+散热片+散热扇 淘宝有自己搜</p>
-<ul>
-<li>获取CPU温度</li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">cat /sys/class/thermal/thermal_zone0/temp</span><br></pre></td></tr></table></figure>
-
-<p>上面的值除以1000即为CPU温度</p>
-<p>有了CPU温度即可编程实现温度高于多少度则自动开风扇、低于多少度自动关；</p>
-<p>哦，对了，可能需要个三极管来做开关；因为板子上引脚电压是没办法使用编程来控制高低电平的</p>
-<h2 id="编程"><a href="#编程" class="headerlink" title="编程"></a>编程</h2><p>在SOC上控制引脚与在单片机上略有不同</p>
-<p>不过Orangepi zero 3自带了 WiringPi库可用来控制引脚，直接使用该库即可，库函数都封装好的，直接调用即可；</p>
-<h3 id="外设"><a href="#外设" class="headerlink" title="外设"></a>外设</h3><p>我还买了DHT11与OLED屏用来检测并显示一些内容，代码也给贴一下，注释还是比较详细的：</p>
-<p><strong>获取ip并输出到文件</strong></p>
-<ul>
-<li>创建脚本</li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">vim get_ip.sh</span><br></pre></td></tr></table></figure>
-
-<p>脚本内容如下：</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">获取IP地址</span></span><br><span class="line">IP_ADDRESS=$(ifconfig wlan0 | grep &quot;inet &quot; | awk &#x27;&#123;print $2&#125;&#x27;)</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">将IP地址保存到文件</span></span><br><span class="line">echo $IP_ADDRESS &gt; /home/orangepi/code/ip_adr.txt</span><br></pre></td></tr></table></figure>
-
-<p>赋予脚本可执行权限</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo chmod +x get_ip.sh</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>定时执行</li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">crontab -e</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">10min执行一次，后边为脚本所在路径</span></span><br><span class="line">*/10 * * * * /home/orangepi/code/get_ip.sh</span><br></pre></td></tr></table></figure>
-
-<p><strong>整体C代码</strong></p>
-<figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;errno.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;fcntl.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;pthread.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdint.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;time.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;wiringPi.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;font.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;oled.h&quot;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> DHT11_IO 8  <span class="comment">// DHT11 DATA脚引脚号  15脚 IO-3</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">unsigned</span> <span class="type">char</span> humidity = <span class="number">0</span>;</span><br><span class="line"><span class="type">float</span> temperature = <span class="number">0.0</span>;</span><br><span class="line"><span class="type">float</span> temp_old = <span class="number">0.0</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">unsigned</span> <span class="type">char</span> cpu_buf[<span class="number">6</span>] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line"><span class="type">unsigned</span> <span class="type">char</span> ip_buf[<span class="number">20</span>] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">display_info</span> <span class="title">disp</span>;</span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">get_cpu_temp</span><span class="params">(<span class="type">void</span>)</span> &#123;</span><br><span class="line">  <span class="type">float</span> cpu_temp = <span class="number">0.0</span>;</span><br><span class="line">  <span class="type">char</span> path[] = <span class="string">&quot;/sys/class/thermal/thermal_zone0/temp&quot;</span>;</span><br><span class="line">  <span class="type">int</span> fd = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">  fd = open(path, O_RDONLY);</span><br><span class="line">  <span class="keyword">if</span> (fd &lt; <span class="number">0</span>) &#123;</span><br><span class="line">    perror(<span class="string">&quot;open&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  lseek(fd, <span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">  read(fd, cpu_buf, <span class="keyword">sizeof</span>(cpu_buf));</span><br><span class="line">  cpu_temp = ((cpu_buf[<span class="number">0</span>] - <span class="number">48</span>) * <span class="number">10</span>) + (cpu_buf[<span class="number">1</span>] - <span class="number">48</span>) +</span><br><span class="line">             ((cpu_buf[<span class="number">2</span>] - <span class="number">48</span>) / <span class="number">10.0</span>) + ((cpu_buf[<span class="number">3</span>] - <span class="number">48</span>) / <span class="number">100.0</span>);</span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">&quot;CPU:%.2f\n&quot;</span>, cpu_temp);</span><br><span class="line">  close(fd);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">get_ip_adr</span><span class="params">(<span class="type">void</span>)</span> &#123;</span><br><span class="line">  <span class="type">char</span> path[] = <span class="string">&quot;/home/orangepi/code/ip_adr.txt&quot;</span>;</span><br><span class="line">  <span class="type">int</span> fd = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">  fd = open(path, O_RDONLY);</span><br><span class="line">  <span class="keyword">if</span> (fd &lt; <span class="number">0</span>) &#123;</span><br><span class="line">    perror(<span class="string">&quot;open&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  lseek(fd, <span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">  read(fd, ip_buf, <span class="keyword">sizeof</span>(ip_buf));</span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">&quot;IP:%s\n&quot;</span>, ip_buf);</span><br><span class="line">  close(fd);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">send_start_signal</span><span class="params">()</span> &#123;</span><br><span class="line">  <span class="comment">// 输出</span></span><br><span class="line">  pinMode(DHT11_IO, OUTPUT);</span><br><span class="line">  digitalWrite(DHT11_IO, HIGH);</span><br><span class="line">  digitalWrite(DHT11_IO, LOW);</span><br><span class="line">  delay(<span class="number">20</span>);  <span class="comment">// 18ms &lt; 延时 &lt; 30ms</span></span><br><span class="line">  digitalWrite(DHT11_IO, HIGH);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 输入</span></span><br><span class="line">  pinMode(DHT11_IO, INPUT);</span><br><span class="line">  pullUpDnControl(DHT11_IO, PUD_UP);</span><br><span class="line">  delayMicroseconds(<span class="number">35</span>);</span><br><span class="line">  <span class="keyword">while</span> (!digitalRead(DHT11_IO));  <span class="comment">// 等待 DHT11低电平应答 83us 结束</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">unsigned</span> <span class="type">char</span> <span class="title function_">get_dht11_data</span><span class="params">(<span class="type">void</span>)</span> &#123;</span><br><span class="line">  <span class="comment">// 主机发送起始信号</span></span><br><span class="line">  send_start_signal();</span><br><span class="line"></span><br><span class="line">  <span class="type">unsigned</span> <span class="type">char</span> dht11_buf[<span class="number">5</span>] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line">  <span class="comment">// 解析并保存数据</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="type">unsigned</span> <span class="type">char</span> i = <span class="number">0</span>; i &lt; <span class="number">5</span>; i++) &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">unsigned</span> <span class="type">char</span> j = <span class="number">0</span>; j &lt; <span class="number">8</span>; j++) &#123;</span><br><span class="line">      <span class="keyword">while</span> (digitalRead(</span><br><span class="line">          DHT11_IO));  <span class="comment">// 等待 DHT11高电平通知主机准备接收数据 87us 结束</span></span><br><span class="line">      <span class="keyword">while</span> (!digitalRead(DHT11_IO));  <span class="comment">// 等待回复的54us低电平结束</span></span><br><span class="line"></span><br><span class="line">      <span class="comment">// 接收回复的高电平  延时35us看是什么电平 -</span></span><br><span class="line">      <span class="comment">// 高电平则发的为1，低电平发送的为0</span></span><br><span class="line">      delayMicroseconds(<span class="number">35</span>);</span><br><span class="line"></span><br><span class="line">      <span class="comment">// 保存数据</span></span><br><span class="line">      dht11_buf[i] &lt;&lt;= <span class="number">1</span>;</span><br><span class="line">      <span class="keyword">if</span> (digitalRead(DHT11_IO) == <span class="number">1</span>) &#123;</span><br><span class="line">        dht11_buf[i]++;  <span class="comment">// 如果为1，则加上1</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 校验</span></span><br><span class="line">  <span class="type">float</span> temp = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">if</span> (dht11_buf[<span class="number">4</span>] ==</span><br><span class="line">      (dht11_buf[<span class="number">0</span>] + dht11_buf[<span class="number">1</span>] + dht11_buf[<span class="number">2</span>] + dht11_buf[<span class="number">3</span>])) &#123;</span><br><span class="line">    temp = dht11_buf[<span class="number">3</span>] / <span class="number">10.0</span>;</span><br><span class="line">    temperature = dht11_buf[<span class="number">2</span>] + temp;</span><br><span class="line">    humidity = dht11_buf[<span class="number">0</span>];</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 高于45度的数据使用上次数据代替</span></span><br><span class="line">    <span class="keyword">if</span> (temp_old != temperature &amp;&amp; temperature &lt; <span class="number">45</span>) &#123;</span><br><span class="line">      temp_old = temperature;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      temperature = temp_old;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;TEMP:%.2f\n&quot;</span>, temperature);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;HUM:%d\n&quot;</span>, humidity);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">oled_show</span><span class="params">(<span class="keyword">struct</span> display_info* disp)</span> &#123;</span><br><span class="line">  <span class="type">char</span> <span class="type">buf_t</span>[<span class="number">50</span>] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line">  <span class="type">char</span> buf_h[<span class="number">50</span>] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 环境温度</span></span><br><span class="line">  <span class="built_in">sprintf</span>(<span class="type">buf_t</span>, <span class="string">&quot;TEMP:%.2f&quot;</span>, temperature);</span><br><span class="line">  oled_putstrto(disp, <span class="number">0</span>, <span class="number">18</span> + <span class="number">5</span>, <span class="type">buf_t</span>);</span><br><span class="line">  disp-&gt;font = font1;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 环境湿度</span></span><br><span class="line">  <span class="built_in">sprintf</span>(buf_h, <span class="string">&quot;HUM:%d&quot;</span>, humidity);</span><br><span class="line">  oled_putstrto(disp, <span class="number">0</span>, <span class="number">27</span> + <span class="number">7</span>, buf_h);</span><br><span class="line">  disp-&gt;font = font1;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// cpu温度</span></span><br><span class="line">  <span class="type">char</span> cpu_b[<span class="number">50</span>] = &#123;<span class="string">&#x27;C&#x27;</span>, <span class="string">&#x27;P&#x27;</span>, <span class="string">&#x27;U&#x27;</span>, <span class="string">&#x27;:&#x27;</span>, <span class="string">&#x27;0&#x27;</span>, <span class="string">&#x27;0&#x27;</span>, <span class="string">&#x27;.&#x27;</span>&#125;;</span><br><span class="line">  <span class="built_in">memcpy</span>(&amp;cpu_b[<span class="number">4</span>], &amp;cpu_buf[<span class="number">0</span>], <span class="number">1</span>);</span><br><span class="line">  <span class="built_in">memcpy</span>(&amp;cpu_b[<span class="number">5</span>], &amp;cpu_buf[<span class="number">1</span>], <span class="number">1</span>);</span><br><span class="line">  <span class="built_in">memcpy</span>(&amp;cpu_b[<span class="number">7</span>], &amp;cpu_buf[<span class="number">2</span>], <span class="number">1</span>);</span><br><span class="line">  <span class="built_in">memcpy</span>(&amp;cpu_b[<span class="number">8</span>], &amp;cpu_buf[<span class="number">3</span>], <span class="number">1</span>);</span><br><span class="line">  oled_putstrto(disp, <span class="number">0</span>, <span class="number">36</span> + <span class="number">9</span>, cpu_b);</span><br><span class="line">  disp-&gt;font = font1;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 本地ip</span></span><br><span class="line">  <span class="type">char</span> ip_b[<span class="number">50</span>] = &#123;<span class="string">&#x27;I&#x27;</span>, <span class="string">&#x27;P&#x27;</span>, <span class="string">&#x27;:&#x27;</span>&#125;;</span><br><span class="line">  <span class="built_in">memcpy</span>(&amp;ip_b[<span class="number">3</span>], &amp;ip_buf[<span class="number">0</span>], <span class="keyword">sizeof</span>(ip_buf));</span><br><span class="line">  oled_putstrto(disp, <span class="number">0</span>, <span class="number">45</span> + <span class="number">11</span>, ip_b);</span><br><span class="line">  disp-&gt;font = font1;</span><br><span class="line"></span><br><span class="line">  oled_send_buffer(disp);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">show_error</span><span class="params">(<span class="type">int</span> err, <span class="type">int</span> add)</span> &#123; <span class="built_in">printf</span>(<span class="string">&quot;\nERROR: %i, %i\n\n&quot;</span>, err, add); &#125;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">show_usage</span><span class="params">(<span class="type">char</span>* progname)</span> &#123;</span><br><span class="line">  <span class="built_in">printf</span>(<span class="string">&quot;\nUsage:\n%s &lt;I2C bus device node &gt;\n&quot;</span>, progname);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">void</span>* <span class="title function_">pth_fun</span><span class="params">(<span class="type">void</span>* date)</span> &#123;</span><br><span class="line">  <span class="keyword">while</span> (<span class="number">1</span>) &#123;</span><br><span class="line">    get_ip_adr();</span><br><span class="line">    get_cpu_temp();</span><br><span class="line">    get_dht11_data();</span><br><span class="line">    oled_clear(&amp;disp);</span><br><span class="line">    oled_show(&amp;disp);</span><br><span class="line">    <span class="comment">// delay(2000);</span></span><br><span class="line">    pthread_exit(<span class="literal">NULL</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">int</span> argc, <span class="type">char</span>* argv[])</span> &#123;</span><br><span class="line">  <span class="type">int</span> err = <span class="number">0</span>;</span><br><span class="line">  <span class="type">char</span> filename[<span class="number">32</span>] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 判断有无指定 IIC 通道</span></span><br><span class="line">  <span class="keyword">if</span> (argc &lt; <span class="number">2</span>) &#123;</span><br><span class="line">    show_usage(argv[<span class="number">0</span>]);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (wiringPiSetup() == <span class="number">-1</span>) &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Setup wiringPi failed!&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 初始化 disp 结构体</span></span><br><span class="line">  <span class="built_in">memset</span>(&amp;disp, <span class="number">0</span>, <span class="keyword">sizeof</span>(disp));</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 将 IIC 通道、IIC 设备地址、字体信息 写入 disp 结构体</span></span><br><span class="line">  <span class="built_in">sprintf</span>(filename, <span class="string">&quot;%s&quot;</span>, argv[<span class="number">1</span>]);</span><br><span class="line">  disp.address = OLED_I2C_ADDR;</span><br><span class="line">  disp.font = font2;</span><br><span class="line"></span><br><span class="line">  err = oled_open(&amp;disp, filename);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (err &lt; <span class="number">0</span>) &#123;</span><br><span class="line">    show_error(<span class="number">1</span>, err);</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    err = oled_init(&amp;disp);</span><br><span class="line">    <span class="keyword">if</span> (err &lt; <span class="number">0</span>) &#123;</span><br><span class="line">      show_error(<span class="number">2</span>, err);</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="built_in">printf</span>(<span class="string">&quot;---oled ready---\n&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  oled_clear(&amp;disp);</span><br><span class="line">  <span class="keyword">while</span> (<span class="number">1</span>) &#123;</span><br><span class="line">    <span class="type">pthread_t</span> thread_id;</span><br><span class="line">    <span class="type">int</span> p = pthread_create(&amp;thread_id, <span class="literal">NULL</span>, pth_fun, <span class="literal">NULL</span>);</span><br><span class="line">    <span class="keyword">if</span> (p &lt; <span class="number">0</span>) &#123;</span><br><span class="line">      perror(<span class="string">&quot;pthread_create&quot;</span>);</span><br><span class="line">      <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    sleep(<span class="number">2</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>编译：<code>gcc main.c -o main -lwiringPi -lwiringPiDev -lpthread -lcrypt -lrt</code></p>
-<p>执行：<code>sudo ./main /dev/i2c-3</code></p>
-<p>使用了线程，因为不用线程的话直接运行占用内存与CPU比较大，改成这样好多了。由于对Linux编程并不是很熟，暂时只能先这样用，之后再慢慢研究研究。</p>
-<ul>
-<li>开机自启</li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo vim /etc/systemd/system/my_main.service</span><br></pre></td></tr></table></figure>
-
-<p>填入如下内容：</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[Unit]</span><br><span class="line">Description=Run dht11 and oled</span><br><span class="line"></span><br><span class="line">[Service]</span><br><span class="line">Type=simple</span><br><span class="line">Restart=always</span><br><span class="line">RestartSec=3</span><br><span class="line">ExecStart=/home/orangepi/code/main /dev/i2c-3</span><br><span class="line"></span><br><span class="line">[Install]</span><br><span class="line">WantedBy=multi-user.target</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>启用</li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">重载</span></span><br><span class="line">sudo systemctl daemon-reload</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">开机自启</span></span><br><span class="line">sudo systemctl enable my_main.service</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">启动</span></span><br><span class="line">sudo systemctl start my_main.service</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">运行状态</span></span><br><span class="line">sudo systemctl status my_main.service</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">查看所有已启动的服务</span></span><br><span class="line">sudo systemctl list-units --type=service</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>停用</li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">停止</span></span><br><span class="line">sudo systemctl stop my_main.service</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">禁止开机自启</span></span><br><span class="line">sudo systemctl disable my_main.service</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">删除</span></span><br><span class="line">sudo rm /etc/systemd/system/my_main.service</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">重载</span></span><br><span class="line">sudo systemctl daemon-reload</span><br></pre></td></tr></table></figure>
-
-<p>还可以加一层保底，以防程序自己退出或被杀进程</p>
-<ul>
-<li>创建脚本</li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">vim start_main.sh</span><br></pre></td></tr></table></figure>
-
-<p>填入如下内容：</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">!/bin/bash</span>  </span><br><span class="line"><span class="meta prompt_">  </span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">设定要检查的进程名</span>  </span><br><span class="line">PROCESS_NAME=&quot;main&quot;  </span><br><span class="line"><span class="meta prompt_">  </span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">使用pgrep检查进程是否存在</span>  </span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">如果pgrep返回了进程ID（即$?为0），则进程正在运行</span>  </span><br><span class="line">if pgrep -x &quot;$PROCESS_NAME&quot; &gt; /dev/null  </span><br><span class="line">then  </span><br><span class="line">    echo &quot;$PROCESS_NAME is already running.&quot;  </span><br><span class="line">else  </span><br><span class="line">    # 如果进程未运行，则启动</span><br><span class="line">    echo &quot;Starting $PROCESS_NAME...&quot;  </span><br><span class="line">    sudo systemctl restart my_main.service  </span><br><span class="line">    # 检查main是否成功启动</span><br><span class="line">    sleep 2 # 等待几秒以确保程序有时间启动  </span><br><span class="line">    if pgrep -x &quot;$PROCESS_NAME&quot; &gt; /dev/null  </span><br><span class="line">    then  </span><br><span class="line">        echo &quot;$PROCESS_NAME started successfully.&quot;  </span><br><span class="line">    else  </span><br><span class="line">        echo &quot;Failed to start $PROCESS_NAME.&quot;  </span><br><span class="line">    fi  </span><br><span class="line">fi</span><br></pre></td></tr></table></figure>
-
-<p>赋予可执行权限</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">chmod +x start_main.sh</span><br></pre></td></tr></table></figure>
-
-<p>定时执行</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">crontab -e</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">30min执行一次上面的脚本</span></span><br><span class="line">*/30 * * * * /home/orangepi/code/start_main.sh</span><br></pre></td></tr></table></figure>
-
-<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><p>还想部署一下alist来着，不过docker仓库被墙了，这里记一下怎样本地部署</p>
-<p>首先需要将alist包下载下来,然后上传到开发板</p>
-<ul>
-<li>开始安装</li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker load -i alist.tar.gz</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>运行</li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker run -d --restart=always \</span><br><span class="line">  -v /home/orangepi/alist:/opt/alist/data \</span><br><span class="line">  -p 5000:5244 \</span><br><span class="line">  -e PUID=$(id -u) \</span><br><span class="line">  -e PGID=$(id -g) \</span><br><span class="line">  -e UMASK=022 \</span><br><span class="line">  --name alist \</span><br><span class="line">  xhofe/alist:latest</span><br></pre></td></tr></table></figure>
-
-<p>解释一下：</p>
-<p>docker run -d -p 5000:5244 –name alist xhofe/alist:latest<br>-d作用：在后台运行容器，并且打印容器id<br>-t作用：分配一个伪TTY<br>-i作用：即使没有attached，也要保持STDIN打开状态<br>-p: 将主机的端口映射到容器的一个端口 主机端口:容器内部的端口<br>–name：给容器起一个名字，比如叫做alist</p>
-<ul>
-<li>获取alist密码</li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker exec -it alist ./alist admin log</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>重置密码</li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker exec -it alist ./alist admin set your_new_password</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>其他</li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">ps -ef | grep alist  # 查看alist进程</span><br><span class="line">ps -ef | grep frps</span><br><span class="line"></span><br><span class="line">find / -name xxx   # 查找名字为xxx的文件</span><br></pre></td></tr></table></figure>
+<ol>
+<li>导通特性</li>
+</ol>
+<p>NMOS的特性，Vgs大于一定的值就会导通，适合用于源极接地时的情况（低端驱动）。<br>PMOS的特性，Vgs小于一定的值就会导通，适合用于源极接VCC时的情况（高端驱动）。</p>
+<ol start="2">
+<li>MOS开关管损失</li>
+</ol>
+<p>不管是NMOS还是PMOS，导通后都有导通电阻存在，这样电流就会在这个电阻上消耗能量，这部分消耗的能量叫做导通损耗。选择导通电阻小的MOS管会减小导通损耗。现在的小功率MOS管导通电阻一般在几十毫欧左右，几毫欧的也有。 MOS在导通和截止的时候，一定不是在瞬间完成的。MOS两端的电压有一个下降的过程，流过的电流有一个上升的过程，在这段时间内，MOS管的损失是电压和电流的乘积，叫做开关损失。通常开关损失比导通损失大得多，而且开关频率越高，损失也越大。 导通瞬间电压和电流的乘积很大，造成的损失也就很大。缩短开关时间，可以减小每次导通时的损失；降低开关频率，可以减小单位时间内的开关次数。这两种办法都可以减小开关损失。</p>
+<center>——  END ——</center>
 ]]></content>
       <tags>
-        <tag>Ubuntu</tag>
-        <tag>OrangePi</tag>
+        <tag>MOS管</tag>
       </tags>
   </entry>
   <entry>
@@ -264,26 +36,6 @@
 ]]></content>
       <tags>
         <tag>单片机</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>NMOS和PMOS有什么区别</title>
-    <url>/archives/2e946417.html</url>
-    <content><![CDATA[<p>​        MOS管，分为N沟道和P沟道两种。由于PMOS导通电阻大，价格贵，替换种类少等原因，故常用NMOS，因为其导通电阻小，且容易制造。</p>
-<span id="more"></span>
-
-<ol>
-<li>导通特性</li>
-</ol>
-<p>NMOS的特性，Vgs大于一定的值就会导通，适合用于源极接地时的情况（低端驱动）。<br>PMOS的特性，Vgs小于一定的值就会导通，适合用于源极接VCC时的情况（高端驱动）。</p>
-<ol start="2">
-<li>MOS开关管损失</li>
-</ol>
-<p>不管是NMOS还是PMOS，导通后都有导通电阻存在，这样电流就会在这个电阻上消耗能量，这部分消耗的能量叫做导通损耗。选择导通电阻小的MOS管会减小导通损耗。现在的小功率MOS管导通电阻一般在几十毫欧左右，几毫欧的也有。 MOS在导通和截止的时候，一定不是在瞬间完成的。MOS两端的电压有一个下降的过程，流过的电流有一个上升的过程，在这段时间内，MOS管的损失是电压和电流的乘积，叫做开关损失。通常开关损失比导通损失大得多，而且开关频率越高，损失也越大。 导通瞬间电压和电流的乘积很大，造成的损失也就很大。缩短开关时间，可以减小每次导通时的损失；降低开关频率，可以减小单位时间内的开关次数。这两种办法都可以减小开关损失。</p>
-<center>——  END ——</center>
-]]></content>
-      <tags>
-        <tag>MOS管</tag>
       </tags>
   </entry>
   <entry>
@@ -320,219 +72,32 @@
       </tags>
   </entry>
   <entry>
-    <title>嵌入式总结（一）</title>
-    <url>/archives/76bb4a41.html</url>
-    <content><![CDATA[<h2 id="红外通信原理"><a href="#红外通信原理" class="headerlink" title="红外通信原理"></a>红外通信原理</h2><h3 id="红外通信的整个工作过程"><a href="#红外通信的整个工作过程" class="headerlink" title="红外通信的整个工作过程"></a>红外通信的整个工作过程</h3><h4 id="发送过程"><a href="#发送过程" class="headerlink" title="发送过程"></a>发送过程</h4><p><strong>数据 -&gt; 编码 -&gt; 调制 -&gt; 发送电路</strong><span id="more"></span></p>
-<ol>
-<li><p>数据：假设发送的数据为 0XA5，二进制为：10100101 </p>
-</li>
-<li><p>编码：用脉冲宽度编码（Pulse Width Encoding）来表示二进制数据。每个数据位由一系列的脉冲组成，逻辑0和逻辑1分别由不同的脉冲宽度表示。现假设如下：</p>
-</li>
-</ol>
-<p>​            <strong>逻辑0为：0.5ms高 + 0.5ms低；</strong>            <strong>逻辑1为：1ms高 + 0.5ms低；</strong></p>
-<ol start="3">
-<li>调制：就是把编码数据放到一定频率的载波上面，即使用数据调制载波，形成一串脉冲信号</li>
-<li>发送电路：即：红外灯珠对脉冲信号的发送 + 脉冲信号的放大</li>
-</ol>
-<h4 id="接收过程"><a href="#接收过程" class="headerlink" title="接收过程"></a>接收过程</h4><p><strong>接收电路 -&gt; 解调 -&gt; 解码 -&gt; 数据</strong></p>
-<ol>
-<li>接收电路：接收发过来的红外信号</li>
-<li>解调：当红外接收管接收到调制信号时，输出高电平，否则输出为低电平</li>
-<li>解码：解调后将得到的一系列脉冲变为二进制</li>
-<li>数据：解码后即可得到发来的数据，即 0XA5 （二进制为：10100101）</li>
-</ol>
-<h4 id="优缺点"><a href="#优缺点" class="headerlink" title="优缺点"></a>优缺点</h4><p><strong>红外通信的优点：抗电磁干扰、成本低</strong></p>
-<p><strong>红外通信的缺点：传输效率低，易受到环境光干扰导致传输误码</strong></p>
-<h2 id="ADC数据常用的处理"><a href="#ADC数据常用的处理" class="headerlink" title="ADC数据常用的处理"></a>ADC数据常用的处理</h2><p>为什么要对采样的数据进行处理呢？直接拿来用不行吗？<br>因为任何系统都会存在干扰，进行数据处理就是为了尽量避免因外界干扰引起的误差。</p>
-<h4 id="常用的两种滤波方法"><a href="#常用的两种滤波方法" class="headerlink" title="常用的两种滤波方法"></a>常用的两种滤波方法</h4><ol>
-<li>多次采样加权取平均，在写程序的时候可以运用一些技巧：首先我们ADC采集8次数据并且对这8次数据累加（可以每1ms调用该函数），累加完成后将累加结果右移3位得到最后的采样结果。<br> 当然这个方法还可以进一步改善，比如取样10次，然后去掉最大值和最小值，再对剩下的8次进行取平均。</li>
-</ol>
-<p><strong>但因为需要多次采样，更新数据的时间会很长，比如取样8次，每1ms取样一次，那么更新数据就需要8ms时间，所以对采样的数据实时性要求不是很高的系统才可以用这种方法</strong></p>
-<ol start="2">
-<li>中值滤波法（可用在实时性比较高的系统）：实现思想就是取5个数据，每次采样的新数据替换掉最老的数据；然后把中间的那个数据当做是采样数据，这样不仅可以有效抑制干扰，而且响应速度快。</li>
-</ol>
-<h4 id="十大滤波方法及代码实现"><a href="#十大滤波方法及代码实现" class="headerlink" title="十大滤波方法及代码实现"></a>十大滤波方法及代码实现</h4><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&quot;windows.h&quot;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">unsigned</span> <span class="type">short</span> ftable[<span class="number">255</span>] = &#123;</span><br><span class="line">    <span class="number">2048</span>, <span class="number">2098</span>, <span class="number">2148</span>, <span class="number">2198</span>, <span class="number">2248</span>, <span class="number">2298</span>, <span class="number">2348</span>, <span class="number">2398</span>, <span class="number">2447</span>, <span class="number">2496</span>,</span><br><span class="line">    <span class="number">2545</span>, <span class="number">2594</span>, <span class="number">2642</span>, <span class="number">2690</span>, <span class="number">2737</span>, <span class="number">2785</span>, <span class="number">2831</span>, <span class="number">2877</span>, <span class="number">2923</span>, <span class="number">2968</span>,</span><br><span class="line">    <span class="number">3013</span>, <span class="number">3057</span>, <span class="number">3100</span>, <span class="number">3143</span>, <span class="number">3185</span>, <span class="number">3227</span>, <span class="number">3267</span>, <span class="number">3307</span>, <span class="number">3347</span>, <span class="number">3385</span>,</span><br><span class="line">    <span class="number">3423</span>, <span class="number">3460</span>, <span class="number">3496</span>, <span class="number">3531</span>, <span class="number">3565</span>, <span class="number">3598</span>, <span class="number">3631</span>, <span class="number">3662</span>, <span class="number">3692</span>, <span class="number">3722</span>,</span><br><span class="line">    <span class="number">3750</span>, <span class="number">3778</span>, <span class="number">3804</span>, <span class="number">3829</span>, <span class="number">3854</span>, <span class="number">3877</span>, <span class="number">3899</span>, <span class="number">3920</span>, <span class="number">3940</span>, <span class="number">3958</span>,</span><br><span class="line">    <span class="number">3976</span>, <span class="number">3992</span>, <span class="number">4007</span>, <span class="number">4021</span>, <span class="number">4034</span>, <span class="number">4046</span>, <span class="number">4056</span>, <span class="number">4065</span>, <span class="number">4073</span>, <span class="number">4080</span>,</span><br><span class="line">    <span class="number">4086</span>, <span class="number">4090</span>, <span class="number">4093</span>, <span class="number">4095</span>, <span class="number">4095</span>, <span class="number">4095</span>, <span class="number">4093</span>, <span class="number">4090</span>, <span class="number">4086</span>, <span class="number">4080</span>,</span><br><span class="line">    <span class="number">4073</span>, <span class="number">4065</span>, <span class="number">4056</span>, <span class="number">4046</span>, <span class="number">4034</span>, <span class="number">4021</span>, <span class="number">4007</span>, <span class="number">3992</span>, <span class="number">3976</span>, <span class="number">3958</span>,</span><br><span class="line">    <span class="number">3940</span>, <span class="number">3920</span>, <span class="number">3899</span>, <span class="number">3877</span>, <span class="number">3854</span>, <span class="number">3829</span>, <span class="number">3804</span>, <span class="number">3778</span>, <span class="number">3750</span>, <span class="number">3722</span>,</span><br><span class="line">    <span class="number">3692</span>, <span class="number">3662</span>, <span class="number">3631</span>, <span class="number">3598</span>, <span class="number">3565</span>, <span class="number">3531</span>, <span class="number">3496</span>, <span class="number">3460</span>, <span class="number">3423</span>, <span class="number">3385</span>,</span><br><span class="line">    <span class="number">3347</span>, <span class="number">3307</span>, <span class="number">3267</span>, <span class="number">3227</span>, <span class="number">3185</span>, <span class="number">3143</span>, <span class="number">3100</span>, <span class="number">3057</span>, <span class="number">3013</span>, <span class="number">2968</span>,</span><br><span class="line">    <span class="number">2923</span>, <span class="number">2877</span>, <span class="number">2831</span>, <span class="number">2785</span>, <span class="number">2737</span>, <span class="number">2690</span>, <span class="number">2642</span>, <span class="number">2594</span>, <span class="number">2545</span>, <span class="number">2496</span>,</span><br><span class="line">    <span class="number">2447</span>, <span class="number">2398</span>, <span class="number">2348</span>, <span class="number">2298</span>, <span class="number">2248</span>, <span class="number">2198</span>, <span class="number">2148</span>, <span class="number">2098</span>, <span class="number">2047</span>, <span class="number">1997</span>,</span><br><span class="line">    <span class="number">1947</span>, <span class="number">1897</span>, <span class="number">1847</span>, <span class="number">1797</span>, <span class="number">1747</span>, <span class="number">1697</span>, <span class="number">1648</span>, <span class="number">1599</span>, <span class="number">1550</span>, <span class="number">1501</span>,</span><br><span class="line">    <span class="number">1453</span>, <span class="number">1405</span>, <span class="number">1358</span>, <span class="number">1310</span>, <span class="number">1264</span>, <span class="number">1218</span>, <span class="number">1172</span>, <span class="number">1127</span>, <span class="number">1082</span>, <span class="number">1038</span>,</span><br><span class="line">    <span class="number">995</span>, <span class="number">952</span>, <span class="number">910</span>, <span class="number">868</span>, <span class="number">828</span>, <span class="number">788</span>, <span class="number">748</span>, <span class="number">710</span>, <span class="number">672</span>, <span class="number">635</span>,</span><br><span class="line">    <span class="number">599</span>, <span class="number">564</span>, <span class="number">530</span>, <span class="number">497</span>, <span class="number">464</span>, <span class="number">433</span>, <span class="number">403</span>, <span class="number">373</span>, <span class="number">345</span>, <span class="number">317</span>,</span><br><span class="line">    <span class="number">291</span>, <span class="number">266</span>, <span class="number">241</span>, <span class="number">218</span>, <span class="number">196</span>, <span class="number">175</span>, <span class="number">155</span>, <span class="number">137</span>, <span class="number">119</span>, <span class="number">103</span>,</span><br><span class="line">    <span class="number">88</span>, <span class="number">74</span>, <span class="number">61</span>, <span class="number">49</span>, <span class="number">39</span>, <span class="number">30</span>, <span class="number">22</span>, <span class="number">15</span>, <span class="number">9</span>, <span class="number">5</span>,</span><br><span class="line">    <span class="number">2</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">2</span>, <span class="number">5</span>, <span class="number">9</span>, <span class="number">15</span>, <span class="number">22</span>, <span class="number">30</span>,</span><br><span class="line">    <span class="number">39</span>, <span class="number">49</span>, <span class="number">61</span>, <span class="number">74</span>, <span class="number">88</span>, <span class="number">103</span>, <span class="number">119</span>, <span class="number">137</span>, <span class="number">155</span>, <span class="number">175</span>,</span><br><span class="line">    <span class="number">196</span>, <span class="number">218</span>, <span class="number">241</span>, <span class="number">266</span>, <span class="number">291</span>, <span class="number">317</span>, <span class="number">345</span>, <span class="number">373</span>, <span class="number">403</span>, <span class="number">433</span>,</span><br><span class="line">    <span class="number">464</span>, <span class="number">497</span>, <span class="number">530</span>, <span class="number">564</span>, <span class="number">599</span>, <span class="number">635</span>, <span class="number">672</span>, <span class="number">710</span>, <span class="number">748</span>, <span class="number">788</span>,</span><br><span class="line">    <span class="number">828</span>, <span class="number">868</span>, <span class="number">910</span>, <span class="number">952</span>, <span class="number">995</span>, <span class="number">1038</span>, <span class="number">1082</span>, <span class="number">1127</span>, <span class="number">1172</span>, <span class="number">1218</span>,</span><br><span class="line">    <span class="number">1264</span>, <span class="number">1310</span>, <span class="number">1358</span>, <span class="number">1405</span>, <span class="number">1453</span>, <span class="number">1501</span>, <span class="number">1550</span>, <span class="number">1599</span>, <span class="number">1648</span>, <span class="number">1697</span>,</span><br><span class="line">    <span class="number">1747</span>, <span class="number">1797</span>, <span class="number">1847</span>, <span class="number">1897</span>, <span class="number">1947</span>&#125;;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> a = <span class="number">0</span>;</span><br><span class="line"><span class="type">int</span> b = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/******************************************************************************************************</span></span><br><span class="line"><span class="comment">方法一：限幅滤波法</span></span><br><span class="line"><span class="comment">方法：根据经验判断，确定两次采样允许的最大偏差值（设为A），每次检测到新值时判断：</span></span><br><span class="line"><span class="comment">      如果本次值与上次值之差&lt;=A，则本次值有效，</span></span><br><span class="line"><span class="comment">      如果本次值与上次值之差&gt;A，则本次值无效，放弃本次值，用上次值代替本次值。</span></span><br><span class="line"><span class="comment">优点：能克服偶然因素引起的脉冲干扰</span></span><br><span class="line"><span class="comment">缺点：无法抑制周期性的干扰，平滑度差</span></span><br><span class="line"><span class="comment">******************************************************************************************************/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// #define A 51</span></span><br><span class="line"><span class="comment">// unsigned short Value1 = 0;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// short filter1()</span></span><br><span class="line"><span class="comment">// &#123;</span></span><br><span class="line"><span class="comment">//     static unsigned short NewValue = 0;</span></span><br><span class="line"><span class="comment">//     Value1                         = ftable[b - 1];</span></span><br><span class="line"><span class="comment">//     NewValue                       = ftable[b];</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//     a++;</span></span><br><span class="line"><span class="comment">//     if (a == 254)</span></span><br><span class="line"><span class="comment">//     &#123;</span></span><br><span class="line"><span class="comment">//         a = 0;</span></span><br><span class="line"><span class="comment">//     &#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//     b++;</span></span><br><span class="line"><span class="comment">//     if (b == 255)</span></span><br><span class="line"><span class="comment">//     &#123;</span></span><br><span class="line"><span class="comment">//         b = 1;</span></span><br><span class="line"><span class="comment">//     &#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//     if (((NewValue - Value1) &gt; A) || ((Value1 - NewValue) &gt; A))</span></span><br><span class="line"><span class="comment">//     &#123;</span></span><br><span class="line"><span class="comment">//         printf(&quot;------\n&quot;);</span></span><br><span class="line"><span class="comment">//     &#125;</span></span><br><span class="line"><span class="comment">//     else</span></span><br><span class="line"><span class="comment">//     &#123;</span></span><br><span class="line"><span class="comment">//         printf(&quot;%d, %d, %d\n&quot;, NewValue - Value1, NewValue, Value1);</span></span><br><span class="line"><span class="comment">//     &#125;</span></span><br><span class="line"><span class="comment">// &#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/******************************************************************************************************</span></span><br><span class="line"><span class="comment">方法二：中位值滤波法</span></span><br><span class="line"><span class="comment">方法： 连续采样N次（N取奇数），把N次采样值按大小排列，取中间值为本次有效值。</span></span><br><span class="line"><span class="comment">优点：克服偶然因素（对温度、液位的变化缓慢的被测参数有良好的滤波效果）</span></span><br><span class="line"><span class="comment">缺点：对流量、速度等快速变化的参数不宜</span></span><br><span class="line"><span class="comment">******************************************************************************************************/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// #define N 3</span></span><br><span class="line"><span class="comment">// unsigned short value_buf[N];</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// short filter2()</span></span><br><span class="line"><span class="comment">// &#123;</span></span><br><span class="line"><span class="comment">//     unsigned short count, i, j, temp;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//     // 将采集的ADC值分别存入数组中，且后边存的值覆盖前边存的值</span></span><br><span class="line"><span class="comment">//     for (count = 0; count &lt; N; count++)</span></span><br><span class="line"><span class="comment">//     &#123;</span></span><br><span class="line"><span class="comment">//         value_buf[count] = ftable[a];</span></span><br><span class="line"><span class="comment">//         a++;</span></span><br><span class="line"><span class="comment">//         if (a == 254)</span></span><br><span class="line"><span class="comment">//         &#123;</span></span><br><span class="line"><span class="comment">//             a = 0;</span></span><br><span class="line"><span class="comment">//         &#125;</span></span><br><span class="line"><span class="comment">//     &#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//     // 冒泡排序 - 从小到大排</span></span><br><span class="line"><span class="comment">//     for (j = 0; j &lt; N - 1; j++)</span></span><br><span class="line"><span class="comment">//     &#123;</span></span><br><span class="line"><span class="comment">//         for (i = 0; i &lt; N - 1 - j; i++)</span></span><br><span class="line"><span class="comment">//         &#123;</span></span><br><span class="line"><span class="comment">//             if (value_buf[i] &gt; value_buf[i + 1])</span></span><br><span class="line"><span class="comment">//             &#123;</span></span><br><span class="line"><span class="comment">//                 temp             = value_buf[i];</span></span><br><span class="line"><span class="comment">//                 value_buf[i]     = value_buf[i + 1];</span></span><br><span class="line"><span class="comment">//                 value_buf[i + 1] = temp;</span></span><br><span class="line"><span class="comment">//             &#125;</span></span><br><span class="line"><span class="comment">//         &#125;</span></span><br><span class="line"><span class="comment">//     &#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//     // 选出中位数</span></span><br><span class="line"><span class="comment">//     printf(&quot;%d\n&quot;, value_buf[(N - 1) / 2]);</span></span><br><span class="line"><span class="comment">// &#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/******************************************************************************************************</span></span><br><span class="line"><span class="comment">方法三：算术平均滤波法</span></span><br><span class="line"><span class="comment">方法：连续取N个采样值进行算术平均运算：（ N值的选取：一般流量，N=12；压力：N=4。）</span></span><br><span class="line"><span class="comment">      N值较大时：信号平滑度较高，但灵敏度较低；</span></span><br><span class="line"><span class="comment">      N值较小时：信号平滑度较低，但灵敏度较高；</span></span><br><span class="line"><span class="comment">优点：适用于对一般具有随机干扰的信号进行滤波；这种信号的特点是有一个平均值，信号在某一数值范围附近上下波动</span></span><br><span class="line"><span class="comment">缺点：对于测量速度较慢或要求数据计算速度较快的实时控制不适用，比较浪费RAM。</span></span><br><span class="line"><span class="comment">******************************************************************************************************/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// #define N 5</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// short filter3()</span></span><br><span class="line"><span class="comment">// &#123;</span></span><br><span class="line"><span class="comment">//     unsigned short sum = 0, count;</span></span><br><span class="line"><span class="comment">//     for (count = 0; count &lt; N; count++)</span></span><br><span class="line"><span class="comment">//     &#123;</span></span><br><span class="line"><span class="comment">//         sum += ftable[a];</span></span><br><span class="line"><span class="comment">//         a++;</span></span><br><span class="line"><span class="comment">//         if (a == 254)</span></span><br><span class="line"><span class="comment">//         &#123;</span></span><br><span class="line"><span class="comment">//             a = 0;</span></span><br><span class="line"><span class="comment">//         &#125;</span></span><br><span class="line"><span class="comment">//     &#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//     printf(&quot;%d\n&quot;, sum / N);</span></span><br><span class="line"><span class="comment">// &#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/******************************************************************************************************</span></span><br><span class="line"><span class="comment">方法四：递推平均滤波法（又称滑动平均滤波法）</span></span><br><span class="line"><span class="comment">方法： 把连续取得的N个采样值看成一个队列，队列的长度固定为N，</span></span><br><span class="line"><span class="comment">       每次采样到一个新数据放入队尾，并扔掉原来队首的一次数据（先进先出原则），</span></span><br><span class="line"><span class="comment">       把队列中的N个数据进行算术平均运算，获得新的滤波结果。</span></span><br><span class="line"><span class="comment">       N值的选取：流量，N=12；压力，N=4；液面，N=4-12；温度，N=1-4。</span></span><br><span class="line"><span class="comment">优点：对周期性干扰有良好的抑制作用，平滑度高；</span></span><br><span class="line"><span class="comment">      适用于高频振荡的系统。</span></span><br><span class="line"><span class="comment">缺点：灵敏度低，对偶然出现的脉冲性干扰的抑制作用较差；</span></span><br><span class="line"><span class="comment">      不易消除由于脉冲干扰所引起的采样值偏差；</span></span><br><span class="line"><span class="comment">      不适用于脉冲干扰比较严重的场合；</span></span><br><span class="line"><span class="comment">      比较浪费RAM。</span></span><br><span class="line"><span class="comment">******************************************************************************************************/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// #define FILTER4_N 3</span></span><br><span class="line"><span class="comment">// unsigned short filter_buf[FILTER4_N + 1]; // 滑动窗口大小 4</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// short filter4()</span></span><br><span class="line"><span class="comment">// &#123;</span></span><br><span class="line"><span class="comment">//     static unsigned int j = 0;</span></span><br><span class="line"><span class="comment">//     int                 i = 0, filter_sum = 0;</span></span><br><span class="line"><span class="comment">//     filter_buf[FILTER4_N] = ftable[a]; // 将采集得到的数据依次存放到窗口数组最后</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//     a++;</span></span><br><span class="line"><span class="comment">//     if (a == 254)</span></span><br><span class="line"><span class="comment">//     &#123;</span></span><br><span class="line"><span class="comment">//         a = 0;</span></span><br><span class="line"><span class="comment">//     &#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//     for (i = 0; i &lt; FILTER4_N; i++)</span></span><br><span class="line"><span class="comment">//     &#123;</span></span><br><span class="line"><span class="comment">//         // i = 0 1 2</span></span><br><span class="line"><span class="comment">//         j++;</span></span><br><span class="line"><span class="comment">//         filter_buf[i] = filter_buf[i + 1]; // 将窗口数组元素左移，即舍弃窗口数组的0元素</span></span><br><span class="line"><span class="comment">//         filter_sum += filter_buf[i];       // 累加窗口数组前三个元素</span></span><br><span class="line"><span class="comment">//     &#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//     // 两轮过后才出现正确的均值，一轮3次，两轮6次；故 &gt; 6</span></span><br><span class="line"><span class="comment">//     if (j &gt; 6)</span></span><br><span class="line"><span class="comment">//     &#123;</span></span><br><span class="line"><span class="comment">//         printf(&quot;%d\n&quot;, filter_sum / FILTER4_N); // 窗口的前三个元素求平均</span></span><br><span class="line"><span class="comment">//     &#125;</span></span><br><span class="line"><span class="comment">// &#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/******************************************************************************************************</span></span><br><span class="line"><span class="comment">方法五：中位值平均滤波法（又称防脉冲干扰平均滤波法）</span></span><br><span class="line"><span class="comment">方法： 采一组队列去掉最大值和最小值后取平均值，     （N值的选取：3-14）。</span></span><br><span class="line"><span class="comment">      相当于“中位值滤波法”+“算术平均滤波法”。</span></span><br><span class="line"><span class="comment">      连续采样N个数据，去掉一个最大值和一个最小值，</span></span><br><span class="line"><span class="comment">      然后计算N-2个数据的算术平均值。</span></span><br><span class="line"><span class="comment">优点： 融合了“中位值滤波法”+“算术平均滤波法”两种滤波法的优点。</span></span><br><span class="line"><span class="comment">       对于偶然出现的脉冲性干扰，可消除由其所引起的采样值偏差。</span></span><br><span class="line"><span class="comment">       对周期干扰有良好的抑制作用。</span></span><br><span class="line"><span class="comment">       平滑度高，适于高频振荡的系统。</span></span><br><span class="line"><span class="comment">缺点：对于测量速度较慢或要求数据计算速度较快的实时控制不适用，比较浪费RAM。</span></span><br><span class="line"><span class="comment">******************************************************************************************************/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// #define N 3</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// int filter5()</span></span><br><span class="line"><span class="comment">// &#123;</span></span><br><span class="line"><span class="comment">//     int i, j;</span></span><br><span class="line"><span class="comment">//     int filter_temp, filter_sum = 0;</span></span><br><span class="line"><span class="comment">//     int filter_buf[N];</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//     for (i = 0; i &lt; N; i++)</span></span><br><span class="line"><span class="comment">//     &#123;</span></span><br><span class="line"><span class="comment">//         // i = 0 1 2</span></span><br><span class="line"><span class="comment">//         filter_buf[i] = ftable[a];</span></span><br><span class="line"><span class="comment">//         a++;</span></span><br><span class="line"><span class="comment">//         if (a == 254)</span></span><br><span class="line"><span class="comment">//         &#123;</span></span><br><span class="line"><span class="comment">//             a = 0;</span></span><br><span class="line"><span class="comment">//         &#125;</span></span><br><span class="line"><span class="comment">//     &#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//     // 冒泡排序 - 从小到大排</span></span><br><span class="line"><span class="comment">//     for (j = 0; j &lt; N - 1; j++)</span></span><br><span class="line"><span class="comment">//     &#123;</span></span><br><span class="line"><span class="comment">//         for (i = 0; i &lt; N - 1 - j; i++)</span></span><br><span class="line"><span class="comment">//         &#123;</span></span><br><span class="line"><span class="comment">//             if (filter_buf[i] &gt; filter_buf[i + 1])</span></span><br><span class="line"><span class="comment">//             &#123;</span></span><br><span class="line"><span class="comment">//                 filter_temp       = filter_buf[i];</span></span><br><span class="line"><span class="comment">//                 filter_buf[i]     = filter_buf[i + 1];</span></span><br><span class="line"><span class="comment">//                 filter_buf[i + 1] = filter_temp;</span></span><br><span class="line"><span class="comment">//             &#125;</span></span><br><span class="line"><span class="comment">//         &#125;</span></span><br><span class="line"><span class="comment">//     &#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//     // 去除最大最小极值后求平均 - filter_buf[0]为最小值，filter_buf[N]为最大值</span></span><br><span class="line"><span class="comment">//     for (i = 1; i &lt; N - 1; i++)</span></span><br><span class="line"><span class="comment">//     &#123;</span></span><br><span class="line"><span class="comment">//         // i = 1</span></span><br><span class="line"><span class="comment">//         filter_sum += filter_buf[i];</span></span><br><span class="line"><span class="comment">//     &#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//     printf(&quot;%d\n&quot;, filter_sum / (N - 2));</span></span><br><span class="line"><span class="comment">// &#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/******************************************************************************************************</span></span><br><span class="line"><span class="comment">方法六：限幅平均滤波法</span></span><br><span class="line"><span class="comment">方法： 相当于“限幅滤波法”+“递推平均滤波法”；</span></span><br><span class="line"><span class="comment">       每次采样到的新数据先进行限幅处理，</span></span><br><span class="line"><span class="comment">       再送入队列进行递推平均滤波处理。</span></span><br><span class="line"><span class="comment">优点： 融合了两种滤波法的优点；</span></span><br><span class="line"><span class="comment">      对于偶然出现的脉冲性干扰，可消除由于脉冲干扰所引起的采样值偏差。</span></span><br><span class="line"><span class="comment">缺点：比较浪费RAM。</span></span><br><span class="line"><span class="comment">******************************************************************************************************/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// #define FILTER6_N 3</span></span><br><span class="line"><span class="comment">// #define FILTER6_A 51</span></span><br><span class="line"><span class="comment">// int filter_buf[FILTER6_N];</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// int filter6()</span></span><br><span class="line"><span class="comment">// &#123;</span></span><br><span class="line"><span class="comment">//     int i;</span></span><br><span class="line"><span class="comment">//     int filter_sum            = 0;</span></span><br><span class="line"><span class="comment">//     filter_buf[FILTER6_N - 1] = ftable[a]; // 将采样值依次存到数组最后一个元素</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//     a++;</span></span><br><span class="line"><span class="comment">//     if (a == 254)</span></span><br><span class="line"><span class="comment">//     &#123;</span></span><br><span class="line"><span class="comment">//         a = 0;</span></span><br><span class="line"><span class="comment">//     &#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//     if (a &lt; 3)</span></span><br><span class="line"><span class="comment">//     &#123;</span></span><br><span class="line"><span class="comment">//         filter_buf[FILTER6_N - 3] = ftable[0];</span></span><br><span class="line"><span class="comment">//         filter_buf[FILTER6_N - 2] = ftable[1];</span></span><br><span class="line"><span class="comment">//         filter_buf[FILTER6_N - 1] = ftable[2];</span></span><br><span class="line"><span class="comment">//     &#125;</span></span><br><span class="line"><span class="comment">//     else</span></span><br><span class="line"><span class="comment">//     &#123;</span></span><br><span class="line"><span class="comment">//         // 若 filter_buf数组 中后两个元素之差大于 FILTER6_A</span></span><br><span class="line"><span class="comment">//         if (((filter_buf[FILTER6_N - 1] - filter_buf[FILTER6_N - 2]) &gt; FILTER6_A) || ((filter_buf[FILTER6_N - 2] - filter_buf[FILTER6_N - 1]) &gt; FILTER6_A))</span></span><br><span class="line"><span class="comment">//         &#123;</span></span><br><span class="line"><span class="comment">//             // 将倒数第二个元素覆盖最后一个元素 - 若超出规定幅值，则舍弃本次采集的值，并使用上次的ADC值代替</span></span><br><span class="line"><span class="comment">//             filter_buf[FILTER6_N - 1] = filter_buf[FILTER6_N - 2];</span></span><br><span class="line"><span class="comment">//         &#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//         for (i = 0; i &lt; FILTER6_N - 1; i++)</span></span><br><span class="line"><span class="comment">//         &#123;</span></span><br><span class="line"><span class="comment">//             // i = 0 1</span></span><br><span class="line"><span class="comment">//             filter_buf[i] = filter_buf[i + 1]; // 数组元素左移</span></span><br><span class="line"><span class="comment">//             filter_sum += filter_buf[i];</span></span><br><span class="line"><span class="comment">//         &#125;</span></span><br><span class="line"><span class="comment">//         printf(&quot;%d\n&quot;, filter_sum / (FILTER6_N - 1));</span></span><br><span class="line"><span class="comment">//     &#125;</span></span><br><span class="line"><span class="comment">// &#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/******************************************************************************************************</span></span><br><span class="line"><span class="comment">方法七：一阶滞后滤波法</span></span><br><span class="line"><span class="comment">方法： 取a=0-1，本次滤波结果=(1-a)*本次采样值+a*上次滤波结果。</span></span><br><span class="line"><span class="comment">优点：  对周期性干扰具有良好的抑制作用；</span></span><br><span class="line"><span class="comment">        适用于波动频率较高的场合。</span></span><br><span class="line"><span class="comment">       平滑度高，适于高频振荡的系统。</span></span><br><span class="line"><span class="comment">缺点： 相位滞后，灵敏度低；</span></span><br><span class="line"><span class="comment">      滞后程度取决于a值大小；</span></span><br><span class="line"><span class="comment">      不能消除滤波频率高于采样频率1/2的干扰信号。</span></span><br><span class="line"><span class="comment">******************************************************************************************************/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// #define FILTER7_A 0.01</span></span><br><span class="line"><span class="comment">// unsigned short Value;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// short filter7()</span></span><br><span class="line"><span class="comment">// &#123;</span></span><br><span class="line"><span class="comment">//     int NewValue;</span></span><br><span class="line"><span class="comment">//     Value    = ftable[b - 1];</span></span><br><span class="line"><span class="comment">//     NewValue = ftable[b];</span></span><br><span class="line"><span class="comment">//     b++;</span></span><br><span class="line"><span class="comment">//     if (b == 255)</span></span><br><span class="line"><span class="comment">//     &#123;</span></span><br><span class="line"><span class="comment">//         b = 1;</span></span><br><span class="line"><span class="comment">//     &#125;</span></span><br><span class="line"><span class="comment">//     Value = (int)((float)NewValue * FILTER7_A + (1.0 - FILTER7_A) * (float)Value);</span></span><br><span class="line"><span class="comment">//     printf(&quot;%d\n&quot;, Value);</span></span><br><span class="line"><span class="comment">// &#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/******************************************************************************************************</span></span><br><span class="line"><span class="comment">方法八：加权递推平均滤波法</span></span><br><span class="line"><span class="comment">方法： 是对递推平均滤波法的改进，即不同时刻的数据加以不同的权；</span></span><br><span class="line"><span class="comment">       通常是，越接近现时刻的数据，权取得越大。</span></span><br><span class="line"><span class="comment">       给予新采样值的权系数越大，则灵敏度越高，但信号平滑度越低。</span></span><br><span class="line"><span class="comment">优点： 适用于有较大纯滞后时间常数的对象，和采样周期较短的系统。</span></span><br><span class="line"><span class="comment">缺点：  对于纯滞后时间常数较小、采样周期较长、变化缓慢的信号；</span></span><br><span class="line"><span class="comment">       不能迅速反应系统当前所受干扰的严重程度，滤波效果差。</span></span><br><span class="line"><span class="comment">******************************************************************************************************/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// #define FILTER8_N 12</span></span><br><span class="line"><span class="comment">// int coe[FILTER8_N] = &#123;1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12&#125;;          // 加权系数表</span></span><br><span class="line"><span class="comment">// int sum_coe        = 1 + 2 + 3 + 4 + 5 + 6 + 7 + 8 + 9 + 10 + 11 + 12; // 加权系数和</span></span><br><span class="line"><span class="comment">// int filter_buf[FILTER8_N + 1];</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// int filter8()</span></span><br><span class="line"><span class="comment">// &#123;</span></span><br><span class="line"><span class="comment">//     int i;</span></span><br><span class="line"><span class="comment">//     int filter_sum        = 0;</span></span><br><span class="line"><span class="comment">//     filter_buf[FILTER8_N] = ftable[a];</span></span><br><span class="line"><span class="comment">//     a++;</span></span><br><span class="line"><span class="comment">//     if (a == 254)</span></span><br><span class="line"><span class="comment">//     &#123;</span></span><br><span class="line"><span class="comment">//         a = 0;</span></span><br><span class="line"><span class="comment">//     &#125;</span></span><br><span class="line"><span class="comment">//     for (i = 0; i &lt; FILTER8_N; i++)</span></span><br><span class="line"><span class="comment">//     &#123;</span></span><br><span class="line"><span class="comment">//         filter_buf[i] = filter_buf[i + 1]; // 数组元素左移，将第0个元素舍弃</span></span><br><span class="line"><span class="comment">//         filter_sum += filter_buf[i] * coe[i];</span></span><br><span class="line"><span class="comment">//     &#125;</span></span><br><span class="line"><span class="comment">//     filter_sum /= sum_coe;</span></span><br><span class="line"><span class="comment">//     printf(&quot;%d\n&quot;, filter_sum);</span></span><br><span class="line"><span class="comment">// &#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/******************************************************************************************************</span></span><br><span class="line"><span class="comment">方法九： 消抖滤波法</span></span><br><span class="line"><span class="comment">方法：  设置一个滤波计数器，将每次采样值与当前有效值比较：</span></span><br><span class="line"><span class="comment">       如果采样值 = 当前有效值，则计数器清零；</span></span><br><span class="line"><span class="comment">       如果采样值 &lt; 或 &gt; 当前有效值，则计数器+1，并判断计数器是否 &gt;= 上限N（溢出）；</span></span><br><span class="line"><span class="comment">       如果计数器溢出，则将本次值替换当前有效值，并清计数器。</span></span><br><span class="line"><span class="comment">优点：  对于变化缓慢的被测参数有较好的滤波效果；</span></span><br><span class="line"><span class="comment">        可避免在临界值附近控制器的反复开/关跳动或显示器上数值抖动。</span></span><br><span class="line"><span class="comment">缺点：  对于快速变化的参数不宜；</span></span><br><span class="line"><span class="comment">       如果在计数器溢出的那一次采样到的值恰好是干扰值,则会将干扰值当作有效值导入系统。</span></span><br><span class="line"><span class="comment">******************************************************************************************************/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// #define FILTER9_N 51</span></span><br><span class="line"><span class="comment">// unsigned short i = 0;</span></span><br><span class="line"><span class="comment">// unsigned short Value;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// short filter9()</span></span><br><span class="line"><span class="comment">// &#123;</span></span><br><span class="line"><span class="comment">//     int new_value;</span></span><br><span class="line"><span class="comment">//     Value     = ftable[b - 1];</span></span><br><span class="line"><span class="comment">//     new_value = ftable[b];</span></span><br><span class="line"><span class="comment">//     b++;</span></span><br><span class="line"><span class="comment">//     if (b == 255)</span></span><br><span class="line"><span class="comment">//     &#123;</span></span><br><span class="line"><span class="comment">//         b = 1;</span></span><br><span class="line"><span class="comment">//     &#125;</span></span><br><span class="line"><span class="comment">//     if (Value != new_value)</span></span><br><span class="line"><span class="comment">//     &#123;</span></span><br><span class="line"><span class="comment">//         i++;</span></span><br><span class="line"><span class="comment">//         if (i &gt; FILTER9_N)</span></span><br><span class="line"><span class="comment">//         &#123;</span></span><br><span class="line"><span class="comment">//             i     = 0;</span></span><br><span class="line"><span class="comment">//             Value = new_value;</span></span><br><span class="line"><span class="comment">//         &#125;</span></span><br><span class="line"><span class="comment">//     &#125;</span></span><br><span class="line"><span class="comment">//     else</span></span><br><span class="line"><span class="comment">//     &#123;</span></span><br><span class="line"><span class="comment">//         i = 0;</span></span><br><span class="line"><span class="comment">//     &#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//     printf(&quot;%d\n&quot;, Value);</span></span><br><span class="line"><span class="comment">// &#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/******************************************************************************************************</span></span><br><span class="line"><span class="comment">方法十：限幅消抖滤波法</span></span><br><span class="line"><span class="comment">方法： 相当于“限幅滤波法”+“消抖滤波法”；</span></span><br><span class="line"><span class="comment">       先限幅，后消抖。</span></span><br><span class="line"><span class="comment">优点：  继承了“限幅”和“消抖”的优点；</span></span><br><span class="line"><span class="comment">        改进了“消抖滤波法”中的某些缺陷，避免将干扰值导入系统。</span></span><br><span class="line"><span class="comment">缺点：   对于快速变化的参数不宜。</span></span><br><span class="line"><span class="comment">******************************************************************************************************/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// #define FILTER10_A 51</span></span><br><span class="line"><span class="comment">// #define FILTER10_N 5</span></span><br><span class="line"><span class="comment">// unsigned short i = 0;</span></span><br><span class="line"><span class="comment">// unsigned short Value;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// short filter10()</span></span><br><span class="line"><span class="comment">// &#123;</span></span><br><span class="line"><span class="comment">//     unsigned short NewValue;</span></span><br><span class="line"><span class="comment">//     unsigned short new_value;</span></span><br><span class="line"><span class="comment">//     Value    = ftable[b - 1];</span></span><br><span class="line"><span class="comment">//     NewValue = ftable[b];</span></span><br><span class="line"><span class="comment">//     b++;</span></span><br><span class="line"><span class="comment">//     if (b == 255)</span></span><br><span class="line"><span class="comment">//     &#123;</span></span><br><span class="line"><span class="comment">//         b = 1;</span></span><br><span class="line"><span class="comment">//     &#125;</span></span><br><span class="line"><span class="comment">//     if (((NewValue - Value) &gt; FILTER10_A) || ((Value - NewValue) &gt; FILTER10_A))</span></span><br><span class="line"><span class="comment">//     &#123;</span></span><br><span class="line"><span class="comment">//         new_value = Value;</span></span><br><span class="line"><span class="comment">//     &#125;</span></span><br><span class="line"><span class="comment">//     else</span></span><br><span class="line"><span class="comment">//     &#123;</span></span><br><span class="line"><span class="comment">//         new_value = NewValue;</span></span><br><span class="line"><span class="comment">//     &#125;</span></span><br><span class="line"><span class="comment">//     if (Value != new_value)</span></span><br><span class="line"><span class="comment">//     &#123;</span></span><br><span class="line"><span class="comment">//         i++;</span></span><br><span class="line"><span class="comment">//         if (i &gt; FILTER10_N)</span></span><br><span class="line"><span class="comment">//         &#123;</span></span><br><span class="line"><span class="comment">//             i     = 0;</span></span><br><span class="line"><span class="comment">//             Value = new_value;</span></span><br><span class="line"><span class="comment">//         &#125;</span></span><br><span class="line"><span class="comment">//     &#125;</span></span><br><span class="line"><span class="comment">//     else</span></span><br><span class="line"><span class="comment">//     &#123;</span></span><br><span class="line"><span class="comment">//         i = 0;</span></span><br><span class="line"><span class="comment">//     &#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//     printf(&quot;%d\n&quot;, Value);</span></span><br><span class="line"><span class="comment">// &#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * @brief     主函数</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">while</span> (<span class="number">1</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// filter1();</span></span><br><span class="line">        <span class="comment">// filter2();</span></span><br><span class="line">        <span class="comment">// filter3();</span></span><br><span class="line">        <span class="comment">// filter4();</span></span><br><span class="line">        <span class="comment">// filter5();</span></span><br><span class="line">        <span class="comment">// filter6();</span></span><br><span class="line">        <span class="comment">// filter7();</span></span><br><span class="line">        <span class="comment">// filter8();</span></span><br><span class="line">        <span class="comment">// filter9();</span></span><br><span class="line">        <span class="comment">// filter10();</span></span><br><span class="line">        Sleep(<span class="number">300</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h2 id="程序顺序执行、定时器任务执行及各种RTOS的优缺点及原理"><a href="#程序顺序执行、定时器任务执行及各种RTOS的优缺点及原理" class="headerlink" title="程序顺序执行、定时器任务执行及各种RTOS的优缺点及原理"></a>程序顺序执行、定时器任务执行及各种RTOS的优缺点及原理</h2><h3 id="程序顺序执行优缺点"><a href="#程序顺序执行优缺点" class="headerlink" title="程序顺序执行优缺点"></a>程序顺序执行优缺点</h3><p><strong>顺序执行：</strong>是指程序按照代码的书写顺序依次执行，每个任务必须等待前面的任务执行完成后才能执行。这种执行方式简单明了，<strong>易于理解和调试</strong>，但<strong>执行效率相对较低</strong>，因为程序需要等待前面的任务完成后才能开始执行下一个任务。</p>
-<p><strong>并发执行：</strong>是指程序中的多个任务可以同时执行，不必等待前面的任务完成。这种执行方式可以<strong>提高执行效率</strong>，<strong>充分利用计算机的资源</strong>，但也<strong>会带来一些问题，如竞争条件、死锁等</strong>。</p>
-<p><strong>程序顺序执行的特征主要包括顺序性、封闭性、可再现性、可控制性、自上而下、确定性：</strong></p>
-<p><strong>顺序性：</strong>程序按照编写的顺序一步一步地执行，每一步完成后才能进入下一步，直到程序执行完毕。这一特征确保了程序执行的顺序性，即程序的操作严格按照程序所规定的顺序执行，每个操作必须在下一操作开始之前结束。</p>
-<p><strong>封闭性：</strong>程序在封闭的环境下执行，即程序运行时独占全机资源，资源的状态（除初始状态外）只有本程序才能改变它。程序一旦开始执行，其执行结果不受外界因素影响。</p>
-<p><strong>可再现性：</strong>程序的顺序执行是可重复的，即每次执行都按照相同的顺序和方式执行，结果也应该是相同的。只要程序执行时的环境和初始条件相同，当程序重复执行时，无论它是从头到尾不停顿地执行，还是“停停走走”地执行，都将获得相同的结果。</p>
-<p><strong>可控制性：</strong>程序的顺序执行是可控制的，即可以通过程序中的控制语句（如条件语句、循环语句）来改变程序的执行顺序和方式。</p>
-<p><strong>自上而下：</strong>程序的顺序执行是自上而下的，即从程序的第一行开始执行，直到最后一行结束。</p>
-<p><strong>确定性：</strong>程序执行的结果与它的执行过程无关。换言之，就是程序无论是从头到尾地执行，还是“停停走走”地执行，都不会影响所得结果。</p>
-<h3 id="定时器任务执行的优缺点"><a href="#定时器任务执行的优缺点" class="headerlink" title="定时器任务执行的优缺点"></a>定时器任务执行的优缺点</h3><p>定时器的工作原理是基于时序控制的模块，它的作用是按照程序预定的时序点，定时触发动作，从而起到程序控制的作用，它可以按照一定的时序，定时触发某些事件</p>
-<p><strong>优点：</strong></p>
-<ol>
-<li>可以增加程序的灵活性</li>
-<li>可以降低程序的复杂度（可以用它来控制单片机的某些动作，这样可以减少程序中的指令数）</li>
-<li>可以提高程序的稳定性（它可以按照一定的时序触发某些事件，从而提高程序的可靠性）</li>
-</ol>
-<p><strong>缺点</strong>：</p>
-<ol>
-<li>容易出现程序错误（它可以按照一定的时序触发某些事件，但是这种触发事件可能会出现误差，从而导致程序错误）</li>
-<li>会降低单片机的运行效率（按照一定的时序编程会占用一定的单片机处理时间，从而降低单片机的运行效率）</li>
-</ol>
-<p><strong>主要用途：</strong></p>
-<ol>
-<li><p>延时调节：可以用来对某种设备进行延时调节，控制某种设备的工作时间，从而达到控制设备的效果</p>
-</li>
-<li><p>定时控制：可以用来定时控制多种设备，按照一定的时序控制设备，从而获得更加精确的控制效果</p>
-</li>
-<li><p>事件触发：可以触发某种事件，按照一定的时序触发某种事件，从而达到控制程序的作用</p>
-</li>
-<li><p>系统调度：可以用来调度系统的操作，按照一定的时序来进行系统的调度控制，从而达到最佳的操作效果</p>
-</li>
-</ol>
-<h3 id="RTOS的优缺点"><a href="#RTOS的优缺点" class="headerlink" title="RTOS的优缺点"></a>RTOS的优缺点</h3><p><strong>RTOS</strong>，全称 Real-Time Operating System ，即 <strong>实时操作系统</strong>。它是一种专门用于实时系统的操作系统，主要目的是提供及时响应和高可靠性。RTOS的核心在于其任务调度功能，它能严格按照优先级分配CPU时间片，确保实时任务得到及时处理。</p>
-<p><strong>RTOS技术的概念及特点：</strong></p>
-<ol>
-<li>实时性：RTOS的最主要特征是对实时性的支持。它能够确保系统在规定的时间内对事件作出响应，包括硬实时系统（需要对任务响应时间进行硬性保证）和软实时系统（对任务的响应时间有一定的容忍度）。</li>
-<li>任务调度：RTOS包含一个任务调度器，能够有效地管理多个任务的执行。它负责按照优先级或其他调度算法，决定哪个任务在何时执行。</li>
-<li>任务管理：RTOS提供任务管理功能，允许开发者创建、删除、挂起和恢复任务。任务是系统中的基本执行单元，可以看作是一个独立的线程。</li>
-<li>中断服务例程： RTOS通常支持中断服务例程，以处理来自外部设备或其他任务的中断请求。中断服务例程是一段能够在中断事件发生时迅速执行的代码。</li>
-<li>实时时钟：RTOS提供实时时钟服务，用于测量和记录时间，帮助任务和事件的时间同步。</li>
-<li>同步和通信机制：为了实现任务之间的合作和通信，RTOS提供了同步和通信机制，如信号量、消息队列、互斥锁等。</li>
-<li>资源管理：RTOS能够有效地管理和分配系统资源，包括内存、外设等，以确保任务能够按照预期的方式协同工作。</li>
-<li>可裁剪性：RTOS通常具有可裁剪的特性，允许用户根据具体应用的需求选择性地启用或禁用某些功能，以减小系统的开销。</li>
-</ol>
-<p><strong>优点：</strong></p>
-<ol>
-<li>系统结构更清晰：当代码量较大时，RTOS会提供一个稳定的、结构清晰的框架，方便后续的开发与维护。</li>
-<li>模块化和高内聚：使用RTOS写任务可以做到更加模块化，高内聚，低耦合，有利于代码的学习和技术提升。</li>
-<li>中间件丰富：RTOS中间件比较多，可以方便移植使用，减少开发者的工作量。</li>
-<li>趋势和适应性：随着32位CPU市场的扩大，RTOS的使用也成为一个趋势，尤其在一些特定的行业如工控、医疗、航空军工等，RTOS的强实时性和高稳定性使其更具优势。</li>
-</ol>
-<p><strong>缺点：</strong></p>
-<ol>
-<li>资源开销：RTOS本身会占用一些系统资源，包括内存和处理器时间。</li>
-<li>学习曲线：学习RTOS可能需要一些时间，特别是对于初学者。</li>
-<li>不适用于所有应用：对于一些简单的嵌入式应用，引入RTOS可能会显得过于庞大和不必要。</li>
-</ol>
-<p><strong>RTOS与裸机如何选择：</strong></p>
-<ol>
-<li>实时性需求： 如果系统对实时性能要求较高，特别是在响应时间上有硬性要求，RTOS可能更为适用。</li>
-<li>开发周期：对于较为简单的项目，裸机开发可能更快速。</li>
-<li>复杂性：如果项目较为复杂，多任务、同步和通信需求较多，RTOS可能提供更好的抽象和管理。</li>
-<li>资源约束：如果系统资源有限，裸机开发可能更为合适，因为RTOS本身会占用一些额外的资源。</li>
-</ol>
-<h2 id="IIC"><a href="#IIC" class="headerlink" title="IIC"></a>IIC</h2><h3 id="模拟iic和硬件iic区别"><a href="#模拟iic和硬件iic区别" class="headerlink" title="模拟iic和硬件iic区别"></a>模拟iic和硬件iic区别</h3><p><strong>I2C协议可以被模拟和硬件实现：</strong><br>模拟I2C是用两条GPIO（General Purpose Input Output）管脚的软件模拟的，将一个GPIO设置为数据线SDA，另外一个设置为时钟线SCL。<br>硬件I2C则是通过一个I2C控制器实现的，该控制器被建立在微控制器芯片或单独的I2C芯片中，通过集成的硬件内部逻辑和电路来控制时序和数据格式，实现I2C总线通信。</p>
-<p>I2C协议传输时分为两类线，一类为时钟线SCL，另一类为数据线SDA。时钟线由主节点产生，用于同步数据传输，数据线用于传输真正的数据。</p>
-<p>模拟I2C的主要限制是不能在高速模式下运行，并且有可能出现线路噪音、误码等问题。<br>硬件I2C通信更加可靠，并且具有更高的性能。</p>
-<p>硬件控制器内置在微控制器芯片或者单独的I2C芯片中，在控制器的支持下，可以实现高速数据传输，避免了SCL和SDA之间的相互影响。此外，在硬件I2C中，处理信号和协议的复杂算法已经内置在控制器中，不需要用户自己实现，简化了通信过程，提高了可靠性。</p>
-<p>软件I2C作为一个模拟方法，还存在另一个重要的缺点就是不同于硬件I2C，模拟I2C的芯片在同时进行通信时需要耗费大量的CPU资源，对内存和处理器速度的要求更高。<br>反过来，硬件I2C通常可以在任何操作系统和平台上轻松使用，这种通信协议不需要使用大量的额外的内存或处理器周期。</p>
-<h4 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h4><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 函    数：I2C写SCL引脚电平</span></span><br><span class="line"><span class="comment"> * 参    数：BitValue 协议层传入的当前需要写入SCL的电平，范围0~1</span></span><br><span class="line"><span class="comment"> * 返 回 值：无</span></span><br><span class="line"><span class="comment"> * 注意事项：此函数需要用户实现内容，当BitValue为0时，需要置SCL为低电平，当BitValue为1时，需要置SCL为高电平</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">MyI2C_W_SCL</span><span class="params">(<span class="type">uint8_t</span> BitValue)</span></span><br><span class="line">&#123;</span><br><span class="line">    GPIO_WriteBit(GPIOB, GPIO_Pin_10, (BitAction)BitValue); <span class="comment">// 根据BitValue，设置SCL引脚的电平</span></span><br><span class="line">    Delay_us(<span class="number">10</span>);                                           <span class="comment">// 延时10us，防止时序频率超过要求</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 函    数：I2C写SDA引脚电平</span></span><br><span class="line"><span class="comment"> * 参    数：BitValue 协议层传入的当前需要写入SDA的电平，范围0~0xFF</span></span><br><span class="line"><span class="comment"> * 返 回 值：无</span></span><br><span class="line"><span class="comment"> * 注意事项：此函数需要用户实现内容，当BitValue为0时，需要置SDA为低电平，当BitValue非0时，需要置SDA为高电平</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">MyI2C_W_SDA</span><span class="params">(<span class="type">uint8_t</span> BitValue)</span></span><br><span class="line">&#123;</span><br><span class="line">    GPIO_WriteBit(GPIOB, GPIO_Pin_11, (BitAction)BitValue); <span class="comment">// 根据BitValue，设置SDA引脚的电平，BitValue要实现非0即1的特性</span></span><br><span class="line">    Delay_us(<span class="number">10</span>);                                           <span class="comment">// 延时10us，防止时序频率超过要求</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 函    数：I2C读SDA引脚电平</span></span><br><span class="line"><span class="comment"> * 参    数：无</span></span><br><span class="line"><span class="comment"> * 返 回 值：协议层需要得到的当前SDA的电平，范围0~1</span></span><br><span class="line"><span class="comment"> * 注意事项：此函数需要用户实现内容，当前SDA为低电平时，返回0，当前SDA为高电平时，返回1</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="type">uint8_t</span> <span class="title function_">MyI2C_R_SDA</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">uint8_t</span> BitValue;</span><br><span class="line">    BitValue = GPIO_ReadInputDataBit(GPIOB, GPIO_Pin_11); <span class="comment">// 读取SDA电平</span></span><br><span class="line">    Delay_us(<span class="number">10</span>);                                         <span class="comment">// 延时10us，防止时序频率超过要求</span></span><br><span class="line">    <span class="keyword">return</span> BitValue;                                      <span class="comment">// 返回SDA电平</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 函    数：I2C初始化</span></span><br><span class="line"><span class="comment"> * 参    数：无</span></span><br><span class="line"><span class="comment"> * 返 回 值：无</span></span><br><span class="line"><span class="comment"> * 注意事项：此函数需要用户实现内容，实现SCL和SDA引脚的初始化</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">MyI2C_Init</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">/*开启时钟*/</span></span><br><span class="line">    RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOB, ENABLE); <span class="comment">// 开启GPIOB的时钟</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">/*GPIO初始化*/</span></span><br><span class="line">    GPIO_InitTypeDef GPIO_InitStructure;</span><br><span class="line">    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_OD;</span><br><span class="line">    GPIO_InitStructure.GPIO_Pin = GPIO_Pin_10 | GPIO_Pin_11;</span><br><span class="line">    GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;</span><br><span class="line">    GPIO_Init(GPIOB, &amp;GPIO_InitStructure); <span class="comment">// 将PB10和PB11引脚初始化为开漏输出</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">/*设置默认电平*/</span></span><br><span class="line">    GPIO_SetBits(GPIOB, GPIO_Pin_10 | GPIO_Pin_11); <span class="comment">// 设置PB10和PB11引脚初始化后默认为高电平（释放总线状态）</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*协议层*/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 函    数：I2C起始</span></span><br><span class="line"><span class="comment"> * 参    数：无</span></span><br><span class="line"><span class="comment"> * 返 回 值：无</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">MyI2C_Start</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    MyI2C_W_SDA(<span class="number">1</span>); <span class="comment">// 释放SDA，确保SDA为高电平</span></span><br><span class="line">    MyI2C_W_SCL(<span class="number">1</span>); <span class="comment">// 释放SCL，确保SCL为高电平</span></span><br><span class="line">    MyI2C_W_SDA(<span class="number">0</span>); <span class="comment">// 在SCL高电平期间，拉低SDA，产生起始信号</span></span><br><span class="line">    MyI2C_W_SCL(<span class="number">0</span>); <span class="comment">// 起始后把SCL也拉低，即为了占用总线，也为了方便总线时序的拼接</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 函    数：I2C终止</span></span><br><span class="line"><span class="comment"> * 参    数：无</span></span><br><span class="line"><span class="comment"> * 返 回 值：无</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">MyI2C_Stop</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    MyI2C_W_SDA(<span class="number">0</span>); <span class="comment">// 拉低SDA，确保SDA为低电平</span></span><br><span class="line">    MyI2C_W_SCL(<span class="number">1</span>); <span class="comment">// 释放SCL，使SCL呈现高电平</span></span><br><span class="line">    MyI2C_W_SDA(<span class="number">1</span>); <span class="comment">// 在SCL高电平期间，释放SDA，产生终止信号</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 函    数：I2C发送一个字节</span></span><br><span class="line"><span class="comment"> * 参    数：Byte 要发送的一个字节数据，范围：0x00~0xFF</span></span><br><span class="line"><span class="comment"> * 返 回 值：无</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">MyI2C_SendByte</span><span class="params">(<span class="type">uint8_t</span> Byte)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">uint8_t</span> i;</span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; <span class="number">8</span>; i++) <span class="comment">// 循环8次，主机依次发送数据的每一位</span></span><br><span class="line">    &#123;</span><br><span class="line">        MyI2C_W_SDA(Byte &amp; (<span class="number">0x80</span> &gt;&gt; i)); <span class="comment">// 使用掩码的方式取出Byte的指定一位数据并写入到SDA线</span></span><br><span class="line">        MyI2C_W_SCL(<span class="number">1</span>);                  <span class="comment">// 释放SCL，从机在SCL高电平期间读取SDA</span></span><br><span class="line">        MyI2C_W_SCL(<span class="number">0</span>);                  <span class="comment">// 拉低SCL，主机开始发送下一位数据</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 函    数：I2C接收一个字节</span></span><br><span class="line"><span class="comment"> * 参    数：无</span></span><br><span class="line"><span class="comment"> * 返 回 值：接收到的一个字节数据，范围：0x00~0xFF</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="type">uint8_t</span> <span class="title function_">MyI2C_ReceiveByte</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">uint8_t</span> i, Byte = <span class="number">0x00</span>; <span class="comment">// 定义接收的数据，并赋初值0x00，此处必须赋初值0x00，后面会用到</span></span><br><span class="line">    MyI2C_W_SDA(<span class="number">1</span>);         <span class="comment">// 接收前，主机先确保释放SDA，避免干扰从机的数据发送</span></span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">0</span>; i &lt; <span class="number">8</span>; i++) <span class="comment">// 循环8次，主机依次接收数据的每一位</span></span><br><span class="line">    &#123;</span><br><span class="line">        MyI2C_W_SCL(<span class="number">1</span>); <span class="comment">// 释放SCL，主机在SCL高电平期间读取SDA</span></span><br><span class="line">        <span class="keyword">if</span> (MyI2C_R_SDA() == <span class="number">1</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            Byte |= (<span class="number">0x80</span> &gt;&gt; i);</span><br><span class="line">        &#125; <span class="comment">// 读取SDA数据，并存储到Byte变量</span></span><br><span class="line">          <span class="comment">// 当SDA为1时，置变量指定位为1，当SDA为0时，不做处理，指定位为默认的初值0</span></span><br><span class="line">        MyI2C_W_SCL(<span class="number">0</span>); <span class="comment">// 拉低SCL，从机在SCL低电平期间写入SDA</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> Byte; <span class="comment">// 返回接收到的一个字节数据</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 函    数：I2C发送应答位</span></span><br><span class="line"><span class="comment"> * 参    数：Byte 要发送的应答位，范围：0~1，0表示应答，1表示非应答</span></span><br><span class="line"><span class="comment"> * 返 回 值：无</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">MyI2C_SendAck</span><span class="params">(<span class="type">uint8_t</span> AckBit)</span></span><br><span class="line">&#123;</span><br><span class="line">    MyI2C_W_SDA(AckBit); <span class="comment">// 主机把应答位数据放到SDA线</span></span><br><span class="line">    MyI2C_W_SCL(<span class="number">1</span>);      <span class="comment">// 释放SCL，从机在SCL高电平期间，读取应答位</span></span><br><span class="line">    MyI2C_W_SCL(<span class="number">0</span>);      <span class="comment">// 拉低SCL，开始下一个时序模块</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 函    数：I2C接收应答位</span></span><br><span class="line"><span class="comment"> * 参    数：无</span></span><br><span class="line"><span class="comment"> * 返 回 值：接收到的应答位，范围：0~1，0表示应答，1表示非应答</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="type">uint8_t</span> <span class="title function_">MyI2C_ReceiveAck</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">uint8_t</span> AckBit;         <span class="comment">// 定义应答位变量</span></span><br><span class="line">    MyI2C_W_SDA(<span class="number">1</span>);         <span class="comment">// 接收前，主机先确保释放SDA，避免干扰从机的数据发送</span></span><br><span class="line">    MyI2C_W_SCL(<span class="number">1</span>);         <span class="comment">// 释放SCL，主机机在SCL高电平期间读取SDA</span></span><br><span class="line">    AckBit = MyI2C_R_SDA(); <span class="comment">// 将应答位存储到变量里</span></span><br><span class="line">    MyI2C_W_SCL(<span class="number">0</span>);         <span class="comment">// 拉低SCL，开始下一个时序模块</span></span><br><span class="line">    <span class="keyword">return</span> AckBit;          <span class="comment">// 返回定义应答位变量</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h4 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h4><ol>
-<li>根据传输的位来拉<code>SCL</code>与<code>SDA</code>线电平：若该位为1，则拉高<code>SCL</code>与<code>SDA</code>线电平，否则就拉低</li>
-<li><code>SCL</code>与<code>SDA</code>需默认<strong>拉高</strong>，以<strong>释放总线状态</strong>，准备好传输数据</li>
-<li>IIC起始信号：<code>SCL</code>高电平，<code>SDA</code>下降沿<strong>（注：起始后需把SCL也拉低，使主机占用总线准备发送数据）</strong>；IIC结束信号：<code>SCL</code>高电平，<code>SDA</code>上升沿；</li>
-<li>主机发送：每次发送1位，循环8次即可发送一个字节；在发送数据时，应先拉高<code>SCL</code>（从机在<code>SCL</code>高电平期间读取<code>SDA</code>），再拉低<code>SCL</code>（主机开始发送下一位数据）</li>
-<li>从机接收：在接收前，应先拉高<code>SDA</code>，避免主机抢占<code>SDA</code>，导致数据出错；为存储接收到的数据，需拉高<code>SCL</code>，使主机在<code>SCL</code>高电平期间读取<code>SDA</code>，每读取一位就存入提前申请好的变量中；读完后即可得到一个字节的数据。然后拉低<code>SCL</code>，使从机可写入<code>SDA</code>，这样即可实现从机发送。</li>
-<li>应答信号：主机把应答位数据放到<code>SDA</code>线；然后先拉高<code>SCL</code>，以读取应答位；再拉低<code>SCL</code>，开始下一个时序模块；</li>
-</ol>
-<h2 id="有刷电机的驱动方式，转速调节；频率对转速和电流的影响"><a href="#有刷电机的驱动方式，转速调节；频率对转速和电流的影响" class="headerlink" title="有刷电机的驱动方式，转速调节；频率对转速和电流的影响"></a>有刷电机的驱动方式，转速调节；频率对转速和电流的影响</h2><h3 id="有刷电机转动原理"><a href="#有刷电机转动原理" class="headerlink" title="有刷电机转动原理"></a>有刷电机转动原理</h3><p><strong>组成：定子、转子、电刷、换向器</strong></p>
-<p><strong>原理：</strong>外接电源给电机通电，电流经过电刷流向与换向器连接的线圈（转子），电流流过线圈产生磁场；产生的磁场与定子磁场互斥，则转子转动；</p>
-<p>转子转动半圈后若无外力，由于转子磁场与定子磁场同性相吸，则趋于稳定，不再转动；但由于换向器的存在导致线圈中电流流向与之前相反（因为换向器位置与之前相反，而换向器与线圈相连，故线圈中电流流向与之前相反），故而又与此刻的定子磁场互斥，又使转子转动；</p>
-<p>以上步骤不停循环就导致转子持续转动。</p>
-<h3 id="有刷电机转速受哪些因素影响"><a href="#有刷电机转速受哪些因素影响" class="headerlink" title="有刷电机转速受哪些因素影响"></a>有刷电机转速受哪些因素影响</h3><p>电压、负载、磁通量等；其中，电压与电流是影响电机转速为重要的因素</p>
-<h3 id="如何调节有刷电机转速"><a href="#如何调节有刷电机转速" class="headerlink" title="如何调节有刷电机转速"></a>如何调节有刷电机转速</h3><ol>
-<li>调节电压，有刷电机的转速与电压成正比，因此可以通过调节电压来改变电机的转速。但是需要注意，过高或过低的电压都会对电机造成损害，因此需要根据电机的额定电压来调节电压。</li>
-<li>调节电流，电机的转速还与其所受的负载有关，因此可以通过调节电流来改变电机的转速。增加电流可以提高电机的转速，但是需要注意电机的额定电流，避免电机过载。</li>
-<li>更换齿轮更换不同大小的齿轮可以改变电机的输出转速。一般来说，大齿轮可以降低电机的转速，小齿轮则可以提高电机的转速。</li>
-<li>调节磁通量调节磁通量也可以影响电机的转速。增加磁通量可以提高电机的转速，但是需要注意电机的磁通量和饱和磁通量，以避免电机工作不稳定或过载。</li>
-</ol>
-<h3 id="频率对转速和电流的影响"><a href="#频率对转速和电流的影响" class="headerlink" title="频率对转速和电流的影响"></a>频率对转速和电流的影响</h3><p>增加频率会增加转速</p>
-<h2 id="二分法"><a href="#二分法" class="headerlink" title="二分法"></a>二分法</h2><h4 id="代码实现-1"><a href="#代码实现-1" class="headerlink" title="代码实现"></a>代码实现</h4><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 数组</span></span><br><span class="line"><span class="type">unsigned</span> <span class="type">short</span> ADC_Table[<span class="number">101</span>] = &#123;</span><br><span class="line">    <span class="number">3999</span>,</span><br><span class="line">    <span class="number">3967</span>, <span class="number">3961</span>, <span class="number">3954</span>, <span class="number">3947</span>, <span class="number">3940</span>, <span class="number">3932</span>, <span class="number">3924</span>, <span class="number">3916</span>, <span class="number">3907</span>, <span class="number">3899</span>,</span><br><span class="line">    <span class="number">3889</span>, <span class="number">3880</span>, <span class="number">3870</span>, <span class="number">3860</span>, <span class="number">3850</span>, <span class="number">3839</span>, <span class="number">3827</span>, <span class="number">3816</span>, <span class="number">3804</span>, <span class="number">3791</span>,</span><br><span class="line">    <span class="number">3779</span>, <span class="number">3766</span>, <span class="number">3752</span>, <span class="number">3738</span>, <span class="number">3724</span>, <span class="number">3708</span>, <span class="number">3693</span>, <span class="number">3676</span>, <span class="number">3660</span>, <span class="number">3643</span>,</span><br><span class="line">    <span class="number">3625</span>, <span class="number">3607</span>, <span class="number">3589</span>, <span class="number">3570</span>, <span class="number">3550</span>, <span class="number">3530</span>, <span class="number">3510</span>, <span class="number">3489</span>, <span class="number">3468</span>, <span class="number">3446</span>,</span><br><span class="line">    <span class="number">3424</span>, <span class="number">3401</span>, <span class="number">3378</span>, <span class="number">3354</span>, <span class="number">3330</span>, <span class="number">3306</span>, <span class="number">3281</span>, <span class="number">3255</span>, <span class="number">3229</span>, <span class="number">3203</span>,</span><br><span class="line">    <span class="number">3175</span>, <span class="number">3146</span>, <span class="number">3117</span>, <span class="number">3088</span>, <span class="number">3058</span>, <span class="number">3028</span>, <span class="number">2997</span>, <span class="number">2966</span>, <span class="number">2935</span>, <span class="number">2903</span>,</span><br><span class="line">    <span class="number">2871</span>, <span class="number">2839</span>, <span class="number">2806</span>, <span class="number">2774</span>, <span class="number">2741</span>, <span class="number">2707</span>, <span class="number">2674</span>, <span class="number">2640</span>, <span class="number">2607</span>, <span class="number">2573</span>,</span><br><span class="line">    <span class="number">2539</span>, <span class="number">2505</span>, <span class="number">2471</span>, <span class="number">2436</span>, <span class="number">2402</span>, <span class="number">2368</span>, <span class="number">2334</span>, <span class="number">2300</span>, <span class="number">2265</span>, <span class="number">2231</span>,</span><br><span class="line">    <span class="number">2197</span>, <span class="number">2163</span>, <span class="number">2130</span>, <span class="number">2096</span>, <span class="number">2063</span>, <span class="number">2028</span>, <span class="number">1993</span>, <span class="number">1959</span>, <span class="number">1925</span>, <span class="number">1891</span>,</span><br><span class="line">    <span class="number">1857</span>, <span class="number">1823</span>, <span class="number">1790</span>, <span class="number">1758</span>, <span class="number">1725</span>, <span class="number">1693</span>, <span class="number">1661</span>, <span class="number">1630</span>, <span class="number">1599</span>, <span class="number">1580</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * @brief       查询ADC对应温度</span></span><br><span class="line"><span class="comment"> * @param[1]    arr ADC数组</span></span><br><span class="line"><span class="comment"> * @param[2]    left right 数组的首末下标</span></span><br><span class="line"><span class="comment"> * @param[3]    x 实时获取的ADC值</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">adc_search</span><span class="params">(<span class="type">const</span> <span class="type">unsigned</span> <span class="type">short</span>* arr, <span class="type">unsigned</span> <span class="type">char</span> left, <span class="type">unsigned</span> <span class="type">char</span> right, <span class="type">unsigned</span> <span class="type">short</span> x)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span> (x &gt;= arr[<span class="number">0</span>])</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (x &lt;= arr[<span class="number">100</span>])</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">100</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (left &lt;= right)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="type">int</span> mid = left + (right - left) / <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">if</span> (arr[mid] &gt;= x &amp;&amp; arr[mid + <span class="number">1</span>] &lt;= x)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">return</span> mid + <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (arr[mid] &lt;= x)</span><br><span class="line">        &#123;</span><br><span class="line">            right = mid - <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (arr[mid] &gt;= x)</span><br><span class="line">        &#123;</span><br><span class="line">            left = mid + <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 调用</span></span><br><span class="line">adc_search(ADC_Table, <span class="number">0</span>, <span class="number">100</span>, ntc_adc);</span><br></pre></td></tr></table></figure>
-
-<h4 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h4><ol>
-<li>二分法为什么会陷入死循环？</li>
-</ol>
-<p>判断条件选取的不对，多一个 <code>=</code> 就有可能陷入死循环；另外数组最好为<strong>单数</strong>，双数极可能陷入死循环</p>
-<ol start="2">
-<li>为什么 <code>while (left &lt;= right)</code> 用 <code>&lt;= </code> 不用  <code>&lt; </code> ？</li>
-</ol>
-<p>因为 <code>right</code> 的值为 <code>数组元素个数 - 1</code> ，这时 <code>left</code> 与 <code>right</code> 是可以相等的</p>
-<ol start="3">
-<li>为什么取中间数要写成 <code>int mid = left + (right - left) / 2;</code> 这样？</li>
-</ol>
-<p>因为若 <code>left + right</code> 很大的时候会发生整形溢出，这样写可以尽量避免</p>
-<ol start="4">
-<li>为什么判断条件写成 <code>if (arr[mid] &gt;= x &amp;&amp; arr[mid + 1] &lt;= x)</code> 这样？</li>
-</ol>
-<p>因为数组元素为 <code>unsigned short</code> 型，不会出现浮点数，且数组元素不是等差为1的等差数列，不是非此即彼，可能会出现 <code>arr[mid] &gt;= x &amp;&amp; arr[mid + 1] &lt;= x</code> 这种情况</p>
-<ol start="5">
-<li>建议：遇到死循环将 <code>left</code> <code>right</code> <code>mid</code> 打印出来看看</li>
-</ol>
-<h2 id="队列"><a href="#队列" class="headerlink" title="队列"></a>队列</h2><h4 id="代码实现-2"><a href="#代码实现-2" class="headerlink" title="代码实现"></a>代码实现</h4><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> QUEUE_SIZE 50</span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="built_in">queue</span>[QUEUE_SIZE] = &#123;<span class="number">0</span>&#125;;</span><br><span class="line"><span class="type">int</span> head = <span class="number">0</span>; <span class="comment">// 队头出</span></span><br><span class="line"><span class="type">int</span> tail = <span class="number">0</span>; <span class="comment">// 队尾进</span></span><br><span class="line"></span><br><span class="line"><span class="type">void</span> <span class="title function_">init_queue</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    head = <span class="number">0</span>;</span><br><span class="line">    tail = <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 入队操作</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">enqueue</span><span class="params">(<span class="type">int</span> value)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span> ((tail + <span class="number">1</span>) % QUEUE_SIZE == head)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;QUEUE IS FULL!\n&quot;</span>); <span class="comment">// 队满</span></span><br><span class="line">        init_queue(); <span class="comment">// 队头、队尾清零；重新开始，即循环队列</span></span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">queue</span>[tail] = value;</span><br><span class="line">    tail = (tail + <span class="number">1</span>) % QUEUE_SIZE;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 出队操作</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">dequeue</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span> (head == tail)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;QUEUE IS EMPTY!\n&quot;</span>); <span class="comment">// 队空</span></span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="type">int</span> result = <span class="built_in">queue</span>[head];</span><br><span class="line">    <span class="built_in">queue</span>[head] = <span class="number">0</span>;</span><br><span class="line">    head = (head + <span class="number">1</span>) % QUEUE_SIZE;</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 打印队列</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">printQueue</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span> i = head;</span><br><span class="line">    <span class="keyword">while</span> (i != tail)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">&quot;%d &quot;</span>, <span class="built_in">queue</span>[i]);</span><br><span class="line">        i = (i + <span class="number">1</span>) % QUEUE_SIZE;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">50</span>; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        enqueue(i);</span><br><span class="line">    &#125;</span><br><span class="line">    printQueue(); <span class="comment">// QUEUE IS FULL!</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">49</span>; i &lt; <span class="number">98</span>; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        enqueue(i);</span><br><span class="line">    &#125;</span><br><span class="line">    printQueue(); <span class="comment">// 49 ~ 98</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h4 id="注意-1"><a href="#注意-1" class="headerlink" title="注意"></a>注意</h4><ol>
-<li>队列（数组）的长度一般都要比要存入的数据长度大不少</li>
-<li>使用该操作，队列（数组）的最后一个元素不会被使用，这就是第一点的原因</li>
-</ol>
-<h2 id="六轴陀螺仪工作原理，数据处理"><a href="#六轴陀螺仪工作原理，数据处理" class="headerlink" title="六轴陀螺仪工作原理，数据处理"></a>六轴陀螺仪工作原理，数据处理</h2><h4 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h4><blockquote>
-<p>参考：<a href="https://blog.csdn.net/propor/article/details/136938863">https://blog.csdn.net/propor/article/details/136938863</a></p>
-</blockquote>
-<h2 id="锂电池充放电原理"><a href="#锂电池充放电原理" class="headerlink" title="锂电池充放电原理"></a>锂电池充放电原理</h2><h3 id="锂电池充电有四个阶段"><a href="#锂电池充电有四个阶段" class="headerlink" title="锂电池充电有四个阶段"></a>锂电池充电有四个阶段</h3><p>涓流充电、恒流充电、恒压充电、充电结束</p>
-<p>充电初期采用恒流充电，电池电压增加，当到达一定值后，再采用恒压充电，电流逐渐降低，直到到达设定值，完成充电过程。</p>
-<h4 id="阶段1：涓流充电"><a href="#阶段1：涓流充电" class="headerlink" title="阶段1：涓流充电"></a>阶段1：涓流充电</h4><p>涓流充电用来先对<strong>完全放电</strong>的电池单元进行预充  —  恢复性充电。</p>
-<p>在电池电压低于满电电压时，先采用最大xxc（一般为0.1C）的恒定电流对电池进行充电。</p>
-<p>0.1C即 恒流充电电流的十分之一</p>
-<h4 id="阶段2：恒流充电"><a href="#阶段2：恒流充电" class="headerlink" title="阶段2：恒流充电"></a>阶段2：恒流充电</h4><p>当电池电压上升到涓流充电阈值以上时，提高充电电流进行恒流充电。</p>
-<p>恒流充电的电流一般在0.2C至 1.0C之间。恒流充电时的电流并不要求十分精确，准恒定电流也可以。</p>
-<h4 id="阶段3：恒压充电"><a href="#阶段3：恒压充电" class="headerlink" title="阶段3：恒压充电"></a>阶段3：恒压充电</h4><p>当电池电压上升到满电电压时，恒流充电结束，开始恒压充电阶段。</p>
-<h4 id="阶段4：充电终止"><a href="#阶段4：充电终止" class="headerlink" title="阶段4：充电终止"></a>阶段4：充电终止</h4><p>充电结束</p>
-]]></content>
-      <categories>
-        <category>嵌入式</category>
-      </categories>
-      <tags>
-        <tag>嵌入式</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Ubuntu服务器部署FRP内网穿透</title>
     <url>/archives/2bb50ac9.html</url>
-    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>由于有给服务器传文件的需求，又没有FTP，就想着先给服务器装个FRP内网穿透；就百度了一下，结果好几天也没成功，后来又不甘心，又继续搞，终于有结果了，记录一下。</p>
-<span id="more"></span>
+    <content><![CDATA[<h2 id="下载FRP"><a href="#下载FRP" class="headerlink" title="下载FRP"></a>下载FRP</h2><p><a href="https://github.com/fatedier/frp/releases">FRP - Github下载地址</a></p>
+<p>选择合适自己电脑及服务器的架构，然后下载解压即可，我这里用0.44.0版本</p>
+<h2 id="上传至服务器并进行配置"><a href="#上传至服务器并进行配置" class="headerlink" title="上传至服务器并进行配置"></a>上传至服务器并进行配置</h2><p>我的服务器端 frps.ini 配置如下，可参考一下：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[common]</span><br><span class="line">bind_addr = 	# 你服务器的内网IP</span><br><span class="line">bind_port = 7000</span><br><span class="line">bind_udp_port = 7000</span><br><span class="line">kcp_bind_port = 7000</span><br><span class="line">vhost_https_port = 7001</span><br><span class="line"></span><br><span class="line"># 仪表盘的相关设置</span><br><span class="line">dashboard_addr = 	# 你服务器的内网IP</span><br><span class="line">dashboard_port = 7500</span><br><span class="line">dashboard_user = admin</span><br><span class="line">dashboard_pwd = admin</span><br><span class="line"></span><br><span class="line"># 是否记录日志</span><br><span class="line">log_file = ./frps.log</span><br><span class="line">log_level = info</span><br><span class="line">log_max_days = 3</span><br><span class="line"></span><br><span class="line">authentication_timeout = 1000</span><br><span class="line">token=long123456</span><br><span class="line">allow_ports = 3000-10000</span><br><span class="line">max_pool_count = 50</span><br><span class="line">max_ports_per_client = 5</span><br></pre></td></tr></table></figure>
 
-<h2 id="安装vsftpd"><a href="#安装vsftpd" class="headerlink" title="安装vsftpd"></a>安装vsftpd</h2><ul>
-<li>安装 vsftpd</li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo apt update</span><br><span class="line">sudo apt install vsftpd</span><br></pre></td></tr></table></figure>
 
-<ul>
-<li>配置 vsftpd</li>
-</ul>
-<p>vsftpd的配置文件默认位于 <code>/etc/vsftpd.conf</code>下，我们编辑一下</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo vi /etc/vsftpd.conf</span><br></pre></td></tr></table></figure>
 
-<p>配置以下配置</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">Example config file /etc/vsftpd.conf</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"></span></span><br><span class="line"><span class="language-bash"><span class="comment"># The default compiled in settings are fairly paranoid. This sample file</span></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">loosens things up a bit, to make the ftp daemon more usable.</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">Please see vsftpd.conf.5 <span class="keyword">for</span> all compiled <span class="keyword">in</span> defaults.</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"></span></span><br><span class="line"><span class="language-bash"><span class="comment"># READ THIS: This example file is NOT an exhaustive list of vsftpd options.</span></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">Please <span class="built_in">read</span> the vsftpd.conf.5 manual page to get a full idea of vsftpd<span class="string">&#x27;s</span></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash"><span class="string">capabilities.</span></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="string"></span></span></span><br><span class="line"><span class="string"><span class="language-bash">#</span></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash"><span class="string">Run standalone?  vsftpd can run either from an inetd or as a standalone</span></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash"><span class="string">daemon started from an initscript.</span></span></span><br><span class="line">listen=YES</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="string"></span></span></span><br><span class="line"><span class="string"><span class="language-bash"># This directive enables listening on IPv6 sockets. By default, listening</span></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash"><span class="string">on the IPv6 &quot;any&quot; address (::) will accept connections from both IPv6</span></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash"><span class="string">and IPv4 clients. It is not necessary to listen on *both* IPv4 and IPv6</span></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash"><span class="string">sockets. If you want that (perhaps because you want to listen on specific</span></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash"><span class="string">addresses) then you must run two copies of vsftpd with two configuration</span></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash"><span class="string">files.</span></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="string">listen_ipv6=YES</span></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="string"></span></span></span><br><span class="line"><span class="string"><span class="language-bash"># Allow anonymous FTP? (Disabled by default).</span></span></span><br><span class="line">anonymous_enable=NO</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="string"></span></span></span><br><span class="line"><span class="string"><span class="language-bash"># Uncomment this to allow local users to log in.</span></span></span><br><span class="line">local_enable=YES</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="string"></span></span></span><br><span class="line"><span class="string"><span class="language-bash"># Uncomment this to enable any form of FTP write command.</span></span></span><br><span class="line">write_enable=YES</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="string"></span></span></span><br><span class="line"><span class="string"><span class="language-bash"># Default umask for local users is 077. You may wish to change this to 022,</span></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash"><span class="string">if your users expect that (022 is used by most other ftpd&#x27;</span>s)</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">local_umask=022</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"></span></span><br><span class="line"><span class="language-bash"><span class="comment"># Uncomment this to allow the anonymous FTP user to upload files. This only</span></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">has an effect <span class="keyword">if</span> the above global write <span class="built_in">enable</span> is activated. Also, you will</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">obviously need to create a directory writable by the FTP user.</span></span><br><span class="line">anon_upload_enable=NO</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"></span></span><br><span class="line"><span class="language-bash"><span class="comment"># Uncomment this if you want the anonymous FTP user to be able to create</span></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">new directories.</span></span><br><span class="line">anon_mkdir_write_enable=NO</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"></span></span><br><span class="line"><span class="language-bash"><span class="comment"># Activate directory messages - messages given to remote users when they</span></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">go into a certain directory.</span></span><br><span class="line">dirmessage_enable=YES</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"></span></span><br><span class="line"><span class="language-bash"><span class="comment"># If enabled, vsftpd will display directory listings with the time</span></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash"><span class="keyword">in</span>  your  <span class="built_in">local</span>  time  zone.  The default is to display GMT. The</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash"><span class="built_in">times</span> returned by the MDTM FTP <span class="built_in">command</span> are also affected by this</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">option.</span></span><br><span class="line">use_localtime=YES</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"></span></span><br><span class="line"><span class="language-bash"><span class="comment"># Activate logging of uploads/downloads.</span></span></span><br><span class="line">xferlog_enable=YES</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"></span></span><br><span class="line"><span class="language-bash"><span class="comment"># Make sure PORT transfer connections originate from port 20 (ftp-data).</span></span></span><br><span class="line">connect_from_port_20=YES</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"></span></span><br><span class="line"><span class="language-bash"><span class="comment"># If you want, you can arrange for uploaded anonymous files to be owned by</span></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">a different user. Note! Using <span class="string">&quot;root&quot;</span> <span class="keyword">for</span> uploaded files is not</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">recommended!</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">chown_uploads=YES</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">chown_username=whoever</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"></span></span><br><span class="line"><span class="language-bash"><span class="comment"># You may override where the log file goes if you like. The default is shown</span></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">below.</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">xferlog_file=/var/log/vsftpd.log</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"></span></span><br><span class="line"><span class="language-bash"><span class="comment"># If you want, you can have your log file in standard ftpd xferlog format.</span></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">Note that the default <span class="built_in">log</span> file location is /var/log/xferlog <span class="keyword">in</span> this <span class="keyword">case</span>.</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">xferlog_std_format=YES</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"></span></span><br><span class="line"><span class="language-bash"><span class="comment"># You may change the default value for timing out an idle session.</span></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">idle_session_timeout=600</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"></span></span><br><span class="line"><span class="language-bash"><span class="comment"># You may change the default value for timing out a data connection.</span></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">data_connection_timeout=120</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"></span></span><br><span class="line"><span class="language-bash"><span class="comment"># It is recommended that you define on your system a unique user which the</span></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">ftp server can use as a totally isolated and unprivileged user.</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">nopriv_user=ftpsecure</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"></span></span><br><span class="line"><span class="language-bash"><span class="comment"># Enable this and the server will recognise asynchronous ABOR requests. Not</span></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">recommended <span class="keyword">for</span> security (the code is non-trivial). Not enabling it,</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">however, may confuse older FTP clients.</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">async_abor_enable=YES</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"></span></span><br><span class="line"><span class="language-bash"><span class="comment"># By default the server will pretend to allow ASCII mode but in fact ignore</span></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">the request. Turn on the below options to have the server actually <span class="keyword">do</span> ASCII</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">mangling on files when <span class="keyword">in</span> ASCII mode.</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">Beware that on some FTP servers, ASCII support allows a denial of service</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">attack (DoS) via the <span class="built_in">command</span> <span class="string">&quot;SIZE /big/file&quot;</span> <span class="keyword">in</span> ASCII mode. vsftpd</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">predicted this attack and has always been safe, reporting the size of the</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">raw file.</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">ASCII mangling is a horrible feature of the protocol.</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">ascii_upload_enable=YES</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">ascii_download_enable=YES</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"></span></span><br><span class="line"><span class="language-bash"><span class="comment"># You may fully customise the login banner string:</span></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">ftpd_banner=Welcome to blah FTP service.</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"></span></span><br><span class="line"><span class="language-bash"><span class="comment"># You may specify a file of disallowed anonymous e-mail addresses. Apparently</span></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">useful <span class="keyword">for</span> combatting certain DoS attacks.</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">deny_email_enable=YES</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">(default follows)</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">banned_email_file=/etc/vsftpd.banned_emails</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"></span></span><br><span class="line"><span class="language-bash"><span class="comment"># You may restrict local users to their home directories.  See the FAQ for</span></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">the possible risks <span class="keyword">in</span> this before using chroot_local_user or</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">chroot_list_enable below.</span></span><br><span class="line">chroot_local_user=YES</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"></span></span><br><span class="line"><span class="language-bash"><span class="comment"># You may specify an explicit list of local users to chroot() to their home</span></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">directory. If chroot_local_user is YES, <span class="keyword">then</span> this list becomes a list of</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash"><span class="built_in">users</span> to NOT <span class="built_in">chroot</span>().</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">(Warning! <span class="built_in">chroot</span><span class="string">&#x27;ing can be very dangerous. If using chroot, make sure that</span></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash"><span class="string">the user does not have write access to the top level directory within the</span></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash"><span class="string">chroot)</span></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="string">chroot_local_user=YES</span></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="string">chroot_list_enable=YES</span></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash"><span class="string">(default follows)</span></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="string">chroot_list_file=/etc/vsftpd.chroot_list</span></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="string"></span></span></span><br><span class="line"><span class="string"><span class="language-bash"># You may activate the &quot;-R&quot; option to the builtin ls. This is disabled by</span></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash"><span class="string">default to avoid remote users being able to cause excessive I/O on large</span></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash"><span class="string">sites. However, some broken FTP clients such as &quot;ncftp&quot; and &quot;mirror&quot; assume</span></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash"><span class="string">the presence of the &quot;-R&quot; option, so there is a strong case for enabling it.</span></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="string">ls_recurse_enable=YES</span></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="string"></span></span></span><br><span class="line"><span class="string"><span class="language-bash"># Customization</span></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="string"></span></span></span><br><span class="line"><span class="string"><span class="language-bash"># Some of vsftpd&#x27;</span>s settings don<span class="string">&#x27;t fit the filesystem layout by</span></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash"><span class="string">default.</span></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="string"></span></span></span><br><span class="line"><span class="string"><span class="language-bash"># This option should be the name of a directory which is empty.  Also, the</span></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash"><span class="string">directory should not be writable by the ftp user. This directory is used</span></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash"><span class="string">as a secure chroot() jail at times vsftpd does not require filesystem</span></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash"><span class="string">access.</span></span></span><br><span class="line">secure_chroot_dir=/var/run/vsftpd/empty</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="string"></span></span></span><br><span class="line"><span class="string"><span class="language-bash"># This string is the name of the PAM service vsftpd will use.</span></span></span><br><span class="line">pam_service_name=vsftpd</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="string"></span></span></span><br><span class="line"><span class="string"><span class="language-bash"># This option specifies the location of the RSA certificate to use for SSL</span></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash"><span class="string">encrypted connections.</span></span></span><br><span class="line">rsa_cert_file=/etc/ssl/certs/ssl-cert-snakeoil.pem</span><br><span class="line">rsa_private_key_file=/etc/ssl/private/ssl-cert-snakeoil.key</span><br><span class="line">ssl_enable=NO</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="string"></span></span></span><br><span class="line"><span class="string"><span class="language-bash"># Uncomment this to indicate that vsftpd use a utf8 filesystem.</span></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="string">utf8_filesystem=YES</span></span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash"><span class="string"></span></span></span><br><span class="line"><span class="string"><span class="language-bash">local_root=/home/ftp</span></span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash"><span class="string">以下配置需要自己添加，否则不可用，可根据自己需求更改</span></span></span><br><span class="line">allow_writeable_chroot=YES</span><br><span class="line">pasv_enable=YES</span><br><span class="line">pasv_min_port=40000</span><br><span class="line">pasv_max_port=40010</span><br><span class="line">tcp_wrappers=YES</span><br><span class="line">listen_port=21</span><br><span class="line">pasv_address=101.133.132.187</span><br></pre></td></tr></table></figure>
+<p>客户端 frpc.ini 配置如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">[common]</span><br><span class="line">server_addr = 	# 你服务器的公网IP</span><br><span class="line">server_port = 7000</span><br><span class="line">authentication_method = token</span><br><span class="line">token = 	# 自己设置个密码</span><br><span class="line"></span><br><span class="line">[Cloudreve]	# 这是我在自己电脑上开的一个服务</span><br><span class="line">type = tcp</span><br><span class="line">local_ip = 127.0.0.1</span><br><span class="line">local_port = 5212 # 本地服务的端口</span><br><span class="line">remote_port = 6000 # 设置 服务器IP+端口号 来访问时使用的端口号</span><br><span class="line"></span><br><span class="line">[Alist] # 具体设置同上，之后要加服务就可以参照这个配置往后加</span><br><span class="line">type = tcp</span><br><span class="line">local_ip = 127.0.0.1</span><br><span class="line">local_port = 5244</span><br><span class="line">remote_port = 7000</span><br></pre></td></tr></table></figure>
 
-<ul>
-<li>添加用户</li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo useradd -d /home/ftp/uftp -m ftpuser #此处ftpuser为添加的用户名</span><br><span class="line">sudo passwd ftpuser    #给该用户设置密码，密码不会回显，且需要输入两次</span><br><span class="line">chomd 777 /home/ftp  -R	#更改ftp文件夹的权限</span><br></pre></td></tr></table></figure>
 
-<ul>
-<li>重启 vsftpd 服务</li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo service vsftpd restart</span><br></pre></td></tr></table></figure>
 
-<ul>
-<li>防火墙设置</li>
-</ul>
-<p>开启对应的端口 20  21口等</p>
-<ul>
-<li>测试 FTP 连接</li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">ftp 127.0.0.1</span><br></pre></td></tr></table></figure>
+<p><strong>切记，配置完端口，要前往安全组开放你所设置的端口号！！</strong></p>
+<h2 id="启动FRP服务"><a href="#启动FRP服务" class="headerlink" title="启动FRP服务"></a>启动FRP服务</h2><p>启用服务器端服务，一行指令就行</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">./frps -c frps.ini &amp;</span><br></pre></td></tr></table></figure>
 
-<p>然后输入上边设置的用户名和密码，应该会提示success，这样就连上了；接着可以试试本地电脑连接服务器ftp，<code>ftp://ip</code>，可以连上就说明成功了。</p>
-<h2 id="设置开机自启"><a href="#设置开机自启" class="headerlink" title="设置开机自启"></a>设置开机自启</h2><p>由于，我想要其开机自启这样方便点，所以又查了查资料，记录一下。</p>
-<ul>
+
+
+<p>启用客户端服务，我使用了 .bat 命令，比较方便，具体如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">@echo off</span><br><span class="line">if &quot;%1&quot; == &quot;h&quot; goto begin</span><br><span class="line">mshta vbscript:createobject(&quot;wscript.shell&quot;).run(&quot;&quot;&quot;%~nx0&quot;&quot; h&quot;,0)(window.close)&amp;&amp;exit</span><br><span class="line">:begin</span><br><span class="line">REM</span><br><span class="line">cd D:\frp_0.44.0 ::frp.exe所在路径</span><br><span class="line">frpc -c frpc.ini</span><br><span class="line">exit</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="设置开机自启"><a href="#设置开机自启" class="headerlink" title="设置开机自启"></a>设置开机自启</h2><ul>
 <li>创建 systemd 服务文件</li>
 </ul>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo vi /etc/systemd/system/frps.service</span><br></pre></td></tr></table></figure>
@@ -542,10 +107,7 @@
 </ul>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[Unit]</span><br><span class="line">Description=frps Service</span><br><span class="line">After=network.target</span><br><span class="line"></span><br><span class="line">[Service]</span><br><span class="line">ExecStart=/home/www/frp/frps -c /home/www/frp/frps.ini</span><br><span class="line">Restart=always</span><br><span class="line">User=root</span><br><span class="line">Group=root</span><br><span class="line"></span><br><span class="line">[Install]</span><br><span class="line">WantedBy=multi-user.target</span><br></pre></td></tr></table></figure>
 
-<p>上面<code>ExecStart=/home/www/frp/frps -c /home/www/frp/frps.ini</code>是我设置的路径，可以替换为你自己的。</p>
-<p>其中：</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">`/full/path/to/your/frps`: `frps` 是可执行文件的绝对路径。</span><br><span class="line">`/full/path/to/your/frps.ini`: `frps.ini`是 配置文件的绝对路径。</span><br><span class="line">`your_username`: 执行服务的用户名。</span><br><span class="line">`your_group`: 执行服务的用户组。</span><br></pre></td></tr></table></figure>
-
+<p>上面<code>ExecStart=/home/www/frp/frps -c /home/www/frp/frps.ini</code>是<code>frps</code>目录</p>
 <ul>
 <li>重新加载 systemd 配置</li>
 </ul>
@@ -559,36 +121,34 @@
 <ul>
 <li>查看是否开启</li>
 </ul>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo systemctl status frps //frps是上面创建的systemd服务文件的名字</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo systemctl status frps</span><br></pre></td></tr></table></figure>
 
-<h2 id="结束开机自启"><a href="#结束开机自启" class="headerlink" title="结束开机自启"></a>结束开机自启</h2><p>另外，你如果需要关闭开机自启，可执行以下操作</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo systemctl stop frps	//停止frps</span><br><span class="line">sudo systemctl disable frps	//关闭开机自启</span><br><span class="line">sudo systemctl enable frps	//启用开机自启</span><br></pre></td></tr></table></figure>
-
-<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>总觉得还有什么步骤忘记了，先不管，之后再说😂</p>
+<p>这里的<code>frps</code>是指上面创建的<code>systemd</code>服务文件的名字，我用的是<code>frps.service</code>，所以就用<code>frps</code></p>
+<h2 id="结束开机自启"><a href="#结束开机自启" class="headerlink" title="结束开机自启"></a>结束开机自启</h2><p>你如果需要关闭开机自启，可执行以下操作</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo systemctl stop frps</span><br><span class="line">sudo systemctl disable frps</span><br><span class="line">sudo systemctl enable frps</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
-        <category>建站</category>
+        <category>FRP</category>
         <category>Ubuntu</category>
       </categories>
       <tags>
         <tag>Ubuntu</tag>
-        <tag>建站</tag>
+        <tag>FRP</tag>
       </tags>
   </entry>
   <entry>
-    <title>Ubuntu下不使用宝塔面板建站</title>
+    <title>Ubuntu下不使用各类面板建站</title>
     <url>/archives/fe15a55f.html</url>
     <content><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>恰逢国庆中秋双节放假，闲来无事，想着搞点什么玩玩；思来想去，还是写个博客吧！</p>
-<p>由于之前建站都是使用的宝塔或者直接docker部署，感觉没什么进步；就想着不使用宝塔来建个站，虽然不好管理，但学习嘛，不怕困难。</p>
-<h2 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h2><ul>
-<li>服务器</li>
-<li>域名（非必须）</li>
-<li>爱折腾的心</li>
-</ul>
+<p>由于之前建站都是使用的宝塔或者直接docker部署，感觉对于Linux指令的掌握没什么进步；就想着不使用面板来建个站，虽然不便管理，但学习嘛，不怕困难。</p>
 <span id="more"></span>
 
-<h2 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h2><h3 id="Apache"><a href="#Apache" class="headerlink" title="Apache"></a>Apache</h3><p><strong>更新源</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo apt update //先更新一下源再安装，否则有可能安装不成功</span><br></pre></td></tr></table></figure>
+<h2 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h2><ul>
+<li>服务器及域名</li>
+<li>爱折腾的心</li>
+</ul>
+<h2 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h2><h3 id="1-Apache"><a href="#1-Apache" class="headerlink" title="1. Apache"></a>1. Apache</h3><p><strong>更新源</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo apt update</span><br></pre></td></tr></table></figure>
 
 <p><strong>安装</strong></p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo apt install apache2</span><br></pre></td></tr></table></figure>
@@ -600,21 +160,21 @@
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo systemctl enable apache2</span><br></pre></td></tr></table></figure>
 
 <p><strong>修改配置文件</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">vi /etc/apache2/apache2.conf          //不会使用vi编辑器的可百度下，也不难</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">vim /etc/apache2/apache2.conf</span><br></pre></td></tr></table></figure>
 
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;Directory /var/www&gt;                  //这里是自己的网站目录</span><br><span class="line">	Options Indexes FollowSymLinks</span><br><span class="line">	AllowOverride None</span><br><span class="line">	Require all granted</span><br><span class="line">&lt;/Directory&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;Directory /var/www&gt; # 这里是自己的网站目录</span><br><span class="line">	Options Indexes FollowSymLinks</span><br><span class="line">	AllowOverride None</span><br><span class="line">	Require all granted</span><br><span class="line">&lt;/Directory&gt;</span><br></pre></td></tr></table></figure>
 
 <p><strong>修改端口文件</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">vi /etc/apache2/ports.conf</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">vim /etc/apache2/ports.conf</span><br></pre></td></tr></table></figure>
 
-<p>其中 <code>Listen 80</code> 改为你想要的端口，如8080</p>
+<p>其中 <code>Listen 80</code> 改为你想要的端口，如8080等</p>
 <p><strong>绑定文件夹位置对应端口</strong></p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">vi /etc/apache2/sites-available/000-default.conf</span><br></pre></td></tr></table></figure>
 
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;VirtualHost *:8080&gt;                    //这里是你上面设置的端口号</span><br><span class="line">	ServerAdmin webmaster@localhost</span><br><span class="line">	DocumentRoot /var/www               //这里是你上面设置的目录</span><br><span class="line">	ErrorLog $&#123;APACHE_LOG_DIR&#125;/error.log</span><br><span class="line">	CustomLog $&#123;APACHE_LOG_DIR&#125;/access.log combined</span><br><span class="line">&lt;/VirtualHost&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;VirtualHost *:8080&gt; # 这里是你上面设置的端口号</span><br><span class="line">	ServerAdmin webmaster@localhost</span><br><span class="line">	DocumentRoot /var/www # 这里是你上面设置的目录</span><br><span class="line">	ErrorLog $&#123;APACHE_LOG_DIR&#125;/error.log</span><br><span class="line">	CustomLog $&#123;APACHE_LOG_DIR&#125;/access.log combined</span><br><span class="line">&lt;/VirtualHost&gt;</span><br></pre></td></tr></table></figure>
 
 <p><strong>修改网站文件夹权限 – 给读写权限</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo chmod 775 -R /var/www              //这里必须为 -R，不可为 -r</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo chmod 775 -R /var/www</span><br></pre></td></tr></table></figure>
 
 <p><strong>重启Apache</strong></p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo systemctl restart apache2</span><br></pre></td></tr></table></figure>
@@ -626,9 +186,10 @@
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo systemctl restart apache2</span><br></pre></td></tr></table></figure>
 
 <p><em>注：安装完毕apache并运行后如果访问不了网站，可能是因为端口未开放，开放端口即可；apache监听了80（http）与443（https）端口，需要开放这两个，此外如果你上面更改了端口号，也需将你更改过的端口开放；具体方法见下</em></p>
-<h3 id="防火墙-端口"><a href="#防火墙-端口" class="headerlink" title="防火墙 - 端口"></a>防火墙 - 端口</h3><p><strong>打开防火墙端口</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo ufw allow 8080/tcp</span><br><span class="line">//即：sudo ufw allow [端口号]/[协议]</span><br></pre></td></tr></table></figure>
+<h3 id="2-端口"><a href="#2-端口" class="headerlink" title="2. 端口"></a>2. 端口</h3><p><strong>打开防火墙端口</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo ufw allow 8080/tcp</span><br></pre></td></tr></table></figure>
 
+<p>即：sudo ufw allow [端口号]/[协议]</p>
 <p><strong>批量开放端口</strong></p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo ufw allow 20:21/tcp</span><br></pre></td></tr></table></figure>
 
@@ -641,48 +202,27 @@
 <p><strong>关闭/启用所有防火墙</strong></p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo ufw disable/enable</span><br></pre></td></tr></table></figure>
 
-
-
-<h3 id="PHP"><a href="#PHP" class="headerlink" title="PHP"></a>PHP</h3><p><strong>安装php8.0</strong></p>
+<p>此外，还需要到你的主机提供平台，找到”安全组”，将端口放开，否则也访问不了网站</p>
+<h3 id="3-PHP"><a href="#3-PHP" class="headerlink" title="3. PHP"></a>3. PHP</h3><p><strong>安装php8.0</strong></p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo apt-get install php8.0</span><br></pre></td></tr></table></figure>
 
-<p><strong>安装时可能会报错，如下</strong></p>
+<p><strong>若报如下错误</strong></p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">E: Unable to locate package php8.0</span><br><span class="line">E: Couldn&#x27;t find any package by glob &#x27;php8.0&#x27;</span><br></pre></td></tr></table></figure>
 
-<p><strong>依次执行以下命令</strong></p>
+<p><strong>可依次执行以下命令</strong></p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo add-apt-repository ppa:ondrej/php</span><br><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install php8.0</span><br></pre></td></tr></table></figure>
 
 <p><strong>检查是否安装成功</strong></p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">php -v</span><br></pre></td></tr></table></figure>
 
 <p><strong>安装php拓展</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo apt-get install php8.0-mysqli </span><br><span class="line">//即：sudo apt-get install php8.0-(拓展名)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo apt-get install php8.0-mysqli </span><br></pre></td></tr></table></figure>
 
+<p>即：sudo apt-get install php8.0-(拓展名)</p>
 <p><strong>安装完成后在Apache中启用php8.0</strong></p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">a2enmod php8.0</span><br></pre></td></tr></table></figure>
 
-
-
-<h3 id="ftp服务器"><a href="#ftp服务器" class="headerlink" title="ftp服务器"></a>ftp服务器</h3><p><strong>安装</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo apt update</span><br><span class="line">sudo apt install vsftpd</span><br></pre></td></tr></table></figure>
-
-<p><strong>配置 vsftpd – 具体百度</strong><br>要注意一点除了百度上设置的外，还要在 <code>vi /etc/vsftpd/vsftpd.conf</code> 中添加 <code>allow_writeable_chroot=YES</code>（读写权限），否则连接不上；至少我的情况是这样。</p>
-<p><strong>启动</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo systemctl start vsftpd</span><br></pre></td></tr></table></figure>
-
-<p><strong>停止</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo systemctl stop vsftpd</span><br></pre></td></tr></table></figure>
-
-<p><strong>重启</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo systemctl restart vsftpd</span><br></pre></td></tr></table></figure>
-
-<p><strong>开机自启</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo systemctl enable vsftpd</span><br></pre></td></tr></table></figure>
-
-
-
-<center>——  END ——</center>
-]]></content>
+<h3 id="4-待续。。。"><a href="#4-待续。。。" class="headerlink" title="4. 待续。。。"></a>4. 待续。。。</h3>]]></content>
       <categories>
         <category>建站</category>
         <category>Ubuntu</category>
@@ -865,7 +405,7 @@
       </tags>
   </entry>
   <entry>
-    <title>Ubuntu部署Docker项目</title>
+    <title>Ubuntu部署其他Docker项目</title>
     <url>/archives/db0817f.html</url>
     <content><![CDATA[<ul>
 <li>拉取Alist镜像并部署</li>
@@ -877,6 +417,7 @@
 <p>通过日志获取默认密码</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker logs alist</span><br><span class="line">#或者</span><br><span class="line">docker exec -it alist ./alist admin</span><br></pre></td></tr></table></figure>
 
+<p><strong>除了上面的命令外还可以参考Alist官网的安装方式：<a href="https://alist.nn.ci/zh/guide/install/script.html">Alist安装</a></strong></p>
 <ul>
 <li>拉取文件快递柜镜像并部署</li>
 </ul>
@@ -899,10 +440,14 @@
 <p>用 <code>ip:端口号 </code>访问，    然后获取初始密码：</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker logs cloudreve</span><br></pre></td></tr></table></figure>
 
+
+
 <ul>
 <li>青龙面板docker部署</li>
 </ul>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#docker安装</span><br><span class="line">sudo curl -sSL get.docker.com | sh</span><br><span class="line"></span><br><span class="line">#启动容器</span><br><span class="line">podman run -dit \</span><br><span class="line">  --network bridge \</span><br><span class="line">  -v $PWD/ql/data:/ql/data \</span><br><span class="line">  -p 5700:5700 \</span><br><span class="line">  --name qinglong \</span><br><span class="line">  --hostname qinglong \</span><br><span class="line">  docker.io/whyour/qinglong:latest</span><br></pre></td></tr></table></figure>
+
+
 
 <ul>
 <li>qbittorrent</li>
@@ -1024,91 +569,9 @@
       </tags>
   </entry>
   <entry>
-    <title>Linux(Ubuntu)部署Memos</title>
-    <url>/archives/5fc31910.html</url>
-    <content><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>最近又白嫖了一个月服务器，反正空着也是空着，就想着用来练练手；刚好看见一个实用的备忘项目，就来搞搞，顺便（<del>水</del>）写一篇博客。此博客纯属小白向，零基础也能可以试试。</p>
-<span id="more"></span>
-
-<h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><ul>
-<li>一台服务器</li>
-<li>一个域名（如果只是练练手，没想让别人访问的话不用也行）</li>
-<li>Xshell或者其他同类型软件</li>
-</ul>
-<h2 id="服务器"><a href="#服务器" class="headerlink" title="服务器"></a>服务器</h2><p>选择服务器操作系统：建议选Linux，我这里用的是Ubuntu_20.04。</p>
-<p>设置你的实例密码，待会儿用得上</p>
-<h2 id="Xshell"><a href="#Xshell" class="headerlink" title="Xshell"></a>Xshell</h2><p>这里我用的是 <a href="https://www.xshell.com/zh/free-for-home-school/">Xshell</a> ，你也可以用其他同类型软件；连接服务器：</p>
-<p>主机：填你服务器的公网IP；    端口号：22        ；如下：</p>
-<img src="https://s2.loli.net/2023/02/28/X5aCnYug4RdKAMw.jpg" alt="xshell1" style="zoom: 67%;" />
-
-<p>然后选择左侧栏中的“用户身份验证”，填写  用户名：root；密码：就是你刚才设置的；    如下：</p>
-<img src="https://s2.loli.net/2023/02/28/cpiFaOkmuUfKS9P.jpg" style="zoom:67%;" />
-
-<p>点击下边的“连接”即可连接到你的服务器；出现以下字样（即root@主机名）即算连接成功，如下图：</p>
-<img src="https://s2.loli.net/2023/02/28/wEexMlhjY7VOidR.jpg" style="zoom:67%;" />
-
-
-
-<h3 id="安装Docker"><a href="#安装Docker" class="headerlink" title="安装Docker"></a>安装Docker</h3><ul>
-<li>先更源，保证是最新</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo apt-get update</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>先卸载旧版本Docker</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo apt-get remove docker docker-engine docker.io containerd runc</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>安装Docker依赖（Docker在Ubuntu上依赖一些软件包）</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">apt-get install ca-certificates curl gnupg lsb-release</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>添加Docker官方密匙</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">curl -fsSL http://mirrors.aliyun.com/docker-ce/linux/ubuntu/gpg | sudo apt-key add -</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>添加Docker软件源</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo add-apt-repository &quot;deb [arch=amd64] http://mirrors.aliyun.com/docker-ce/linux/ubuntu $(lsb_release -cs) stable&quot;</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>如果上面一步报错如下</li>
-</ul>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo: add-apt-repository: command not found</span><br></pre></td></tr></table></figure>
-
-<p>可执行下面两条指令</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">先</span></span><br><span class="line">sudo apt-get install python-software-properties</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">再</span></span><br><span class="line">sudo apt-get install software-properties-common</span><br></pre></td></tr></table></figure>
-
-<p>然后再次执行<strong>添加Docker软件源</strong>指令即可</p>
-<ul>
-<li>安装Docker</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">apt-get install docker-ce docker-ce-cli containerd.io</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>验证是否安装成功</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker version</span><br></pre></td></tr></table></figure>
-
-<p>出现以下即成功：</p>
-<img src="https://s2.loli.net/2023/09/30/9gZMGPLCAWj87UE.jpg" style="zoom:50%;" />
-
-<ul>
-<li>启动docker</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">systemctl start docker</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>加入开机自启</li>
-</ul>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">systemctl enable docker</span><br></pre></td></tr></table></figure>
-
-<center>—— 至此，docker安装完毕 ——</center>
-
-
-<h2 id="部署Memos"><a href="#部署Memos" class="headerlink" title="部署Memos"></a>部署Memos</h2><ul>
+    <title>Ubuntu部署Memos</title>
+    <url>/archives/2bf03cc2.html</url>
+    <content><![CDATA[<h2 id="Ubuntu部署Memos"><a href="#Ubuntu部署Memos" class="headerlink" title="Ubuntu部署Memos"></a>Ubuntu部署Memos</h2><ul>
 <li>拉取镜像</li>
 </ul>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker pull neosmemo/memos:latest</span><br></pre></td></tr></table></figure>
@@ -1134,8 +597,7 @@
 <p>个人觉得，Memos确实好用，自己去发现吧！</p>
 <p>至此，教程全部结束；</p>
 <hr>
-<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>安装好docker后，以后就可以直接拉取镜像了；也就两行命令的事，非常简单。</p>
-<p>Docker里可以部署多个应用，只要端口号不冲突就行；然后通过 <code>公网IP:端口号</code> 进行访问就行。</p>
+<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>Docker里可以部署多个应用，只要端口号不冲突就行；然后通过 <code>公网IP:端口号</code> 进行访问就行。</p>
 <p>这里推荐几个自己用着不错的docker项目：</p>
 <ul>
 <li><a href="https://alist.nn.ci/guide/install/docker.html">Alist</a></li>
@@ -1174,11 +636,80 @@
       </tags>
   </entry>
   <entry>
-    <title>常用的命令提示符</title>
+    <title>Ubuntu安装Docker</title>
+    <url>/archives/bc681fc7.html</url>
+    <content><![CDATA[<h1 id="Ubuntu安装Docker"><a href="#Ubuntu安装Docker" class="headerlink" title="Ubuntu安装Docker"></a>Ubuntu安装Docker</h1><ul>
+<li>先更源，保证是最新</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo apt-get update</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>先卸载旧版本Docker</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo apt-get remove docker docker-engine docker.io containerd runc</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>安装Docker依赖（Docker在Ubuntu上依赖一些软件包）</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">apt-get install ca-certificates curl gnupg lsb-release</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>添加Docker官方密匙</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">curl -fsSL http://mirrors.aliyun.com/docker-ce/linux/ubuntu/gpg | sudo apt-key add -</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>添加Docker软件源</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo add-apt-repository &quot;deb [arch=amd64] http://mirrors.aliyun.com/docker-ce/linux/ubuntu $(lsb_release -cs) stable&quot;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>如果 添加Docker软件源 报错 <code>sudo: add-apt-repository: command not found</code>，可执行下面两条指令</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo apt-get install python-software-properties</span><br><span class="line">sudo apt-get install software-properties-common</span><br></pre></td></tr></table></figure>
+
+<p>然后再次执行<strong>添加Docker软件源</strong>指令即可</p>
+<ul>
+<li>安装Docker</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">apt-get install docker-ce docker-ce-cli containerd.io</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>验证是否安装成功</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker version</span><br></pre></td></tr></table></figure>
+
+<p>出现以下即成功：</p>
+<img src="https://s2.loli.net/2023/09/30/9gZMGPLCAWj87UE.jpg" style="zoom:50%;" />
+
+<ul>
+<li>启动docker</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">systemctl start docker</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>加入开机自启</li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">systemctl enable docker</span><br></pre></td></tr></table></figure>
+
+<center>——  END ——</center>]]></content>
+      <categories>
+        <category>Docker</category>
+        <category>Ubuntu</category>
+      </categories>
+      <tags>
+        <tag>Docker</tag>
+        <tag>Ubuntu</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>最近用到的CMD指令</title>
     <url>/archives/1ff8041c.html</url>
     <content><![CDATA[<h3 id="1-查看并导出目录文件夹名称"><a href="#1-查看并导出目录文件夹名称" class="headerlink" title="1. 查看并导出目录文件夹名称"></a>1. 查看并导出目录文件夹名称</h3><figure class="highlight cmd"><table><tr><td class="code"><pre><span class="line"><span class="built_in">tree</span>&gt;list.txt		//查看文件夹并导出为list.txt文件</span><br><span class="line"><span class="built_in">tree</span> /f &gt;list.txt		//查看文件夹及里面的文件并导出为list.txt文件</span><br></pre></td></tr></table></figure>
 
-<p><strong>解释：</strong><span id="more"></span></p>
+<span id="more"></span>
+
+<p><strong>解释：</strong></p>
 <ul>
 <li>只查看不导出，只用 <code>tree</code> 就行</li>
 <li><code>list.txt</code> 可以自己更改（<code>list</code> 为文件名，<code>txt</code> 为后缀；文件名可以自定义，后缀可以为：<code>txt、md、xls</code> 等）</li>
@@ -1286,10 +817,10 @@
       </tags>
   </entry>
   <entry>
-    <title>内网穿透</title>
+    <title>Ngrok内网穿透</title>
     <url>/archives/bd50b816.html</url>
     <content><![CDATA[<p>内网穿透，即 NAT 穿透，进行 NAT 穿透是为了使具有某一个特定源 IP 地址和源端口号的数据包不被 NAT 设备屏蔽而正确路由到内网主机。<span id="more"></span></p>
-<p>最开始了解内网穿透是为了将自己写的HTML项目能够让别人看见，但当时又不了解服务器等东西，就上网搜方法；偶然看到说内网穿透可以，所以就找了好多教程；最终就选了以下这种方法！</p>
+<p>最开始了解内网穿透是为了将自己写的项目能够让别人看见，但当时又不了解服务器等东西，就上网搜方法；偶然看到说内网穿透可以，所以就找了好多教程；最终就选了以下这种方法！</p>
 <hr>
 <h3 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h3><p>安装好jdk并配置环境变量、下载Tomcat并配置环境变量、注册一个Ngrok账号、一台电脑</p>
 <h3 id="配置jdk与Tomcat"><a href="#配置jdk与Tomcat" class="headerlink" title="配置jdk与Tomcat"></a>配置jdk与Tomcat</h3><p>这个就不详写了，上网一搜一大堆！（注意Tomcat要与jdk的版本号对应，具体看官网对应关系：<a href="http://tomcat.apache.org/whichversion.html">Apache Tomcat® - Which Version Do I Want?</a>）</p>
@@ -1306,12 +837,6 @@
 <h3 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h3><p>这时你的内网穿透已经成功了，但是如果你有自己的HTML项目，该怎样让别人通过你的网址访问呢？</p>
 <p>其实也很简单，将项目放到Tomcat目录下的<code>webapps</code>目录就行；访问的话就是<code>你的网址+项目的目录名+项目的名.html</code>，如我的一个就是<code>http://to.free.idcfengye.com/migong/index.html</code></p>
 <p>这样就能让别人通过你的网址来访问你的项目了！</p>
-<hr>
-<h3 id="最后的最后"><a href="#最后的最后" class="headerlink" title="最后的最后"></a>最后的最后</h3><p>注意，内网穿透的过程中你运行的 <code>Tomcat</code> 与 <code>Sunny-Ngrok启动工具</code> 不能关闭，否则连接会断开！</p>
-<p>完！</p>
-<hr>
-<p>更新：现在Ngrok免费的不太稳定，推荐使用 <a href="https://open.dingtalk.com/document/resourcedownload/http-intranet-penetration">钉钉内网穿透</a></p>
-<p>更新： <a href="https://open.dingtalk.com/document/resourcedownload/http-intranet-penetration">钉钉内网穿透</a> 也废弃了！  — 2022.07.21</p>
 ]]></content>
       <categories>
         <category>内网穿透</category>
