@@ -119,7 +119,6 @@
 <ul>
 <li>其他</li>
 </ul>
-<p>以下操作最好不要使用root用户</p>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo mkdir /var/repo/</span><br><span class="line">sudo chown -R $USER:$USER /var/repo/</span><br><span class="line">sudo chmod -R 755 /var/repo/</span><br><span class="line">cd /var/repo/</span><br><span class="line">git init --bare web_blog.git</span><br><span class="line">sudo mkdir -p /var/www/hexo</span><br><span class="line">sudo chown -R $USER:$USER /var/www/hexo</span><br><span class="line">sudo chmod -R 755 /var/www/hexo</span><br></pre></td></tr></table></figure>
 
 <ul>
@@ -235,8 +234,8 @@
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">crontab -e</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">30min执行一次上面的脚本</span></span><br><span class="line">*/30 * * * * /home/orangepi/code/start_main.sh</span><br></pre></td></tr></table></figure>
 ]]></content>
       <tags>
-        <tag>OrangePi</tag>
         <tag>Ubuntu</tag>
+        <tag>OrangePi</tag>
       </tags>
   </entry>
   <entry>
@@ -662,6 +661,9 @@
 
 <p>通过日志获取默认密码</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">docker logs alist</span><br><span class="line">#或者</span><br><span class="line">docker exec -it alist ./alist admin</span><br></pre></td></tr></table></figure>
+
+<p>或</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">配置文件路径：/opt/alist/data/config.json</span><br><span class="line">---------如何获取密码？--------</span><br><span class="line">先cd到alist所在目录:</span><br><span class="line">cd /opt/alist</span><br><span class="line">随机设置新密码:</span><br><span class="line">./alist admin random</span><br><span class="line">或者手动设置新密码:</span><br><span class="line">./alist admin set NEW_PASSWORD</span><br><span class="line">----------------------------</span><br><span class="line">查看状态：systemctl status alist</span><br><span class="line">启动服务：systemctl start alist</span><br><span class="line">重启服务：systemctl restart alist</span><br><span class="line">停止服务：systemctl stop alist</span><br></pre></td></tr></table></figure>
 
 <p><strong>除了上面的命令外还可以参考Alist官网的安装方式：<a href="https://alist.nn.ci/zh/guide/install/script.html">Alist安装</a></strong></p>
 <ul>
