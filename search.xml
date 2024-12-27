@@ -1,6 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>嵌入式之串口通信</title>
+    <url>/archives/b956c276.html</url>
+    <content><![CDATA[<h1 id="串口数据溢出"><a href="#串口数据溢出" class="headerlink" title="串口数据溢出"></a>串口数据溢出</h1><h2 id="事起缘由"><a href="#事起缘由" class="headerlink" title="事起缘由"></a>事起缘由</h2><p>串口单线通信，遇到一开串口，程序就“卡死”的情况，分析了原因，故有此文。</p>
+<h2 id="现象"><a href="#现象" class="headerlink" title="现象"></a>现象</h2><p>程序在不断进串口中断函数，造成其他程序无法正常执行。</p>
+<p>如果有串口溢出，可以在串口接收中断位置打断点，很容易触发该现象。</p>
+<h2 id="分析原因"><a href="#分析原因" class="headerlink" title="分析原因"></a>分析原因</h2><p>出现该现象时先是分析了硬件原因，一无所获；又接着分析软件，将所有代码逐步屏蔽，最后定位到串口上。</p>
+<p>网上查资料，查芯片用户手册，逐步定位到串口溢出（又称过载 - Overrun）上。以GD32F330为例，串口的溢出标志位（ORERR）位于USART_STAT寄存器中</p>
+<p>以下是本次经验与教训：</p>
+<p>串口溢出发生一般可能有以下几种情况：</p>
+<ul>
+<li><p>数据在接收缓冲区中未被及时读取。</p>
+</li>
+<li><p>串口接收中断被更高优先级的中断打断，且打断时间比较长。</p>
+</li>
+<li><p>擦写单片机内部flash时，耗时较长，导致串口中断无法响应。</p>
+</li>
+</ul>
+<h2 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h2><ul>
+<li><p>提高中断优先级。</p>
+</li>
+<li><p>判断并清除溢出中断标志（ORERR） - 只需读取一下串口数据寄存器（USART_RDATA）即可。</p>
+</li>
+<li><p>关闭溢出检测功能（不推荐，此操作虽然可以解决”卡死”现象，但可能会使上个数据被覆盖，导致数据丢失）。</p>
+</li>
+</ul>
+<h2 id="建议"><a href="#建议" class="headerlink" title="建议"></a>建议</h2><ol>
+<li><p>中断程序（不仅仅是串口中断）要响应所有中断，不要只响应接收中断，其他错误中断也要处理，否则会频繁进入中断造成“卡死”。 2 STM32串口只有一个硬件BUF，个人认为是硬伤。115200波特率的情况下，大家算下一个字节是多少us？ 只要串口中断被卡主住这么长时间不处理，就造成溢出。 3 把中断优先级提高、用DMA、人工优化。</p>
+</li>
+<li><p>尽量及时读取串口接收寄存器中的数据</p>
+</li>
+</ol>
+<h2 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h2><p><a href="https://blog.csdn.net/lljss1980/article/details/127115652">CSDN - GD32串口一直进溢出中断</a></p>
+]]></content>
+      <categories>
+        <category>嵌入式</category>
+        <category>串口</category>
+      </categories>
+      <tags>
+        <tag>嵌入式</tag>
+        <tag>串口</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>嵌入式之ADC</title>
     <url>/archives/c8ae9f13.html</url>
     <content><![CDATA[<h1 id="ADC"><a href="#ADC" class="headerlink" title="ADC"></a>ADC</h1><p>ADC - 模数转换器：<br>以GD32DF330为例，MCU片上集成了12位逐次逼近式模数转换器模块（ADC），可以采样来自于16个外部通道、2个内部通道和电池电压（VBAT）通道的模拟信号。</p>
