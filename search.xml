@@ -198,6 +198,12 @@
 </li>
 </ul>
 <p><em>— 摘自 <a href="https://blog.csdn.net/luoqjcandy/article/details/134932798">CSDN - YMODE协议注意事项详解</a></em></p>
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><p>具体代码实现可参考如下链接：</p>
+<ul>
+<li><a href="https://github.com/Gooost/STM32-IAP/tree/master">Github - STM32-IAP Demo</a></li>
+<li><a href="https://github.com/RdMaxes/stm32f4_SerialPort_bootloader/tree/master">Github - STM32F4_SerialPort_BootLoader Demo</a></li>
+<li><a href="https://github.com/caoliuchao/STM32F103-UartIAP/tree/master">Github - STM32F103-UartIAP Demo</a></li>
+</ul>
 <h2 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h2><p><a href="https://blog.csdn.net/luoqjcandy/article/details/134932798">CSDN - YMODE协议注意事项详解</a></p>
 <p><a href="https://blog.csdn.net/lbaihao/article/details/124024242">CSDN - STM32基于YModem协议串口升级程序的实现</a></p>
 <p><a href="https://github.com/caoliuchao/STM32F103-UartIAP/tree/master">Github - STM32F103-UartIAP Demo</a></p>
