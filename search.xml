@@ -1245,8 +1245,8 @@
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">crontab -e</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">30min执行一次上面的脚本</span></span><br><span class="line">*/30 * * * * /home/orangepi/code/start_main.sh</span><br></pre></td></tr></table></figure>
 ]]></content>
       <tags>
-        <tag>Ubuntu</tag>
         <tag>OrangePi</tag>
+        <tag>Ubuntu</tag>
       </tags>
   </entry>
   <entry>
