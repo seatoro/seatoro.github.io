@@ -1,6 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>嵌入式之串口与RS232与RS485的区别</title>
+    <url>/archives/9560aaf1.html</url>
+    <content><![CDATA[<p><strong><code>RS232</code>与<code>RS485</code>都是串口通信的变种！</strong></p>
+<h2 id="串口"><a href="#串口" class="headerlink" title="串口"></a>串口</h2><p><strong>通信模式：</strong>串行异步全双工</p>
+<p><strong>起始位：</strong>由一个逻辑0（低电平）的数据位表示</p>
+<p><strong>停止位：</strong>由一个逻辑1（高电平）的数据位表示</p>
+<p><strong>空闲状态电平：</strong><code>TX</code>和<code>RX</code>都是高电平（<code>TX</code>、<code>RX</code>上没有任何数据传输时为空闲状态）</p>
+<p><strong>波特率：</strong>可以认为是比特率，即每秒传输的位数<code>（bit）</code>。</p>
+<p>如：9600<strong>波特率</strong>表示每秒传输9600个符号（即每秒传输9600个高低电平），如果每个符号携带1个比特信息，则<strong>比特率</strong>为<code>9600bit/s</code>；如果每个符号携带2个比特信息，则<strong>比特率</strong>为<code>19200bit/s</code>。</p>
+<blockquote>
+<p><strong>注：波特率与比特率的区别：</strong></p>
+<p>波特率与比特率（Bit Rate）是两个容易混淆的概念：</p>
+<ul>
+<li>‌<strong>波特率</strong>‌：表示单位时间内传输的符号（码元）数量，单位为波特（Baud）。</li>
+<li>‌<strong>比特率</strong>‌：表示单位时间内传输的二进制位数，单位为比特每秒（bit/s）。</li>
+</ul>
+<p>两者的关系为：‌<strong>比特率 = 波特率 × 单个符号对应的二进制位数</strong>‌。例如，如果每个符号携带2个比特信息，则比特率是波特率的两倍。</p>
+</blockquote>
+<p><strong>逻辑电平：</strong>采用<code>TTL</code>逻辑，其输出的高电平最小为<code>2.4V（2.4 ~ 5V）</code>，输出的低电平最大为<code>0.4V（0 ~ 0.4V）</code>，一般认为串口通信高电平为<code>5V</code>，低电平为<code>0V</code>。</p>
+<p><strong>缺陷：</strong>由于电平逻辑导致其抗干扰能力弱（有静电时可能会导致低电平变为高电平，致使数据出错）；因此通信距离很短（一般为一块电路板上两块芯片间的通信、芯片与电脑通信；距离在1米以内）</p>
+<h3 id="UART"><a href="#UART" class="headerlink" title="UART"></a><code>UART</code></h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line">UART: Universal Asynchronous Receiver/Transmitter 通用异步收发器</span><br></pre></td></tr></table></figure>
+
+<p><code>UART</code>是一种<strong>通用的异步串行通信协议</strong>，它使用起始位、数据位、校验位和停止位来传输数据。</p>
+<p>在<code>UART</code>通信中，数据的传输是通过固定的波特率进行的，发送和接收端需要事先约定好波特率、数据位、校验位和停止位等参数。</p>
+<h3 id="USART"><a href="#USART" class="headerlink" title="USART "></a><code>USART </code></h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line">USART: Universal Synchronous/Asynchronous Receiver/Transmitter 通用同步/异步串行收发器</span><br></pre></td></tr></table></figure>
+
+<p><code>USART</code>是一种更为复杂的串行通信协议，它<strong>同时支持同步和异步的数据传输方式（通用同步/异步串行收发器）</strong>。</p>
+<p>与<code>UART</code>不同的是，<code>USART</code>可以选择同步或者异步模式进行通信，并且提供了更多的控制选项，比如硬件流控制、双向通信等。</p>
+<p><code>USART</code>通常用于对数据传输速度要求较高、需要双向通信或者需要更灵活控制的场景。</p>
+<h2 id="RS232"><a href="#RS232" class="headerlink" title="RS232"></a><code>RS232</code></h2><p><strong>背景：</strong>为了提高串口通信的距离与稳定性，美国电子工业联盟制定了<code>RS232</code>标准。</p>
+<p>那么如何使用<code>RS232</code>进行通信呢？</p>
+<p>只需在串口通信的基础上加一个电平转换芯片，如：<code>MAX232</code>，如此便可将<code>TTL</code>转为<code>RS232</code>电平。</p>
+<p><strong>逻辑电平：</strong>使用芯片时：如单片机输出给芯片的是<code>5V</code>，则芯片会输出<code>-12V</code>；如单片机输出给芯片的是<code>0V</code>，则芯片会输出<code>+12V</code>（反之亦然）</p>
+<blockquote>
+<p>注：‌<code>RS232</code>的电平逻辑与<code>TTL</code>不同，<code>RS232</code>采用的是负逻辑。</p>
+<p>在<code>RS232</code>标准中，<code>-15V</code>到<code>-3V</code>表示<strong>逻辑“1”</strong>，<code>+3V</code>到<code>+15V</code>表示<strong>逻辑“0”‌</strong></p>
+<p><strong>这种电平逻辑的设定是为了提高抗干扰能力</strong></p>
+</blockquote>
+<p><strong>区别：</strong><code>RS232</code>只改变了电平大小，传输的数据不会被改变。</p>
+<p>通信距离可达15米，但传输频率最高只能为<code>2M</code>（即波特率最高为：<code>19200bps</code>）</p>
+<h2 id="RS485"><a href="#RS485" class="headerlink" title="RS485"></a><code>RS485</code></h2><p><strong>区别：</strong><code>RS485</code>通信是在串口通信基础上加了一个电平转换芯片，该芯片可将串口信号转为差分信号（反之亦可）</p>
+<p><strong>差分信号：</strong>只需要2根线，无需地线；如：信号A大于信号B时代表逻辑1，那么反之就是逻辑0。</p>
+<p><strong>差分信号优势：</strong>抗干扰能力强（因为它用两根信号线的差值来代表逻辑0与逻辑1，且两根信号线采用双绞线的方式缠在一起，如果有外界干扰，会使两根信号线的电平一同变化，那么二者之间的差值基本保持不变）；传输距离远（可达1200米）；传输频率高（可达<code>50M</code>）</p>
+<h2 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h2><p><a href="https://blog.csdn.net/CSDN_PBB/article/details/131102031">CSDN - UART与USART</a></p>
+<p><a href="https://cloud.tencent.com/developer/article/2355943?policyId=1004">腾讯云开发者社区 - MCU常见通信总线串讲（一） UART和USART</a></p>
+<p><a href="https://www.bilibili.com/video/BV1PD4y147ts">B站视频  爱上半导体 - 5分钟看懂!串口RS232 RS485最本质的区别！</a></p>
+]]></content>
+      <categories>
+        <category>嵌入式</category>
+      </categories>
+      <tags>
+        <tag>嵌入式</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>单片机中断执行流程</title>
     <url>/archives/706f150e.html</url>
     <content><![CDATA[<h2 id="中断执行流程"><a href="#中断执行流程" class="headerlink" title="中断执行流程"></a>中断执行流程</h2><h3 id="一、中断触发阶段"><a href="#一、中断触发阶段" class="headerlink" title="一、中断触发阶段"></a>一、中断触发阶段</h3><h4 id="1-中断源触发"><a href="#1-中断源触发" class="headerlink" title="1. 中断源触发"></a>1. 中断源触发</h4><ul>
@@ -1188,8 +1243,8 @@
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">crontab -e</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">30min执行一次上面的脚本</span></span><br><span class="line">*/30 * * * * /home/orangepi/code/start_main.sh</span><br></pre></td></tr></table></figure>
 ]]></content>
       <tags>
-        <tag>Ubuntu</tag>
         <tag>OrangePi</tag>
+        <tag>Ubuntu</tag>
       </tags>
   </entry>
   <entry>
