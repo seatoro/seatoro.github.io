@@ -1,6 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>零碎知识点汇总</title>
+    <url>/archives/f5042dfd.html</url>
+    <content><![CDATA[<h1 id="零碎知识点汇总"><a href="#零碎知识点汇总" class="headerlink" title="零碎知识点汇总"></a>零碎知识点汇总</h1><h3 id="中断服务子程序-ISR"><a href="#中断服务子程序-ISR" class="headerlink" title="中断服务子程序(ISR)"></a>中断服务子程序<code>(ISR)</code></h3><ol>
+<li><code>ISR</code>不能返回一个值。</li>
+<li><code>ISR</code>不能传递参数。</li>
+<li>在许多处理器／编译器中，浮点一般都是不可重入的。<br> 有些处理器／编译器需要让额外的寄存器入栈。<br> 有些处理器／编译器就不允许在<code>IS</code>R中做浮点运算。<br> 此外，<code>ISR</code>应该是短而有效率的，在<code>ISR</code>中做浮点运算是不明智的。</li>
+<li>与第三点一脉相承，<code>printf()</code>经常有重入和性能上的问题，所以一般不使用<code>printf()</code>。</li>
+</ol>
+<h3 id="有符号数与无符号数一起运算"><a href="#有符号数与无符号数一起运算" class="headerlink" title="有符号数与无符号数一起运算"></a>有符号数与无符号数一起运算</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">foo</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="type">unsigned</span> <span class="type">int</span> a = <span class="number">6</span>;</span><br><span class="line">	<span class="type">int</span> b = <span class="number">-20</span>;</span><br><span class="line">	(a+b &gt; <span class="number">6</span>) ? <span class="built_in">puts</span>(<span class="string">&quot;&gt; 6&quot;</span>) : <span class="built_in">puts</span>(<span class="string">&quot;&lt;= 6&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>上面程序输出为<code>&quot;&gt; 6&quot;</code>！</p>
+<p>原因为：当表达式中同时存在有符号类型和无符号类型时，所有的操作数都自动转换为无符号类型。</p>
+<h3 id="EXTERN"><a href="#EXTERN" class="headerlink" title="EXTERN"></a>EXTERN</h3><p><code>extern</code>数组时可以不写元素个数，只在初始化时表明，这样在修改数组元素个数时就只用修改定义的地方，推荐这样写。</p>
+<h3 id="数据结构种类"><a href="#数据结构种类" class="headerlink" title="数据结构种类"></a>数据结构种类</h3><p>常用的有9种：基本数据类型、数组、结构体、枚举体、联合体、指针、链表、栈、队列</p>
+<h3 id="什么是中断向量表"><a href="#什么是中断向量表" class="headerlink" title="什么是中断向量表"></a>什么是中断向量表</h3><p>问：什么是中断向量表？它在嵌入式系统中如何工作？</p>
+<p>答：中断向量表是存储中断服务程序入口地址的表格。<br>当中断发生时，处理器根据中断类型号从中断向量表中找到对应的中断服务程序入口地址并跳转执行相应程序。</p>
+<h3 id="简述SPI通信中主机和从机的工作过程"><a href="#简述SPI通信中主机和从机的工作过程" class="headerlink" title="简述SPI通信中主机和从机的工作过程"></a>简述<code>SPI</code>通信中主机和从机的工作过程</h3><p>主机通过<code>SCK</code>线提供时钟信号，在<code>MOSI</code>线上发送数据；<br>从机在<code>SCK</code>上升沿或下降沿采样<code>MOSI</code>数据，同时从机通过<code>MISO</code>线返回数据；<br>主机在相应时钟沿采样<code>MISO</code>线上的数据，片选线<code>CS </code>用于主机选择特定从机，低电平有效。</p>
+<h3 id="简述嵌入式系统中-ADC（模拟数字转换器）-的工作原理"><a href="#简述嵌入式系统中-ADC（模拟数字转换器）-的工作原理" class="headerlink" title="简述嵌入式系统中 ADC（模拟数字转换器） 的工作原理"></a>简述嵌入式系统中 <code>ADC</code>（模拟数字转换器） 的工作原理</h3><p><code>ADC</code>将模拟信号转换为数字信号。<br>通过采样保持电路对模拟信号采样并保持，再经量化编码环节将采样值量化为数字量，最后以二进制代码输出。</p>
+<h3 id="字符串字面量"><a href="#字符串字面量" class="headerlink" title="字符串字面量"></a>字符串字面量</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> SIG_DATA  (<span class="string">&quot;!&quot;</span>[0])</span></span><br></pre></td></tr></table></figure>
+
+<p>以上宏定义含义如下：<br><code>(&quot;!&quot;[0])</code>是一个字符串字面量，其中<code>&quot;&quot;</code>是一个包含单个字符<code>!</code>的字符串。</p>
+<p>在C语言中，字符串字面量实际上是一个字符数组，每个字符后面跟着一个<code>\0</code>（空字符），用来表示字符串的结束；因此，<code>&quot;!&quot;[0]</code>表示取这个字符串的第一个字符，即<code>!</code></p>
+<p>所以， <code>SIG_DATA</code> 被定义为字符<code>!</code></p>
+]]></content>
+      <categories>
+        <category>嵌入式</category>
+      </categories>
+      <tags>
+        <tag>嵌入式</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>嵌入式之串口与RS232与RS485的区别</title>
     <url>/archives/9560aaf1.html</url>
     <content><![CDATA[<p><strong><code>RS232</code>与<code>RS485</code>都是串口通信的变种！</strong></p>
