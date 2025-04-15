@@ -3,7 +3,18 @@
   <entry>
     <title>零碎知识点汇总</title>
     <url>/archives/f5042dfd.html</url>
-    <content><![CDATA[<h1 id="零碎知识点汇总"><a href="#零碎知识点汇总" class="headerlink" title="零碎知识点汇总"></a>零碎知识点汇总</h1><h3 id="中断服务子程序-ISR"><a href="#中断服务子程序-ISR" class="headerlink" title="中断服务子程序(ISR)"></a>中断服务子程序<code>(ISR)</code></h3><ol>
+    <content><![CDATA[<h1 id="零碎知识点汇总"><a href="#零碎知识点汇总" class="headerlink" title="零碎知识点汇总"></a>零碎知识点汇总</h1><blockquote>
+<p><em><strong>以下内容均来源于网络</strong></em></p>
+</blockquote>
+<h3 id="代码编译过程"><a href="#代码编译过程" class="headerlink" title="代码编译过程"></a>代码编译过程</h3><p><a href="https://blog.csdn.net/m0_48022770/article/details/141563549">参考文章 - CSDN</a></p>
+<ul>
+<li>预处理（预编译）：处理预处理命令（如：<code>#include #define #ifdef</code>等<code>#</code>开头的内容），生成<code>.i</code>文件</li>
+<li>编译：将预处理后的源代码转换为汇编代码，生成<code>.s</code>文件</li>
+<li>汇编：将汇编代码转换为机器码，生成<code>.o</code>文件</li>
+<li>链接：将目标文件和库文件结合起来，生成<code>.out .exe</code>等</li>
+<li>运行</li>
+</ul>
+<h3 id="中断服务子程序-ISR"><a href="#中断服务子程序-ISR" class="headerlink" title="中断服务子程序(ISR)"></a>中断服务子程序<code>(ISR)</code></h3><ol>
 <li><code>ISR</code>不能返回一个值。</li>
 <li><code>ISR</code>不能传递参数。</li>
 <li>在许多处理器／编译器中，浮点一般都是不可重入的。<br> 有些处理器／编译器需要让额外的寄存器入栈。<br> 有些处理器／编译器就不允许在<code>IS</code>R中做浮点运算。<br> 此外，<code>ISR</code>应该是短而有效率的，在<code>ISR</code>中做浮点运算是不明智的。</li>
@@ -24,6 +35,81 @@
 <p>以上宏定义含义如下：<br><code>(&quot;!&quot;[0])</code>是一个字符串字面量，其中<code>&quot;&quot;</code>是一个包含单个字符<code>!</code>的字符串。</p>
 <p>在C语言中，字符串字面量实际上是一个字符数组，每个字符后面跟着一个<code>\0</code>（空字符），用来表示字符串的结束；因此，<code>&quot;!&quot;[0]</code>表示取这个字符串的第一个字符，即<code>!</code></p>
 <p>所以， <code>SIG_DATA</code> 被定义为字符<code>!</code></p>
+<h3 id="结构体为什么要内存对齐"><a href="#结构体为什么要内存对齐" class="headerlink" title="结构体为什么要内存对齐"></a>结构体为什么要内存对齐</h3><ul>
+<li><p><strong>性能优化：</strong><code>CPU</code>访问内存时，通常会以一定的块大小（例如4字节、8字节等）为单位进行读取。如果结构体中的数据成员没有对齐到这样的块边界，<code>CPU</code>可能需要执行额外的操作（如两次内存访问）来读取一个成员，这称为“未对齐访问”。未对齐访问会降低<code>CPU</code>的访问效率，增加程序的执行时间。 内存对齐可以确保结构体中的数据成员都位于合适的块边界上，从而<strong>提高<code>CPU</code>的访问效率。</strong></p>
+</li>
+<li><p><strong>硬件限制：</strong>某些硬件平台对内存访问有严格的对齐要求。如果结构体中的数据成员没有正确对齐，硬件可能会抛出异常或产生错误的结果。 通过内存对齐，可以确保结构体中的数据成员满足硬件平台的对齐要求，从而<strong>避免潜在的硬件问题</strong>。</p>
+</li>
+<li><p><strong>可移植性：</strong>不同的编译器和硬件平台可能对内存对齐有不同的要求。如果不进行内存对齐，同一个结构体在不同的编译器或硬件平台上可能会有不同的内存布局和大小。 通过使用标准的数据类型和编译器特定的对齐指令（如<code>#pragma pack</code>），可以确保结构体在不同平台上的内存布局和大小一致，从而<strong>提高程序的可移植性</strong>。</p>
+</li>
+<li><p><strong>空间利用率：</strong>虽然内存对齐可能会增加结构体所占用的总内存空间（因为编译器会在成员之间插入填充字节以确保对齐），但在某些情况下，这可以提高内存访问的效率并减少缓存未命中的可能性。 此外，合理的内存对齐还可以帮助<strong>减少内存碎片，提高内存管理的效率</strong>。</p>
+</li>
+<li><p><strong>简化编译器实现：</strong>对于编译器来说，处理未对齐的内存访问需要额外的逻辑和复杂性。通过要求结构体进行内存对齐，可以<strong>简化编译器的实现并减少潜在的错误</strong>。 </p>
+</li>
+</ul>
+<h3 id="内存溢出和内存泄漏的区别"><a href="#内存溢出和内存泄漏的区别" class="headerlink" title="内存溢出和内存泄漏的区别"></a>内存溢出和内存泄漏的区别</h3><p><a href="https://blog.csdn.net/weixin_45080272/article/details/138613786">参考文章 - CSDN</a></p>
+<ul>
+<li><p>内存溢出：是指程序在申请内存时，没有足够的内存空间供其使用。</p>
+<p>  比如，申请了一个整数的内存，但实际存了一个需要<code>long</code>类型来存储的数，这就会导致内存溢出。</p>
+<p>  系统无法满足程序需要的内存大小，导致溢出。</p>
+</li>
+<li><p>内存泄漏：是指程序在申请内存后，无法释放已申请的内存空间。</p>
+<p>  虽然单个内存泄漏可能不会带来太大问题，但随着内存泄漏的积累，系统的可用内存空间会逐渐减少；</p>
+<p>  <strong>内存泄漏最终可能会导致内存耗尽，也就是内存溢出。</strong></p>
+</li>
+</ul>
+<h3 id="define和typedef区别"><a href="#define和typedef区别" class="headerlink" title="define和typedef区别"></a><code>define</code>和<code>typedef</code>区别</h3><ul>
+<li><code>define</code>预处理阶段完成替换，<code>typedef</code>编译阶段进行替换。</li>
+<li><code>define</code>没有类型，只是简单的替换，而<code>typedef</code>会进行类型检查</li>
+<li><code>define</code>不是语句，不需要加分号，<code>typedef</code>需要加分号</li>
+<li>一般<code>define</code>用来定义常量或者书写复杂的内容；<code>typedef</code>一般用于给类型起别名</li>
+<li>二者对指针的定义区别很大。</li>
+</ul>
+<h3 id="const和define的区别"><a href="#const和define的区别" class="headerlink" title="const和define的区别"></a><code>const</code>和<code>define</code>的区别</h3><ul>
+<li><strong>数据类型：</strong><code>const</code>修饰的变量有明确的类型，而宏没有明确的数据类型</li>
+<li><strong>安全方面：</strong><code>const</code>修饰的变量会被编译器检查，而宏没有安全检查</li>
+<li><strong>内存分配：</strong><code>const</code>修饰的变量只会在第一次赋值时分配内存，而宏是直接替换，每次替换后的变量都会分配内存</li>
+<li><strong>作用场所：</strong><code>const</code>修饰的变量作用在编译、运行的过程中，而宏作用在预编译中</li>
+<li><strong>代码调试：</strong><code>const</code>方便调试，而宏在预编译中进行所以没有办法进行调试。</li>
+</ul>
+<h3 id="运算符"><a href="#运算符" class="headerlink" title="运算符"></a>运算符</h3><p>强制类型转换运算符的优先级大于除法</p>
+<h3 id="头文件中的ifndef-define-endif的作用"><a href="#头文件中的ifndef-define-endif的作用" class="headerlink" title="头文件中的ifndef/define/endif的作用"></a>头文件中的<code>ifndef/define/endif</code>的作用</h3><p><strong>防止头文件被重复包含（避免重复定义）</strong></p>
+<p>如果已经定义了该标识符，就不会再次包含头文件，从而避免重复定义和编译错误；</p>
+<p>这样可以确保头文件只被包含一次，提高编译效率并避免潜在的错误。</p>
+<h3 id="堆栈溢出一般是由什么原因导致的"><a href="#堆栈溢出一般是由什么原因导致的" class="headerlink" title="堆栈溢出一般是由什么原因导致的"></a>堆栈溢出一般是由什么原因导致的</h3><p>堆栈溢出通常是由<strong>递归调用</strong>或者<strong>过多的嵌套函数调用</strong>导致的。</p>
+<p>当一个函数被调用时，其<strong>参数和局部变量会被压入堆栈中</strong>，当函数执行完毕后，这些数据会被弹出堆栈。</p>
+<p>如果递归调用或者函数调用过多导致堆栈空间不足，就会发生堆栈溢出。</p>
+<p>另外，如果函数内部使用了大量的局部变量或者数组，也有可能导致堆栈溢出。</p>
+<h3 id="不能做switch-的参数类型"><a href="#不能做switch-的参数类型" class="headerlink" title="不能做switch()的参数类型"></a>不能做<code>switch()</code>的参数类型</h3><p>只能是整型或字符型。不能是浮点型、字符串等。</p>
+<h3 id="堆和栈的区别"><a href="#堆和栈的区别" class="headerlink" title="堆和栈的区别"></a>堆和栈的区别</h3><p><strong>可从2方面回答：分配方式、存储位置</strong></p>
+<ul>
+<li><strong>分配内存的方式</strong></li>
+</ul>
+<p><strong>堆：</strong>是由程序员分配和释放的，通过内存管理函数（如<code>malloc、free</code>）来操作堆内存。堆内存的生命周期由程序员控制，需要手动释放，否则可能导致内存泄漏。</p>
+<p><strong>栈：</strong>是由编译器自动分配和释放的，编译器根据变量的作用域来管理栈内存。当一个函数被调用时，其局部变量存储在栈上，函数执行完成后，这些变量会自动释放。</p>
+<ul>
+<li><strong>存储方式</strong></li>
+</ul>
+<p><strong>堆：</strong>是用于存储动态分配的内存，通常用来存储程序中需要长时间保存的大型数据结构，如数组等。堆内存的访问速度较慢，因为需要通过指针来访问。</p>
+<p><strong>栈：</strong>是用于存储局部变量和函数调用时的参数，栈内存的访问速度较快，因为数据的存取都在固定的位置进行。</p>
+<h3 id="关键字"><a href="#关键字" class="headerlink" title="关键字"></a>关键字</h3><figure class="highlight c"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">enum</span> <span class="title">union</span></span></span><br><span class="line"><span class="class"><span class="title">void</span> <span class="title">typedef</span> <span class="title">const</span> <span class="title">volatile</span> <span class="title">static</span> <span class="title">extern</span></span></span><br><span class="line"><span class="class"><span class="title">auto</span> <span class="title">register</span> </span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="sizeof"><a href="#sizeof" class="headerlink" title="sizeof"></a><code>sizeof</code></h3><p><code>sizeof</code>不是函数；既是关键字也是运算符</p>
+<h3 id="指针与数组的区别"><a href="#指针与数组的区别" class="headerlink" title="指针与数组的区别"></a><strong>指针与数组的区别</strong></h3><p>指针存储地址，数组存储数据；</p>
+<p><code>sizeof</code>结果不同（指针返回地址大小，数组返回总字节数）。</p>
+<h3 id="简述strcpy、sprintf-、memcpy的区别"><a href="#简述strcpy、sprintf-、memcpy的区别" class="headerlink" title="简述strcpy、sprintf 、memcpy的区别"></a>简述<code>strcpy、sprintf 、memcpy</code>的区别</h3><ul>
+<li><p><strong>操作对象不同：</strong><code>strcpy</code> 的两个操作对象均为字符串，<code>sprintf</code>的操作源对象可以是多种数据类型，目的操作对象是字符串，<code>memcpy</code>的两个对象就是两个任意可操作的内存地址，并不限于何种数据类型。</p>
+</li>
+<li><p><strong>执行效率不同：</strong><code>memcpy</code>最高，<code>strcpy</code>次之，<code>sprintf</code>的效率最低。</p>
+</li>
+<li><p><strong>实现功能不同：</strong><code>strcpy</code>主要实现字符串变量间的拷贝；<code>sprintf</code>主要实现其他数据类型格式到字 符串的转化；<code>memcpy</code>主要是内存块间的拷贝。</p>
+</li>
+</ul>
+<h3 id="DMA"><a href="#DMA" class="headerlink" title="DMA"></a><code>DMA</code></h3><p>CPU不参与数据传输（内存↔外设），提升效率。</p>
+<p>应用场景：高速ADC采集、大块数据搬运。</p>
+<h3 id="优化代码性能方法"><a href="#优化代码性能方法" class="headerlink" title="优化代码性能方法"></a>优化代码性能方法</h3><p>减少函数调用层级、使用查表法替代复杂计算、启用编译器优化（-O2）、内联汇编关键代码。</p>
 ]]></content>
       <categories>
         <category>嵌入式</category>
