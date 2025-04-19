@@ -8,10 +8,10 @@
 </blockquote>
 <h3 id="代码编译过程"><a href="#代码编译过程" class="headerlink" title="代码编译过程"></a>代码编译过程</h3><p><a href="https://blog.csdn.net/m0_48022770/article/details/141563549">参考文章 - CSDN</a></p>
 <ul>
-<li>预处理（预编译）：处理预处理命令（如：<code>#include #define #ifdef</code>等<code>#</code>开头的内容），生成<code>.i</code>文件</li>
-<li>编译：将预处理后的源代码转换为汇编代码，生成<code>.s</code>文件</li>
-<li>汇编：将汇编代码转换为机器码，生成<code>.o</code>文件</li>
-<li>链接：将目标文件和库文件结合起来，生成<code>.out .exe</code>等</li>
+<li>预处理（预编译）：处理预处理命令并没有真正开始编译（处理<code>#include #define #if</code>等<code>#</code>开头的内容：引用头文件<code>#include</code>、展开宏<code>#define</code>、确定参与编译的代码<code>#if</code>），生成<code>.i</code>文件</li>
+<li>编译：将预处理后的代码转换为汇编代码，生成<code>.s</code>文件</li>
+<li>汇编：将汇编代码转换为机器码（把汇编语言编译为二进制文件），生成<code>.o</code>文件</li>
+<li>链接：将目标文件和库文件结合起来（把多个二进制文件链接为一个整体代码），生成<code>.out .exe</code>等</li>
 <li>运行</li>
 </ul>
 <h3 id="中断服务子程序-ISR"><a href="#中断服务子程序-ISR" class="headerlink" title="中断服务子程序(ISR)"></a>中断服务子程序<code>(ISR)</code></h3><ol>
@@ -1089,15 +1089,15 @@
   <entry>
     <title>嵌入式之IIC协议及其相关</title>
     <url>/archives/2e946417.html</url>
-    <content><![CDATA[<h2 id="IIC协议"><a href="#IIC协议" class="headerlink" title="IIC协议"></a>IIC协议</h2><p><strong>协议：</strong><br>协议简单来说就是主机与从机双方约定一组动作，只要一方做了特定的动作，另一方就可以知道你要干什么，然后就可以给出特定的回复动作，多次重复就可以实现通信。</p>
+    <content><![CDATA[<h2 id="IIC协议"><a href="#IIC协议" class="headerlink" title="IIC协议"></a><code>IIC</code>协议</h2><p><strong>协议：</strong><br>协议简单来说就是主机与从机双方约定一组动作，只要一方做了特定的动作，另一方就可以知道你要干什么，然后就可以给出特定的回复动作，多次重复就可以实现通信。</p>
 <span id="more"></span>
 
-<p><strong>以下是我总结的IIC读写的步骤，仅供参考：</strong><br><strong>IIC 读数据:</strong><br>发送起始信号<br>发送从机地址 - 发送（写入）<br>发送寄存器地址<br>起始信号<br>发送从机地址 - 接收（读取）<br>接收数据<br>发送停止信号</p>
-<p><strong>IIC 写数据:</strong><br>发送起始信号<br>发送从机地址 - 发送（写入）<br>发送寄存器地址<br>发送数据<br>发送停止信号</p>
-<h2 id="软件模拟IIC实现与硬件IIC"><a href="#软件模拟IIC实现与硬件IIC" class="headerlink" title="软件模拟IIC实现与硬件IIC"></a>软件模拟IIC实现与硬件IIC</h2><p>由于在IIC总线的通信过程中，时钟信号由主设备产生，从设备根据时钟信号进行数据传输（即同步通信）。故可通过代码方便地模拟该协议，也即所谓的模拟IIC协议。<br>不过，对于异步通信来说，软件就没办法进行模拟了，比如常见的串口通信。</p>
-<p>在软件模拟 IIC 时 GPIO <strong>一般为开漏模式</strong>，支持线与功能；不过由于开漏模式无法输出真正的高电平，所以需要外部上拉（IIC的电平只是通信使用，所以负载强度不大；一般总线上认为，低于0.3Vdd为低电平，高于0.7Vdd为高电平）<br>推挽输出不能实现线与功能，因为如果两个输出引脚，一个输出高电平P-MOS管导通，一个输出低电平N-MOS管导通，则P-MOS管上方的高电平会经过P-MOS -&gt; N-MOS -&gt; GND，整个通路上没有外接电阻，因此电阻很小相当于高电平直接接到低电平造成了短路。</p>
-<p>模拟 I2C 是用两条 GPIO 管脚的软件模拟的，将一个 GPIO 设置为数据线 SDA，另外一个设置为时钟线 SCL。<br>硬件 I2C 则是通过一个 I2C 控制器实现的，该控制器被建立在微控制器芯片或单独的 I2C 芯片中，通过集成的硬件内部逻辑和电路来控制时序和数据格式，实现 I2C 总线通信。<br>软件与硬件的IIC各有优缺点，可根据实际情况选用。</p>
-<p><strong>注：</strong>在使用软件模拟IIC时，其实IIC的IO口既可以配置为推挽输出也可以配置为开漏输出，不同之处在于当IO口配置为推挽输出时，发送和接收数据时需要切换IO口的输入输出模式，发送数据时需要将IO口切换为输出模式，接收数据时需要将IO口切换为输入模式。如果配置开漏输出则不需要切换IO口的输入输出模式。我们知道推挽输出不具有线与的功能，但是由于我们使用软件IIC时通常不会有多个设备连接到一个总线上的情况，所以只有一个从设备的话，也就不会有线与的情况发生了，可以使用推挽输出。但是我们需要根据发送数据和接收数据来切换IO口的工作模式。</p>
+<p><strong>以下是我总结的<code>IIC</code>读写的步骤，仅供参考：</strong><br><strong><code>IIC</code> 读数据:</strong><br>发送起始信号<br>发送从机地址 - 发送（写入）<br>发送寄存器地址<br>起始信号<br>发送从机地址 - 接收（读取）<br>接收数据<br>发送停止信号</p>
+<p><strong><code>IIC</code> 写数据:</strong><br>发送起始信号<br>发送从机地址 - 发送（写入）<br>发送寄存器地址<br>发送数据<br>发送停止信号</p>
+<h2 id="软件模拟IIC实现与硬件IIC"><a href="#软件模拟IIC实现与硬件IIC" class="headerlink" title="软件模拟IIC实现与硬件IIC"></a>软件模拟<code>IIC</code>实现与硬件<code>IIC</code></h2><p>由于在<code>IIC</code>总线的通信过程中，时钟信号由主设备产生，从设备根据时钟信号进行数据传输（即同步通信）。故可通过代码方便地模拟该协议，也即所谓的模拟<code>IIC</code>协议。<br>不过，对于异步通信来说，软件就没办法进行模拟了，比如常见的串口通信。</p>
+<p>在软件模拟 <code>IIC</code> 时 <code>GPIO</code> <strong>一般为开漏模式</strong>，支持线与功能；不过由于开漏模式无法输出真正的高电平，所以需要外部上拉（<code>IIC</code>的电平只是通信使用，所以负载强度不大；一般总线上认为，低于<code>0.3Vdd</code>为低电平，高于<code>0.7Vdd</code>为高电平）<br>推挽输出不能实现线与功能，因为如果两个输出引脚，一个输出高电平<code>P-MOS</code>管导通，一个输出低电平<code>N-MOS</code>管导通，则<code>P-MOS</code>管上方的高电平会经过<code>P-MOS -&gt; N-MOS -&gt; GND</code>，整个通路上没有外接电阻，因此电阻很小相当于高电平直接接到低电平造成了短路。</p>
+<p>模拟 <code>I2C </code>是用两条 <code>GPIO </code>管脚的软件模拟的，将一个 <code>GPIO </code>设置为数据线 <code>SDA</code>，另外一个设置为时钟线 <code>SCL</code>。<br>硬件 <code>I2C </code>则是通过一个 <code>I2C </code>控制器实现的，该控制器被建立在微控制器芯片或单独的 <code>I2C </code>芯片中，通过集成的硬件内部逻辑和电路来控制时序和数据格式，实现 <code>I2C </code>总线通信。<br>软件与硬件的<code>IIC</code>各有优缺点，可根据实际情况选用。</p>
+<p><strong>注：</strong>在使用软件模拟<code>IIC</code>时，其实<code>IIC</code>的<code>IO</code>口既可以配置为推挽输出也可以配置为开漏输出，不同之处在于当<code>IO</code>口配置为推挽输出时，发送和接收数据时需要切换<code>IO</code>口的输入输出模式，发送数据时需要将<code>IO</code>口切换为输出模式，接收数据时需要将<code>IO</code>口切换为输入模式。如果配置开漏输出则不需要切换<code>IO</code>口的输入输出模式。我们知道推挽输出不具有线与的功能，但是由于我们使用软件<code>IIC</code>时通常不会有多个设备连接到一个总线上的情况，所以只有一个从设备的话，也就不会有线与的情况发生了，可以使用推挽输出。但是我们需要根据发送数据和接收数据来切换<code>IO</code>口的工作模式。</p>
 <h3 id="模拟IIC代码实现"><a href="#模拟IIC代码实现" class="headerlink" title="模拟IIC代码实现"></a>模拟<code>IIC</code>代码实现</h3><blockquote>
 <p><strong>注：有时候器件规格书上标明的设备地址不一定非得按照该地址进行寻址！</strong></p>
 <p><strong>具体来说就是，假如：现有一传感器，使用<code>IIC</code>通信；其规格书标明设备地址可选<code>（0x18、0x19）</code>，假如根据硬件连接，我们选用的地址为<code>0x18</code>；这并不意味着我们寻址是直接使用<code>#define SLAVE_ADDR 0x18</code>就行，很可能需要进行一番运算，即：<code>#define SLAVE_ADDR (0x18 &lt;&lt; 1)</code>。如果<code>IIC</code>使用7位地址，那么<code>&lt;&lt; 1</code>的作用就很明了了：将最低位让出，用做读写位。</strong></p>
@@ -1115,28 +1115,28 @@
 <li>从机接收：在接收前，应先拉高<code>SDA</code>，避免主机抢占<code>SDA</code>，导致数据出错；为存储接收到的数据，需拉高<code>SCL</code>，使主机在<code>SCL</code>高电平期间读取<code>SDA</code>，每读取一位就存入提前申请好的变量中；读完后即可得到一个字节的数据。然后拉低<code>SCL</code>，使从机可写入<code>SDA</code>，这样即可实现从机发送。</li>
 <li>应答信号：主机把应答位数据放到<code>SDA</code>线（即：如需应答则拉低<code>SDA</code>，如无需应答则拉高<code>SDA</code>）；然后先拉高<code>SCL</code>，以读取应答位；再拉低<code>SCL</code>，开始下一个时序模块；</li>
 </ol>
-<h2 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h2><h3 id="推挽输出"><a href="#推挽输出" class="headerlink" title="推挽输出"></a>推挽输出</h3><p>推挽（Push-Pull）通常用于需要强驱动能力的场景。<br>推挽输出既可以向负载灌电流，也可以从负载抽取电流。推拉式输出既提高电路的负载能力，又提高开关速度。<br>下面是一个典型的推挽输出电路：上面的三极管是NPN型三极管，下面的三极管是PNP型三极管，分别有以下两种情况，请留意控制端、输入端和输出端。</p>
-<p><strong>输出低电平：从负载拉电流</strong><br><img src="https://s2.loli.net/2024/11/26/5OriGa6uAQ4soPM.png" alt="推挽输出_低"><br>当Vin电压为V-时，下面的三极管有电流流出，Q4导通，Q3截止，于是电流从上往下流过。经过下面的P型三极管提供电流给负载（Rload)，这就叫「挽」。</p>
-<p><strong>输出高电平：向负载灌电流</strong><br><img src="https://s2.loli.net/2024/11/26/muhy6SWHCl3IfUw.png" alt="推挽输出_高"><br>当Vin电压为V+时，上面的N型三极管控制端有电流输入，Q3导通，Q4截止，于是电流从上往下通过，提供电流给负载。经过上面的N型三极管提供电流给负载（Rload)，这就叫「推」。</p>
+<h2 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h2><h3 id="推挽输出"><a href="#推挽输出" class="headerlink" title="推挽输出"></a>推挽输出</h3><p>推挽（<code>Push-Pull</code>）通常用于需要强驱动能力的场景。<br>推挽输出既可以向负载灌电流，也可以从负载抽取电流。推拉式输出既提高电路的负载能力，又提高开关速度。<br>下面是一个典型的推挽输出电路：上面的三极管是<code>NPN</code>型三极管，下面的三极管是<code>PNP</code>型三极管，分别有以下两种情况，请留意控制端、输入端和输出端。</p>
+<p><strong>输出低电平：从负载拉电流</strong><br><img src="https://s2.loli.net/2024/11/26/5OriGa6uAQ4soPM.png" alt="推挽输出_低"><br>当<code>Vin</code>电压为<code>V-</code>时，下面的三极管有电流流出，<code>Q4</code>导通，<code>Q3</code>截止，于是电流从上往下流过。经过下面的<code>P</code>型三极管提供电流给负载（<code>Rload</code>)，这就叫「挽」。</p>
+<p><strong>输出高电平：向负载灌电流</strong><br><img src="https://s2.loli.net/2024/11/26/muhy6SWHCl3IfUw.png" alt="推挽输出_高"><br>当<code>Vin</code>电压为<code>V+</code>时，上面的N型三极管控制端有电流输入，<code>Q3</code>导通，<code>Q4</code>截止，于是电流从上往下通过，提供电流给负载。经过上面的N型三极管提供电流给负载（<code>Rload</code>)，这就叫「推」。</p>
 <h3 id="开漏输出（开集输出）"><a href="#开漏输出（开集输出）" class="headerlink" title="开漏输出（开集输出）"></a>开漏输出（开集输出）</h3><p>开漏输出指的是场效应管（可以类比晶体管来理解，对于晶体管来说，也就变成了开集电极输出）的漏极开路输出，只能输出低电平和高阻态（只有接上拉电阻才能输出高电平）。</p>
-<p>以下图为例，当内部输出为1时，经过非门变为0，也就是场效应管的栅极电压为0，此时场效应管截止（相当于开路），那么单片机IO的输出是什么呢？是没办法确定的，注意并没有上拉电路。如果有上拉电阻呢，当然就是VCC，也就是逻辑1。当内部输出0时，栅极电压为1，此时场效应管导通，单片机IO与地连接，输出为0。<br><img src="https://www.stmcu.org.cn/module/forum/data/attachment/forum/202103/11/132526zq8ev8xn8ncv0xz2.png" alt="开漏输出"></p>
-<p>开漏结构（OD）对比推挽结构：开漏结构只有一个三极管或者MOS管，推挽结构则有两个。<br>之所以叫开漏，是因为MOS管分为三极：源极、栅极、漏极。漏极开路输出，所以叫开漏输出；<br>如果是三极管：基极、集电极、发射极，集电极开路输出，就叫开集输出（OC）。</p>
-<h3 id="浮空输入"><a href="#浮空输入" class="headerlink" title="浮空输入"></a>浮空输入</h3><p>顾名思义，浮空就是浮在空中，既不上拉也不下拉；<br>通俗讲就是让管脚什么都不接，浮空着，呈高阻态。<br>浮空最大的特点就是电压的不确定性，它可能是0V，也可能是VCC，还可能是介于两者之间的某个值（最有可能）完全由外部输入决定，引脚悬空的情况下，该端口的电平是不确定的。</p>
+<p>以下图为例，当内部输出为1时，经过非门变为0，也就是场效应管的栅极电压为0，此时场效应管截止（相当于开路），那么单片机<code>IO</code>的输出是什么呢？是没办法确定的，注意并没有上拉电路。如果有上拉电阻呢，当然就是<code>VCC</code>，也就是逻辑1。当内部输出0时，栅极电压为1，此时场效应管导通，单片机<code>IO</code>与地连接，输出为0。<br><img src="https://www.stmcu.org.cn/module/forum/data/attachment/forum/202103/11/132526zq8ev8xn8ncv0xz2.png" alt="开漏输出"></p>
+<p>开漏结构（<code>OD</code>）对比推挽结构：开漏结构只有一个三极管或者<code>MOS</code>管，推挽结构则有两个。<br>之所以叫开漏，是因为<code>MOS</code>管分为三极：源极、栅极、漏极。漏极开路输出，所以叫开漏输出；<br>如果是三极管：基极、集电极、发射极，集电极开路输出，就叫开集输出（<code>OC</code>）。</p>
+<h3 id="浮空输入"><a href="#浮空输入" class="headerlink" title="浮空输入"></a>浮空输入</h3><p>顾名思义，浮空就是浮在空中，既不上拉也不下拉；<br>通俗讲就是让管脚什么都不接，浮空着，呈高阻态。<br>浮空最大的特点就是电压的不确定性，它可能是<code>0V</code>，也可能是<code>VCC</code>，还可能是介于两者之间的某个值（最有可能）完全由外部输入决定，引脚悬空的情况下，该端口的电平是不确定的。</p>
 <p>用途：</p>
 <ul>
-<li>浮空可用来做ADC输入，这样可以减少上下拉电阻对结果的影响。</li>
+<li>浮空可用来做<code>ADC</code>输入，这样可以减少上下拉电阻对结果的影响。</li>
 <li>用于外部按键输入。</li>
 </ul>
 <h3 id="高阻态"><a href="#高阻态" class="headerlink" title="高阻态"></a>高阻态</h3><p>高阻状态是三态门电路的一种状态，三态为高电平、低电平、高阻态。<br>当处于高阻态时，无论该门的输入如何变化，都不会对其输出有影响。<br>高阻态近似为开路状态，控制信号无法控制引脚的电平，引脚测量电压可能为任意的电压值。</p>
-<h3 id="上拉-amp-下拉"><a href="#上拉-amp-下拉" class="headerlink" title="上拉 &amp; 下拉"></a>上拉 &amp; 下拉</h3><p>上拉就是将引脚通过一个电阻连接到VCC上；<br>上拉电阻的功能主要是为集电极开路输出型电路和开漏输出提供输出电流通道，将不确定的信号通过一个电阻钳位在高电平（可以结合上面的开漏输出来理解），电阻同时起限流作用。<br>所谓的强上拉、弱上拉，只是上拉电阻的阻值不同。</p>
-<p>下拉就是将引脚通过一个电阻连接到GND上，将不确定的信号通过一个电阻钳位在低电平。</p>
-<h3 id="三极管-amp-场效应管"><a href="#三极管-amp-场效应管" class="headerlink" title="三极管 &amp; 场效应管"></a>三极管 &amp; 场效应管</h3><p><strong>三个极：</strong><br>三极管是半导体基本元器件之一，具有电流放大作用；<br>共有三个极：发射极（Emitter）、基极（Base）和集电极（Collector）；中间部分是基区，两侧部分是发射区和集电区，排列方式有PNP和NPN两种。<br>场效应管有三个极：源极（S - Source），栅极（G - Gate），漏极（D - Drain），对应于晶体管的发射极（E），基极（B），以及集电极（C），排列方式也有P沟道和N沟道两种。</p>
-<p>MOS管的源极和漏极是可以对调的，他们都是在P型backgate中形成的N型区。在多数情况下，这个两个区是一样的，即使两端对调也不会影响器件的性能，这样的器件被认为是对称的。</p>
-<p>N-MOS的特性，Vgs 大于一定的值就会导通，适合用于源极接地时的情况（低端驱动）。<br>P-MOS的特性，Vgs 小于一定的值就会导通，适合用于源极接 VCC 时的情况（高端驱动）。</p>
+<h3 id="上拉-amp-下拉"><a href="#上拉-amp-下拉" class="headerlink" title="上拉 &amp; 下拉"></a>上拉 &amp; 下拉</h3><p>上拉就是将引脚通过一个电阻连接到<code>VCC</code>上；<br>上拉电阻的功能主要是为集电极开路输出型电路和开漏输出提供输出电流通道，将不确定的信号通过一个电阻钳位在高电平（可以结合上面的开漏输出来理解），电阻同时起限流作用。<br>所谓的强上拉、弱上拉，只是上拉电阻的阻值不同。</p>
+<p>下拉就是将引脚通过一个电阻连接到<code>GND</code>上，将不确定的信号通过一个电阻钳位在低电平。</p>
+<h3 id="三极管-amp-场效应管"><a href="#三极管-amp-场效应管" class="headerlink" title="三极管 &amp; 场效应管"></a>三极管 &amp; 场效应管</h3><p><strong>三个极：</strong><br>三极管是半导体基本元器件之一，具有电流放大作用；<br>共有三个极：发射极（<code>Emitter</code>）、基极（<code>Base</code>）和集电极（<code>Collector</code>）；中间部分是基区，两侧部分是发射区和集电区，排列方式有<code>PNP</code>和<code>NPN</code>两种。<br>场效应管有三个极：源极（<code>S - Source</code>），栅极（<code>G - Gate</code>），漏极（<code>D - Drain</code>），对应于晶体管的发射极（<code>E</code>），基极（<code>B</code>），以及集电极（<code>C</code>），排列方式也有<code>P</code>沟道和<code>N</code>沟道两种。</p>
+<p><code>MOS</code>管的源极和漏极是可以对调的，他们都是在<code>P</code>型<code>backgate</code>中形成的<code>N</code>型区。在多数情况下，这个两个区是一样的，即使两端对调也不会影响器件的性能，这样的器件被认为是对称的。</p>
+<p><code>N-MOS</code>的特性，<code>Vgs </code>大于一定的值就会导通，适合用于源极接地时的情况（低端驱动）。<br><code>P-MOS</code>的特性，<code>Vgs </code>小于一定的值就会导通，适合用于源极接 <code>VCC </code>时的情况（高端驱动）。</p>
 <p><strong>三极管与场效应管的基本工作原理：</strong></p>
 <ul>
-<li>‌<strong>三极管</strong>‌：三极管是一种电流控制元件，其工作原理是通过控制输入电流来改变输出电流。三极管有NPN型和PNP型两种类型，电流方向不同‌。</li>
-<li><strong>场效应管</strong>‌：场效应管是一种电压控制元件，通过控制输入电压来改变输出电流。场效应管分为结型场效应管和金属氧化物场效应管（MOS管），其中MOS管是最常见的类型‌。</li>
+<li>‌<strong>三极管</strong>‌：三极管是一种电流控制元件，其工作原理是通过控制输入电流来改变输出电流。三极管有<code>NPN</code>型和<code>PNP</code>型两种类型，电流方向不同‌。</li>
+<li><strong>场效应管</strong>‌：场效应管是一种电压控制元件，通过控制输入电压来改变输出电流。场效应管分为结型场效应管和金属氧化物场效应管（<code>MOS</code>管），其中<code>MOS</code>管是最常见的类型‌。</li>
 </ul>
 <p><strong>三极管与场效应管的主要区别：</strong></p>
 <ol>
@@ -1151,7 +1151,7 @@
 <li>‌<strong>三极管</strong>‌：适用于低频放大、开关电路和功率放大等应用。</li>
 <li>‌<strong>场效应管</strong>‌：适用于高频放大、低噪声放大、开关电路和低功耗电路等‌。</li>
 </ul>
-<h3 id="线与"><a href="#线与" class="headerlink" title="线与"></a>线与</h3><p>线与：所有GPIO输出高就是高，只要有一个输出低，整条线上面的都是低，这就是“与”的意思。</p>
+<h3 id="线与"><a href="#线与" class="headerlink" title="线与"></a>线与</h3><p>线与：所有<code>GPIO</code>输出高就是高，只要有一个输出低，整条线上面的都是低，这就是“与”的意思。</p>
 <h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><blockquote>
 <p><a href="https://www.elecfans.com/d/2192185.html">I2C推挽结构和开漏结构 - 电子发烧友</a></p>
 <p><a href="https://zhuanlan.zhihu.com/p/589281270">从IIC看推挽输出和开漏输出 - 知乎</a></p>
@@ -2161,45 +2161,45 @@
     <url>/archives/febc4fee.html</url>
     <content><![CDATA[<h3 id="准备工作："><a href="#准备工作：" class="headerlink" title="准备工作："></a>准备工作：</h3><p>首先需要准备：</p>
 <ul>
-<li>一个GitHub账号</li>
+<li>一个<code>GitHub</code>账号</li>
 <li>（没有的话先注册一个）</li>
-<li>下载PicGo软件并安装</li>
-<li>（软件GitHub地址：<a href="https://github.com/Molunerfinn/PicGo/releases%EF%BC%89">https://github.com/Molunerfinn/PicGo/releases）</a><span id="more"></span></li>
+<li>下载<code>PicGo</code>软件并安装</li>
+<li>（软件<code>GitHub</code>地址：<a href="https://github.com/Molunerfinn/PicGo/releases%EF%BC%89">https://github.com/Molunerfinn/PicGo/releases）</a><span id="more"></span></li>
 </ul>
-<h3 id="创建仓库："><a href="#创建仓库：" class="headerlink" title="创建仓库："></a>创建仓库：</h3><p>打开GitHub，点击右上角的 “＋” 号，选择第一个 “New repository” 创建一个存放图片的仓库；</p>
+<h3 id="创建仓库："><a href="#创建仓库：" class="headerlink" title="创建仓库："></a>创建仓库：</h3><p>打开<code>GitHub</code>，点击右上角的<code>“＋”</code>号，选择第一个<code>“New repository”</code>创建一个存放图片的仓库；</p>
 <img src="https://s2.loli.net/2022/07/10/VE75bD61GXOge2n.jpg" style="zoom: 80%;" />
 
-<p>仓库名称可以起个 “Image” ，描述的话随便就行，然后一定要选 “Public” 不要选 “Private” 下边随便勾一下 “Add a README file” 就行！最后点击 “Create repository” 来创建，具体如下图：</p>
+<p>仓库名称可以起个<code>“Image”</code>，描述的话随便就行，然后一定要选<code> “Public”</code> 不要选 <code>“Private” </code>下边随便勾一下<code>“Add a README file”</code>就行！最后点击 <code>“Create repository” </code>来创建，具体如下图：</p>
 <img src="https://s2.loli.net/2022/07/10/hWmGrZ3es5Ry6d1.jpg" style="zoom: 50%;" />
 
-<h3 id="获取Token："><a href="#获取Token：" class="headerlink" title="获取Token："></a>获取Token：</h3><p>回到GitHub主页，点击右上角头像，在下拉菜单中找到 “Setting”；然后翻到最下边，点击 “Developer setting”，</p>
+<h3 id="获取Token："><a href="#获取Token：" class="headerlink" title="获取Token："></a>获取Token：</h3><p>回到<code>GitHub</code>主页，点击右上角头像，在下拉菜单中找到 <code>“Setting”</code>；然后翻到最下边，点击 <code>“Developer setting”</code>，</p>
 <img src="https://s2.loli.net/2022/07/10/fhEZRywAuSnGc1M.jpg" style="zoom: 50%;" />
 
-<p>再点击最下边的 “Personal access tokens” ，然后新建一个 token 就行，如下：</p>
+<p>再点击最下边的<code> “Personal access tokens”</code> ，然后新建一个 <code>token </code>就行，如下：</p>
 <img src="https://s2.loli.net/2022/07/10/coxK8Pjd5OF4rqX.jpg" style="zoom: 50%;" />
 
 <img src="https://s2.loli.net/2022/07/10/QmsSeE2Y7fAaVPb.jpg" style="zoom:50%;" />
 
-<p>“Note” 可以随便填一个，时间的话自己选个天数就行（这个天数是 token 过期的时间），我这里就选个90天吧！最重要的是上面图中我圈起来的一定要打上勾！一定要！然后划到最下边点击创建就行了！然后你就会看到你的 Token ，值得注意的是：<strong>这个token只会出现一次，一定要记在什么地方备用</strong>，要是真么忘记的话，可以再新建一个！</p>
-<h3 id="配置PicGo"><a href="#配置PicGo" class="headerlink" title="配置PicGo"></a>配置PicGo</h3><p>打开picgo软件，找到“图床设置”，点击“Github图床”，按如下配置：</p>
+<p><code>&quot;Note&quot;</code> 可以随便填一个，时间的话自己选个天数就行（这个天数是 <code>token</code> 过期的时间），我这里就选个90天吧！最重要的是上面图中我圈起来的一定要打上勾！一定要！然后划到最下边点击创建就行了！然后你就会看到你的 <code>Token </code>，值得注意的是：<strong>这个<code>token</code>只会出现一次，一定要记在什么地方备用</strong>，要是真么忘记的话，可以再新建一个！</p>
+<h3 id="配置PicGo"><a href="#配置PicGo" class="headerlink" title="配置PicGo"></a>配置<code>PicGo</code></h3><p>打开<code>picgo</code>软件，找到“图床设置”，点击“<code>Github</code>图床”，按如下配置：</p>
 <img src="https://s2.loli.net/2022/07/10/xEsorp9iFnIAYPq.jpg" style="zoom:50%;" />
 
 <p>解释一下：</p>
 <ul>
-<li>设定仓库名：这里填的是 你GitHub的用户名 + 你刚才建的仓库名</li>
-<li>设定分支名：<strong>一定要填 “main”</strong> 不要填 “master” 否则配置不生效！！</li>
-<li>设定Token：这里填你刚才创建的 token 即可</li>
+<li>设定仓库名：这里填的是 你<code>GitHub</code>的用户名 + 你刚才建的仓库名</li>
+<li>设定分支名：<strong>一定要填<code> “main”</code></strong> 不要填<code>“master”</code>否则配置不生效！！</li>
+<li>设定<code>Token</code>：这里填你刚才创建的 <code>token</code> 即可</li>
 <li>指定存储路径：按图上填就行</li>
-<li>设定自定义域名：前面的都是一样的，后面两项为你的用户名和仓库名；具体为：<a href="https://cdn.jsdelivr.net/gh/%E7%94%A8%E6%88%B7%E5%90%8D/%E4%BB%93%E5%BA%93%E5%90%8D">https://cdn.jsdelivr.net/gh/用户名/仓库名</a></li>
+<li>设定自定义域名：前面的都是一样的，后面两项为你的用户名和仓库名；具体为：<code>https://cdn.jsdelivr.net/gh/用户名/仓库名</code></li>
 </ul>
 <p>点击确定，就可以了，现在你可以上传一张图片测试一下！</p>
 <p>如果不成功的话，就去问百度吧！</p>
 <hr>
-<p>哦，对了，最后附上 PicGo的官方文档吧：</p>
+<p>哦，对了，最后附上 <code>PicGo</code>的官方文档吧：</p>
 <p><a href="https://picgo.github.io/PicGo-Doc/zh/guide/#%E5%BA%94%E7%94%A8%E6%A6%82%E8%BF%B0">官方指南</a></p>
 <p><a href="https://picgo.github.io/PicGo-Doc/zh/guide/config.html#github%E5%9B%BE%E5%BA%8A">用户配置</a></p>
-<p>注意：设定分支名：<strong>一定要填 “main”</strong> 不要填 “master” 否则配置不生效！！这一点不要按照官方文档的来！</p>
-<p>好了，这下真完事了！</p>
+<p>注意：设定分支名：<strong>一定要填<code> “main”</code></strong> 不要填 <code>“master” </code>否则配置不生效！！这一点不要按照官方文档的来！</p>
+<p>OK，完事！</p>
 ]]></content>
       <categories>
         <category>Github</category>
@@ -2272,52 +2272,52 @@
   <entry>
     <title>FFmpeg的简单使用</title>
     <url>/archives/d9d00a92.html</url>
-    <content><![CDATA[<p>简单聊一聊FFmpeg的使用；</p>
+    <content><![CDATA[<p>简单聊一聊<code>FFmpeg</code>的使用；</p>
 <p>其有非常强大的功能：包括但不限于 视频采集功能、视频格式转换、视频抓图、给视频加水印等。</p>
-<p><em>以下来源于百度百科：FFmpeg是一套可以用来记录、转换数字音频、视频，并能将其转化为流的开源计算机程序。采用LGPL或GPL许可证。它提供了录制、转换以及流化音视频的完整解决方案。它包含了非常先进的音频/视频编解码库libavcodec，为了保证高可移植性和编解码质量，libavcodec里很多code都是从头开发的。</em></p>
+<p><em>以下来源于百度百科：<code>FFmpeg</code>是一套可以用来记录、转换数字音频、视频，并能将其转化为流的开源计算机程序。采用<code>LGPL</code>或<code>GPL</code>许可证。它提供了录制、转换以及流化音视频的完整解决方案。它包含了非常先进的音频/视频编解码库<code>libavcodec</code>，为了保证高可移植性和编解码质量，<code>libavcodec</code>里很多<code>code</code>都是从头开发的。</em></p>
 <span id="more"></span>
 
 <hr>
-<h3 id="简单介绍一下使用方法："><a href="#简单介绍一下使用方法：" class="headerlink" title="简单介绍一下使用方法："></a>简单介绍一下使用方法：</h3><h3 id="应用场景1：格式转换"><a href="#应用场景1：格式转换" class="headerlink" title="应用场景1：格式转换"></a>应用场景1：格式转换</h3><p>我想把用iPhone拍的.MOV文件转成.avi文件。最简单了，可以执行下面的命令：</p>
+<h3 id="简单介绍一下使用方法："><a href="#简单介绍一下使用方法：" class="headerlink" title="简单介绍一下使用方法："></a>简单介绍一下使用方法：</h3><h3 id="应用场景1：格式转换"><a href="#应用场景1：格式转换" class="headerlink" title="应用场景1：格式转换"></a>应用场景1：格式转换</h3><p>我想把用<code>iPhone</code>拍的<code>.MOV</code>文件转成<code>.avi</code>文件。最简单了，可以执行下面的命令：</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ffmpeg -i D:\Media\IMG_0873.MOV D:\Media\output.avi  </span><br></pre></td></tr></table></figure>
 
-<p>【意思是，把D:\Media目录下的源文件IMG_0873.MOV（视频：h.264，音频：aac）转换成output.avi（编码格式自动选择为：视频mpeg4，音频mp3），目标文件仍然保存到D:\Media目录下。】</p>
-<p>问题来了：我想自己指定编码格式，怎么办呢？可通过目标文件的扩展名（.flv、.mpg、.mp4、.wmv等）来控制，比如：</p>
+<p>【意思是，把<code>D:\Media</code>目录下的源文件<code>IMG_0873.MOV</code>（视频：<code>h.264</code>，音频：<code>aac</code>）转换成<code>output.avi</code>（编码格式自动选择为：视频<code>mpeg4</code>，音频<code>mp3</code>），目标文件仍然保存到<code>D:\Media</code>目录下。】</p>
+<p>问题来了：我想自己指定编码格式，怎么办呢？可通过目标文件的扩展名（<code>.flv</code>、<code>.mpg</code>、<code>.mp4</code>、<code>.wmv</code>等）来控制，比如：</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ffmpeg -i D:\Media\IMG_0873.MOV D:\Media\output2.flv</span><br></pre></td></tr></table></figure>
 
-<h3 id="应用场景2：调整大小"><a href="#应用场景2：调整大小" class="headerlink" title="应用场景2：调整大小"></a>应用场景2：调整大小</h3><p>若源文件的图像帧尺寸是1920x 1080，我不需要这么大——能有720 x 480就够了。于是，就要用上-s参数了。为了保证图像缩放后的质量，最好加上码流参数-b:v。如下：</p>
+<h3 id="应用场景2：调整大小"><a href="#应用场景2：调整大小" class="headerlink" title="应用场景2：调整大小"></a>应用场景2：调整大小</h3><p>若源文件的图像帧尺寸是1920x 1080，我不需要这么大——能有720 x 480就够了。于是，就要用上<code>-s</code>参数了。为了保证图像缩放后的质量，最好加上码流参数<code>-b:v</code>。如下：</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ffmpeg -i D:\Media\IMG_0873.MOV -s 720x480 -b:v 1500k D:\Media\output2.avi</span><br></pre></td></tr></table></figure>
 
-<h3 id="应用场景3：翻转视频"><a href="#应用场景3：翻转视频" class="headerlink" title="应用场景3：翻转视频"></a>应用场景3：翻转视频</h3><p>手机拍的视频中，有些是颠倒的，我想让它顺时针旋转90度。这时候，可以使用-vf参数加入一个过滤器，如下：</p>
+<h3 id="应用场景3：翻转视频"><a href="#应用场景3：翻转视频" class="headerlink" title="应用场景3：翻转视频"></a>应用场景3：翻转视频</h3><p>手机拍的视频中，有些是颠倒的，我想让它顺时针旋转90度。这时候，可以使用<code>-vf</code>参数加入一个过滤器，如下：</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ffmpeg -i D:\Media\IMG_0873.MOV -vf &quot;rotate=90*PI/180&quot; D:\Media\output3.avi</span><br></pre></td></tr></table></figure>
 
 <p>注：如果想逆时针旋转90度，90前面加个负号就可以了。</p>
 <h3 id="应用场景4：截取一段"><a href="#应用场景4：截取一段" class="headerlink" title="应用场景4：截取一段"></a>应用场景4：截取一段</h3><p>需要从源视频里截取一小段，怎么办呢？比如从第2秒的地方开始，往后截取10秒钟。命令行可以这样：</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ffmpeg -ss 2 -t 10 -i D:\Media\IMG_0873.MOV D:\Media\output4.avi</span><br><span class="line">或</span><br><span class="line">ffmpeg -i ./input.mp4 -c:v libx264 -crf 18 -ss 00:00:10 -to 00:00:15 ./cut_out.mp4</span><br></pre></td></tr></table></figure>
 
-<p>注：这种情况下，-ss和-t参数必须放在-i前面，表示是限定后面跟着的输入文件的。</p>
-<h3 id="应用场景5：视频合成"><a href="#应用场景5：视频合成" class="headerlink" title="应用场景5：视频合成"></a>应用场景5：视频合成</h3><p>用手机拍的视频有时候背景噪音比较大。怎么把噪音去掉，换成一段美妙的音乐呢？使用FFmpeg也能轻易做到。</p>
-<p><em><strong>第一步：</strong></em>把源文件里的音频去掉，生成一个临时文件tmp.mov</p>
+<p>注：这种情况下，<code>-ss</code>和<code>-t</code>参数必须放在<code>-i</code>前面，表示是限定后面跟着的输入文件的。</p>
+<h3 id="应用场景5：视频合成"><a href="#应用场景5：视频合成" class="headerlink" title="应用场景5：视频合成"></a>应用场景5：视频合成</h3><p>用手机拍的视频有时候背景噪音比较大。怎么把噪音去掉，换成一段美妙的音乐呢？使用<code>FFmpeg</code>也能轻易做到。</p>
+<p><em><strong>第一步：</strong></em>把源文件里的音频去掉，生成一个临时文件<code>tmp.mov</code></p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ffmpeg -i D:\Media\IMG_0873.MOV -vcodec copy -an D:\Media\tmp.mov</span><br></pre></td></tr></table></figure>
 
-<p>注：-vcodec copy的意思是对源视频不解码，直接拷贝到目标文件；-an的意思是将源文件里的音频丢弃。</p>
-<p><em><strong>第二步：</strong></em>把这个无声的视频文件（tmp.mov）与一个音乐文件（music.mp3）合成，最终生成output.mov</p>
+<p>注：<code>-vcodec copy</code>的意思是对源视频不解码，直接拷贝到目标文件；<code>-an</code>的意思是将源文件里的音频丢弃。</p>
+<p><em><strong>第二步：</strong></em>把这个无声的视频文件（<code>tmp.mov</code>）与一个音乐文件（<code>music.mp3</code>）合成，最终生成<code>output.mov</code></p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ffmpeg -i D:\Media\tmp.mov -ss 30 -t 52 -i D:\Media\music.mp3 -vcodec copy D:\Media\output5.avi</span><br><span class="line"></span><br><span class="line">ffmpeg.exe -i G:\test\removebgm.mp4 -ss 00:00:00.0 -t 00:03:31 -i G:\test\456.mp3 -acodec copy G:\test\hfdk.mp4</span><br></pre></td></tr></table></figure>
 
-<p>为了保证良好的合成效果，音乐时长必须匹配视频时长。这里我们事先知道视频时长为52秒，于是截取music.mp3文件的第30秒往后的52秒与视频合成。另外，为了保证音频时长截取的准确性，我们这里没有使用-acodec copy，而是让音频重新转码。</p>
+<p>为了保证良好的合成效果，音乐时长必须匹配视频时长。这里我们事先知道视频时长为52秒，于是截取<code>music.mp3</code>文件的第30秒往后的52秒与视频合成。另外，为了保证音频时长截取的准确性，我们这里没有使用<code>-acodec copy</code>，而是让音频重新转码。</p>
 <p>还有一种情况：我们希望在一段视频上叠加一张图片（将视频画面全部显示该图片）。可以简单实现如下：</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ffmpeg -i D:\Media\IMG_0873.MOV -i D:\Media\logo.png -filter_complex   &#x27;overlay&#x27; D:\Media\output6.avi</span><br></pre></td></tr></table></figure>
 
-<h3 id="应用场景6：视频播放"><a href="#应用场景6：视频播放" class="headerlink" title="应用场景6：视频播放"></a>应用场景6：视频播放</h3><p>格式转换或合成之后，我们需要试着播放一下。播放器的选择很多。这里顺手用ffplay工具也行：</p>
+<h3 id="应用场景6：视频播放"><a href="#应用场景6：视频播放" class="headerlink" title="应用场景6：视频播放"></a>应用场景6：视频播放</h3><p>格式转换或合成之后，我们需要试着播放一下。播放器的选择很多。这里顺手用<code>ffplay</code>工具也行：</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ffplay -i D:\Media\output6.avi</span><br></pre></td></tr></table></figure>
 
-<h3 id="应用场景7：获取视频信息"><a href="#应用场景7：获取视频信息" class="headerlink" title="应用场景7：获取视频信息"></a>应用场景7：获取视频信息</h3><p>有时候，我只是想看看这个视频文件的格式信息。可以用ffprobe工具：</p>
+<h3 id="应用场景7：获取视频信息"><a href="#应用场景7：获取视频信息" class="headerlink" title="应用场景7：获取视频信息"></a>应用场景7：获取视频信息</h3><p>有时候，我只是想看看这个视频文件的格式信息。可以用<code>ffprobe</code>工具：</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ffprobe -i D:\Media\IMG_0873.MOV</span><br></pre></td></tr></table></figure>
 
-<h3 id="应用场景8：截取视频前3秒-并转化为gif"><a href="#应用场景8：截取视频前3秒-并转化为gif" class="headerlink" title="应用场景8：截取视频前3秒 并转化为gif"></a>应用场景8：截取视频前3秒 并转化为gif</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ffmpeg -ss 00:00:01 -t 3 -i 123.mp4 -vf crop=iw:ih*2/3 -s 320x240 -r 7 456.gif</span><br></pre></td></tr></table></figure>
+<h3 id="应用场景8：截取视频前3秒-并转化为gif"><a href="#应用场景8：截取视频前3秒-并转化为gif" class="headerlink" title="应用场景8：截取视频前3秒 并转化为gif"></a>应用场景8：截取视频前3秒 并转化为<code>gif</code></h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ffmpeg -ss 00:00:01 -t 3 -i 123.mp4 -vf crop=iw:ih*2/3 -s 320x240 -r 7 456.gif</span><br></pre></td></tr></table></figure>
 
-<p>ps: -ss 00：00：01表示从视频第一秒开始截取  ;  - t 表示截图3秒钟的视频  ;   -vf crop=iw:ih*2/3 表示截取视频的部分区域，其中宽为视频宽度，高为原视频的2/3  ;     -r 7 表示每秒帧率为7帧  ; </p>
-<h3 id="应用场景9：把AVI里的音频保存成mp3文件"><a href="#应用场景9：把AVI里的音频保存成mp3文件" class="headerlink" title="应用场景9：把AVI里的音频保存成mp3文件"></a>应用场景9：把AVI里的音频保存成mp3文件</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ffmpeg -i source_video.avi -vn -ar 44100 -acodec libmp3lame -ac 2 -ab 192K -f mp3 sound.mp3</span><br></pre></td></tr></table></figure>
+<p><code>ps: -ss 00：00：01</code>表示从视频第一秒开始截取  ;  <code>- t</code> 表示截图3秒钟的视频  ;   <code>-vf crop=iw:ih*2/3 </code>表示截取视频的部分区域，其中宽为视频宽度，高为原视频的2/3  ;    <code>-r 7</code>表示每秒帧率为7帧  ; </p>
+<h3 id="应用场景9：把AVI里的音频保存成mp3文件"><a href="#应用场景9：把AVI里的音频保存成mp3文件" class="headerlink" title="应用场景9：把AVI里的音频保存成mp3文件"></a>应用场景9：把<code>AVI</code>里的音频保存成<code>mp3</code>文件</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ffmpeg -i source_video.avi -vn -ar 44100 -acodec libmp3lame -ac 2 -ab 192K -f mp3 sound.mp3</span><br></pre></td></tr></table></figure>
 
 <h3 id="应用场景10：分离视频音频流"><a href="#应用场景10：分离视频音频流" class="headerlink" title="应用场景10：分离视频音频流"></a>应用场景10：分离视频音频流</h3><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ffmpeg.exe -i G:\test\123.mp4 -f mp3 -vn G:\test\fgsiug.mp3</span><br></pre></td></tr></table></figure>
 
@@ -2329,9 +2329,9 @@
 
 
 
-<p><em>ps：以上来源于互联网以及FFmpeg官方文档</em></p>
+<p><em>ps：以上来源于互联网以及<code>FFmpeg</code>官方文档</em></p>
 <hr>
-<h3 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h3><p>附上FFmpeg官网链接：<a href="https://github.com/FFmpeg/FFmpeg">FFmpeg/FFmpeg: Mirror of https://git.ffmpeg.org/ffmpeg.git (github.com)</a></p>
+<h3 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h3><p>附上<code>FFmpeg</code>官网链接：<a href="https://github.com/FFmpeg/FFmpeg">FFmpeg/FFmpeg: Mirror of https://git.ffmpeg.org/ffmpeg.git (github.com)</a></p>
 ]]></content>
       <categories>
         <category>FFmpeg</category>
