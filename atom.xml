@@ -1,0 +1,556 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>龙猫知识库</title>
+  <icon>https://blog.totoroweb.fun/icon.png</icon>
+  
+  <link href="https://blog.totoroweb.fun/atom.xml" rel="self"/>
+  
+  <link href="https://blog.totoroweb.fun/"/>
+  <updated>2025-04-19T05:48:25.996Z</updated>
+  <id>https://blog.totoroweb.fun/</id>
+  
+  <author>
+    <name>Totoro</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>零碎知识点汇总</title>
+    <link href="https://blog.totoroweb.fun/archives/f5042dfd.html"/>
+    <id>https://blog.totoroweb.fun/archives/f5042dfd.html</id>
+    <published>2025-04-15T09:29:09.000Z</published>
+    <updated>2025-04-19T05:48:25.996Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;零碎知识点汇总&quot;&gt;&lt;a href=&quot;#零碎知识点汇总&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="嵌入式" scheme="https://blog.totoroweb.fun/categories/%E5%B5%8C%E5%85%A5%E5%BC%8F/"/>
+    
+    
+    <category term="嵌入式" scheme="https://blog.totoroweb.fun/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>嵌入式之串口与RS232与RS485的区别</title>
+    <link href="https://blog.totoroweb.fun/archives/9560aaf1.html"/>
+    <id>https://blog.totoroweb.fun/archives/9560aaf1.html</id>
+    <published>2025-04-10T03:01:10.920Z</published>
+    <updated>2025-04-10T03:01:22.947Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;&lt;strong&gt;&lt;code&gt;RS232&lt;/code&gt;与&lt;code&gt;RS485&lt;/code&gt;都是串口通信的变种！&lt;/strong&gt;&lt;/p&gt;
+&lt;h2 id=&quot;串口&quot;&gt;&lt;a href=&quot;#串口&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="嵌入式" scheme="https://blog.totoroweb.fun/categories/%E5%B5%8C%E5%85%A5%E5%BC%8F/"/>
+    
+    
+    <category term="嵌入式" scheme="https://blog.totoroweb.fun/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>单片机中断执行流程</title>
+    <link href="https://blog.totoroweb.fun/archives/706f150e.html"/>
+    <id>https://blog.totoroweb.fun/archives/706f150e.html</id>
+    <published>2025-04-07T07:28:49.000Z</published>
+    <updated>2025-04-07T07:35:40.676Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;中断执行流程&quot;&gt;&lt;a href=&quot;#中断执行流程&quot; class=&quot;headerlink&quot; title=&quot;中断执行流程&quot;&gt;&lt;/a&gt;中断执行流程&lt;/h2&gt;&lt;h3 id=&quot;一、中断触发阶段&quot;&gt;&lt;a href=&quot;#一、中断触发阶段&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="嵌入式" scheme="https://blog.totoroweb.fun/categories/%E5%B5%8C%E5%85%A5%E5%BC%8F/"/>
+    
+    <category term="中断" scheme="https://blog.totoroweb.fun/categories/%E5%B5%8C%E5%85%A5%E5%BC%8F/%E4%B8%AD%E6%96%AD/"/>
+    
+    
+    <category term="嵌入式" scheme="https://blog.totoroweb.fun/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/"/>
+    
+    <category term="中断" scheme="https://blog.totoroweb.fun/tags/%E4%B8%AD%E6%96%AD/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>单片机的存储空间与内存分区</title>
+    <link href="https://blog.totoroweb.fun/archives/dcc8860b.html"/>
+    <id>https://blog.totoroweb.fun/archives/dcc8860b.html</id>
+    <published>2025-04-02T03:02:34.000Z</published>
+    <updated>2025-04-02T02:50:12.501Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;ROM、RAM、FLASH与内存分区&quot;&gt;&lt;a href=&quot;#ROM、RAM、FLASH与内存分区&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="嵌入式" scheme="https://blog.totoroweb.fun/categories/%E5%B5%8C%E5%85%A5%E5%BC%8F/"/>
+    
+    
+    <category term="嵌入式" scheme="https://blog.totoroweb.fun/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/"/>
+    
+    <category term="内存" scheme="https://blog.totoroweb.fun/tags/%E5%86%85%E5%AD%98/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>单片机启动过程解析</title>
+    <link href="https://blog.totoroweb.fun/archives/db73c4af.html"/>
+    <id>https://blog.totoroweb.fun/archives/db73c4af.html</id>
+    <published>2025-03-25T01:05:45.000Z</published>
+    <updated>2025-04-01T08:46:45.643Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;单片机启动过程解析&quot;&gt;&lt;a href=&quot;#单片机启动过程解析&quot; class=&quot;headerlink&quot; title=&quot;单片机启动过程解析&quot;&gt;&lt;/a&gt;单片机启动过程解析&lt;/h2&gt;&lt;h3 id=&quot;一、正常程序运行流程&quot;&gt;&lt;a href=&quot;#一、正常程序运行流程&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="嵌入式" scheme="https://blog.totoroweb.fun/categories/%E5%B5%8C%E5%85%A5%E5%BC%8F/"/>
+    
+    
+    <category term="嵌入式" scheme="https://blog.totoroweb.fun/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/"/>
+    
+    <category term="IAP" scheme="https://blog.totoroweb.fun/tags/IAP/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>使用Ymodem+BootLoader进行固件升级</title>
+    <link href="https://blog.totoroweb.fun/archives/d959a1df.html"/>
+    <id>https://blog.totoroweb.fun/archives/d959a1df.html</id>
+    <published>2025-03-21T07:39:32.000Z</published>
+    <updated>2025-03-24T12:22:45.619Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;&lt;em&gt;&lt;strong&gt;注1：&lt;/strong&gt;&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;&lt;strong&gt;上位机发送的固件后缀必须为&lt;code&gt;.bin&lt;/code&gt;而不能为&lt;code&gt;.hex&lt;/code&gt;！！！</summary>
+        
+      
+    
+    
+    
+    <category term="嵌入式" scheme="https://blog.totoroweb.fun/categories/%E5%B5%8C%E5%85%A5%E5%BC%8F/"/>
+    
+    <category term="Ymodem" scheme="https://blog.totoroweb.fun/categories/%E5%B5%8C%E5%85%A5%E5%BC%8F/Ymodem/"/>
+    
+    <category term="BootLoader" scheme="https://blog.totoroweb.fun/categories/%E5%B5%8C%E5%85%A5%E5%BC%8F/Ymodem/BootLoader/"/>
+    
+    
+    <category term="嵌入式" scheme="https://blog.totoroweb.fun/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/"/>
+    
+    <category term="Ymodem" scheme="https://blog.totoroweb.fun/tags/Ymodem/"/>
+    
+    <category term="BootLoader" scheme="https://blog.totoroweb.fun/tags/BootLoader/"/>
+    
+    <category term="IAP" scheme="https://blog.totoroweb.fun/tags/IAP/"/>
+    
+    <category term="OTA" scheme="https://blog.totoroweb.fun/tags/OTA/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>嵌入式之串口单线通信</title>
+    <link href="https://blog.totoroweb.fun/archives/16a66ba.html"/>
+    <id>https://blog.totoroweb.fun/archives/16a66ba.html</id>
+    <published>2025-03-14T09:54:56.000Z</published>
+    <updated>2025-03-15T02:08:03.951Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;串口单线通信&quot;&gt;&lt;a href=&quot;#串口单线通信&quot; class=&quot;headerlink&quot; title=&quot;串口单线通信&quot;&gt;&lt;/a&gt;串口单线通信&lt;/h1&gt;&lt;h3 id=&quot;中心思想：&quot;&gt;&lt;a href=&quot;#中心思想：&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="嵌入式" scheme="https://blog.totoroweb.fun/categories/%E5%B5%8C%E5%85%A5%E5%BC%8F/"/>
+    
+    <category term="串口" scheme="https://blog.totoroweb.fun/categories/%E5%B5%8C%E5%85%A5%E5%BC%8F/%E4%B8%B2%E5%8F%A3/"/>
+    
+    
+    <category term="嵌入式" scheme="https://blog.totoroweb.fun/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/"/>
+    
+    <category term="串口" scheme="https://blog.totoroweb.fun/tags/%E4%B8%B2%E5%8F%A3/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>嵌入式之IAR工程改名</title>
+    <link href="https://blog.totoroweb.fun/archives/5110d59b.html"/>
+    <id>https://blog.totoroweb.fun/archives/5110d59b.html</id>
+    <published>2025-02-25T12:00:18.000Z</published>
+    <updated>2025-02-25T12:02:16.500Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;备份！备份！备份！&quot;&gt;&lt;a href=&quot;#备份！备份！备份！&quot; class=&quot;headerlink&quot; title=&quot;备份！备份！备份！&quot;&gt;&lt;/a&gt;备份！备份！备份！&lt;/h2&gt;&lt;h2 id=&quot;改文件（夹）名：&quot;&gt;&lt;a href=&quot;#改文件（夹）名：&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="嵌入式" scheme="https://blog.totoroweb.fun/categories/%E5%B5%8C%E5%85%A5%E5%BC%8F/"/>
+    
+    <category term="IAR" scheme="https://blog.totoroweb.fun/categories/%E5%B5%8C%E5%85%A5%E5%BC%8F/IAR/"/>
+    
+    
+    <category term="嵌入式" scheme="https://blog.totoroweb.fun/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/"/>
+    
+    <category term="IAR" scheme="https://blog.totoroweb.fun/tags/IAR/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>嵌入式之串口通信</title>
+    <link href="https://blog.totoroweb.fun/archives/b956c276.html"/>
+    <id>https://blog.totoroweb.fun/archives/b956c276.html</id>
+    <published>2024-12-25T10:17:19.000Z</published>
+    <updated>2025-01-10T07:19:58.906Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;串口数据溢出&quot;&gt;&lt;a href=&quot;#串口数据溢出&quot; class=&quot;headerlink&quot; title=&quot;串口数据溢出&quot;&gt;&lt;/a&gt;串口数据溢出&lt;/h1&gt;&lt;h2 id=&quot;事起缘由&quot;&gt;&lt;a href=&quot;#事起缘由&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="嵌入式" scheme="https://blog.totoroweb.fun/categories/%E5%B5%8C%E5%85%A5%E5%BC%8F/"/>
+    
+    <category term="串口" scheme="https://blog.totoroweb.fun/categories/%E5%B5%8C%E5%85%A5%E5%BC%8F/%E4%B8%B2%E5%8F%A3/"/>
+    
+    
+    <category term="嵌入式" scheme="https://blog.totoroweb.fun/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/"/>
+    
+    <category term="串口" scheme="https://blog.totoroweb.fun/tags/%E4%B8%B2%E5%8F%A3/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>嵌入式之ADC</title>
+    <link href="https://blog.totoroweb.fun/archives/c8ae9f13.html"/>
+    <id>https://blog.totoroweb.fun/archives/c8ae9f13.html</id>
+    <published>2024-12-03T03:41:32.000Z</published>
+    <updated>2025-01-04T02:30:37.161Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;ADC&quot;&gt;&lt;a href=&quot;#ADC&quot; class=&quot;headerlink&quot; title=&quot;ADC&quot;&gt;&lt;/a&gt;ADC&lt;/h1&gt;&lt;p&gt;ADC -</summary>
+        
+      
+    
+    
+    
+    <category term="ADC" scheme="https://blog.totoroweb.fun/categories/ADC/"/>
+    
+    <category term="嵌入式" scheme="https://blog.totoroweb.fun/categories/ADC/%E5%B5%8C%E5%85%A5%E5%BC%8F/"/>
+    
+    
+    <category term="嵌入式" scheme="https://blog.totoroweb.fun/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/"/>
+    
+    <category term="ADC" scheme="https://blog.totoroweb.fun/tags/ADC/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>嵌入式之队列</title>
+    <link href="https://blog.totoroweb.fun/archives/c146dddc.html"/>
+    <id>https://blog.totoroweb.fun/archives/c146dddc.html</id>
+    <published>2024-11-26T06:34:30.000Z</published>
+    <updated>2024-11-26T06:36:04.557Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;队列&quot;&gt;&lt;a href=&quot;#队列&quot; class=&quot;headerlink&quot; title=&quot;队列&quot;&gt;&lt;/a&gt;队列&lt;/h2&gt;&lt;h3 id=&quot;顺序队列&quot;&gt;&lt;a href=&quot;#顺序队列&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="嵌入式" scheme="https://blog.totoroweb.fun/categories/%E5%B5%8C%E5%85%A5%E5%BC%8F/"/>
+    
+    
+    <category term="嵌入式" scheme="https://blog.totoroweb.fun/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>嵌入式之二分法</title>
+    <link href="https://blog.totoroweb.fun/archives/c6964807.html"/>
+    <id>https://blog.totoroweb.fun/archives/c6964807.html</id>
+    <published>2024-11-26T06:34:11.000Z</published>
+    <updated>2024-11-26T06:36:04.556Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;二分法&quot;&gt;&lt;a href=&quot;#二分法&quot; class=&quot;headerlink&quot; title=&quot;二分法&quot;&gt;&lt;/a&gt;二分法&lt;/h2&gt;&lt;h3 id=&quot;代码实现&quot;&gt;&lt;a href=&quot;#代码实现&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="嵌入式" scheme="https://blog.totoroweb.fun/categories/%E5%B5%8C%E5%85%A5%E5%BC%8F/"/>
+    
+    
+    <category term="嵌入式" scheme="https://blog.totoroweb.fun/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>嵌入式之ADC数据的处理方法</title>
+    <link href="https://blog.totoroweb.fun/archives/b959f812.html"/>
+    <id>https://blog.totoroweb.fun/archives/b959f812.html</id>
+    <published>2024-11-26T06:30:40.000Z</published>
+    <updated>2024-12-03T10:13:38.038Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;ADC数据的处理方法&quot;&gt;&lt;a href=&quot;#ADC数据的处理方法&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="ADC" scheme="https://blog.totoroweb.fun/categories/ADC/"/>
+    
+    <category term="嵌入式" scheme="https://blog.totoroweb.fun/categories/ADC/%E5%B5%8C%E5%85%A5%E5%BC%8F/"/>
+    
+    
+    <category term="嵌入式" scheme="https://blog.totoroweb.fun/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/"/>
+    
+    <category term="滤波" scheme="https://blog.totoroweb.fun/tags/%E6%BB%A4%E6%B3%A2/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>嵌入式之IIC协议及其相关</title>
+    <link href="https://blog.totoroweb.fun/archives/2e946417.html"/>
+    <id>https://blog.totoroweb.fun/archives/2e946417.html</id>
+    <published>2024-11-10T13:14:19.967Z</published>
+    <updated>2025-04-17T12:01:56.664Z</updated>
+    
+    
+    <summary type="html">&lt;h2 id=&quot;IIC协议&quot;&gt;&lt;a href=&quot;#IIC协议&quot; class=&quot;headerlink&quot; title=&quot;IIC协议&quot;&gt;&lt;/a&gt;&lt;code&gt;IIC&lt;/code&gt;协议&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;协议：&lt;/strong&gt;&lt;br&gt;协议简单来说就是主机与从机双方约定一组动作，只要一方做了特定的动作，另一方就可以知道你要干什么，然后就可以给出特定的回复动作，多次重复就可以实现通信。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="IIC协议" scheme="https://blog.totoroweb.fun/categories/IIC%E5%8D%8F%E8%AE%AE/"/>
+    
+    <category term="嵌入式" scheme="https://blog.totoroweb.fun/categories/IIC%E5%8D%8F%E8%AE%AE/%E5%B5%8C%E5%85%A5%E5%BC%8F/"/>
+    
+    
+    <category term="嵌入式" scheme="https://blog.totoroweb.fun/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/"/>
+    
+    <category term="IIC协议" scheme="https://blog.totoroweb.fun/tags/IIC%E5%8D%8F%E8%AE%AE/"/>
+    
+    <category term="三极管" scheme="https://blog.totoroweb.fun/tags/%E4%B8%89%E6%9E%81%E7%AE%A1/"/>
+    
+    <category term="场效应管" scheme="https://blog.totoroweb.fun/tags/%E5%9C%BA%E6%95%88%E5%BA%94%E7%AE%A1/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>OrangePi zero 3</title>
+    <link href="https://blog.totoroweb.fun/archives/3f4f88f3.html"/>
+    <id>https://blog.totoroweb.fun/archives/3f4f88f3.html</id>
+    <published>2024-08-09T09:27:03.000Z</published>
+    <updated>2024-11-20T07:08:48.262Z</updated>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;OrangePi-ZERO-3&quot;&gt;&lt;a href=&quot;#OrangePi-ZERO-3&quot; class=&quot;headerlink&quot; title=&quot;OrangePi ZERO 3&quot;&gt;&lt;/a&gt;OrangePi ZERO 3&lt;/h1&gt;&lt;p&gt;最近刷视频突然有了个买块开发板的念头，而且这个念头一形成就挥之不去；忍耐了几周，终于还是下手了！&lt;/p&gt;
+&lt;p&gt;由于是第一次买Orangepi，且网上关于Orangepi的资料也不如Raspberry pi，故记录一下使用过程，方便之后查阅。&lt;/p&gt;
+&lt;h2 id=&quot;刷-Ubuntu-系统&quot;&gt;&lt;a href=&quot;#刷-Ubuntu-系统&quot; class=&quot;headerlink&quot; title=&quot;刷 Ubuntu 系统&quot;&gt;&lt;/a&gt;刷 &lt;code&gt;Ubuntu&lt;/code&gt; 系统&lt;/h2&gt;&lt;p&gt;参照网上教程，不多赘述&lt;/p&gt;
+&lt;p&gt;不过需注意一点：要找适合自己开发板内存的系统镜像&lt;/p&gt;
+&lt;p&gt;刷完使用串口线连接电脑与板子即可，我使用的工具是：&lt;a href=&quot;https://mobaxterm.mobatek.net/download.html&quot;&gt;MobaXterm&lt;/a&gt;&lt;/p&gt;</summary>
+    
+    
+    
+    
+    <category term="Ubuntu" scheme="https://blog.totoroweb.fun/tags/Ubuntu/"/>
+    
+    <category term="OrangePi" scheme="https://blog.totoroweb.fun/tags/OrangePi/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>单片机while循环一次时间是多少</title>
+    <link href="https://blog.totoroweb.fun/archives/3a69b252.html"/>
+    <id>https://blog.totoroweb.fun/archives/3a69b252.html</id>
+    <published>2024-08-09T09:14:52.000Z</published>
+    <updated>2024-08-09T09:20:11.856Z</updated>
+    
+    
+    <summary type="html">&lt;h1 id=&quot;单片机while-t–-延时时间怎样获取&quot;&gt;&lt;a href=&quot;#单片机while-t–-延时时间怎样获取&quot; class=&quot;headerlink&quot; title=&quot;单片机while(t–)延时时间怎样获取&quot;&gt;&lt;/a&gt;单片机while(t–)延时时间怎样获取&lt;/h1&gt;&lt;p&gt;先打开keil，&lt;/p&gt;
+&lt;p&gt;找到 &lt;code&gt;魔法棒 -&amp;gt; Debug -&amp;gt; Use Simulator&lt;/code&gt;，将该选项选上，&lt;/p&gt;
+&lt;p&gt;然后进 &lt;code&gt;Debug&lt;/code&gt; 模式&lt;/p&gt;</summary>
+    
+    
+    
+    
+    <category term="单片机" scheme="https://blog.totoroweb.fun/tags/%E5%8D%95%E7%89%87%E6%9C%BA/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>嵌入式之红外通信</title>
+    <link href="https://blog.totoroweb.fun/archives/bbd81c5a.html"/>
+    <id>https://blog.totoroweb.fun/archives/bbd81c5a.html</id>
+    <published>2024-07-11T11:42:00.000Z</published>
+    <updated>2024-11-26T03:55:08.600Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;红外通信原理&quot;&gt;&lt;a href=&quot;#红外通信原理&quot; class=&quot;headerlink&quot; title=&quot;红外通信原理&quot;&gt;&lt;/a&gt;红外通信原理&lt;/h2&gt;&lt;h4 id=&quot;发送过程&quot;&gt;&lt;a href=&quot;#发送过程&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="嵌入式" scheme="https://blog.totoroweb.fun/categories/%E5%B5%8C%E5%85%A5%E5%BC%8F/"/>
+    
+    <category term="红外通信" scheme="https://blog.totoroweb.fun/categories/%E5%B5%8C%E5%85%A5%E5%BC%8F/%E7%BA%A2%E5%A4%96%E9%80%9A%E4%BF%A1/"/>
+    
+    
+    <category term="嵌入式" scheme="https://blog.totoroweb.fun/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/"/>
+    
+    <category term="红外通信" scheme="https://blog.totoroweb.fun/tags/%E7%BA%A2%E5%A4%96%E9%80%9A%E4%BF%A1/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Ubuntu服务器部署FRP内网穿透</title>
+    <link href="https://blog.totoroweb.fun/archives/2bb50ac9.html"/>
+    <id>https://blog.totoroweb.fun/archives/2bb50ac9.html</id>
+    <published>2023-12-31T14:44:04.000Z</published>
+    <updated>2024-11-10T13:18:48.973Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;下载FRP&quot;&gt;&lt;a href=&quot;#下载FRP&quot; class=&quot;headerlink&quot; title=&quot;下载FRP&quot;&gt;&lt;/a&gt;下载FRP&lt;/h2&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/fatedier/frp/releases&quot;&gt;FRP -</summary>
+        
+      
+    
+    
+    
+    <category term="FRP" scheme="https://blog.totoroweb.fun/categories/FRP/"/>
+    
+    <category term="Ubuntu" scheme="https://blog.totoroweb.fun/categories/FRP/Ubuntu/"/>
+    
+    
+    <category term="Ubuntu" scheme="https://blog.totoroweb.fun/tags/Ubuntu/"/>
+    
+    <category term="FRP" scheme="https://blog.totoroweb.fun/tags/FRP/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Ubuntu下不使用各类面板建站</title>
+    <link href="https://blog.totoroweb.fun/archives/fe15a55f.html"/>
+    <id>https://blog.totoroweb.fun/archives/fe15a55f.html</id>
+    <published>2023-09-30T10:35:18.000Z</published>
+    <updated>2024-11-10T12:45:24.078Z</updated>
+    
+    
+    <summary type="html">&lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;恰逢国庆中秋双节放假，闲来无事，想着搞点什么玩玩；思来想去，还是写个博客吧！&lt;/p&gt;
+&lt;p&gt;由于之前建站都是使用的宝塔或者直接docker部署，感觉对于Linux指令的掌握没什么进步；就想着不使用面板来建个站，虽然不便管理，但学习嘛，不怕困难。&lt;/p&gt;</summary>
+    
+    
+    
+    <category term="建站" scheme="https://blog.totoroweb.fun/categories/%E5%BB%BA%E7%AB%99/"/>
+    
+    <category term="Ubuntu" scheme="https://blog.totoroweb.fun/categories/%E5%BB%BA%E7%AB%99/Ubuntu/"/>
+    
+    
+    <category term="Ubuntu" scheme="https://blog.totoroweb.fun/tags/Ubuntu/"/>
+    
+    <category term="建站" scheme="https://blog.totoroweb.fun/tags/%E5%BB%BA%E7%AB%99/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>精确搜索之Google搜索语法大全</title>
+    <link href="https://blog.totoroweb.fun/archives/c54b318a.html"/>
+    <id>https://blog.totoroweb.fun/archives/c54b318a.html</id>
+    <published>2023-03-04T13:07:02.000Z</published>
+    <updated>2024-08-08T04:28:30.428Z</updated>
+    
+    
+    <summary type="html">&lt;h2 id=&quot;Google谷歌搜索语法大全&quot;&gt;&lt;a href=&quot;#Google谷歌搜索语法大全&quot; class=&quot;headerlink&quot; title=&quot;Google谷歌搜索语法大全&quot;&gt;&lt;/a&gt;Google谷歌搜索语法大全&lt;/h2&gt;</summary>
+    
+    
+    
+    <category term="精确搜索" scheme="https://blog.totoroweb.fun/categories/%E7%B2%BE%E7%A1%AE%E6%90%9C%E7%B4%A2/"/>
+    
+    
+    <category term="搜索技巧" scheme="https://blog.totoroweb.fun/tags/%E6%90%9C%E7%B4%A2%E6%8A%80%E5%B7%A7/"/>
+    
+  </entry>
+  
+</feed>
