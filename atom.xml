@@ -6,7 +6,7 @@
   <link href="https://blog.totoroweb.fun/atom.xml" rel="self"/>
   
   <link href="https://blog.totoroweb.fun/"/>
-  <updated>2025-04-22T09:00:15.454Z</updated>
+  <updated>2025-05-16T08:01:15.279Z</updated>
   <id>https://blog.totoroweb.fun/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>嵌入式之固件合并</title>
+    <link href="https://blog.totoroweb.fun/archives/cc688e9e.html"/>
+    <id>https://blog.totoroweb.fun/archives/cc688e9e.html</id>
+    <published>2025-05-16T07:31:44.000Z</published>
+    <updated>2025-05-16T08:01:15.279Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;使用srec-cat&quot;&gt;&lt;a href=&quot;#使用srec-cat&quot; class=&quot;headerlink&quot; title=&quot;使用srec_cat&quot;&gt;&lt;/a&gt;使用&lt;code&gt;srec_cat&lt;/code&gt;&lt;/h2&gt;&lt;p&gt;访问&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="嵌入式" scheme="https://blog.totoroweb.fun/categories/%E5%B5%8C%E5%85%A5%E5%BC%8F/"/>
+    
+    
+    <category term="嵌入式" scheme="https://blog.totoroweb.fun/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/"/>
+    
+  </entry>
   
   <entry>
     <title>零碎知识点汇总</title>
@@ -427,9 +452,9 @@
     
     
     
-    <category term="OrangePi" scheme="https://blog.totoroweb.fun/tags/OrangePi/"/>
-    
     <category term="Ubuntu" scheme="https://blog.totoroweb.fun/tags/Ubuntu/"/>
+    
+    <category term="OrangePi" scheme="https://blog.totoroweb.fun/tags/OrangePi/"/>
     
   </entry>
   
@@ -531,25 +556,6 @@
     <category term="Ubuntu" scheme="https://blog.totoroweb.fun/tags/Ubuntu/"/>
     
     <category term="建站" scheme="https://blog.totoroweb.fun/tags/%E5%BB%BA%E7%AB%99/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>精确搜索之Google搜索语法大全</title>
-    <link href="https://blog.totoroweb.fun/archives/c54b318a.html"/>
-    <id>https://blog.totoroweb.fun/archives/c54b318a.html</id>
-    <published>2023-03-04T13:07:02.000Z</published>
-    <updated>2024-08-08T04:28:30.428Z</updated>
-    
-    
-    <summary type="html">&lt;h2 id=&quot;Google谷歌搜索语法大全&quot;&gt;&lt;a href=&quot;#Google谷歌搜索语法大全&quot; class=&quot;headerlink&quot; title=&quot;Google谷歌搜索语法大全&quot;&gt;&lt;/a&gt;Google谷歌搜索语法大全&lt;/h2&gt;</summary>
-    
-    
-    
-    <category term="精确搜索" scheme="https://blog.totoroweb.fun/categories/%E7%B2%BE%E7%A1%AE%E6%90%9C%E7%B4%A2/"/>
-    
-    
-    <category term="搜索技巧" scheme="https://blog.totoroweb.fun/tags/%E6%90%9C%E7%B4%A2%E6%8A%80%E5%B7%A7/"/>
     
   </entry>
   
