@@ -6,7 +6,7 @@
   <link href="https://blog.totoroweb.fun/atom.xml" rel="self"/>
   
   <link href="https://blog.totoroweb.fun/"/>
-  <updated>2025-05-16T08:01:15.279Z</updated>
+  <updated>2025-05-29T07:22:39.429Z</updated>
   <id>https://blog.totoroweb.fun/</id>
   
   <author>
@@ -17,11 +17,44 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>嵌入式之使用RTT打印LOG进行调试</title>
+    <link href="https://blog.totoroweb.fun/archives/7990819.html"/>
+    <id>https://blog.totoroweb.fun/archives/7990819.html</id>
+    <published>2025-05-29T02:56:49.000Z</published>
+    <updated>2025-05-29T07:22:39.429Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;安装JLink&quot;&gt;&lt;a href=&quot;#安装JLink&quot; class=&quot;headerlink&quot; title=&quot;安装JLink&quot;&gt;&lt;/a&gt;安装JLink&lt;/h2&gt;&lt;p&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    <category term="嵌入式" scheme="https://blog.totoroweb.fun/categories/%E5%B5%8C%E5%85%A5%E5%BC%8F/"/>
+    
+    <category term="JLink" scheme="https://blog.totoroweb.fun/categories/%E5%B5%8C%E5%85%A5%E5%BC%8F/JLink/"/>
+    
+    
+    <category term="嵌入式" scheme="https://blog.totoroweb.fun/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/"/>
+    
+    <category term="串口" scheme="https://blog.totoroweb.fun/tags/%E4%B8%B2%E5%8F%A3/"/>
+    
+    <category term="JLink" scheme="https://blog.totoroweb.fun/tags/JLink/"/>
+    
+    <category term="RTT" scheme="https://blog.totoroweb.fun/tags/RTT/"/>
+    
+  </entry>
+  
+  <entry>
     <title>嵌入式之固件合并</title>
     <link href="https://blog.totoroweb.fun/archives/cc688e9e.html"/>
     <id>https://blog.totoroweb.fun/archives/cc688e9e.html</id>
     <published>2025-05-16T07:31:44.000Z</published>
-    <updated>2025-05-16T08:01:15.279Z</updated>
+    <updated>2025-05-16T08:02:04.761Z</updated>
     
     
       
@@ -452,9 +485,9 @@
     
     
     
-    <category term="Ubuntu" scheme="https://blog.totoroweb.fun/tags/Ubuntu/"/>
-    
     <category term="OrangePi" scheme="https://blog.totoroweb.fun/tags/OrangePi/"/>
+    
+    <category term="Ubuntu" scheme="https://blog.totoroweb.fun/tags/Ubuntu/"/>
     
   </entry>
   
@@ -532,30 +565,6 @@
     <category term="Ubuntu" scheme="https://blog.totoroweb.fun/tags/Ubuntu/"/>
     
     <category term="FRP" scheme="https://blog.totoroweb.fun/tags/FRP/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Ubuntu下不使用各类面板建站</title>
-    <link href="https://blog.totoroweb.fun/archives/fe15a55f.html"/>
-    <id>https://blog.totoroweb.fun/archives/fe15a55f.html</id>
-    <published>2023-09-30T10:35:18.000Z</published>
-    <updated>2024-11-10T12:45:24.078Z</updated>
-    
-    
-    <summary type="html">&lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;恰逢国庆中秋双节放假，闲来无事，想着搞点什么玩玩；思来想去，还是写个博客吧！&lt;/p&gt;
-&lt;p&gt;由于之前建站都是使用的宝塔或者直接docker部署，感觉对于Linux指令的掌握没什么进步；就想着不使用面板来建个站，虽然不便管理，但学习嘛，不怕困难。&lt;/p&gt;</summary>
-    
-    
-    
-    <category term="建站" scheme="https://blog.totoroweb.fun/categories/%E5%BB%BA%E7%AB%99/"/>
-    
-    <category term="Ubuntu" scheme="https://blog.totoroweb.fun/categories/%E5%BB%BA%E7%AB%99/Ubuntu/"/>
-    
-    
-    <category term="Ubuntu" scheme="https://blog.totoroweb.fun/tags/Ubuntu/"/>
-    
-    <category term="建站" scheme="https://blog.totoroweb.fun/tags/%E5%BB%BA%E7%AB%99/"/>
     
   </entry>
   
