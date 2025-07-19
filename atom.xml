@@ -6,7 +6,7 @@
   <link href="https://blog.totoroweb.fun/atom.xml" rel="self"/>
   
   <link href="https://blog.totoroweb.fun/"/>
-  <updated>2025-05-29T07:22:39.429Z</updated>
+  <updated>2025-07-19T02:30:00.374Z</updated>
   <id>https://blog.totoroweb.fun/</id>
   
   <author>
@@ -17,11 +17,40 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>嵌入式之写读bin固件差异</title>
+    <link href="https://blog.totoroweb.fun/archives/499f545.html"/>
+    <id>https://blog.totoroweb.fun/archives/499f545.html</id>
+    <published>2025-07-19T02:13:08.000Z</published>
+    <updated>2025-07-19T02:30:00.374Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;最近在调试&lt;code&gt;OTA&lt;/code&gt;，基本搞完了，但是升级完毕后将固件用&lt;code&gt;Jflash&lt;/code&gt;读出来与写进去的对比发现，有个别字节（位于不同地址，每地址一个，大概3 ~ 5个）与升级使用的固件不……</summary>
+        
+      
+    
+    
+    
+    <category term="嵌入式" scheme="https://blog.totoroweb.fun/categories/%E5%B5%8C%E5%85%A5%E5%BC%8F/"/>
+    
+    <category term="JLink" scheme="https://blog.totoroweb.fun/categories/%E5%B5%8C%E5%85%A5%E5%BC%8F/JLink/"/>
+    
+    
+    <category term="嵌入式" scheme="https://blog.totoroweb.fun/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/"/>
+    
+    <category term="BIN" scheme="https://blog.totoroweb.fun/tags/BIN/"/>
+    
+  </entry>
+  
+  <entry>
     <title>嵌入式之使用RTT打印LOG进行调试</title>
     <link href="https://blog.totoroweb.fun/archives/7990819.html"/>
     <id>https://blog.totoroweb.fun/archives/7990819.html</id>
     <published>2025-05-29T02:56:49.000Z</published>
-    <updated>2025-05-29T07:22:39.429Z</updated>
+    <updated>2025-05-29T07:56:14.416Z</updated>
     
     
       
@@ -309,7 +338,7 @@
     <link href="https://blog.totoroweb.fun/archives/b956c276.html"/>
     <id>https://blog.totoroweb.fun/archives/b956c276.html</id>
     <published>2024-12-25T10:17:19.000Z</published>
-    <updated>2025-01-10T07:19:58.906Z</updated>
+    <updated>2025-06-05T09:32:51.831Z</updated>
     
     
       
@@ -536,35 +565,6 @@
     <category term="嵌入式" scheme="https://blog.totoroweb.fun/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/"/>
     
     <category term="红外通信" scheme="https://blog.totoroweb.fun/tags/%E7%BA%A2%E5%A4%96%E9%80%9A%E4%BF%A1/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Ubuntu服务器部署FRP内网穿透</title>
-    <link href="https://blog.totoroweb.fun/archives/2bb50ac9.html"/>
-    <id>https://blog.totoroweb.fun/archives/2bb50ac9.html</id>
-    <published>2023-12-31T14:44:04.000Z</published>
-    <updated>2024-11-10T13:18:48.973Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h2 id=&quot;下载FRP&quot;&gt;&lt;a href=&quot;#下载FRP&quot; class=&quot;headerlink&quot; title=&quot;下载FRP&quot;&gt;&lt;/a&gt;下载FRP&lt;/h2&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/fatedier/frp/releases&quot;&gt;FRP -</summary>
-        
-      
-    
-    
-    
-    <category term="FRP" scheme="https://blog.totoroweb.fun/categories/FRP/"/>
-    
-    <category term="Ubuntu" scheme="https://blog.totoroweb.fun/categories/FRP/Ubuntu/"/>
-    
-    
-    <category term="Ubuntu" scheme="https://blog.totoroweb.fun/tags/Ubuntu/"/>
-    
-    <category term="FRP" scheme="https://blog.totoroweb.fun/tags/FRP/"/>
     
   </entry>
   
