@@ -6,7 +6,7 @@
   <link href="https://blog.totoroweb.fun/atom.xml" rel="self"/>
   
   <link href="https://blog.totoroweb.fun/"/>
-  <updated>2025-07-19T02:30:00.374Z</updated>
+  <updated>2025-07-22T11:01:51.792Z</updated>
   <id>https://blog.totoroweb.fun/</id>
   
   <author>
@@ -21,14 +21,15 @@
     <link href="https://blog.totoroweb.fun/archives/499f545.html"/>
     <id>https://blog.totoroweb.fun/archives/499f545.html</id>
     <published>2025-07-19T02:13:08.000Z</published>
-    <updated>2025-07-19T02:30:00.374Z</updated>
+    <updated>2025-07-22T11:01:51.792Z</updated>
     
     
       
       
         
         
-    <summary type="html">&lt;p&gt;最近在调试&lt;code&gt;OTA&lt;/code&gt;，基本搞完了，但是升级完毕后将固件用&lt;code&gt;Jflash&lt;/code&gt;读出来与写进去的对比发现，有个别字节（位于不同地址，每地址一个，大概3 ~ 5个）与升级使用的固件不……</summary>
+    <summary type="html">&lt;p&gt;最近在调试&lt;code&gt;OTA&lt;/code&gt;，基本搞完了。&lt;/p&gt;
+&lt;p&gt;但是升级完毕后将读出来的固件与写入的进行对比，发现有些字节（分别位于不同地址）与写入的固件不一致……</summary>
         
       
     
@@ -514,9 +515,9 @@
     
     
     
-    <category term="OrangePi" scheme="https://blog.totoroweb.fun/tags/OrangePi/"/>
-    
     <category term="Ubuntu" scheme="https://blog.totoroweb.fun/tags/Ubuntu/"/>
+    
+    <category term="OrangePi" scheme="https://blog.totoroweb.fun/tags/OrangePi/"/>
     
   </entry>
   
