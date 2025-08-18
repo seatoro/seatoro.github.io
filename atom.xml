@@ -6,7 +6,7 @@
   <link href="https://blog.totoroweb.fun/atom.xml" rel="self"/>
   
   <link href="https://blog.totoroweb.fun/"/>
-  <updated>2025-07-22T11:05:59.236Z</updated>
+  <updated>2025-08-18T03:41:05.919Z</updated>
   <id>https://blog.totoroweb.fun/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>嵌入式之IAR编译常见的警告</title>
+    <link href="https://blog.totoroweb.fun/archives/262fd2b9.html"/>
+    <id>https://blog.totoroweb.fun/archives/262fd2b9.html</id>
+    <published>2025-08-18T03:26:05.000Z</published>
+    <updated>2025-08-18T03:41:05.919Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;以下是&lt;code&gt;IAR&lt;/code&gt;编译时常见的警告，若想忽略掉某种警告，可用如下方法：&lt;/p&gt;
+&lt;p&gt;打开 &lt;code&gt;IAR工程 -&amp;gt; Options -&amp;gt; C/C++ Compiler -&amp;gt; Diagnostics -&amp;gt; Suppress</summary>
+        
+      
+    
+    
+    
+    <category term="IAR" scheme="https://blog.totoroweb.fun/categories/IAR/"/>
+    
+    
+    <category term="IAR" scheme="https://blog.totoroweb.fun/tags/IAR/"/>
+    
+  </entry>
   
   <entry>
     <title>嵌入式之写读bin固件差异</title>
@@ -84,7 +110,7 @@
     <link href="https://blog.totoroweb.fun/archives/cc688e9e.html"/>
     <id>https://blog.totoroweb.fun/archives/cc688e9e.html</id>
     <published>2025-05-16T07:31:44.000Z</published>
-    <updated>2025-05-16T08:02:04.761Z</updated>
+    <updated>2025-08-18T03:52:21.439Z</updated>
     
     
       
@@ -515,9 +541,9 @@
     
     
     
-    <category term="Ubuntu" scheme="https://blog.totoroweb.fun/tags/Ubuntu/"/>
-    
     <category term="OrangePi" scheme="https://blog.totoroweb.fun/tags/OrangePi/"/>
+    
+    <category term="Ubuntu" scheme="https://blog.totoroweb.fun/tags/Ubuntu/"/>
     
   </entry>
   
@@ -537,35 +563,6 @@
     
     
     <category term="单片机" scheme="https://blog.totoroweb.fun/tags/%E5%8D%95%E7%89%87%E6%9C%BA/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>嵌入式之红外通信</title>
-    <link href="https://blog.totoroweb.fun/archives/bbd81c5a.html"/>
-    <id>https://blog.totoroweb.fun/archives/bbd81c5a.html</id>
-    <published>2024-07-11T11:42:00.000Z</published>
-    <updated>2024-11-26T03:55:08.600Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h2 id=&quot;红外通信原理&quot;&gt;&lt;a href=&quot;#红外通信原理&quot; class=&quot;headerlink&quot; title=&quot;红外通信原理&quot;&gt;&lt;/a&gt;红外通信原理&lt;/h2&gt;&lt;h4 id=&quot;发送过程&quot;&gt;&lt;a href=&quot;#发送过程&quot; class=&quot;headerlink&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="嵌入式" scheme="https://blog.totoroweb.fun/categories/%E5%B5%8C%E5%85%A5%E5%BC%8F/"/>
-    
-    <category term="红外通信" scheme="https://blog.totoroweb.fun/categories/%E5%B5%8C%E5%85%A5%E5%BC%8F/%E7%BA%A2%E5%A4%96%E9%80%9A%E4%BF%A1/"/>
-    
-    
-    <category term="嵌入式" scheme="https://blog.totoroweb.fun/tags/%E5%B5%8C%E5%85%A5%E5%BC%8F/"/>
-    
-    <category term="红外通信" scheme="https://blog.totoroweb.fun/tags/%E7%BA%A2%E5%A4%96%E9%80%9A%E4%BF%A1/"/>
     
   </entry>
   
